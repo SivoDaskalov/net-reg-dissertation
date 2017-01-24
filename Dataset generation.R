@@ -54,7 +54,25 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
       network[i * regulatedGenesPerTF + j, 2] = i * (regulatedGenesPerTF + 1) + j + 1
     }
   }
-  return(network)
+  
+  gamma = 0
+  degrees<-rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)^((gamma+1)/2)
+  
+  p = transFactorsCount * ( 1 + regulatedGenesPerTF)
+  L = matrix(0, p, p)
+  for(i in 1:nrow(network)){
+    # w(u,v) assumed to be 1
+    u = network[i,1]
+    v = network[i,2]
+    if(u == v){
+      L[u,v] = 1 - 1/degrees[u]
+    } else{
+      L[u,v] = - 1/sqrt(degrees[u]*degrees[v])
+      L[v,u] = - 1/sqrt(degrees[u]*degrees[v])
+    }
+  }
+  
+  return(L)
 }
 
 normalize = function(X, Y){
@@ -74,18 +92,15 @@ normalize = function(X, Y){
 generateAndNormalize = function(n, transFactorsCount, regulatedGenesPerTF){
   set.seed(0)
   betas = createBetaFrame()
-  network = generateNetwork(transFactorsCount, regulatedGenesPerTF)
-  gamma = 0
-  weights<-rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)^((gamma+1)/2)
+  L = generateNetwork(transFactorsCount, regulatedGenesPerTF)
   X = generateExpressionLevelsFrame(n, transFactorsCount, regulatedGenesPerTF)
   Y = data.frame(cbind(simulateResponseValues(X, betas[1,]), simulateResponseValues(X, betas[2,]), 
                        simulateResponseValues(X, betas[3,]), simulateResponseValues(X, betas[4,])))
   normalized = normalize(X, Y)
-  return(list(x = normalized[[1]], y = normalized[[2]], net = network, wt = weights))
+  return(list(x = normalized[[1]], y = normalized[[2]], l = L))
 }
 
 generated = generateAndNormalize(n = 100, transFactorsCount = 200, regulatedGenesPerTF = 10)
 X = generated[[1]]
 Y = generated[[2]]
-network = generated[[3]]
-weights = generated[[4]]
+L = generated[[3]]
