@@ -8,11 +8,11 @@ generateBetaVector = function(TF1, TF2, TF3, TF4, denominator, negative, positiv
   return(c(EL1, EL2, EL3, EL4, ELU))
 }
 
-createBetaFrame = function(){
-  M1 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 0, positive = 10, unrelatedTransFactorCount = 196)
-  M2 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 3, positive = 7, unrelatedTransFactorCount = 196)
-  M3 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 0, positive = 10, unrelatedTransFactorCount = 196)
-  M4 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 3, positive = 7, unrelatedTransFactorCount = 196)
+createBetaFrame = function(transFactorsCount){
+  M1 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 0, positive = 10, unrelatedTransFactorCount = transFactorsCount - 4)
+  M2 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 3, positive = 7, unrelatedTransFactorCount = transFactorsCount - 4)
+  M3 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 0, positive = 10, unrelatedTransFactorCount = transFactorsCount - 4)
+  M4 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 3, positive = 7, unrelatedTransFactorCount = transFactorsCount - 4)
   betas = data.frame(rbind(M1,M2,M3,M4))
   return(betas)
 }
@@ -56,7 +56,7 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
   }
   
   gamma = 0
-  degrees<-rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)^((gamma+1)/2)
+  degrees = rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)^((gamma+1)/2)
   
   p = transFactorsCount * ( 1 + regulatedGenesPerTF)
   L = matrix(0, p, p)
@@ -90,17 +90,11 @@ normalize = function(X, Y){
 }
 
 generateAndNormalize = function(n, transFactorsCount, regulatedGenesPerTF){
-  set.seed(0)
-  betas = createBetaFrame()
+  betas = createBetaFrame(transFactorsCount)
   L = generateNetwork(transFactorsCount, regulatedGenesPerTF)
   X = generateExpressionLevelsFrame(n, transFactorsCount, regulatedGenesPerTF)
   Y = data.frame(cbind(simulateResponseValues(X, betas[1,]), simulateResponseValues(X, betas[2,]), 
                        simulateResponseValues(X, betas[3,]), simulateResponseValues(X, betas[4,])))
   normalized = normalize(X, Y)
-  return(list(x = normalized[[1]], y = normalized[[2]], l = L))
+  return(list(x = normalized[[1]], y = normalized[[2]], l = L, betas = betas))
 }
-
-generated = generateAndNormalize(n = 100, transFactorsCount = 200, regulatedGenesPerTF = 10)
-X = generated[[1]]
-Y = generated[[2]]
-L = generated[[3]]

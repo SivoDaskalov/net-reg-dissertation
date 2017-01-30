@@ -1,5 +1,4 @@
 # codes modified from package "Grace"
-
 library(glmnet)
 
 cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
@@ -39,7 +38,7 @@ cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
     return(ERRlist)
 }
 
-grace <- function(Y, X, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10){
+grace <- function(Y, X, Ytu, Xtu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10){
   lambda.L <- unique(sort(lambda.L, decreasing = TRUE))
   lambda.1 <- unique(sort(lambda.1, decreasing = TRUE))
   lambda.2 <- unique(sort(lambda.2, decreasing = TRUE))
@@ -78,7 +77,10 @@ grace <- function(Y, X, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = F
   
   # If more than one tuning parameter is provided, perform K-fold cross-validation  
   if((length(lambda.L) > 1) | (length(lambda.1) > 1) | (length(lambda.2) > 1)){
-    parameters <- cvGrace(X, Y, L, lambda.L, lambda.1, lambda.2, K)
+    Xtu <- scale(Xtu)
+    Ytu <- Y - mean(Y)
+    
+    parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K)
     tun = parameters[parameters[,4]==min(parameters[,4]), ]
     
     if(length(dim(tun))==2 ){
@@ -106,10 +108,8 @@ grace <- function(Y, X, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = F
   betahat <- betahatstar / sqrt(1 + l2star)
 
   truebetahat <- betahat / scale.fac  # Scale back coefficient estimate
-  truealphahat <- mean(ori.Y - ori.X %*% truebetahat)
-  return(list( ParameterEstimation = list(parameterCV=parameters, parameterMin=tun),
-               GraceFit = graceFit,
-               Beta=list(intercept = truealphahat, beta = truebetahat)))
+  truealphahat <- mean(ori.Y - as.matrix(ori.X) %*% truebetahat)
+  return(list( parameters = list(parameterCV=parameters, parameterMin=tun),
+               fit = graceFit,
+               coefficients=list(intercept = truealphahat, beta = truebetahat)))
 }
-
-grace(Y,X,L)
