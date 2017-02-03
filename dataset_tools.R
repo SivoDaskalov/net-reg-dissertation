@@ -1,5 +1,6 @@
+dataTools <- new.env()
 
-generateBetaVector = function(TF1, TF2, TF3, TF4, denominator, negative, positive, unrelatedTransFactorCount){
+dataTools$generateBetaVector = function(TF1, TF2, TF3, TF4, denominator, negative, positive, unrelatedTransFactorCount){
   EL1 = c(TF1, rep(-TF1/denominator, negative), rep(TF1/denominator, positive))
   EL2 = c(TF2, rep(-TF2/denominator, negative), rep(TF2/denominator, positive))
   EL3 = c(TF3, rep(-TF3/denominator, negative), rep(TF3/denominator, positive))
@@ -8,33 +9,24 @@ generateBetaVector = function(TF1, TF2, TF3, TF4, denominator, negative, positiv
   return(c(EL1, EL2, EL3, EL4, ELU))
 }
 
-createBetaFrame = function(transFactorsCount){
-  M1 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 0, positive = 10, unrelatedTransFactorCount = transFactorsCount - 4)
-  M2 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), negative = 3, positive = 7, unrelatedTransFactorCount = transFactorsCount - 4)
-  M3 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 0, positive = 10, unrelatedTransFactorCount = transFactorsCount - 4)
-  M4 = generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, negative = 3, positive = 7, unrelatedTransFactorCount = transFactorsCount - 4)
-  betas = data.frame(rbind(M1,M2,M3,M4))
-  return(betas)
-}
-
-generateExpressionLevels = function(transFactorsCount, regulatedGenesPerTF){
+dataTools$generateObservation = function(transFactorsCount, regulatedGenesPerTF){
   TF = rnorm(n = transFactorsCount, mean = 0, sd = 1)
-  expressionLevels = c()
+  observation = c()
   for(i in 1:length(TF)){
-    expressionLevels = c(expressionLevels, TF[i], rnorm(regulatedGenesPerTF, 0.7*TF[i], sqrt(0.51)))
+    observation = c(observation, TF[i], rnorm(regulatedGenesPerTF, 0.7*TF[i], sqrt(0.51)))
   }
-  return(expressionLevels)
+  return(observation)
 }
 
-generateExpressionLevelsFrame = function(n, transFactorsCount, regulatedGenesPerTF){
+dataTools$generateExpressionLevelsFrame = function(n, transFactorsCount, regulatedGenesPerTF){
   expressionLevelsFrame = c()
   for(i in 1:n){
-    expressionLevelsFrame = rbind(expressionLevelsFrame, generateExpressionLevels(transFactorsCount, regulatedGenesPerTF))
+    expressionLevelsFrame = rbind(expressionLevelsFrame, dataTools$generateObservation(transFactorsCount, regulatedGenesPerTF))
   }
   return(data.frame(expressionLevelsFrame))
 }
 
-simulateResponseValues = function(X, betas){
+dataTools$simulateResponseVector = function(X, betas){
   betas = as.numeric(betas)
   noiseVar = sum((betas-mean(betas))^2)/4
   noise = rnorm(nrow(X), mean = 0, sd = sqrt(noiseVar))
@@ -44,6 +36,47 @@ simulateResponseValues = function(X, betas){
   
   Y = sumWeighedX + noise
   return(Y)
+}
+
+generateDataset = function(n, transFactorsCount, regulatedGenesPerTF){
+  X = dataTools$generateExpressionLevelsFrame(n, transFactorsCount, regulatedGenesPerTF)
+  
+  # Normalize
+  Xmu<-apply(X, 2, mean)
+  Xsd<-sqrt(apply(X, 2, var))
+  for(i in 1:length(X)){
+    X[,i] = (X[,i] - Xmu[i])/Xsd[i]
+  }
+  
+  return(X)
+}
+
+simulateResponse = function(X, betas){
+  Y = c()
+  for(i in 1:nrow(betas)){
+    Y = cbind(Y, dataTools$simulateResponseVector(X, betas[i,]))
+  }
+  
+  # Normalize
+  Y = data.frame(Y)
+  for(i in 1:length(Y)){
+    Y[,i] = Y[,i] - mean(Y[,i])
+  }
+  
+  return(Y)
+}
+
+generateBetas = function(transFactorsCount, regulatedGenesPerTF){
+  M1 = dataTools$generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), 
+                                    negative = 0, positive = regulatedGenesPerTF, unrelatedTransFactorCount = transFactorsCount - 4)
+  M2 = dataTools$generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = sqrt(10), 
+                                    negative = 3, positive = regulatedGenesPerTF - 3, unrelatedTransFactorCount = transFactorsCount - 4)
+  M3 = dataTools$generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, 
+                                    negative = 0, positive = regulatedGenesPerTF, unrelatedTransFactorCount = transFactorsCount - 4)
+  M4 = dataTools$generateBetaVector(TF1 = 5, TF2 = -5, TF3 = 3, TF4 = -3, denominator = 10, 
+                                    negative = 3, positive = regulatedGenesPerTF - 3, unrelatedTransFactorCount = transFactorsCount - 4)
+  betas = data.frame(rbind(M1,M2,M3,M4))
+  return(betas)
 }
 
 generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
@@ -73,28 +106,4 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
   }
   
   return(L)
-}
-
-normalize = function(X, Y){
-  Xmu<-apply(X, 2, mean)
-  Xsd<-sqrt(apply(X, 2, var))
-  for(i in 1:length(X)){
-    X[,i] = (X[,i] - Xmu[i])/Xsd[i]
-  }
-  
-  for(i in 1:length(Y)){
-    Y[,i] = Y[,i] - mean(Y[,i])
-  }
-  
-  return(list(x = X, y = Y))
-}
-
-generateAndNormalize = function(n, transFactorsCount, regulatedGenesPerTF){
-  betas = createBetaFrame(transFactorsCount)
-  L = generateNetwork(transFactorsCount, regulatedGenesPerTF)
-  X = generateExpressionLevelsFrame(n, transFactorsCount, regulatedGenesPerTF)
-  Y = data.frame(cbind(simulateResponseValues(X, betas[1,]), simulateResponseValues(X, betas[2,]), 
-                       simulateResponseValues(X, betas[3,]), simulateResponseValues(X, betas[4,])))
-  normalized = normalize(X, Y)
-  return(list(x = normalized[[1]], y = normalized[[2]], l = L, betas = betas))
 }
