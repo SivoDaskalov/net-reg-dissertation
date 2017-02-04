@@ -3,7 +3,8 @@ source("dataset_tools.R")
 source("evaluation_tools.R")
 source("grace.R")
 
-originalResults = list(sens = 0.75, spec = 0.983, prec = 0.917, cor = 0.838, err = 485.283)
+originalResultsTF20 = list(sens = 0.75, spec = 0.983, prec = 0.917, cor = 0.838, err = 485.283)
+optimizedResultsTF200 = list(sens = 1, spec = 0.231, prec = 0.025, cor = 0.623, err = 338.914)
 n = 100
 transFactorsCount = 200
 regulatedGenesPerTF = 10
@@ -31,4 +32,8 @@ betaHat = as.numeric(unlist(graceRes$coefficients$beta))
 trueBeta = as.numeric(Betas[1,])
 stat = evalStatistics(trueBeta = as.numeric(Betas[1,]), betaHat = as.numeric(unlist(graceRes$coefficients$beta)))
 tuning = graceRes$parameters$errors
-which.min(tuning[,4])
+
+
+
+save.image("LiLi2008Big.rda")
+load("LiLi2008Big.rda")
