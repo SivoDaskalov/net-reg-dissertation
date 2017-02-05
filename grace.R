@@ -1,5 +1,62 @@
 # codes modified from package "Grace"
 library(glmnet)
+library(doParallel)
+library(parallel)
+
+graceWorker = function(params){
+  lambda.L <<- params$lambda.L
+  lambda.2 <<- params$lambda.2
+  
+  Lnew <- lambda.L * L + lambda.2 * diag(p)
+  eL <- eigen(Lnew)
+  if( sum(eL$values<=0)>0 ){return(c())}
+  S <- eL$vectors %*% sqrt(diag(eL$values))
+  l2star <- 1
+  l1star <- lambda.1
+  Xstar <- rbind(X, sqrt(l2star) * t(S)) / sqrt(1 + l2star)
+  Ystar <- c(Y, rep(0, p))
+  gammastar <- l1star / sqrt(1 + l2star) / 2 / (n + p)
+  errors = c()
+  
+  cvres <- cv.glmnet(Xstar, Ystar, lambda = gammastar, intercept = FALSE, standardize = FALSE, nfolds = K)
+  for(i1 in 1:length(gammastar)){
+    if(!is.na(cvres$cvm[i1])){
+      errors <- rbind(errors, c(lambda.L, lambda.1[i1], lambda.2, cvres$cvm[i1], cvres$nzero[i1]) )
+    }
+  }
+  return(errors)
+}
+
+pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
+  X <- scale(X)
+  Y <- Y - mean(Y)
+  p <- ncol(X)
+  n <- nrow(X)
+  
+  lambda.L <- unique(sort(lambda.L, decreasing = TRUE))
+  lambda.1 <- unique(sort(lambda.1, decreasing = TRUE))
+  lambda.2 <- unique(sort(lambda.2, decreasing = TRUE))
+  
+  if(missing(cl)){
+    cores = min(4, detectCores())
+    cl <- makeCluster(cores, type = "PSOCK", port=10101, timeout=30)
+  }
+  
+  clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1"), envir=environment())
+  tmp = clusterEvalQ(cl, library(glmnet))
+  remove(tmp)
+  clusterSetRNGStream(cl, sample(1:1000, 1))
+  
+  grid = expand.grid(lambda.L = lambdaGrid, lambda.2 = lambdaGrid)
+  grains =lapply(split(grid,seq(nrow(grid))), as.list)
+  allErrors = parLapply(cl, grains, graceWorker)
+  existingErrors = Filter(Negate(is.null), allErrors)
+  mergedErrors = do.call("rbind", existingErrors)
+  colnames(mergedErrors) = c("lambda.L","lambda.1","lambda.2","cvm", "nzero")
+  stopCluster(cl)
+  idxRes = which.min(mergedErrors[,4])
+  return(list(errors = mergedErrors, lambda.min = mergedErrors[idxRes,]))
+}
 
 cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
   X <- scale(X)
@@ -31,18 +88,18 @@ cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
       cvres <- cv.glmnet(Xstar, Ystar, lambda = gammastar, intercept = FALSE, standardize = FALSE, nfolds = K)
       for(i1 in 1:length(gammastar)){
         if(!is.na(cvres$cvm[i1])){
-          errors <- rbind( errors, c( lambda.1[i1] , lL, l2, cvres$cvm[i1] ) )
+          errors <- rbind( errors, c( lL, lambda.1[i1] , l2, cvres$cvm[i1], cvres$nzero[i1] ) )
         }
       }
     }
   }
   
-  colnames(errors)=c("lambda.1","lambda.L","lambda.2","cvm")
+  colnames(errors)=c("lambda.L","lambda.1","lambda.2","cvm","nzero")
   idxRes = which.min(errors[,4])
   return(list(errors = errors, lambda.min = errors[idxRes,]))
 }
 
-grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10){
+grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10, parallel = FALSE, cl){
   if(!is.null(ncol(Y))){
     stop("Error: Y is not a vector.")
   }
@@ -62,6 +119,7 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
     stop("Error: At least one of the grace tuning parameters must be positive.")
   }
   
+  res = list()
   ori.Y <- Y
   ori.X <- X
   scale.fac <- attr(scale(X), "scaled:scale")
@@ -77,11 +135,16 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
   
   # If more than one tuning parameter is provided, perform K-fold cross-validation  
   if((length(lambda.L) > 1) | (length(lambda.1) > 1) | (length(lambda.2) > 1)){
-    parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K)
+    if(missing(parallel) || parallel == FALSE){
+      parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K)
+    } else{
+      parameters <- pcvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K, cl)
+    }
     tun = parameters$lambda.min
-    lambda.1 <- tun[1]
-    lambda.L <- tun[2]
+    lambda.L <- tun[1]
+    lambda.1 <- tun[2]
     lambda.2 <- tun[3] 
+    res$parameters = parameters
   }
   
   # See Li & Li (2008) for reference
@@ -99,7 +162,8 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
 
   truebetahat <- betahat / scale.fac  # Scale back coefficient estimate
   truealphahat <- mean(ori.Y - as.matrix(ori.X) %*% truebetahat)
-  return(list( parameters = parameters,
-               fit = graceFit,
-               coefficients=list(intercept = truealphahat, beta = truebetahat)))
+  
+  res$fit = graceFit
+  res$coefficients = list(intercept = truealphahat, beta = truebetahat)
+  return(res)
 }
