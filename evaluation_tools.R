@@ -1,5 +1,12 @@
 
-evalStatistics = function(trueBeta, betaHat, trueBetaIndices){
+evalErrors = function(actual, predicted){
+  errors = predicted - actual
+  mse = mean(errors^2)
+  stderr = sd(errors)/sqrt(length(errors))
+  return(list(errors = errors, mse = mse, stderr = stderr))
+}
+
+evalBetaStatistics = function(trueBeta, betaHat, trueBetaIndices){
   if(missing(trueBetaIndices)) {
     # Assume beta model as defined in Li and Li 2008
     trueTransFactors = 4

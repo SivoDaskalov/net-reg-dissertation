@@ -45,7 +45,6 @@ pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
   clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1"), envir=environment())
   tmp = clusterEvalQ(cl, library(glmnet))
   remove(tmp)
-  clusterSetRNGStream(cl, sample(1:1000, 1))
   
   grid = expand.grid(lambda.L = lambdaGrid, lambda.2 = lambdaGrid)
   grains =lapply(split(grid,seq(nrow(grid))), as.list)

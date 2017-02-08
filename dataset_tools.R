@@ -107,3 +107,21 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
   
   return(L)
 }
+
+generateDatasets = function(n, factors, genesPerFactor){
+  set.seed(0)
+  
+  L = generateNetwork(factors, genesPerFactor)
+  Betas = generateBetas(factors, genesPerFactor)
+  
+  Xtu = generateDataset(n, factors, genesPerFactor)
+  Ytu = simulateResponse(Xtu, Betas)
+  
+  Xtr = generateDataset(n, factors, genesPerFactor)
+  Ytr = simulateResponse(Xtr, Betas)
+  
+  Xts = generateDataset(n, factors, genesPerFactor)
+  Yts = simulateResponse(Xts, Betas)
+  
+  return(list(Xtu = Xtu, Ytu = Ytu, Xtr = Xtr, Ytr = Ytr, Xts = Xts, Yts = Yts, L = L, Betas = Betas))
+}
