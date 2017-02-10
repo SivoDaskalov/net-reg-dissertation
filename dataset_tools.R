@@ -109,8 +109,6 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
 }
 
 generateDatasets = function(n, factors, genesPerFactor){
-  set.seed(0)
-  
   L = generateNetwork(factors, genesPerFactor)
   Betas = generateBetas(factors, genesPerFactor)
   

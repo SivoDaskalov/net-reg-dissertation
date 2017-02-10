@@ -2,41 +2,73 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("dataset_tools.R")
 source("evaluation_tools.R")
 source("lasso.R")
+source("grace.R")
 
 batchLasso = function(Ytu, Xtu, Ytr, Xtr, Yts, Xts, lambdas, Betas){
-  cases = list()
-  for(i in 1:nrow(Betas)){
-    lassoRes = lasso(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
-    prediction <- predict(object=lassoRes$fit, as.matrix(Xts), type="response")
-    errors = evalErrors(Yts[,i],prediction)
-    stat = evalBetaStatistics(trueBeta = as.numeric(Betas[i,]), betaHat = as.numeric(unlist(lassoRes$coefficients)))
-    cases[[length(cases)+1]] = list(model = lassoRes, prediction = prediction, errors = errors$errors, mse = errors$mse, stderr = errors$stderr,
-                                    cor = stat$cor, prec = stat$prec, spec = stat$spec, sens = stat$sens)
-  }
-  
+  models = list()
   summary = c()
-  for(i in 1:length(cases)){
-    tmp = c(case = i, sens = cases[[i]]$sens, spec = cases[[i]]$spec, prec = cases[[i]]$prec,  
-            cor = cases[[i]]$cor, mse = cases[[i]]$mse, stderr = cases[[i]]$stderr)
-    summary <- rbind(summary, tmp)
+  predictions = c()
+  for(i in 1:nrow(Betas)){
+    model = lasso(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
+    models[[i]] = model
+    
+    prediction = predict(object=model$fit, as.matrix(Xts), type="response")
+    predictions = cbind(predictions, prediction)
+    
+    errors = evalErrors(Yts[,i],prediction)
+    stat = evalBetaStatistics(trueBeta = as.numeric(Betas[i,]), betaHat = as.numeric(unlist(model$coefficients)))
+    summary = rbind(summary, c(case = i, sens = stat$sens, spec = stat$spec, prec = stat$prec, 
+                               cor = stat$cor, mse = errors$mse, stderr = errors$stderr))
   }
-  rownames(summary) <- NULL
-  
-  return(list(cases = cases, summary = summary))
+  rownames(summary) = NULL
+  colnames(predictions) = seq(1,length(models))
+  return(list(cases = models, summary = summary, predictions = predictions))
 }
 
-runBatch = function(n, factors, genesPerFactor){
+runBatch = function(n, factors, genesPerFactor, methods){
+  set.seed(0)
+  
+  if(missing(methods)){
+    methods = c("lasso")
+  }
+  
+  start = proc.time()
   ds = generateDatasets(n, factors, genesPerFactor)
   
   models = list()
   
-  lassoLambdaGrid = 10 ^ seq(from = -2, by = 1, length = 6)
-  models$lasso = batchLasso(ds$Ytu, ds$Xtu, ds$Ytr, ds$Xtr, ds$Yts, ds$Xts, lambdas = lassoLambdaGrid, ds$Betas)
+  if("lasso" %in% methods){
+    lassoLambdaGrid = 10 ^ seq(from = -2, by = 1, length = 6)
+    models$lasso = batchLasso(ds$Ytu, ds$Xtu, ds$Ytr, ds$Xtr, ds$Yts, ds$Xts, lambdas = lassoLambdaGrid, ds$Betas)
+  }
   
   result = list()
   result$L = ds$L
   result$betas = ds$Betas
   result$datasets = list(Ytu = ds$Ytu, Xtu = ds$Xtu, Ytr = ds$Ytr, Xtr = ds$Xtr, Yts = ds$Yts, Xts = ds$Xts)
   result$models = models
+  result$timeElapsed = (proc.time() - start)[3]
   return(result)
+}
+
+unpackBatchResults = function (batchResults){
+  L <<- batchResults$L
+  betas <<- batchResults$betas
+  Xtu <<- batchResults$datasets$Xtu
+  Ytu <<- batchResults$datasets$Ytu
+  Xtr <<- batchResults$datasets$Xtr
+  Ytr <<- batchResults$datasets$Ytr
+  Xts <<- batchResults$datasets$Xts
+  Yts <<- batchResults$datasets$Yts
+  
+  models <<- batchResults$models
+  methodNames = attributes(models)$names
+  for(i in 1:length(methodNames)){
+    methodName = methodNames[i]
+    currentMethod = models[[methodName]]
+    assign(paste(methodName, "Models", sep = ""), currentMethod$cases, envir = .GlobalEnv)
+    assign(paste(methodName, "Summary", sep = ""), currentMethod$summary, envir = .GlobalEnv)
+    assign(paste(methodName, "Predictions", sep = ""), currentMethod$predictions, envir = .GlobalEnv)
+  }
+  timeElapsed <<- batchResults$timeElapsed
 }
