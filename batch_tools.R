@@ -1,28 +1,16 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("dataset_tools.R")
 source("evaluation_tools.R")
-source("lasso.R")
-source("grace.R")
+source("methods/lasso.R")
+source("methods/enet.R")
+source("methods/grace.R")
 
 batchLasso = function(Ytu, Xtu, Ytr, Xtr, Yts, Xts, lambdas, Betas){
   models = list()
-  summary = c()
-  predictions = c()
   for(i in 1:nrow(Betas)){
-    model = lasso(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
-    models[[i]] = model
-    
-    prediction = predict(object=model$fit, as.matrix(Xts), type="response")
-    predictions = cbind(predictions, prediction)
-    
-    errors = evalErrors(Yts[,i],prediction)
-    stat = evalBetaStatistics(trueBeta = as.numeric(Betas[i,]), betaHat = as.numeric(unlist(model$coefficients)))
-    summary = rbind(summary, c(case = i, sens = stat$sens, spec = stat$spec, prec = stat$prec, 
-                               cor = stat$cor, mse = errors$mse, stderr = errors$stderr))
+    models[[i]] = lasso(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
   }
-  rownames(summary) = NULL
-  colnames(predictions) = seq(1,length(models))
-  return(list(cases = models, summary = summary, predictions = predictions))
+  return(batchEvaluateModels(Yts, Xts, models, Betas))
 }
 
 runBatch = function(n, factors, genesPerFactor, methods){
@@ -49,6 +37,25 @@ runBatch = function(n, factors, genesPerFactor, methods){
   result$models = models
   result$timeElapsed = (proc.time() - start)[3]
   return(result)
+}
+
+batchEvaluateModels = function(Yts, Xts, models, Betas){
+  summary = c()
+  predictions = c()
+  for(i in 1:nrow(Betas)){
+    model = models[[i]]
+    
+    prediction = predict(object=model$fit, as.matrix(Xts), type="response")
+    predictions = cbind(predictions, prediction)
+    
+    errors = evalErrors(Yts[,i],prediction)
+    stat = evalBetaStatistics(trueBeta = as.numeric(Betas[i,]), betaHat = as.numeric(unlist(model$coefficients)))
+    summary = rbind(summary, c(case = i, sens = stat$sens, spec = stat$spec, prec = stat$prec, 
+                               cor = stat$cor, mse = errors$mse, stderr = errors$stderr))
+  }
+  rownames(summary) = NULL
+  colnames(predictions) = seq(1,length(models))
+  return(list(cases = models, summary = summary, predictions = predictions))
 }
 
 unpackBatchResults = function (batchResults){
