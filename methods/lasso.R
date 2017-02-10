@@ -1,4 +1,4 @@
-lasso = function(Y, X, Ytu, Xtu, lambdas, K){
+lasso = function(X, Y, Xtu, Ytu, lambdas, K){
   alpha = 1
   cvLasso = cv.glmnet(y = Ytu, x = as.matrix(Xtu), lambda = lambdas, nfolds = K, alpha = alpha)
   cvLambda = cvLasso$lambda.min

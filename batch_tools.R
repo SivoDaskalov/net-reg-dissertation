@@ -9,7 +9,7 @@ runBatch = function(n, factors, genesPerFactor, methods){
   set.seed(0)
   
   if(missing(methods)){
-    methods = c("lasso", "enet")
+    methods = c("lasso", "enet", "grace")
   }
   
   start = proc.time()
@@ -21,13 +21,20 @@ runBatch = function(n, factors, genesPerFactor, methods){
   if("lasso" %in% methods){
     cat(timestamp("Fitting Lasso models"), "\n")
     lassoLambdaGrid = 10 ^ seq(from = -2, by = 1, length = 6)
-    models$lasso = batchLasso(ds$Ytu, ds$Xtu, ds$Ytr, ds$Xtr, ds$Yts, ds$Xts, lambdas = lassoLambdaGrid, ds$Betas)
+    models$lasso = batchLasso(ds$Xtu, ds$Ytu, ds$Xtr, ds$Ytr, ds$Xts, ds$Yts, lambdas = lassoLambdaGrid, ds$Betas)
   }
   
   if("enet" %in% methods){
     cat(timestamp("Fitting Elastic Net models"), "\n")
     enetLambdaGrid = 10 ^ seq(from = -2, by = 1, length = 6)
-    models$enet = batchEnet(ds$Ytu, ds$Xtu, ds$Ytr, ds$Xtr, ds$Yts, ds$Xts, lambdas = enetLambdaGrid, ds$Betas)
+    models$enet = batchEnet(ds$Xtu, ds$Ytu, ds$Xtr, ds$Ytr, ds$Xts, ds$Yts, lambdas = enetLambdaGrid, ds$Betas)
+  }
+  
+  if("grace" %in% methods){
+    cat(timestamp("Fitting Grace models"), "\n")
+    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
+    models$grace = batchGrace(ds$Xtu, ds$Ytu, ds$Xtr, ds$Ytr, ds$Xts, ds$Yts, ds$L, 
+                              grace.lambda.L, grace.lambda.1, grace.lambda.2, ds$Betas)
   }
   
   result = list()
@@ -36,26 +43,44 @@ runBatch = function(n, factors, genesPerFactor, methods){
   result$datasets = list(Ytu = ds$Ytu, Xtu = ds$Xtu, Ytr = ds$Ytr, Xtr = ds$Xtr, Yts = ds$Yts, Xts = ds$Xts)
   result$models = models
   result$timeElapsed = (proc.time() - start)[3]
+  cat(timestamp("Batch fitting completed"), "\n")
   return(result)
 }
 
-batchLasso = function(Ytu, Xtu, Ytr, Xtr, Yts, Xts, lambdas, Betas){
+batchLasso = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, lambdas, Betas){
   models = list()
   for(i in 1:nrow(Betas)){
-    models[[i]] = lasso(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
+    models[[i]] = lasso(Xtr, Ytr[,i], Xtu, Ytu[,i], lambda = lambdas, K = 10)
   }
-  return(batchEvaluateModels(Yts, Xts, models, Betas))
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
 }
 
-batchEnet = function(Ytu, Xtu, Ytr, Xtr, Yts, Xts, lambdas, Betas){
+batchEnet = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, lambdas, Betas){
   models = list()
   for(i in 1:nrow(Betas)){
-    models[[i]] = enet(Ytr[,i], Xtr, Ytu[,i], Xtu, lambda = lambdas, K = 10)
+    models[[i]] = enet(Xtr, Ytr[,i], Xtu, Ytu[,i], lambda = lambdas, K = 10)
   }
-  return(batchEvaluateModels(Yts, Xts, models, Betas))
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
 }
 
-batchEvaluateModels = function(Yts, Xts, models, Betas){
+batchGrace = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, L, lambda.L, lambda.1, lambda.2, Betas){
+  cores = min(6, detectCores())
+  cluster = makeCluster(cores, type = "PSOCK", port=10101)
+  clusterSetRNGStream(cluster, 0)
+
+  models = list()
+  for(i in 1:nrow(Betas)){
+    models[[i]] = grace(X = Xtr, Y = Ytr[,i], Xtu = Xtu, Ytu = Ytu[,i], 
+                        L = L, K = 10, parallel = TRUE, cl = cluster, 
+                        lambda.L = lambda.L, lambda.1 = lambda.1, lambda.2 = lambda.2)
+  }
+  
+  stopCluster(cluster)
+  registerDoSEQ()
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
+}
+
+batchEvaluateModels = function(Xts, Yts, models, Betas){
   summary = c()
   predictions = c()
   for(i in 1:nrow(Betas)){

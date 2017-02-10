@@ -1,6 +1,4 @@
-# codes modified from package "Grace"
 library(glmnet)
-library(doParallel)
 library(parallel)
 
 graceWorker = function(params){
@@ -37,22 +35,16 @@ pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
   lambda.1 <- unique(sort(lambda.1, decreasing = TRUE))
   lambda.2 <- unique(sort(lambda.2, decreasing = TRUE))
   
-  if(missing(cl)){
-    cores = min(4, detectCores())
-    cl <- makeCluster(cores, type = "PSOCK", port=10101, timeout=30)
-  }
-  
   clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1"), envir=environment())
   tmp = clusterEvalQ(cl, library(glmnet))
   remove(tmp)
   
-  grid = expand.grid(lambda.L = lambdaGrid, lambda.2 = lambdaGrid)
+  grid = expand.grid(lambda.L = lambda.L, lambda.2 = lambda.2)
   grains =lapply(split(grid,seq(nrow(grid))), as.list)
   allErrors = parLapply(cl, grains, graceWorker)
   existingErrors = Filter(Negate(is.null), allErrors)
   mergedErrors = do.call("rbind", existingErrors)
   colnames(mergedErrors) = c("lambda.L","lambda.1","lambda.2","cvm", "nzero")
-  stopCluster(cl)
   idxRes = which.min(mergedErrors[,4])
   return(list(errors = mergedErrors, lambda.min = mergedErrors[idxRes,]))
 }
@@ -137,15 +129,26 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
     if(missing(parallel) || parallel == FALSE){
       parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K)
     } else{
+      ownCluster = FALSE
+      if(missing(cl)){
+        cat("Cluster not provided, initializing own")
+        cores = min(6, detectCores())
+        cl = makeCluster(cores, type = "PSOCK", port=10101, timeout=30)
+        clusterSetRNGStream(cl, 0)
+        ownCluster = TRUE
+      }
       parameters <- pcvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K, cl)
+      if(ownCluster == TRUE){
+        stopCluster(cl)
+        registerDoSEQ()
+      }
     }
-    tun = parameters$lambda.min
-    lambda.L <- tun[1]
-    lambda.1 <- tun[2]
-    lambda.2 <- tun[3] 
-    res$parameters = parameters
+    res$tuning = parameters$errors
+    res$lambda.min = parameters$lambda.min
+    lambda.L <- res$lambda.min[1]
+    lambda.1 <- res$lambda.min[2]
+    lambda.2 <- res$lambda.min[3] 
   }
-  
   # See Li & Li (2008) for reference
   Lnew <- lambda.L * L + lambda.2 * diag(p)
   eL <- eigen(Lnew)
@@ -156,6 +159,7 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
   Ystar <- c(Y, rep(0, p))
   gammastar <- l1star / sqrt(1 + l2star) / 2 / (n + p)
   graceFit <- glmnet(Xstar, Ystar, lambda = gammastar, intercept = FALSE, standardize = FALSE, thresh = 1e-11)
+
   betahatstar <- graceFit$beta[, 1]
   betahat <- betahatstar / sqrt(1 + l2star)
 
@@ -163,6 +167,6 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
   truealphahat <- mean(ori.Y - as.matrix(ori.X) %*% truebetahat)
   
   res$fit = graceFit
-  res$coefficients = list(intercept = truealphahat, beta = truebetahat)
+  res$coefficients = truebetahat
   return(res)
 }
