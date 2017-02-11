@@ -92,7 +92,8 @@ batchEvaluateModels = function(Xts, Yts, models, Betas){
     errors = evalErrors(Yts[,i],prediction)
     stat = evalBetaStatistics(trueBeta = as.numeric(Betas[i,]), betaHat = as.numeric(unlist(model$coefficients)))
     summary = rbind(summary, c(case = i, sens = stat$sens, spec = stat$spec, prec = stat$prec, 
-                               cor = stat$cor, mse = errors$mse, stderr = errors$stderr))
+                               cor = stat$cor, mse = errors$mse, stderr = errors$stderr, 
+                               nzero = sum(model$coefficients != 0)))
   }
   rownames(summary) = NULL
   colnames(predictions) = seq(1,length(models))
@@ -109,14 +110,27 @@ unpackBatchResults = function (batchResults){
   Xts <<- batchResults$datasets$Xts
   Yts <<- batchResults$datasets$Yts
   
+  
   models <<- batchResults$models
   methodNames = attributes(models)$names
+  templateSetupSummary = matrix(NA, nrow = length(methodNames), ncol = ncol(models[[methodNames[1]]]$summary))
+  colnames(templateSetupSummary) = colnames(models[[methodNames[1]]]$summary)
+  for(i in 1:nrow(betas)){
+    current = paste("setup", i, "Summary", sep = "")
+    assign(current, as.data.frame(templateSetupSummary), envir = .GlobalEnv)
+  }
   for(i in 1:length(methodNames)){
     methodName = methodNames[i]
     currentMethod = models[[methodName]]
     assign(paste(methodName, "Models", sep = ""), currentMethod$cases, envir = .GlobalEnv)
     assign(paste(methodName, "Summary", sep = ""), currentMethod$summary, envir = .GlobalEnv)
     assign(paste(methodName, "Predictions", sep = ""), currentMethod$predictions, envir = .GlobalEnv)
+    for(j in 1:nrow(currentMethod$summary)){
+      tmp = get(paste("setup", j, "Summary", sep = ""), envir = .GlobalEnv)
+      tmp[i,] = currentMethod$summary[j, ]
+      tmp[i,1] = methodName
+      assign(paste("setup", j, "Summary", sep = ""), tmp, envir = .GlobalEnv)
+    }
   }
   timeElapsed <<- batchResults$timeElapsed
 }
