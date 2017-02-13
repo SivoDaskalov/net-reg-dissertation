@@ -4,12 +4,17 @@ source("evaluation_tools.R")
 source("methods/lasso.R")
 source("methods/enet.R")
 source("methods/grace.R")
+source("methods/gblasso.R")
 
 runBatch = function(n, factors, genesPerFactor, methods){
   set.seed(0)
   
   if(missing(methods)){
-    methods = c("lasso", "enet", "grace")
+    methods = c("lasso", "enet", "grace", "gblasso")
+  }
+  
+  if("agrace" %in% methods && !("gblasso" %in% methods)){
+    methods <- c(methods, "agrace")
   }
   
   start = proc.time()
@@ -32,13 +37,22 @@ runBatch = function(n, factors, genesPerFactor, methods){
   
   if("grace" %in% methods){
     cat(timestamp("Fitting Grace models"), "\n")
-    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
-    models$grace = batchGrace(ds$Xtu, ds$Ytu, ds$Xtr, ds$Ytr, ds$Xts, ds$Yts, ds$L, 
-                              grace.lambda.L, grace.lambda.1, grace.lambda.2, ds$Betas)
+    # grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
+    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 * seq(from = 1, by = 1, length = 10)
+    models$grace = batchGrace(Xtu = ds$Xtu, Ytu = ds$Ytu, Xtr = ds$Xtr, Ytr = ds$Ytr, Xts = ds$Xts, Yts = ds$Yts, L = ds$L, 
+                              lambda.L = grace.lambda.L, lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, Betas = ds$Betas)
+  }
+  
+  if("gblasso" %in% methods){
+    cat(timestamp("Fitting GBLasso models"), "\n")
+    models$gblasso = batchGBLasso(ds$Xtu, ds$Ytu, ds$Xtr, ds$Ytr, ds$Xts, ds$Yts, 
+                                ds$edges, ds$degrees, ds$Betas)
   }
   
   result = list()
   result$L = ds$L
+  result$edges = ds$edges
+  result$degrees = ds$degrees
   result$betas = ds$Betas
   result$datasets = list(Ytu = ds$Ytu, Xtu = ds$Xtu, Ytr = ds$Ytr, Xtr = ds$Xtr, Yts = ds$Yts, Xts = ds$Xts)
   result$models = models
@@ -80,6 +94,28 @@ batchGrace = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, L, lambda.L, lambda.1, lambd
   return(batchEvaluateModels(Xts, Yts, models, Betas))
 }
 
+batchGBLasso = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, edges, degrees, Betas){
+  wt = degrees^(1/2)
+  models = list()
+  for(i in 1:nrow(Betas)){
+    # Currently training with the tuning datasets
+    tuning <<- GBLasso(Xtu, Ytu[,i], netwk = edges, wt = wt)
+    minMse = mse(Y = Yts[,i], X = Xts, b = tuning$betas[1,])
+    solIdx = 1
+    for(j in 2:tuning$nsol){
+      curMse = mse(Y = Yts[,i], X = Xts, b = tuning$betas[j,])
+      if(curMse < minMse){
+        minMse = curMse
+        solIdx = j
+      }
+    }
+    tuning$coefficients = tuning$betas[solIdx,]
+    model = list(fit = tuning, coefficients = tuning$betas[solIdx,])
+    models[[i]] = model
+  }
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
+}
+
 batchEvaluateModels = function(Xts, Yts, models, Betas){
   summary = c()
   predictions = c()
@@ -102,6 +138,8 @@ batchEvaluateModels = function(Xts, Yts, models, Betas){
 
 unpackBatchResults = function (batchResults){
   L <<- batchResults$L
+  degrees <<- batchResults$degrees
+  edges <<- batchResults$edges
   betas <<- batchResults$betas
   Xtu <<- batchResults$datasets$Xtu
   Ytu <<- batchResults$datasets$Ytu

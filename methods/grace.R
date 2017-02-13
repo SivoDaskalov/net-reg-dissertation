@@ -45,8 +45,11 @@ pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
   existingErrors = Filter(Negate(is.null), allErrors)
   mergedErrors = do.call("rbind", existingErrors)
   colnames(mergedErrors) = c("lambda.L","lambda.1","lambda.2","cvm", "nzero")
-  idxRes = which.min(mergedErrors[,4])
-  return(list(errors = mergedErrors, lambda.min = mergedErrors[idxRes,]))
+  cvm = mergedErrors[,4]
+  idxMin = which.min(cvm)
+  sem = sd(cvm)/sqrt(length(cvm))
+  idx1se = which.max(cvm < (cvm[idxMin] + sem))
+  return(list(errors = mergedErrors, lambda.min = mergedErrors[idxMin,], lambda.1se = mergedErrors[idx1se,]))
 }
 
 cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
@@ -86,8 +89,11 @@ cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
   }
   
   colnames(errors)=c("lambda.L","lambda.1","lambda.2","cvm","nzero")
-  idxRes = which.min(errors[,4])
-  return(list(errors = errors, lambda.min = errors[idxRes,]))
+  cvm = errors[,4]
+  idxMin = which.min(cvm)
+  sem = sd(cvm)/sqrt(length(cvm))
+  idx1se = which.max(cvm < (cvm[idxMin] + sem))
+  return(list(errors = errors, lambda.min = errors[idxMin,], lambda.1se = errors[idx1se,]))
 }
 
 grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10, parallel = FALSE, cl){
@@ -145,9 +151,15 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
     }
     res$tuning = parameters$errors
     res$lambda.min = parameters$lambda.min
-    lambda.L <- res$lambda.min[1]
-    lambda.1 <- res$lambda.min[2]
-    lambda.2 <- res$lambda.min[3] 
+    res$lambda.1se = parameters$lambda.1se
+    
+    # lambda.L <- res$lambda.min[1]
+    # lambda.1 <- res$lambda.min[2]
+    # lambda.2 <- res$lambda.min[3]
+    
+    lambda.L <- res$lambda.1se[1]
+    lambda.1 <- res$lambda.1se[2]
+    lambda.2 <- res$lambda.1se[3]
   }
   # See Li & Li (2008) for reference
   Lnew <- lambda.L * L + lambda.2 * diag(p)

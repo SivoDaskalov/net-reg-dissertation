@@ -88,8 +88,7 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
     }
   }
   
-  gamma = 0
-  degrees = rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)^((gamma+1)/2)
+  degrees = rep(c(regulatedGenesPerTF, rep(1, regulatedGenesPerTF)), transFactorsCount)#^(1/2)
   
   p = transFactorsCount * ( 1 + regulatedGenesPerTF)
   L = matrix(0, p, p)
@@ -105,11 +104,14 @@ generateNetwork = function(transFactorsCount, regulatedGenesPerTF){
     }
   }
   
-  return(L)
+  return(list(L = L, edges = network, degrees = degrees))
 }
 
 generateDatasets = function(n, factors, genesPerFactor){
-  L = generateNetwork(factors, genesPerFactor)
+  net = generateNetwork(factors, genesPerFactor)
+  L = net$L
+  degrees = net$degrees
+  edges = net$edges
   Betas = generateBetas(factors, genesPerFactor)
   
   Xtu = generateDataset(n, factors, genesPerFactor)
@@ -121,5 +123,6 @@ generateDatasets = function(n, factors, genesPerFactor){
   Xts = generateDataset(n, factors, genesPerFactor)
   Yts = simulateResponse(Xts, Betas)
   
-  return(list(Xtu = Xtu, Ytu = Ytu, Xtr = Xtr, Ytr = Ytr, Xts = Xts, Yts = Yts, L = L, Betas = Betas))
+  return(list(Xtu = Xtu, Ytu = Ytu, Xtr = Xtr, Ytr = Ytr, Xts = Xts, Yts = Yts, 
+              L = L, Betas = Betas, edges = edges, degrees = degrees))
 }
