@@ -25,7 +25,7 @@ graceWorker = function(params){
   return(errors)
 }
 
-pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
+pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl, b0){
   X <- scale(X)
   Y <- Y - mean(Y)
   p <- ncol(X)
@@ -35,7 +35,7 @@ pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
   lambda.1 <- unique(sort(lambda.1, decreasing = TRUE))
   lambda.2 <- unique(sort(lambda.2, decreasing = TRUE))
   
-  clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1"), envir=environment())
+  clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1", "b0"), envir=environment())
   tmp = clusterEvalQ(cl, library(glmnet))
   remove(tmp)
   
@@ -52,7 +52,7 @@ pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl){
   return(list(errors = mergedErrors, lambda.min = mergedErrors[idxMin,], lambda.1se = mergedErrors[idx1se,]))
 }
 
-cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
+cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, b0){
   X <- scale(X)
   Y <- Y - mean(Y)
   
@@ -96,7 +96,7 @@ cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10){
   return(list(errors = errors, lambda.min = errors[idxMin,], lambda.1se = errors[idx1se,]))
 }
 
-grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10, parallel = FALSE, cl){
+grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, normalize.L = FALSE, K = 10, parallel = FALSE, cl, enetFit){
   if(!is.null(ncol(Y))){
     stop("Error: Y is not a vector.")
   }
@@ -125,6 +125,23 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
   n <- nrow(X)
   p <- ncol(X)
   
+  if(missing(enetFit)){
+    # Assuming regular grace
+    b0 = rep(1, p)
+  }else{
+    # Assuming adaptive grace
+    if(p<n){
+      # Take initial estimates based on OLSE
+      lmData = data.frame(Y = Y, Xtu)
+      lmFit = lm(Y ~ .-1, data = Xtu)
+      b0 = lmFit$coefficients
+    } else{
+      # Take initial estimates based on ENet
+      b0 = enetFit$coefficients
+    }
+  }
+  res$b0 = b0
+  
   if(normalize.L){
     diag(L)[diag(L) == 0] <- 1
     L <- diag(1 / sqrt(diag(L))) %*% L %*% diag(1 / sqrt(diag(L)))  # Normalize L
@@ -133,7 +150,7 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
   # If more than one tuning parameter is provided, perform K-fold cross-validation  
   if((length(lambda.L) > 1) | (length(lambda.1) > 1) | (length(lambda.2) > 1)){
     if(missing(parallel) || parallel == FALSE){
-      parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K)
+      parameters <- cvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K, b0)
     } else{
       ownCluster = FALSE
       if(missing(cl)){
@@ -143,7 +160,7 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
         clusterSetRNGStream(cl, 0)
         ownCluster = TRUE
       }
-      parameters <- pcvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K, cl)
+      parameters <- pcvGrace(Xtu, Ytu, L, lambda.L, lambda.1, lambda.2, K, cl, b0)
       if(ownCluster == TRUE){
         stopCluster(cl)
         registerDoSEQ()

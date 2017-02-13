@@ -10,11 +10,11 @@ runBatch = function(n, factors, genesPerFactor, methods){
   set.seed(0)
   
   if(missing(methods)){
-    methods = c("lasso", "enet", "grace", "gblasso")
+    methods = c("lasso", "enet", "grace", "agrace", "gblasso")
   }
   
-  if("agrace" %in% methods && !("gblasso" %in% methods)){
-    methods <- c(methods, "agrace")
+  if("agrace" %in% methods && !("enet" %in% methods)){
+    methods <- c(methods, "enet")
   }
   
   start = proc.time()
@@ -41,6 +41,14 @@ runBatch = function(n, factors, genesPerFactor, methods){
     grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 * seq(from = 1, by = 1, length = 10)
     models$grace = batchGrace(Xtu = ds$Xtu, Ytu = ds$Ytu, Xtr = ds$Xtr, Ytr = ds$Ytr, Xts = ds$Xts, Yts = ds$Yts, L = ds$L, 
                               lambda.L = grace.lambda.L, lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, Betas = ds$Betas)
+  }
+  
+  if("agrace" %in% methods){
+    cat(timestamp("Fitting Adaptive Grace models"), "\n")
+    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 * seq(from = 1, by = 1, length = 10)
+    models$agrace = batchAGrace(Xtu = ds$Xtu, Ytu = ds$Ytu, Xtr = ds$Xtr, Ytr = ds$Ytr, Xts = ds$Xts, Yts = ds$Yts, 
+                                L = ds$L, enetModels = models$enet, Betas = ds$Betas,
+                                lambda.L = grace.lambda.L, lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2)
   }
   
   if("gblasso" %in% methods){
@@ -86,6 +94,23 @@ batchGrace = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, L, lambda.L, lambda.1, lambd
   for(i in 1:nrow(Betas)){
     models[[i]] = grace(X = Xtr, Y = Ytr[,i], Xtu = Xtu, Ytu = Ytu[,i], 
                         L = L, K = 10, parallel = TRUE, cl = cluster, 
+                        lambda.L = lambda.L, lambda.1 = lambda.1, lambda.2 = lambda.2)
+  }
+  
+  stopCluster(cluster)
+  registerDoSEQ()
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
+}
+
+batchAGrace = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, L, lambda.L, lambda.1, lambda.2, Betas, enetModels){
+  cores = min(6, detectCores())
+  cluster = makeCluster(cores, type = "PSOCK", port=10101)
+  clusterSetRNGStream(cluster, 0)
+
+  models = list()
+  for(i in 1:nrow(Betas)){
+    models[[i]] = grace(X = Xtr, Y = Ytr[,i], Xtu = Xtu, Ytu = Ytu[,i], 
+                        L = L, K = 10, parallel = TRUE, cl = cluster, enetFit = enetModels$cases[[i]],
                         lambda.L = lambda.L, lambda.1 = lambda.1, lambda.2 = lambda.2)
   }
   
@@ -153,6 +178,11 @@ unpackBatchResults = function (batchResults){
   methodNames = attributes(models)$names
   templateSetupSummary = matrix(NA, nrow = length(methodNames), ncol = ncol(models[[methodNames[1]]]$summary))
   colnames(templateSetupSummary) = colnames(models[[methodNames[1]]]$summary)
+  
+  totalSummary <<- as.data.frame(matrix(NA, nrow = length(methodNames) * nrow(betas), ncol = ncol(models[[methodNames[1]]]$summary)+1))
+  colnames(totalSummary) <<- c("method", colnames(models[[methodNames[1]]]$summary))
+  colnames(totalSummary)[2] <<- "setup"
+  
   for(i in 1:nrow(betas)){
     current = paste("setup", i, "Summary", sep = "")
     assign(current, as.data.frame(templateSetupSummary), envir = .GlobalEnv)
@@ -168,6 +198,7 @@ unpackBatchResults = function (batchResults){
       tmp[i,] = currentMethod$summary[j, ]
       tmp[i,1] = methodName
       assign(paste("setup", j, "Summary", sep = ""), tmp, envir = .GlobalEnv)
+      totalSummary[(i-1)*nrow(currentMethod$summary)+j,] <<- c(method = methodName, round(currentMethod$summary[j, ], digits = 3))
     }
   }
   timeElapsed <<- batchResults$timeElapsed
