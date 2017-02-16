@@ -1,56 +1,3 @@
-library(glmnet)
-library(parallel)
-
-graceWorker = function(params){
-  lambda.L <<- params$lambda.L
-  lambda.2 <<- params$lambda.2
-  
-  Lnew <- lambda.L * L + lambda.2 * diag(p)
-  eL <- eigen(Lnew)
-  if( sum(eL$values<=0)>0 ){return(c())}
-  S <- eL$vectors %*% sqrt(diag(eL$values))
-  l2star <- 1
-  l1star <- lambda.1
-  Xstar <- rbind(X, sqrt(l2star) * t(S)) / sqrt(1 + l2star)
-  Ystar <- c(Y, rep(0, p))
-  gammastar <- l1star / sqrt(1 + l2star) / 2 / (n + p)
-  errors = c()
-  
-  cvres <- cv.glmnet(Xstar, Ystar, lambda = gammastar, intercept = FALSE, standardize = FALSE, nfolds = K)
-  for(i1 in 1:length(gammastar)){
-    if(!is.na(cvres$cvm[i1])){
-      errors <- rbind(errors, c(lambda.L, lambda.1[i1], lambda.2, cvres$cvm[i1], cvres$nzero[i1]) )
-    }
-  }
-  return(errors)
-}
-
-pcvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, cl, b0){
-  X <- scale(X)
-  Y <- Y - mean(Y)
-  p <- ncol(X)
-  n <- nrow(X)
-  
-  lambda.L <- unique(sort(lambda.L, decreasing = TRUE))
-  lambda.1 <- unique(sort(lambda.1, decreasing = TRUE))
-  lambda.2 <- unique(sort(lambda.2, decreasing = TRUE))
-  
-  clusterExport(cl, list("X", "Y", "L", "K", "p", "n", "lambda.1", "b0"), envir=environment())
-  tmp = clusterEvalQ(cl, library(glmnet))
-  remove(tmp)
-  
-  grid = expand.grid(lambda.L = lambda.L, lambda.2 = lambda.2)
-  grains =lapply(split(grid,seq(nrow(grid))), as.list)
-  allErrors = parLapply(cl, grains, graceWorker)
-  existingErrors = Filter(Negate(is.null), allErrors)
-  mergedErrors = do.call("rbind", existingErrors)
-  colnames(mergedErrors) = c("lambda.L","lambda.1","lambda.2","cvm", "nzero")
-  cvm = mergedErrors[,4]
-  idxMin = which.min(cvm)
-  sem = sd(cvm)/sqrt(length(cvm))
-  idx1se = which.max(cvm < (cvm[idxMin] + sem))
-  return(list(errors = mergedErrors, lambda.min = mergedErrors[idxMin,], lambda.1se = mergedErrors[idx1se,]))
-}
 
 cvGrace <- function(X, Y, L, lambda.L, lambda.1, lambda.2, K = 10, b0){
   X <- scale(X)
@@ -174,9 +121,9 @@ grace <- function(X, Y, Xtu, Ytu, L, lambda.L, lambda.1 = 0, lambda.2 = 0, norma
     # lambda.1 <- res$lambda.min[2]
     # lambda.2 <- res$lambda.min[3]
     
-    lambda.L <- res$lambda.1se[1]
-    lambda.1 <- res$lambda.1se[2]
-    lambda.2 <- res$lambda.1se[3]
+    lambda.L <- res$lambda.min[1]
+    lambda.1 <- res$lambda.min[2]
+    lambda.2 <- res$lambda.min[3]
   }
   # See Li & Li (2008) for reference
   Lnew <- lambda.L * L + lambda.2 * diag(p)
