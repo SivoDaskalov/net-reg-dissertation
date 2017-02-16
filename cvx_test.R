@@ -1,17 +1,18 @@
-n <- 50
-p <- 10
-x <- matrix(rnorm(n * p), n, p)
-beta <- rnorm(p)
-y <- x %*% beta + 0.1 * rnorm(n)
-library(CVXfromR)
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setup.dir <- "cvx"
-cvxcode <- paste("variables b(p)",
-                 "minimize(square_pos(norm(y - x * b, 2)) / 2 + lam * norm(b, 1))",
-                 sep=";")
-lasso <- CallCVX(cvxcode, const.vars=list(p=p, y=y, x=x, lam=2),
-                 opt.var.names="b", setup.dir=setup.dir)
-names(lasso)
+source("matlab_cvx_tools.R")
 
-# lasso <- CallCVX.varyparam(cvxcode, const.vars=list(p=p, y=y, x=x), tuning.param=list(lam=seq(0.1, 1, length=20)),
-#                            opt.var.names="b", setup.dir=setup.dir)
+n <- 50
+p <- 20
+k <- 10
+
+x <- matrix(rnorm(n * p), n, p)
+y <- x %*% rnorm(p) + 0.1 * rnorm(n)
+
+tuning.params = list(gam = c(1,2), lam = c(4,5), wut = c(0.5, 3.5))
+const.vars = list(k = k, n = n, p = p)
+
+cvxcode <- paste("variables b(p)",
+                 "minimize(square_pos(norm(y - x * b, 2)) / 2 + lam * norm(b, 1) / (gam + wut));",
+                 sep="; ")
+
+cvxResults = cvConvexOptim(x = x, y = y, cvxcode = cvxcode, tuning.params = tuning.params, const.vars = const.vars, k = 10, title = "example")
+errors = cvxResults$results
