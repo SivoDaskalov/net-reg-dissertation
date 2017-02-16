@@ -1,20 +1,16 @@
 # library(CVXfromR)
 library(caret)
-
+# const.vars = list(k = k, n = n, p = p)
+# delete.temp = TRUE
 n <- 50
 p <- 20
 k <- 10
 x <- matrix(rnorm(n * p), n, p)
 y <- x %*% rnorm(p) + 0.1 * rnorm(n)
-tuning.params = list(gam = c(1,2,3), lam = c(4,5,6))
+tuning.params = list(gam = c(1,2), lam = c(4,5), wut = c(0.5, 3.5))
 cvxcode <- paste("variables b(p)",
-                 "minimize(square_pos(norm(y - x * b, 2)) / 2 + lam * norm(b, 1) / gam);",
+                 "minimize(square_pos(norm(y - x * b, 2)) / 2 + lam * norm(b, 1) / (gam + wut));",
                  sep="; ")
-cvx.modifiers = "quiet"
-# const.vars = list(k = k, n = n, p = p)
-# delete.temp = TRUE
-cvxResults = CallCvx.CV(x = x, y = y, cvxcode = cvxcode, tuning.params = tuning.params, k = 10)
-errors = cvxResults$results
 
 CallCvx.CV = function(x, y, cvxcode, const.vars = list(), tuning.params, k, delete.temp = TRUE, norun = FALSE, cvx.modifiers = "quiet"){
   
@@ -70,7 +66,7 @@ CallCvx.CV = function(x, y, cvxcode, const.vars = list(), tuning.params, k, dele
   before <- sprintf("%stStart=tic;", before)
   
   # Perform CV MSE calculation for all combinations of the tuning parameters
-  crossValidationSnippet = sprintf("cvMse = zeros(k,1); for fold = 1:k; training = find(folds ~= fold); holdout = find(folds == fold); x = origX(training,:); y = origY(training,:); cvx_begin %s; %s cvx_end; cvMse(fold) = mean((origX(holdout,:)*b - origY(holdout)).^2); end; mse = mean(cvMse);", cvx.modifiers, cvxcode)
+  crossValidationSnippet = sprintf("fprintf('%s ', counter); cvMse = zeros(k,1); for fold = 1:k; training = find(folds ~= fold); holdout = find(folds == fold); x = origX(training,:); y = origY(training,:); cvx_begin %s; %s cvx_end; cvMse(fold) = mean((origX(holdout,:)*b - origY(holdout)).^2); end; mse = mean(cvMse);", "%d", cvx.modifiers, cvxcode)
   core = ""
   for(i in 1:length(tuning.params)){
     core <- sprintf("%sfor %s_it=1:size(%s_all); %s=%s_all(%s_it);", core, 
@@ -124,3 +120,7 @@ CallCvx.CV = function(x, y, cvxcode, const.vars = list(), tuning.params, k, dele
   
   return(output)
 }
+
+cvxResults = CallCvx.CV(x = x, y = y, cvxcode = cvxcode, tuning.params = tuning.params, k = 10)
+errors = cvxResults$results
+cvxResults
