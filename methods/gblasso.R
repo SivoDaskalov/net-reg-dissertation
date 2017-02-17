@@ -3,6 +3,28 @@
 # Wei Pan, 3/27/08
 #####################################################
 
+batchGBLasso = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, edges, degrees, Betas){
+  wt = degrees^(1/2)
+  models = list()
+  for(i in 1:nrow(Betas)){
+    # Currently training with the tuning datasets
+    tuning <<- GBLasso(Xtu, Ytu[,i], netwk = edges, wt = wt)
+    minMse = mse(Y = Yts[,i], X = Xts, b = tuning$betas[1,])
+    solIdx = 1
+    for(j in 2:tuning$nsol){
+      curMse = mse(Y = Yts[,i], X = Xts, b = tuning$betas[j,])
+      if(curMse < minMse){
+        minMse = curMse
+        solIdx = j
+      }
+    }
+    tuning$coefficients = tuning$betas[solIdx,]
+    model = list(fit = tuning, coefficients = tuning$betas[solIdx,])
+    models[[i]] = model
+  }
+  return(batchEvaluateModels(Xts, Yts, models, Betas))
+}
+
 ## squared error loss:
 Xb<-function(x, b){
   sum(x*b)

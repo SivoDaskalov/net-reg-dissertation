@@ -113,6 +113,7 @@ cvxTuneAndTrain = function(xtr, ytr, xtu, ytu, cvxcode, tuning.params, title, co
   output$coefficients <- drop(as.matrix(read.csv(coefFile, header = FALSE)))
   output$tuning <- drop(as.matrix(read.csv(resultFile, header = FALSE)))
   output$params <- drop(as.matrix(read.csv(paramFile, header = FALSE)))
+  output$fit <- structure(list(coefficients = output$coefficients), class = "RegFit")
   colnames(output$tuning) <- c(param.names, "MSE")
   names(output$params) <- c(param.names, "MSE")
   
@@ -124,7 +125,7 @@ cvxTuneAndTrain = function(xtr, ytr, xtu, ytu, cvxcode, tuning.params, title, co
     }
   }
   
-  return(structure(output, class = "RegFit"))
+  return(output)
 }
 
 predict.RegFit = function(object, data, type = "response") {
