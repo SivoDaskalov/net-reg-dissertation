@@ -1,5 +1,5 @@
 library(caret)
-cvConvexOptim = function(x, y, cvxcode, tuning.params, k, title, const.vars = list(), delete.temp = FALSE, norun = FALSE, cvx.modifiers = "quiet", tempDir = "tmp"){
+cvConvexOptim = function(x, y, cvxcode, tuning.params, title, const.vars = list(), k = 10, delete.temp = FALSE, norun = FALSE, cvx.modifiers = "quiet", tempDir = "tmp"){
   # Setup folds
   tmp = createFolds(y = y, k = k)
   folds = rep(0, length(y))
