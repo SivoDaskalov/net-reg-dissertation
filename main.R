@@ -10,9 +10,9 @@ batchResults = runBatch(n, transFactorsCount, regulatedGenesPerTF, methods = c("
 unpackBatchResults(batchResults)
 # save.image("data/N100P220.RData")
 
-grace.lambda.1 = grace.lambda.2 = 10 * seq(from = 3, by = 1, length = 6)
 grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
-cvxGraceRes = convexGraceTuning(X = Xtu, Y = Ytu[,1], network = edges, degrees = degrees, lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, k = 10)
-optCvxGraceTuning = cvxGraceRes$results
-matlabGraceTuning = oldCvxGrace$results
-rGraceTuning = graceModels[[1]]$tuning
+cvxGraceTuningRes = convexGraceTuning(X = Xtu, Y = Ytu[,1], network = edges, degrees = degrees, 
+                                      lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, k = 10, norun = TRUE)
+graceFit = grace(Xtr, Ytr[,1], Xtu, Ytu[,1], network, degrees, adjustments = NULL, 
+                 lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, k = 10, norun = TRUE)
+graceFit
