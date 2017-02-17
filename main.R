@@ -11,8 +11,9 @@ unpackBatchResults(batchResults)
 # save.image("data/N100P220.RData")
 
 grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
-cvxGraceTuningRes = convexGraceTuning(X = Xtu, Y = Ytu[,1], network = edges, degrees = degrees, 
-                                      lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, k = 10, norun = TRUE)
-graceFit = grace(Xtr, Ytr[,1], Xtu, Ytu[,1], network, degrees, adjustments = NULL, 
-                 lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, k = 10, norun = TRUE)
-graceFit
+graceFit = grace(xtr = Xtr, ytr = Ytr[,1], xtu = Xtu, ytu = Ytu[,1], network, degrees, 
+                 lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, 
+                 adjustments = NULL, k = 10, norun = false)
+cvxGracePred = predict(object = graceFit, data = Xts)
+mean((cvxGracePred - Yts[,1])^2)
+graceFit$coefficients
