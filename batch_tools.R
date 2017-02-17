@@ -38,8 +38,7 @@ runBatch = function(n, factors, genesPerFactor, methods){
   
   if("grace" %in% methods){
     cat(timestamp("Fitting Grace models"), "\n")
-    # grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
-    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 * seq(from = 1, by = 1, length = 10)
+    grace.lambda.L = grace.lambda.1 = grace.lambda.2 = 10 ^ seq(from = -2, by = 1, length = 6)
     models$grace = batchGrace(Xtu = ds$Xtu, Ytu = ds$Ytu, Xtr = ds$Xtr, Ytr = ds$Ytr, Xts = ds$Xts, Yts = ds$Yts, L = ds$L, 
                               lambda.L = grace.lambda.L, lambda.1 = grace.lambda.1, lambda.2 = grace.lambda.2, Betas = ds$Betas)
   }
