@@ -7,6 +7,7 @@ batchGBLasso = function(Xtu, Ytu, Xtr, Ytr, Xts, Yts, edges, degrees, Betas){
   wt = degrees^(1/2)
   models = list()
   for(i in 1:nrow(Betas)){
+    cat(timestamp("Setup "), i, "\n")
     # Currently training with the tuning datasets
     tuning <<- GBLasso(Xtu, Ytu[,i], netwk = edges, wt = wt)
     minMse = mse(Y = Yts[,i], X = Xts, b = tuning$betas[1,])

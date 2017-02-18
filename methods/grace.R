@@ -34,6 +34,7 @@ grace <- function(xtr, ytr, xtu, ytu, network, degrees, lambda.1 = 0, lambda.2 =
 batchGrace = function(xtu, ytu, xtr, ytr, xts, yts, network, degrees, lambda.1, lambda.2, betas, k=10){
   models = list()
   for(i in 1:nrow(betas)){
+    cat(timestamp("Setup "), i, "\n")
     models[[i]] = grace(xtr = xtr, ytr = ytr[,i], xtu = xtu, ytu = ytu[,i], 
                         network = network, degrees = degrees, k = k,
                         lambda.1 = lambda.1, lambda.2 = lambda.2)
@@ -44,6 +45,7 @@ batchGrace = function(xtu, ytu, xtr, ytr, xts, yts, network, degrees, lambda.1, 
 batchAGrace = function(xtu, ytu, xtr, ytr, xts, yts, network, degrees, lambda.1, lambda.2, enetModels, betas, k=10){
   models = list()
   for(i in 1:nrow(betas)){
+    cat(timestamp("Setup "), i, "\n")
     # Estimate initial betas
     if(ncol(xtu) < nrow(xtu)){
       # Take initial estimates based on OLSE
@@ -63,7 +65,7 @@ batchAGrace = function(xtu, ytu, xtr, ytr, xts, yts, network, degrees, lambda.1,
                         lambda.1 = lambda.1, lambda.2 = lambda.2,
                         adjustments = adj)
   }
-  return(batchEvaluateModels(Xts, Yts, models, betas))
+  return(batchEvaluateModels(xts, yts, models, betas))
 }
 
 signAdjustment = function(edge, b){

@@ -9,7 +9,7 @@ source("methods/gblasso.R")
 library(glmnet)
 
 runBatch = function(n, factors, genesPerFactor, methods){
-  set.seed(0)
+  set.seed(999)
   
   if(missing(methods)){
     methods = c("lasso", "enet", "grace", "agrace", "gblasso")
