@@ -1,0 +1,19 @@
+8:47:25 PM - Generating datasets 
+8:47:36 PM - Fitting Lasso models 
+8:47:38 PM - Fitting Elastic Net models 
+8:47:39 PM - Fitting Grace models 
+8:47:39 PM - Setup  1 
+9:19:22 PM - Setup  2 
+9:56:26 PM - Setup  3 
+10:30:09 PM - Setup  4 
+11:03:26 PM - Fitting Adaptive Grace models 
+11:03:26 PM - Setup  1 
+11:40:50 PM - Setup  2 
+12:16:33 AM - Setup  3 
+12:49:28 AM - Setup  4 
+1:24:25 AM - Fitting GBLasso models 
+1:24:25 AM - Setup  1 
+1:35:13 AM - Setup  2 
+1:43:12 AM - Setup  3 
+1:49:53 AM - Setup  4 
+1:55:01 AM - Batch fitting completed 
