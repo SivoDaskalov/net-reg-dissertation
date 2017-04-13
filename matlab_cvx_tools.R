@@ -55,6 +55,9 @@ cvxTuneAndTrain = function(xtr, ytr, xtu, ytu, cvxcode, tuning.params, title, co
   before <- sprintf("%scounter = 1;", before)
   before <- sprintf("%stStart=tic;", before)
   
+  # Include a network norm anonymous function
+  before <- sprintf("%snetnorm = @(x, netwk, wt, gamma) sum(norms([x(netwk(:,1))./wt(netwk(:,1)) x(netwk(:,2))./wt(netwk(:,2))], gamma, 2));", before)
+  
   # Perform CV MSE calculation for all combinations of the tuning parameters
   crossValidationSnippet = sprintf("disp(sprintf('Combination %s of %s ( %s )', counter, (counter-1)*(100/%d))); cvMse = zeros(k,1); for fold = 1:k; training = find(folds ~= fold); holdout = find(folds == fold); x = xtu(training,:); y = ytu(training,:); cvx_begin %s; %s cvx_end; cvMse(fold) = mean((xtu(holdout,:)*b - ytu(holdout)).^2); end; mse = mean(cvMse);", 
                                    "%d", resultsRows, "%0.1f%%", resultsRows, cvx.modifiers, cvxcode)
@@ -88,6 +91,10 @@ cvxTuneAndTrain = function(xtr, ytr, xtu, ytu, cvxcode, tuning.params, title, co
   paramFile <- sprintf("%s/out_parameters.txt", tempDir)
   after <- sprintf("%sdlmwrite('%s', results(minErrIdx,:), 'precision', '%s10.6f');", after, paramFile, "%")
   outfiles <- c(timeFile, resultFile, coefFile, paramFile)
+  
+  fileConn<-file("tmp/script.txt")
+  writeLines(c(before, core, after, "exit;"), fileConn)
+  close(fileConn)
   
   # Bind together generated matlab code chunks with respect to the operating system
   if (.Platform$OS.type == "unix") {
