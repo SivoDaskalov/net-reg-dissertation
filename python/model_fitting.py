@@ -3,6 +3,7 @@ from commons import Setup
 import time
 
 
+enable_logging = False
 full_method_list = ["lasso", "enet"]
 
 
@@ -25,4 +26,5 @@ def batch_fit_models(setups: list, methods: list = full_method_list) -> list:
 
 
 def log_timestamp(setup: str, method: str):
-    print("%s\t%s\t%.0f s" % (setup, method, time.process_time()))
+    if enable_logging:
+        print("%s\t%s\t%.0f s" % (setup, method, time.process_time()))
