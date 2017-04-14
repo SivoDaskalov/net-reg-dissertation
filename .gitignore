@@ -4,3 +4,4 @@
 tmp/
 .Rproj.user
 .idea
+*.pyc
