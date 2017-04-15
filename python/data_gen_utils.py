@@ -5,15 +5,15 @@ import numpy as np
 
 
 # As suggested by Li and Li, Bioinformatics 2008, section 4
-def generate_true_coefficients(trans_factor_coefficients: list, regulated_denominator: float, n_regulated_negative: int,
-                               n_regulated_positive: int, n_trailing_zero_genes: int) -> list:
+def generate_true_coefficients(trans_factor_coefficients, regulated_denominator, n_regulated_negative,
+                               n_regulated_positive, n_trailing_zero_genes):
     leading_coefficients = [[tf] + [-tf / regulated_denominator] * n_regulated_negative +
                             [tf / regulated_denominator] * n_regulated_positive for tf in trans_factor_coefficients]
     true_coefficients = [coef for sublist in leading_coefficients for coef in sublist] + [0] * n_trailing_zero_genes
     return true_coefficients
 
 
-def generate_setup_coefficients(n_trans_factors: int) -> dict:
+def generate_setup_coefficients(n_trans_factors):
     # 10 regulated genes per trans factor, setups are as suggested by Li and Li, Bioinformatics 2008, section 4
     trans_factor_coefs = [5, -5, 3, -3]
     n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
@@ -26,7 +26,7 @@ def generate_setup_coefficients(n_trans_factors: int) -> dict:
     return setups
 
 
-def generate_observation(n_trans_factors: int, n_regulated_genes_per_trans_factor: int) -> list:
+def generate_observation(n_trans_factors, n_regulated_genes_per_trans_factor):
     tf_expression_levels = np.random.normal(loc=0.0, scale=1.1, size=n_trans_factors)
     expressions = [
         [tf] + np.random.normal(loc=0.7 * tf, scale=math.sqrt(0.51), size=n_regulated_genes_per_trans_factor).tolist()
@@ -35,14 +35,14 @@ def generate_observation(n_trans_factors: int, n_regulated_genes_per_trans_facto
     return observation
 
 
-def generate_expressions(n_observations: int, n_trans_factors: int, n_regulated_genes_per_trans_factor: int):
+def generate_expressions(n_observations, n_trans_factors, n_regulated_genes_per_trans_factor):
     expressions = np.empty(shape=(n_observations, n_trans_factors * (n_regulated_genes_per_trans_factor + 1)))
     for i in range(n_observations):
         expressions[i] = generate_observation(n_trans_factors, n_regulated_genes_per_trans_factor)
     return expressions
 
 
-def generate_response(expressions, coefficients) -> list:
+def generate_response(expressions, coefficients):
     response = np.sum(expressions * coefficients, axis=1)
     noise = np.random.normal(loc=0, scale=math.sqrt(np.var(coefficients)), size=response.shape[0])
     noisy_response = [response[i] + noise[i] for i in range(response.shape[0])]
@@ -55,15 +55,15 @@ def normalize_data(expressions, response):
     return normalized_expressions, normalized_response
 
 
-def generate_network(n_trans_factors: int, n_regulated_genes_per_trans_factor: int):
+def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
     network = [(i * (n_regulated_genes_per_trans_factor + 1) + 1, i * (n_regulated_genes_per_trans_factor + 1) + j + 1)
                for i in range(n_trans_factors) for j in range(1, n_regulated_genes_per_trans_factor + 1)]
     degrees = np.tile([n_regulated_genes_per_trans_factor] + [1] * n_regulated_genes_per_trans_factor, n_trans_factors)
     return network, degrees
 
 
-def batch_generate_setups(n_trans_factors: int, n_regulated_genes_per_trans_factor: int,
-                          n_tune_obs: int, n_train_obs: int, n_test_obs: int) -> list:
+def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
+                          n_tune_obs, n_train_obs, n_test_obs):
     setups = []
     network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
     for label, coefficients in generate_setup_coefficients(n_trans_factors).items():

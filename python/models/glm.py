@@ -8,7 +8,7 @@ l1_ratios = [0.5]
 max_iter = 10000
 
 
-def fit_lasso(setup: Setup) -> Lasso:
+def fit_lasso(setup):
     # Tuning
     model = LassoCV(n_alphas=n_alphas, cv=cross_validation_folds, n_jobs=-sklearn_n_jobs, max_iter=max_iter,
                     random_state=1, fit_intercept=False)
@@ -22,7 +22,7 @@ def fit_lasso(setup: Setup) -> Lasso:
     return model
 
 
-def fit_enet(setup: Setup) -> ElasticNet:
+def fit_enet(setup):
     # Tuning
     model = ElasticNetCV(n_alphas=n_alphas, l1_ratio=l1_ratios, cv=cross_validation_folds, n_jobs=-sklearn_n_jobs,
                          max_iter=max_iter, random_state=1, fit_intercept=False)

@@ -1,10 +1,10 @@
-from commons import Setup
+from __future__ import division
 from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
 
 
-def evaluate_model(setup: Setup, model):
+def evaluate_model(setup, model):
     y_true = setup.y_test
     y_pred = model.predict(setup.x_test)
     true_coef = setup.true_coefficients

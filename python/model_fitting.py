@@ -1,13 +1,12 @@
 from models.glm import fit_lasso, fit_enet
-from commons import Setup
 import time
 
 
-enable_logging = False
+enable_logging = True
 full_method_list = ["lasso", "enet"]
 
 
-def fit_models(setup: Setup, methods: list = full_method_list):
+def fit_models(setup, methods = full_method_list):
     models = {}
 
     if "lasso" in methods:
@@ -21,10 +20,10 @@ def fit_models(setup: Setup, methods: list = full_method_list):
     return models
 
 
-def batch_fit_models(setups: list, methods: list = full_method_list) -> list:
+def batch_fit_models(setups, methods = full_method_list):
     return [(setup, fit_models(setup=setup, methods=methods)) for setup in setups]
 
 
-def log_timestamp(setup: str, method: str):
+def log_timestamp(setup, method):
     if enable_logging:
-        print("%s\t%s\t%.0f s" % (setup, method, time.process_time()))
+        print("%s\t%s\t%.0f s" % (setup, method, time.clock()))
