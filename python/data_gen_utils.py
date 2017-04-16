@@ -2,6 +2,8 @@ from commons import Setup
 from sklearn.preprocessing import StandardScaler
 import math
 import numpy as np
+import os.path
+import pickle
 
 
 # As suggested by Li and Li, Bioinformatics 2008, section 4
@@ -63,22 +65,30 @@ def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
 
 
 def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
-                          n_tune_obs, n_train_obs, n_test_obs):
-    setups = []
-    network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
-    for label, coefficients in generate_setup_coefficients(n_trans_factors).items():
-        x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
-        y_tu = generate_response(x_tune, coefficients)
-        x_tune, y_tu = normalize_data(x_tune, y_tu)
+                          n_tune_obs, n_train_obs, n_test_obs, load_dump=False):
+    dump_url = "dumps/setups_tf%d_rg%d_tu%d_tr%d_ts%d" % (n_trans_factors, n_regulated_genes_per_trans_factor,
+                                                          n_tune_obs, n_train_obs, n_test_obs)
+    if load_dump and os.path.exists(dump_url):
+        with open(dump_url, 'rb') as f:
+            setups = pickle.load(f)
+    else:
+        setups = []
+        network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
+        for label, coefficients in generate_setup_coefficients(n_trans_factors).items():
+            x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
+            y_tu = generate_response(x_tune, coefficients)
+            x_tune, y_tu = normalize_data(x_tune, y_tu)
 
-        x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
-        y_tr = generate_response(x_train, coefficients)
-        x_train, y_tr = normalize_data(x_train, y_tr)
+            x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
+            y_tr = generate_response(x_train, coefficients)
+            x_train, y_tr = normalize_data(x_train, y_tr)
 
-        x_test = generate_expressions(n_test_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
-        y_ts = generate_response(x_test, coefficients)
-        x_test, y_ts = normalize_data(x_test, y_ts)
+            x_test = generate_expressions(n_test_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
+            y_ts = generate_response(x_test, coefficients)
+            x_test, y_ts = normalize_data(x_test, y_ts)
 
-        setups.append(Setup(label=label, true_coefficients=coefficients, network=network, degrees=degrees,
-                            x_tune=x_tune, y_tune=y_tu, x_train=x_train, y_train=y_tr, x_test=x_test, y_test=y_ts))
+            setups.append(Setup(label=label, true_coefficients=coefficients, network=network, degrees=degrees,
+                                x_tune=x_tune, y_tune=y_tu, x_train=x_train, y_train=y_tr, x_test=x_test, y_test=y_ts))
+        with open(dump_url, 'wb') as f:
+            pickle.dump(setups, f)
     return setups

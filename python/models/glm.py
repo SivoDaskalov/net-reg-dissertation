@@ -19,7 +19,7 @@ def fit_lasso(setup):
     model = Lasso(alpha=cv_alpha, random_state=1, fit_intercept=False, max_iter=max_iter)
     model.fit(setup.x_train, y=setup.y_train)
 
-    return Model(model.coef_, params={"alpha":model.alpha, "l1_ratio":model.l1_ratio}, column_coef=False)
+    return Model(model.coef_, params={"alpha":model.alpha, "l1_ratio":model.l1_ratio}, from_matlab=False)
 
 
 def fit_enet(setup):
@@ -34,4 +34,4 @@ def fit_enet(setup):
     model = ElasticNet(alpha=cv_alpha, l1_ratio=cv_l1_ratio, random_state=1, fit_intercept=False, max_iter=max_iter)
     model.fit(setup.x_train, y=setup.y_train)
 
-    return Model(model.coef_, params={"alpha":model.alpha}, column_coef=False)
+    return Model(model.coef_, params={"alpha":model.alpha}, from_matlab=False)

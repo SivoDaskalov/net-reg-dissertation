@@ -1,9 +1,10 @@
 from commons import cross_validation_folds
 from models import Model
+from sklearn.linear_model import LinearRegression
 import matlab.engine
 
-lam1_values = [10**x for x in range(-2,3)]
-lam2_values = [10**x for x in range(-2,3)]
+lam1_values = [10 ** x for x in range(-2, 3)]
+lam2_values = [10 ** x for x in range(-2, 3)]
 
 
 def fit_grace(setup, matlab_engine):
@@ -26,8 +27,17 @@ def fit_grace(setup, matlab_engine):
 
     return Model(coef, params={"lam1": lam1, "lam2": lam2})
 
-def fit_agrace(setup, matlab_engine):
-    m_adj = matlab.double([1] * len(setup.network))
+
+def fit_agrace(setup, matlab_engine, enet_fit=None):
+    n = setup.x_tune.shape[0]
+    p = setup.x_tune.shape[1]
+    if p < n:
+        b0 = LinearRegression(fit_intercept=False).fit(X=setup.x_tune, y=setup.y_tune).coef_
+    else:
+        b0 = enet_fit.coef_
+    adj = [1.0 if b0[p1-1] * b0[p2-1] > 0 else -1.0 for (p1, p2) in setup.network]
+
+    m_adj = matlab.double(adj)
     m_wt = matlab.double(setup.degrees.tolist(), size=(setup.x_train.shape[1], 1))
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
     m_lam1 = matlab.double(lam1_values)
