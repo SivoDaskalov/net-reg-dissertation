@@ -25,13 +25,14 @@ def evaluate_model(setup, model):
 
 
 def batch_evaluate_models(fits):
-    result_fields = ["setup", "model", "mse", "predictors", "correlation", "sens", "spec", "prec"]
+    result_fields = ["setup", "model", "mse", "predictors", "correlation", "sens", "spec", "prec", "params"]
     results = []
 
     for (setup, models) in fits:
         for model_name, model in models.items():
-            mse, n_predictors, correlation, sensitivity, specificity, precision = evaluate_model(setup, model)
-            new_row = [setup.label, model_name, mse, n_predictors, correlation, sensitivity, specificity, precision]
+            mse, n_predictors, corr, sens, spec, prec = evaluate_model(setup, model)
+            params = ', '.join(['{}={}'.format(k,v) for k,v in model.params_.iteritems()])
+            new_row = [setup.label, model_name, mse, n_predictors, corr, sens, spec, prec, params]
             results = np.append(results, new_row)
 
     results.shape = (int(results.shape[0] / len(result_fields)), len(result_fields))

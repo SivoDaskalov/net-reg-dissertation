@@ -1,21 +1,27 @@
 from models.glm import fit_lasso, fit_enet
+from models.grace import fit_grace
+import matlab.engine
 import time
 
-
 enable_logging = False
-full_method_list = ["lasso", "enet"]
+full_method_list = ["lasso", "enet", "grace"]
 
 
 def fit_models(setup, methods = full_method_list):
+    engine = matlab.engine.start_matlab("-nodesktop")
     models = {}
 
     if "lasso" in methods:
         log_timestamp(setup.label, "lasso")
-        models["lasso"] = fit_lasso(setup)
+        models["lasso"] = fit_lasso(setup=setup)
 
     if "enet" in methods:
         log_timestamp(setup.label, "enet")
-        models["enet"] = fit_enet(setup)
+        models["enet"] = fit_enet(setup=setup)
+
+    if "grace" in methods:
+        log_timestamp(setup.label, "grace")
+        models["grace"] = fit_grace(setup=setup, matlab_engine=engine)
 
     return models
 

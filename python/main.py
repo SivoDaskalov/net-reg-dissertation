@@ -13,5 +13,6 @@ fits = fitting.batch_fit_models(setups)
 results = metrics.batch_evaluate_models(fits)
 
 pd.set_option('display.width', 200)
+results = results.sort_values('model')
 print(results)
 print("Total time elapsed: %.0f seconds" % time.clock())
