@@ -20,9 +20,9 @@ cvxTuneAndTrain = function(xtr, ytr, xtu, ytu, cvxcode, tuning.params, title, co
     constants = append(constants, const.vars)
   }
   
-  before <- ""
+  before <- "cd '..\\r';"
   if(!missing(title)){
-    before <- sprintf("disp('Tuning %s parameters');", title)
+    before <- sprintf("%sdisp('Tuning %s parameters');", before, title)
   }
   
   for (i in seq(length(constants))) {

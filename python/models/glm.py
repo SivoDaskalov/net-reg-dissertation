@@ -1,4 +1,3 @@
-from commons import Setup
 from commons import cross_validation_folds
 from commons import sklearn_n_jobs
 from sklearn.linear_model import Lasso, LassoCV, ElasticNet, ElasticNetCV

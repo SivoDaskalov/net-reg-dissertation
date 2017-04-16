@@ -2,7 +2,7 @@ from models.glm import fit_lasso, fit_enet
 import time
 
 
-enable_logging = True
+enable_logging = False
 full_method_list = ["lasso", "enet"]
 
 
