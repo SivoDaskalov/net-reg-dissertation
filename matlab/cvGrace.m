@@ -1,4 +1,4 @@
-function [coef,lam1,lam2,mse] = cvGrace(Y, X, wt, netwk, a, lam1_all, lam2_all, k)
+function [lam1,lam2] = cvGrace(Y, X, wt, netwk, a, lam1_all, lam2_all, k)
 cv = cvpartition(size(Y,1),'k',k);
 for lam1_idx = 1:size(lam1_all, 2)
     clam1=lam1_all(1,lam1_idx);
@@ -15,7 +15,6 @@ for lam1_idx = 1:size(lam1_all, 2)
         cur_mse = mean(fold_errors);
         
         if exist('mse', 'var') == 0 || cur_mse < mse
-            coef = b;
             lam1 = clam1;
             lam2 = clam2;
             mse = cur_mse;
