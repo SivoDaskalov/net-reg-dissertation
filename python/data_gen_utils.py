@@ -41,20 +41,16 @@ def generate_expressions(n_observations, n_trans_factors, n_regulated_genes_per_
     expressions = np.empty(shape=(n_observations, n_trans_factors * (n_regulated_genes_per_trans_factor + 1)))
     for i in range(n_observations):
         expressions[i] = generate_observation(n_trans_factors, n_regulated_genes_per_trans_factor)
-    return expressions
+    normalized_expressions = StandardScaler().fit_transform(expressions)
+    return normalized_expressions
 
 
 def generate_response(expressions, coefficients):
     response = np.sum(expressions * coefficients, axis=1)
     noise = np.random.normal(loc=0, scale=math.sqrt(np.var(coefficients)), size=response.shape[0])
     noisy_response = [response[i] + noise[i] for i in range(response.shape[0])]
-    return noisy_response
-
-
-def normalize_data(expressions, response):
-    normalized_expressions = StandardScaler().fit_transform(expressions)
-    normalized_response = response - np.mean(response)
-    return normalized_expressions, normalized_response
+    normalized_response = noisy_response - np.mean(noisy_response)
+    return normalized_response
 
 
 def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
@@ -77,15 +73,12 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
         for label, coefficients in generate_setup_coefficients(n_trans_factors).items():
             x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tu = generate_response(x_tune, coefficients)
-            x_tune, y_tu = normalize_data(x_tune, y_tu)
 
             x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tr = generate_response(x_train, coefficients)
-            x_train, y_tr = normalize_data(x_train, y_tr)
 
             x_test = generate_expressions(n_test_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_ts = generate_response(x_test, coefficients)
-            x_test, y_ts = normalize_data(x_test, y_ts)
 
             setups.append(Setup(label=label, true_coefficients=coefficients, network=network, degrees=degrees,
                                 x_tune=x_tune, y_tune=y_tu, x_train=x_train, y_train=y_tr, x_test=x_test, y_test=y_ts))
