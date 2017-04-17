@@ -7,6 +7,6 @@ cvx_begin quiet
     penalty = ...
         pow_p(b(netwk(:,1)),gam)./wt(netwk(:,1))+...
         pow_p(b(netwk(:,2)),gam)./wt(netwk(:,2));
-    minimize(sum_square(Y-X*b)+pen_mult*sum(pow_p(penalty),1/gam));
+    minimize(sum_square(Y-X*b)+pen_mult*sum(pow_p(penalty,1/gam)));
 cvx_end
 coef = b;

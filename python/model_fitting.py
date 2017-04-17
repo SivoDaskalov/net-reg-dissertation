@@ -6,7 +6,7 @@ import os.path
 import pickle
 import time
 
-enable_logging = True
+enable_logging = False
 full_method_list = ["lasso", "enet", "grace", "agrace"]
 
 
@@ -79,6 +79,8 @@ def fit_models(setup, methods = full_method_list, load_dump = True):
             with open(dump_url, 'rb') as f:
                 models[method] = pickle.load(f)
         else:
+            if engine is None:
+                engine = start_matlab_engine()
             models[method] = fit_gblasso(setup=setup, matlab_engine=engine)
             with open(dump_url, 'wb') as f:
                 pickle.dump(models[method], f)
