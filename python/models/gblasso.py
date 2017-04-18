@@ -31,6 +31,7 @@ def cvGblasso(Y, X, wt, network, lambdas, gammas):
                 coef = gblasso(Y[training], X[training,:], wt, network, lam, gam)
                 errors.append(mean_squared_error(Y[holdout], np.sum(X[holdout] * coef, axis=1)))
             mse = np.mean(errors)
+            print("Lambda = %.2f,\t Gamma = %.2f,\t MSE = %.2f" % (lam, gam, mse))
             if mse < best_mse:
                 best_mse = mse
                 best_lam = lam

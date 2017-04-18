@@ -1,9 +1,4 @@
-function best_c = cvLinf(Y, X, wt, netwk, k, c)
-if nargin < 6
-    b0 = leastsquares(Y, X);
-    max_c = ceil(infnorm(b0, wt, netwk));
-    c = 1:max_c/20:max_c;
-end
+function best_c = cvLinf(Y, X, wt, netwk, c, k)
 cv = cvpartition(size(Y,1),'k',double(k));
 
 for i=1:size(c,2)
@@ -16,6 +11,7 @@ for i=1:size(c,2)
     end
     cur_mse = mean(fold_errors);
     
+    fprintf( 'C = %.2f,\t MSE = %.2f\n', c(i), cur_mse)
     if exist('best_mse', 'var') == 0 || cur_mse < best_mse
         best_c = c(i);
         best_mse = cur_mse;

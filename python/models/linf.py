@@ -11,11 +11,12 @@ c_values = [10.0, 20.0, 30.0]
 def fit_linf(setup, matlab_engine):
     m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(setup.x_train.shape[1], 1))
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
+    m_c = matlab.double(c_values)
 
     # Tuning
     m_y = matlab.double(setup.y_tune.tolist(), size=(len(setup.y_tune), 1))
     m_X = matlab.double(setup.x_tune.tolist())
-    c = matlab_engine.cvLinf(m_y, m_X, m_wt, m_netwk, float(cv_nfolds))
+    c = matlab_engine.cvLinf(m_y, m_X, m_wt, m_netwk, m_c, cv_nfolds)
 
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
@@ -44,7 +45,7 @@ def fit_alinf(setup, matlab_engine, linf_fit):
     # Tuning
     m_y = matlab.double(setup.y_tune.tolist(), size=(len(setup.y_tune), 1))
     m_X = matlab.double(setup.x_tune.tolist())
-    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, cv_nfolds, m_c)
+    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, m_c, cv_nfolds)
 
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))

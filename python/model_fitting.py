@@ -11,10 +11,26 @@ enable_logging = True
 full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf"]
 
 
-def fit_models(setup, methods = full_method_list, load_dump = True):
-    engine = None
-    models = {}
+def fit_or_load(setup, method_name, load_dump, fitting_func, args):
     base_dump_url = "dumps/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
+    dump_url = base_dump_url + method_name
+    if load_dump and os.path.exists(dump_url):
+        print("Loaded %s model for %s" % (method_name, setup.label))
+        with open(dump_url, 'rb') as f:
+            fit = pickle.load(f)
+    else:
+        print("Fitting %s model for %s" % (method_name, setup.label))
+        t_ = time.clock()
+        fit = fitting_func(setup, *args)
+        print("Fitting %s model for %s took %.0f seconds\n" % (method_name, setup.label, time.clock() - t_))
+        with open(dump_url, 'wb') as f:
+            pickle.dump(fit, f)
+    return fit
+
+
+def fit_models(setup, methods=full_method_list, load_dump=True):
+    engine = matlab.engine.start_matlab("-nodesktop")
+    models = {}
 
     if "agrace" in methods and "enet" not in methods:
         methods.append("enet")
@@ -23,107 +39,34 @@ def fit_models(setup, methods = full_method_list, load_dump = True):
 
     if "lasso" in methods:
         method = "lasso"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            models[method] = fit_lasso(setup=setup)
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_lasso, [])
 
     if "enet" in methods:
         method = "enet"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            models[method] = fit_enet(setup=setup)
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_enet, [])
 
     if "grace" in methods:
         method = "grace"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            if engine is None:
-                engine = start_matlab_engine()
-            models[method] = fit_grace(setup=setup, matlab_engine=engine)
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_grace, [engine])
 
     if "agrace" in methods:
         method = "agrace"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            if engine is None:
-                engine = start_matlab_engine()
-            models[method] = fit_agrace(setup=setup, matlab_engine=engine, enet_fit=models["enet"])
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_agrace, [engine, models["enet"]])
 
     if "gblasso" in methods:
         method = "gblasso"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            models[method] = fit_gblasso(setup=setup)
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_gblasso, [])
 
     if "linf" in methods:
         method = "linf"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            if engine is None:
-                engine = start_matlab_engine()
-            models[method] = fit_linf(setup=setup, matlab_engine=engine)
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_linf, [engine])
 
     if "alinf" in methods:
         method = "alinf"
-        dump_url = base_dump_url + method
-        log_timestamp(setup.label, method)
-        if load_dump and os.path.exists(dump_url):
-            with open(dump_url, 'rb') as f:
-                models[method] = pickle.load(f)
-        else:
-            if engine is None:
-                engine = start_matlab_engine()
-            models[method] = fit_alinf(setup=setup, matlab_engine=engine, linf_fit=models["linf"])
-            with open(dump_url, 'wb') as f:
-                pickle.dump(models[method], f)
+        models[method] = fit_or_load(setup, method, load_dump, fit_alinf, [engine, models["linf"]])
 
     return models
 
 
-def batch_fit_models(setups, methods = full_method_list, load_dump = True):
+def batch_fit_models(setups, methods=full_method_list, load_dump=True):
     return [(setup, fit_models(setup=setup, methods=methods, load_dump=load_dump)) for setup in setups]
-
-
-def log_timestamp(setup, method):
-    if enable_logging:
-        print("%s\t%s\t%.0f s" % (setup, method, time.clock()))
-
-
-def start_matlab_engine():
-    return matlab.engine.start_matlab("-nodesktop")
