@@ -14,10 +14,10 @@ for lam1_idx = 1:size(lam1_all, 2)
         end
         cur_mse = mean(fold_errors);
         
-        if exist('mse', 'var') == 0 || cur_mse < mse
+        if exist('best_mse', 'var') == 0 || cur_mse < best_mse
             lam1 = clam1;
             lam2 = clam2;
-            mse = cur_mse;
+            best_mse = cur_mse;
         end
     end;
 end;
