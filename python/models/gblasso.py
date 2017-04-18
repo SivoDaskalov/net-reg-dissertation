@@ -7,7 +7,7 @@ from scipy.optimize import minimize
 
 lam_values = [10 ** x for x in range(-2, 5)]
 gam_values = [2.0, 3.0]
-folds = 2 # Reduced number of folds due to the heavy calculations
+folds = 5 # Reduced number of folds due to the heavy calculations
 minimize_method = "BFGS"
 
 

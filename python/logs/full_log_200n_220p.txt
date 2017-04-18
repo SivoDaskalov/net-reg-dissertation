@@ -1,0 +1,744 @@
+Fitting lasso model for Setup 1
+Fitting lasso model for Setup 1 took 0 seconds
+
+Fitting enet model for Setup 1
+Fitting enet model for Setup 1 took 0 seconds
+
+Fitting grace model for Setup 1
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 3.45
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 3.18
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 2.29
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 1.22
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 0.76
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 0.64
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 0.63
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 3.45
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 3.03
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 2.17
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 1.21
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 0.76
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 0.64
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 0.63
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.85
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.80
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 1.56
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 1.11
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 0.74
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 0.64
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 0.62
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.86
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.85
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 0.83
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 0.74
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 0.64
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 0.59
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 0.58
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 2.43
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 2.41
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 2.21
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 1.66
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 1.25
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 1.11
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 1.09
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 71.91
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 71.96
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 72.32
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 75.05
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 66.48
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 55.59
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 54.01
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 716.81
+Fitting grace model for Setup 1 took 351 seconds
+
+Fitting agrace model for Setup 1
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 8.99
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 19.03
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 20.04
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 18.77
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 23.12
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 31.37
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 33.88
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 3.47
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 8.56
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 17.69
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 18.54
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 23.09
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 31.36
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 33.87
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.99
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.96
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 7.33
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 16.37
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 22.82
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 31.25
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 33.78
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.89
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.89
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 0.97
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 5.68
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 20.72
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 30.42
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 33.05
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 2.43
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 2.41
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 2.23
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 3.22
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 15.04
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 30.87
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 34.93
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 75.11
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 75.20
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 76.12
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 81.94
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 95.75
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 166.35
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 204.26
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 716.81
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 716.81
+Fitting agrace model for Setup 1 took 390 seconds
+
+Fitting gblasso model for Setup 1
+Lambda = 0.01,	 Gamma = 2.00,	 MSE = 7.15
+Lambda = 0.01,	 Gamma = 3.00,	 MSE = 15.88
+Lambda = 0.10,	 Gamma = 2.00,	 MSE = 7.15
+Lambda = 0.10,	 Gamma = 3.00,	 MSE = 15.91
+Lambda = 1.00,	 Gamma = 2.00,	 MSE = 7.10
+Lambda = 1.00,	 Gamma = 3.00,	 MSE = 15.88
+Lambda = 10.00,	 Gamma = 2.00,	 MSE = 6.71
+Lambda = 10.00,	 Gamma = 3.00,	 MSE = 15.64
+Lambda = 100.00,	 Gamma = 2.00,	 MSE = 6.03
+Lambda = 100.00,	 Gamma = 3.00,	 MSE = 15.05
+Lambda = 1000.00,	 Gamma = 2.00,	 MSE = 15.29
+Lambda = 1000.00,	 Gamma = 3.00,	 MSE = 23.60
+Lambda = 10000.00,	 Gamma = 2.00,	 MSE = 716.81
+Lambda = 10000.00,	 Gamma = 3.00,	 MSE = 716.81
+Fitting gblasso model for Setup 1 took 1287 seconds
+
+Fitting linf model for Setup 1
+C = 5.00,	 MSE = 567.11
+C = 10.00,	 MSE = 442.72
+C = 15.00,	 MSE = 345.35
+C = 20.00,	 MSE = 255.78
+C = 25.00,	 MSE = 179.51
+C = 30.00,	 MSE = 116.74
+C = 35.00,	 MSE = 67.47
+C = 40.00,	 MSE = 31.71
+
+  linsysolve: solution contains NaN or inf.C = 45.00,	 MSE = 9.45
+
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.C = 50.00,	 MSE = 0.72
+C = 55.00,	 MSE = 0.88
+C = 60.00,	 MSE = 1.33
+C = 65.00,	 MSE = 1.83
+C = 70.00,	 MSE = 2.61
+C = 75.00,	 MSE = 3.36
+C = 80.00,	 MSE = 3.51
+C = 85.00,	 MSE = 3.48
+C = 90.00,	 MSE = 3.48
+C = 95.00,	 MSE = 3.49
+C = 100.00,	 MSE = 3.51
+Fitting linf model for Setup 1 took 340 seconds
+
+Fitting alinf model for Setup 1
+E = 5.00,	 MSE = 26.71
+E = 10.00,	 MSE = 21.09
+E = 15.00,	 MSE = 16.43
+E = 20.00,	 MSE = 12.47
+E = 25.00,	 MSE = 9.00
+E = 30.00,	 MSE = 6.05
+E = 35.00,	 MSE = 3.74
+E = 40.00,	 MSE = 2.06
+E = 45.00,	 MSE = 1.04
+E = 50.00,	 MSE = 0.67
+E = 55.00,	 MSE = 0.67
+E = 60.00,	 MSE = 0.67
+E = 65.00,	 MSE = 0.67
+E = 70.00,	 MSE = 0.67
+E = 75.00,	 MSE = 0.67
+E = 80.00,	 MSE = 0.67
+E = 85.00,	 MSE = 0.67
+E = 90.00,	 MSE = 0.67
+E = 95.00,	 MSE = 0.67
+E = 100.00,	 MSE = 0.67
+Fitting alinf model for Setup 1 took 67 seconds
+
+Fitting lasso model for Setup 2
+Fitting lasso model for Setup 2 took 0 seconds
+
+Fitting enet model for Setup 2
+Fitting enet model for Setup 2 took 0 seconds
+
+Fitting grace model for Setup 2
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 5.74
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 8.54
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 8.49
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 9.62
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 16.75
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 27.71
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 31.13
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 2.42
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 5.27
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 7.91
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 9.56
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 16.74
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 27.71
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 31.12
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.79
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.99
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 4.45
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 9.05
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 16.64
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 27.67
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 31.08
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 1.48
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 1.53
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 2.16
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 6.82
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 15.61
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 27.30
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 30.65
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 11.53
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 11.53
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 11.53
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 11.72
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 13.00
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 25.49
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 28.58
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 61.28
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 61.30
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 61.45
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 62.89
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 67.08
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 74.66
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 76.87
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 288.36
+Fitting grace model for Setup 2 took 388 seconds
+
+Fitting agrace model for Setup 2
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 6.97
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 14.43
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 15.53
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 15.99
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 22.29
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 32.39
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 35.40
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 2.37
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 6.83
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 13.92
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 15.77
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 22.27
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 32.38
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 35.39
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.69
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.77
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 6.79
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 13.84
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 22.00
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 32.28
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 35.30
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 1.40
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 1.43
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 1.92
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 8.55
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 19.91
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 31.35
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 34.46
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 11.41
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 11.41
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 11.44
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 11.68
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 15.80
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 29.83
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 32.26
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 67.70
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 67.73
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 67.97
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 70.33
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 82.83
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 130.18
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 196.00
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 288.36
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 288.36
+Fitting agrace model for Setup 2 took 398 seconds
+
+Fitting gblasso model for Setup 2
+Lambda = 0.01,	 Gamma = 2.00,	 MSE = 15.02
+Lambda = 0.01,	 Gamma = 3.00,	 MSE = 26.75
+Lambda = 0.10,	 Gamma = 2.00,	 MSE = 15.02
+Lambda = 0.10,	 Gamma = 3.00,	 MSE = 26.80
+Lambda = 1.00,	 Gamma = 2.00,	 MSE = 14.98
+Lambda = 1.00,	 Gamma = 3.00,	 MSE = 26.78
+Lambda = 10.00,	 Gamma = 2.00,	 MSE = 14.76
+Lambda = 10.00,	 Gamma = 3.00,	 MSE = 26.65
+Lambda = 100.00,	 Gamma = 2.00,	 MSE = 15.00
+Lambda = 100.00,	 Gamma = 3.00,	 MSE = 26.88
+Lambda = 1000.00,	 Gamma = 2.00,	 MSE = 27.69
+Lambda = 1000.00,	 Gamma = 3.00,	 MSE = 34.55
+Lambda = 10000.00,	 Gamma = 2.00,	 MSE = 288.36
+Lambda = 10000.00,	 Gamma = 3.00,	 MSE = 288.36
+Fitting gblasso model for Setup 2 took 1270 seconds
+
+Fitting linf model for Setup 2
+C = 5.00,	 MSE = 204.41
+C = 10.00,	 MSE = 140.55
+C = 15.00,	 MSE = 90.57
+C = 20.00,	 MSE = 56.08
+C = 25.00,	 MSE = 34.48
+C = 30.00,	 MSE = 22.55
+C = 35.00,	 MSE = 13.19
+C = 40.00,	 MSE = 6.91
+
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.C = 45.00,	 MSE = 2.38
+C = 50.00,	 MSE = 0.80
+C = 55.00,	 MSE = 0.80
+C = 60.00,	 MSE = 1.14
+C = 65.00,	 MSE = 1.68
+C = 70.00,	 MSE = 2.36
+C = 75.00,	 MSE = 2.54
+C = 80.00,	 MSE = 2.55
+C = 85.00,	 MSE = 2.60
+C = 90.00,	 MSE = 2.66
+C = 95.00,	 MSE = 2.74
+C = 100.00,	 MSE = 2.82
+Fitting linf model for Setup 2 took 355 seconds
+
+Fitting alinf model for Setup 2
+E = 5.00,	 MSE = 20.42
+E = 10.00,	 MSE = 14.04
+E = 15.00,	 MSE = 9.52
+E = 20.00,	 MSE = 5.80
+E = 25.00,	 MSE = 2.98
+E = 30.00,	 MSE = 1.32
+E = 35.00,	 MSE = 0.74
+E = 40.00,	 MSE = 1.04
+E = 45.00,	 MSE = 1.44
+E = 50.00,	 MSE = 1.46
+E = 55.00,	 MSE = 1.46
+E = 60.00,	 MSE = 1.46
+E = 65.00,	 MSE = 1.46
+E = 70.00,	 MSE = 1.46
+E = 75.00,	 MSE = 1.46
+E = 80.00,	 MSE = 1.46
+E = 85.00,	 MSE = 1.46
+E = 90.00,	 MSE = 1.46
+E = 95.00,	 MSE = 1.46
+E = 100.00,	 MSE = 1.46
+
+  linsysolve: solution contains NaN or inf.Fitting alinf model for Setup 2 took 90 seconds
+
+Fitting lasso model for Setup 3
+Fitting lasso model for Setup 3 took 0 seconds
+
+Fitting enet model for Setup 3
+Fitting enet model for Setup 3 took 0 seconds
+
+Fitting grace model for Setup 3
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 4.49
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 7.48
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 6.08
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 3.56
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 2.52
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 2.42
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 2.43
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 1.78
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 4.05
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 5.57
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 3.51
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 2.52
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 2.42
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 2.43
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 0.99
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.05
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 2.59
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 3.16
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 2.48
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 2.40
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 2.40
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.51
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.51
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 0.60
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 1.83
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 2.23
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 2.26
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 2.23
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 1.28
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 1.27
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 1.21
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 1.69
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 2.54
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 2.61
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 2.62
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 43.97
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 44.05
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 44.76
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 48.76
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 49.96
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 48.53
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 47.94
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 312.18
+Fitting grace model for Setup 3 took 370 seconds
+
+Fitting agrace model for Setup 3
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 9.25
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 20.09
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 19.23
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 17.62
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 21.51
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 25.33
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 26.40
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 2.19
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 8.58
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 17.02
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 17.41
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 21.48
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 25.32
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 26.39
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.24
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.25
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 6.76
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 15.52
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 21.22
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 25.20
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 26.29
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.50
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.50
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 0.62
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 6.22
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 19.10
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 24.32
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 25.44
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 1.23
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 1.22
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 1.20
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 2.68
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 11.36
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 23.57
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 25.96
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 42.75
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 42.81
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 43.40
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 49.47
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 69.80
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 142.77
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 169.16
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 312.18
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 312.18
+Fitting agrace model for Setup 3 took 388 seconds
+
+Fitting gblasso model for Setup 3
+Lambda = 0.01,	 Gamma = 2.00,	 MSE = 8.20
+Lambda = 0.01,	 Gamma = 3.00,	 MSE = 14.13
+Lambda = 0.10,	 Gamma = 2.00,	 MSE = 8.19
+Lambda = 0.10,	 Gamma = 3.00,	 MSE = 14.11
+Lambda = 1.00,	 Gamma = 2.00,	 MSE = 8.11
+Lambda = 1.00,	 Gamma = 3.00,	 MSE = 14.06
+Lambda = 10.00,	 Gamma = 2.00,	 MSE = 7.48
+Lambda = 10.00,	 Gamma = 3.00,	 MSE = 13.66
+Lambda = 100.00,	 Gamma = 2.00,	 MSE = 6.20
+Lambda = 100.00,	 Gamma = 3.00,	 MSE = 12.30
+Lambda = 1000.00,	 Gamma = 2.00,	 MSE = 13.58
+Lambda = 1000.00,	 Gamma = 3.00,	 MSE = 18.43
+Lambda = 10000.00,	 Gamma = 2.00,	 MSE = 312.18
+Lambda = 10000.00,	 Gamma = 3.00,	 MSE = 312.18
+Fitting gblasso model for Setup 3 took 1258 seconds
+
+Fitting linf model for Setup 3
+C = 5.00,	 MSE = 201.67
+C = 10.00,	 MSE = 117.75
+C = 15.00,	 MSE = 62.23
+C = 20.00,	 MSE = 26.87
+
+  linsysolve: solution contains NaN or inf.C = 25.00,	 MSE = 7.12
+
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.C = 30.00,	 MSE = 2.24
+C = 35.00,	 MSE = 2.04
+C = 40.00,	 MSE = 1.56
+C = 45.00,	 MSE = 1.53
+C = 50.00,	 MSE = 1.70
+C = 55.00,	 MSE = 1.86
+
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.C = 60.00,	 MSE = 2.35
+C = 65.00,	 MSE = 3.05
+C = 70.00,	 MSE = 3.53
+C = 75.00,	 MSE = 3.74
+C = 80.00,	 MSE = 3.95
+C = 85.00,	 MSE = 4.13
+C = 90.00,	 MSE = 4.29
+C = 95.00,	 MSE = 4.43
+C = 100.00,	 MSE = 4.57
+Fitting linf model for Setup 3 took 351 seconds
+
+Fitting alinf model for Setup 3
+E = 5.00,	 MSE = 25.20
+E = 10.00,	 MSE = 23.26
+E = 15.00,	 MSE = 20.66
+E = 20.00,	 MSE = 16.37
+E = 25.00,	 MSE = 12.22
+E = 30.00,	 MSE = 9.03
+E = 35.00,	 MSE = 6.67
+E = 40.00,	 MSE = 5.10
+E = 45.00,	 MSE = 4.44
+E = 50.00,	 MSE = 4.42
+E = 55.00,	 MSE = 4.53
+E = 60.00,	 MSE = 4.86
+E = 65.00,	 MSE = 4.84
+E = 70.00,	 MSE = 4.93
+E = 75.00,	 MSE = 5.64
+E = 80.00,	 MSE = 6.83
+E = 85.00,	 MSE = 7.34
+E = 90.00,	 MSE = 8.07
+E = 95.00,	 MSE = 8.70
+E = 100.00,	 MSE = 9.33
+Fitting alinf model for Setup 3 took 200 seconds
+
+Fitting lasso model for Setup 4
+Fitting lasso model for Setup 4 took 0 seconds
+
+Fitting enet model for Setup 4
+Fitting enet model for Setup 4 took 0 seconds
+
+Fitting grace model for Setup 4
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 5.50
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 7.50
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 6.43
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 4.97
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 6.01
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 8.10
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 8.78
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 2.65
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 5.06
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 6.04
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 4.92
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 6.00
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 8.10
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 8.77
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.33
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.45
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 3.67
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 4.49
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 5.96
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 8.08
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 8.75
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.72
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.74
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 1.04
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 3.05
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 5.62
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 7.90
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 8.55
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 4.21
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 4.20
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 4.18
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 4.40
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 5.74
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 7.62
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 8.29
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 36.85
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 36.88
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 37.12
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 38.36
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 39.62
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 40.00
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 40.32
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 181.78
+Fitting grace model for Setup 4 took 386 seconds
+
+Fitting agrace model for Setup 4
+Lambda 1 = 0.01,	 Lambda 2 = 0.01,	 MSE = 4.41
+Lambda 1 = 0.01,	 Lambda 2 = 0.10,	 MSE = 10.19
+Lambda 1 = 0.01,	 Lambda 2 = 1.00,	 MSE = 10.84
+Lambda 1 = 0.01,	 Lambda 2 = 10.00,	 MSE = 12.51
+Lambda 1 = 0.01,	 Lambda 2 = 100.00,	 MSE = 19.30
+Lambda 1 = 0.01,	 Lambda 2 = 1000.00,	 MSE = 28.06
+Lambda 1 = 0.01,	 Lambda 2 = 10000.00,	 MSE = 31.30
+Lambda 1 = 0.10,	 Lambda 2 = 0.01,	 MSE = 2.44
+Lambda 1 = 0.10,	 Lambda 2 = 0.10,	 MSE = 4.17
+Lambda 1 = 0.10,	 Lambda 2 = 1.00,	 MSE = 9.55
+Lambda 1 = 0.10,	 Lambda 2 = 10.00,	 MSE = 12.36
+Lambda 1 = 0.10,	 Lambda 2 = 100.00,	 MSE = 19.28
+Lambda 1 = 0.10,	 Lambda 2 = 1000.00,	 MSE = 28.05
+Lambda 1 = 0.10,	 Lambda 2 = 10000.00,	 MSE = 31.29
+Lambda 1 = 1.00,	 Lambda 2 = 0.01,	 MSE = 1.34
+Lambda 1 = 1.00,	 Lambda 2 = 0.10,	 MSE = 1.40
+Lambda 1 = 1.00,	 Lambda 2 = 1.00,	 MSE = 3.73
+Lambda 1 = 1.00,	 Lambda 2 = 10.00,	 MSE = 11.02
+Lambda 1 = 1.00,	 Lambda 2 = 100.00,	 MSE = 19.05
+Lambda 1 = 1.00,	 Lambda 2 = 1000.00,	 MSE = 27.91
+Lambda 1 = 1.00,	 Lambda 2 = 10000.00,	 MSE = 31.15
+Lambda 1 = 10.00,	 Lambda 2 = 0.01,	 MSE = 0.67
+Lambda 1 = 10.00,	 Lambda 2 = 0.10,	 MSE = 0.68
+Lambda 1 = 10.00,	 Lambda 2 = 1.00,	 MSE = 0.85
+Lambda 1 = 10.00,	 Lambda 2 = 10.00,	 MSE = 5.19
+Lambda 1 = 10.00,	 Lambda 2 = 100.00,	 MSE = 17.27
+Lambda 1 = 10.00,	 Lambda 2 = 1000.00,	 MSE = 26.87
+Lambda 1 = 10.00,	 Lambda 2 = 10000.00,	 MSE = 30.06
+Lambda 1 = 100.00,	 Lambda 2 = 0.01,	 MSE = 4.24
+Lambda 1 = 100.00,	 Lambda 2 = 0.10,	 MSE = 4.24
+Lambda 1 = 100.00,	 Lambda 2 = 1.00,	 MSE = 4.25
+Lambda 1 = 100.00,	 Lambda 2 = 10.00,	 MSE = 5.26
+Lambda 1 = 100.00,	 Lambda 2 = 100.00,	 MSE = 12.90
+Lambda 1 = 100.00,	 Lambda 2 = 1000.00,	 MSE = 26.15
+Lambda 1 = 100.00,	 Lambda 2 = 10000.00,	 MSE = 29.70
+Lambda 1 = 1000.00,	 Lambda 2 = 0.01,	 MSE = 37.08
+Lambda 1 = 1000.00,	 Lambda 2 = 0.10,	 MSE = 37.11
+Lambda 1 = 1000.00,	 Lambda 2 = 1.00,	 MSE = 37.45
+Lambda 1 = 1000.00,	 Lambda 2 = 10.00,	 MSE = 40.54
+Lambda 1 = 1000.00,	 Lambda 2 = 100.00,	 MSE = 54.91
+Lambda 1 = 1000.00,	 Lambda 2 = 1000.00,	 MSE = 99.66
+Lambda 1 = 1000.00,	 Lambda 2 = 10000.00,	 MSE = 154.82
+Lambda 1 = 10000.00,	 Lambda 2 = 0.01,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 0.10,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 1.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 10.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 100.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 1000.00,	 MSE = 181.78
+Lambda 1 = 10000.00,	 Lambda 2 = 10000.00,	 MSE = 181.78
+Fitting agrace model for Setup 4 took 398 seconds
+
+Fitting gblasso model for Setup 4
+Lambda = 0.01,	 Gamma = 2.00,	 MSE = 8.90
+Lambda = 0.01,	 Gamma = 3.00,	 MSE = 18.62
+Lambda = 0.10,	 Gamma = 2.00,	 MSE = 8.89
+Lambda = 0.10,	 Gamma = 3.00,	 MSE = 18.64
+Lambda = 1.00,	 Gamma = 2.00,	 MSE = 8.79
+Lambda = 1.00,	 Gamma = 3.00,	 MSE = 18.54
+Lambda = 10.00,	 Gamma = 2.00,	 MSE = 8.04
+Lambda = 10.00,	 Gamma = 3.00,	 MSE = 17.74
+Lambda = 100.00,	 Gamma = 2.00,	 MSE = 6.82
+Lambda = 100.00,	 Gamma = 3.00,	 MSE = 14.40
+Lambda = 1000.00,	 Gamma = 2.00,	 MSE = 14.21
+Lambda = 1000.00,	 Gamma = 3.00,	 MSE = 17.33
+Lambda = 10000.00,	 Gamma = 2.00,	 MSE = 181.78
+Lambda = 10000.00,	 Gamma = 3.00,	 MSE = 181.78
+Fitting gblasso model for Setup 4 took 1267 seconds
+
+Fitting linf model for Setup 4
+C = 5.00,	 MSE = 100.18
+C = 10.00,	 MSE = 45.32
+C = 15.00,	 MSE = 17.12
+C = 20.00,	 MSE = 7.88
+C = 25.00,	 MSE = 4.38
+
+  linsysolve: solution contains NaN or inf.C = 30.00,	 MSE = 2.71
+C = 35.00,	 MSE = 2.19
+C = 40.00,	 MSE = 2.10
+C = 45.00,	 MSE = 2.17
+
+  linsysolve: solution contains NaN or inf.C = 50.00,	 MSE = 2.30
+C = 55.00,	 MSE = 2.41
+
+  linsysolve: solution contains NaN or inf.
+  linsysolve: solution contains NaN or inf.C = 60.00,	 MSE = 2.93
+C = 65.00,	 MSE = 3.39
+C = 70.00,	 MSE = 3.53
+C = 75.00,	 MSE = 3.67
+C = 80.00,	 MSE = 3.81
+C = 85.00,	 MSE = 3.95
+C = 90.00,	 MSE = 4.08
+C = 95.00,	 MSE = 4.20
+C = 100.00,	 MSE = 4.32
+Fitting linf model for Setup 4 took 355 seconds
+
+Fitting alinf model for Setup 4
+E = 5.00,	 MSE = 20.01
+E = 10.00,	 MSE = 16.16
+E = 15.00,	 MSE = 12.65
+E = 20.00,	 MSE = 9.77
+E = 25.00,	 MSE = 7.36
+E = 30.00,	 MSE = 5.42
+E = 35.00,	 MSE = 3.81
+E = 40.00,	 MSE = 2.70
+E = 45.00,	 MSE = 1.91
+E = 50.00,	 MSE = 1.44
+E = 55.00,	 MSE = 1.08
+E = 60.00,	 MSE = 1.04
+E = 65.00,	 MSE = 1.27
+E = 70.00,	 MSE = 1.43
+E = 75.00,	 MSE = 1.44
+E = 80.00,	 MSE = 1.44
+E = 85.00,	 MSE = 1.44
+E = 90.00,	 MSE = 1.44
+E = 95.00,	 MSE = 1.44
+E = 100.00,	 MSE = 1.44
+Fitting alinf model for Setup 4 took 102 seconds
+
+      setup    model             mse predictors     correlation            sens            spec            prec                               params
+3   Setup 1   agrace   1.92342296938        220  0.991496324523             1.0             0.0             0.2                  lam2=0.1, lam1=10.0
+10  Setup 2   agrace   14.6129799247        220  0.841428149156             1.0             0.0             0.2                 lam2=0.01, lam1=10.0
+17  Setup 3   agrace  0.761208705825        220  0.997623726259             1.0             0.0  0.109090909091                 lam2=0.01, lam1=10.0
+24  Setup 4   agrace   4.39646440683        220  0.895447509156             1.0             0.0  0.109090909091                 lam2=0.01, lam1=10.0
+2   Setup 1    alinf   1.13028600375         46  0.995391510325             1.0  0.988636363636   0.95652173913                               E=95.0
+9   Setup 2    alinf   1.74001341181        108  0.988062363915             1.0  0.636363636364  0.407407407407                               E=35.0
+16  Setup 3    alinf   31.5708974138        220  0.172803518441             1.0             0.0  0.109090909091                               E=50.0
+23  Setup 4    alinf   15.7200045818        127  0.447817502097             1.0  0.474489795918  0.188976377953                               E=60.0
+0   Setup 1     enet   4.13153792832        102  0.956531894269             1.0  0.670454545455   0.43137254902                alpha=0.0463453981324
+7   Setup 2     enet   21.3028964663        128  0.752416412656  0.863636363636  0.488636363636        0.296875                alpha=0.0191762686736
+14  Setup 3     enet   4.86381347702        107  0.873706981078  0.958333333333  0.571428571429  0.214953271028                 alpha=0.025368844088
+21  Setup 4     enet   8.08330465365        128  0.756568226554  0.916666666667  0.459183673469        0.171875                alpha=0.0194650814772
+1   Setup 1  gblasso   13.7136132189        220  0.882194418882             1.0             0.0             0.2                     lam=100, gam=2.0
+8   Setup 2  gblasso   35.6359305252        220  0.649813145687             1.0             0.0             0.2                      lam=10, gam=2.0
+15  Setup 3  gblasso   11.3869376475        220  0.689826812587             1.0             0.0  0.109090909091                     lam=100, gam=2.0
+22  Setup 4  gblasso   12.7404489727        220  0.583244440116             1.0             0.0  0.109090909091                     lam=100, gam=2.0
+5   Setup 1    grace  0.677562566088        220   0.99995483598             1.0             0.0             0.2              lam2=10000.0, lam1=10.0
+12  Setup 2    grace   14.5329296913        220  0.842689696379             1.0             0.0             0.2                 lam2=0.01, lam1=10.0
+19  Setup 3    grace  0.760900557202        220  0.997618940815             1.0             0.0  0.109090909091                 lam2=0.01, lam1=10.0
+26  Setup 4    grace    4.4127938484        220  0.894843302413             1.0             0.0  0.109090909091                 lam2=0.01, lam1=10.0
+6   Setup 1    lasso   1.93288078316         69  0.991415101765             1.0  0.857954545455   0.63768115942  alpha=0.0479475140801, l1_ratio=1.0
+13  Setup 2    lasso   15.1362863994         96  0.846125297699  0.886363636364  0.676136363636         0.40625  alpha=0.0137920507657, l1_ratio=1.0
+20  Setup 3    lasso  0.798055582204         62  0.997627832239           0.625  0.760204081633  0.241935483871  alpha=0.0377532978369, l1_ratio=1.0
+27  Setup 4    lasso   4.50103117566         87     0.899955493  0.833333333333  0.658163265306  0.229885057471  alpha=0.0201379706682, l1_ratio=1.0
+4   Setup 1     linf  0.887040215018        220  0.999572189966             1.0             0.0             0.2                               C=50.0
+11  Setup 2     linf   2.76601771021        220   0.98606501715             1.0             0.0             0.2                               C=55.0
+18  Setup 3     linf   4.82510130589        220  0.842986860928             1.0             0.0  0.109090909091                               C=45.0
+25  Setup 4     linf   6.26947187853        220  0.782609772011             1.0             0.0  0.109090909091                               C=40.0
+Total time elapsed: 10037 seconds

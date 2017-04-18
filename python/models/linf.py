@@ -4,8 +4,7 @@ from models import Model
 import matlab.engine
 import numpy as np
 
-
-c_values = [10.0, 20.0, 30.0]
+c_values = e_values = [5 * (x + 1) for x in range(20)]
 
 
 def fit_linf(setup, matlab_engine):
@@ -40,12 +39,12 @@ def fit_alinf(setup, matlab_engine, linf_fit):
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in network])
     m_adj = matlab.double(adj)
     m_dis = matlab.double(discarded.tolist())
-    m_c = matlab.double(c_values)
+    m_e = matlab.double(e_values)
 
     # Tuning
     m_y = matlab.double(setup.y_tune.tolist(), size=(len(setup.y_tune), 1))
     m_X = matlab.double(setup.x_tune.tolist())
-    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, m_c, cv_nfolds)
+    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, m_e, cv_nfolds)
 
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
