@@ -1,5 +1,5 @@
 function [coef,lam,gam,mse] = cvGblasso(Y, X, wt, netwk, lam_all, gam_all, k)
-cv = cvpartition(size(Y,1),'k',k);
+cv = cvpartition(size(Y,1),'k',double(k));
 for lam_idx = 1:size(lam_all, 2)
     clam=lam_all(1,lam_idx);
     for gam_idx = 1:size(gam_all, 2)

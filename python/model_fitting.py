@@ -1,23 +1,25 @@
 from models.glm import fit_lasso, fit_enet
 from models.grace import fit_grace, fit_agrace
 from models.gblasso import fit_gblasso
+from models.linf import fit_linf, fit_alinf
 import matlab.engine
 import os.path
 import pickle
 import time
 
 enable_logging = True
-full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso"]
+full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf"]
 
 
 def fit_models(setup, methods = full_method_list, load_dump = True):
     engine = None
     models = {}
-
     base_dump_url = "dumps/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
 
     if "agrace" in methods and "enet" not in methods:
         methods.append("enet")
+    if "alinf" in methods and "linf" not in methods:
+        methods.append("linf")
 
     if "lasso" in methods:
         method = "lasso"
@@ -80,6 +82,34 @@ def fit_models(setup, methods = full_method_list, load_dump = True):
                 models[method] = pickle.load(f)
         else:
             models[method] = fit_gblasso(setup=setup)
+            with open(dump_url, 'wb') as f:
+                pickle.dump(models[method], f)
+
+    if "linf" in methods:
+        method = "linf"
+        dump_url = base_dump_url + method
+        log_timestamp(setup.label, method)
+        if load_dump and os.path.exists(dump_url):
+            with open(dump_url, 'rb') as f:
+                models[method] = pickle.load(f)
+        else:
+            if engine is None:
+                engine = start_matlab_engine()
+            models[method] = fit_linf(setup=setup, matlab_engine=engine)
+            with open(dump_url, 'wb') as f:
+                pickle.dump(models[method], f)
+
+    if "alinf" in methods:
+        method = "alinf"
+        dump_url = base_dump_url + method
+        log_timestamp(setup.label, method)
+        if load_dump and os.path.exists(dump_url):
+            with open(dump_url, 'rb') as f:
+                models[method] = pickle.load(f)
+        else:
+            if engine is None:
+                engine = start_matlab_engine()
+            models[method] = fit_alinf(setup=setup, matlab_engine=engine, linf_fit=models["linf"])
             with open(dump_url, 'wb') as f:
                 pickle.dump(models[method], f)
 

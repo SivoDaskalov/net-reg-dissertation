@@ -1,5 +1,5 @@
 function [lam1,lam2] = cvGrace(Y, X, wt, netwk, a, lam1_all, lam2_all, k)
-cv = cvpartition(size(Y,1),'k',k);
+cv = cvpartition(size(Y,1),'k',double(k));
 for lam1_idx = 1:size(lam1_all, 2)
     clam1=lam1_all(1,lam1_idx);
     for lam2_idx = 1:size(lam2_all, 2)

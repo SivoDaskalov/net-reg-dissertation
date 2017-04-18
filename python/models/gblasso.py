@@ -1,4 +1,4 @@
-from commons import cross_validation_folds
+from commons import cv_nfolds
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from models import Model
@@ -7,7 +7,7 @@ from scipy.optimize import minimize
 
 lam_values = [10 ** x for x in range(-2, 5)]
 gam_values = [2.0, 3.0]
-folds = cross_validation_folds / 2
+folds = 2 # Reduced number of folds due to the heavy calculations
 minimize_method = "BFGS"
 
 
@@ -23,9 +23,9 @@ def fit_gblasso(setup):
 
 def cvGblasso(Y, X, wt, network, lambdas, gammas):
     best_mse = 999999
+    kf = KFold(n_splits=folds, shuffle=True, random_state=1)
     for lam in lambdas:
         for gam in gammas:
-            kf = KFold(n_splits=folds, shuffle=True, random_state=1)
             errors = []
             for training, holdout in kf.split(X):
                 coef = gblasso(Y[training], X[training,:], wt, network, lam, gam)
