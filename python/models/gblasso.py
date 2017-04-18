@@ -5,7 +5,7 @@ from models import Model
 import numpy as np
 from scipy.optimize import minimize
 
-lam_values = [10 ** x for x in range(-2, 3)]
+lam_values = [10 ** x for x in range(-2, 5)]
 gam_values = [2.0, 3.0]
 folds = cross_validation_folds / 2
 minimize_method = "BFGS"
