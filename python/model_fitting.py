@@ -29,14 +29,15 @@ def fit_or_load(setup, method_name, load_dump, fitting_func, args):
     return fit
 
 
-def fit_models(setup, methods=full_method_list, load_dump=True):
-    engine = matlab.engine.start_matlab("-nodesktop")
+def fit_models(setup, engine, methods=full_method_list, load_dump=True):
     models = {}
 
     if "agrace" in methods and "enet" not in methods:
         methods.append("enet")
     if "alinf" in methods and "linf" not in methods:
         methods.append("linf")
+    if "tlpi" in methods and "lasso" not in methods:
+        methods.append("lasso")
 
     if "lasso" in methods:
         method = "lasso"
@@ -68,10 +69,11 @@ def fit_models(setup, methods=full_method_list, load_dump=True):
 
     if "tlpi" in methods:
         method = "tlpi"
-        models[method] = fit_or_load(setup, method, load_dump, fit_tlpi, [engine])
+        models[method] = fit_or_load(setup, method, load_dump, fit_tlpi, [engine, models["lasso"]])
 
     return models
 
 
 def batch_fit_models(setups, methods=full_method_list, load_dump=True):
-    return [(setup, fit_models(setup=setup, methods=methods, load_dump=load_dump)) for setup in setups]
+    engine = matlab.engine.start_matlab("-nodesktop")
+    return [(setup, fit_models(setup=setup, engine=engine, methods=methods, load_dump=load_dump)) for setup in setups]
