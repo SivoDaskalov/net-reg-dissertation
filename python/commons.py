@@ -2,5 +2,25 @@ from collections import namedtuple
 
 Setup = namedtuple('Setup', ['label', 'true_coefficients', 'network', 'degrees',
                              'x_tune', 'y_tune', 'x_train', 'y_train', 'x_test', 'y_test'])
-cv_nfolds = 10
+
+# General properties
+cv_n_folds = 10
 epsilon = 1e-6
+
+# GLM properties
+glm_n_alphas = 100
+glm_l1_ratios = [0.1, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95, .99]
+glm_max_iter = 10000
+
+# Grace properties
+grace_lambda1_values = [10 ** x for x in range(-2, 5)]
+grace_lambda2_values = [10 ** x for x in range(-2, 5)]
+
+# GBLasso properties
+gblasso_lambda_values = [10 ** x for x in range(-2, 5)]
+gblasso_gamma_values = [2.0, 3.0]
+gblasso_n_folds = 5 # Reduced number of CV folds due to the duration of calculations
+
+# Linf properties
+linf_c_values = [5 * (x + 1) for x in range(20)]
+alinf_e_values = [5 * (x + 1) for x in range(20)]

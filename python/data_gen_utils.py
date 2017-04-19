@@ -65,9 +65,11 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
     dump_url = "dumps/setups_tf%d_rg%d_tu%d_tr%d_ts%d" % (n_trans_factors, n_regulated_genes_per_trans_factor,
                                                           n_tune_obs, n_train_obs, n_test_obs)
     if load_dump and os.path.exists(dump_url):
+        print("Loaded previously generated dataset")
         with open(dump_url, 'rb') as f:
             setups = pickle.load(f)
     else:
+        print("Generating dataset")
         setups = []
         network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
         for label, coefficients in generate_setup_coefficients(n_trans_factors).items():

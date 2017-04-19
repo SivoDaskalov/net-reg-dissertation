@@ -1,10 +1,7 @@
-from commons import cv_nfolds
-from commons import epsilon
+from commons import cv_n_folds as n_folds, epsilon, linf_c_values as c_values, alinf_e_values as e_values
 from models import Model
 import matlab.engine
 import numpy as np
-
-c_values = e_values = [5 * (x + 1) for x in range(20)]
 
 
 def fit_linf(setup, matlab_engine):
@@ -15,7 +12,7 @@ def fit_linf(setup, matlab_engine):
     # Tuning
     m_y = matlab.double(setup.y_tune.tolist(), size=(len(setup.y_tune), 1))
     m_X = matlab.double(setup.x_tune.tolist())
-    c = matlab_engine.cvLinf(m_y, m_X, m_wt, m_netwk, m_c, cv_nfolds)
+    c = matlab_engine.cvLinf(m_y, m_X, m_wt, m_netwk, m_c, n_folds)
 
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
@@ -44,7 +41,7 @@ def fit_alinf(setup, matlab_engine, linf_fit):
     # Tuning
     m_y = matlab.double(setup.y_tune.tolist(), size=(len(setup.y_tune), 1))
     m_X = matlab.double(setup.x_tune.tolist())
-    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, m_e, cv_nfolds)
+    e = matlab_engine.cvAlinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, m_e, n_folds)
 
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
