@@ -2,6 +2,7 @@ from models.glm import fit_lasso, fit_enet
 from models.grace import fit_grace, fit_agrace
 from models.gblasso import fit_gblasso
 from models.linf import fit_linf, fit_alinf
+from models.tlp import fit_tlpi
 import matlab.engine
 import os.path
 import pickle
@@ -64,6 +65,10 @@ def fit_models(setup, methods=full_method_list, load_dump=True):
     if "alinf" in methods:
         method = "alinf"
         models[method] = fit_or_load(setup, method, load_dump, fit_alinf, [engine, models["linf"]])
+
+    if "tlpi" in methods:
+        method = "tlpi"
+        models[method] = fit_or_load(setup, method, load_dump, fit_tlpi, [engine])
 
     return models
 
