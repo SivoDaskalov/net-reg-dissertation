@@ -2,14 +2,14 @@ from models.glm import fit_lasso, fit_enet
 from models.grace import fit_grace, fit_agrace
 from models.gblasso import fit_gblasso
 from models.linf import fit_linf, fit_alinf
-from models.tlp import fit_tlpi
+from models.tlp import fit_ttlp, fit_ltlp
 import matlab.engine
 import os.path
 import pickle
 import time
 
 enable_logging = True
-full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf"]
+full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp"]
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args):
@@ -36,7 +36,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True):
         methods.append("enet")
     if "alinf" in methods and "linf" not in methods:
         methods.append("linf")
-    if "tlpi" in methods and "lasso" not in methods:
+    if ("ttlp" in methods or "ltlp" in methods) and "lasso" not in methods:
         methods.append("lasso")
 
     if "lasso" in methods:
@@ -67,9 +67,13 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True):
         method = "alinf"
         models[method] = fit_or_load(setup, method, load_dump, fit_alinf, [engine, models["linf"]])
 
-    if "tlpi" in methods:
-        method = "tlpi"
-        models[method] = fit_or_load(setup, method, load_dump, fit_tlpi, [engine, models["lasso"]])
+    if "ttlp" in methods:
+        method = "ttlp"
+        models[method] = fit_or_load(setup, method, load_dump, fit_ttlp, [engine, models["lasso"]])
+
+    if "ltlp" in methods:
+        method = "ltlp"
+        models[method] = fit_or_load(setup, method, load_dump, fit_ltlp, [engine, models["lasso"]])
 
     return models
 

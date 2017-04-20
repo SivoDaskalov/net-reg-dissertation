@@ -24,3 +24,9 @@ gblasso_n_folds = 5 # Reduced number of CV folds due to the duration of calculat
 # Linf properties
 linf_c_values = [5 * (x + 1) for x in range(20)]
 alinf_e_values = [5 * (x + 1) for x in range(20)]
+
+# TLP properties
+tlp_n_deltas1 = 3
+tlp_n_deltas2 = 3
+tlp_n_taus = 3
+tlp_n_folds = 2 # Greatly reduced number of CV folds due to the duration of calculations
