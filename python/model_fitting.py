@@ -13,7 +13,8 @@ full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alin
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args):
-    base_dump_url = "dumps/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
+    base_dump_url = "dumps/%s_n%d_p%d/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1],
+                                                      setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
     dump_url = base_dump_url + method_name
     if load_dump and os.path.exists(dump_url):
         print("Loaded %s model for %s" % (method_name, setup.label))

@@ -36,7 +36,8 @@ def fit_ltlp(setup, matlab_engine, lasso_fit):
     t = max(abs(lasso_fit.coef_))
     p = setup.x_tune.shape[1]
     g = len(setup.network)
-    deltas1 = np.linspace(start=t, stop=p * t / 4, num=n_deltas1)
+    lasso_alpha = lasso_fit.params_["alpha"]
+    deltas1 = np.linspace(start=lasso_alpha / 1.5, stop=lasso_alpha * 1.5, num=n_deltas1)
     deltas2 = np.linspace(start=t, stop=t * g, num=n_deltas2)
     taus = np.linspace(start=1e-6, stop=t / 2, num=n_taus)
 
@@ -55,6 +56,6 @@ def fit_ltlp(setup, matlab_engine, lasso_fit):
     # Training
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
     m_X = matlab.double(setup.x_train.tolist())
-    coef = matlab_engine.tlp(m_y, m_X, m_wt, m_netwk, m_b0, del1, del2, 100, tau)
+    coef = matlab_engine.tlp(m_y, m_X, m_wt, m_netwk, m_b0, del1, del2, 100.0, tau)
 
     return Model(coef, params={"delta 1": del1, "delta 2": del2, "tau": tau})
