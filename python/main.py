@@ -5,7 +5,7 @@ import pandas as pd
 import time
 
 time.clock()
-n_trans_factors = 50
+n_trans_factors = 20
 n_regulated_genes_per_trans_factor = 10
 
 setups = gen.batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor,
