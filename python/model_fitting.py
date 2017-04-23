@@ -3,13 +3,14 @@ from models.grace import fit_grace, fit_agrace
 from models.gblasso import fit_gblasso
 from models.linf import fit_linf, fit_alinf
 from models.tlp import fit_ttlp, fit_ltlp
+from models.composite import fit_composite_magnitude_model, fit_composite_vote_model
 import matlab.engine
 import os.path
 import pickle
 import time
 
 enable_logging = True
-full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp"]
+full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args):
@@ -75,6 +76,12 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True):
     if "ltlp" in methods:
         method = "ltlp"
         models[method] = fit_or_load(setup, method, load_dump, fit_ltlp, [engine, models["lasso"]])
+
+    if "composite" in methods:
+        method = "composite-vote"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_vote_model, [models])
+        method = "composite-magnitude"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model, [models])
 
     return models
 

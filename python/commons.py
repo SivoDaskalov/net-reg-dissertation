@@ -19,7 +19,7 @@ grace_lambda2_values = [10 ** x for x in range(-2, 5)]
 # GBLasso properties
 gblasso_lambda_values = [10 ** x for x in range(-2, 5)]
 gblasso_gamma_values = [2.0, 3.0]
-gblasso_n_folds = 5 # Reduced number of CV folds due to the duration of calculations
+gblasso_n_folds = 5  # Reduced number of CV folds due to the duration of calculations
 
 # Linf properties
 linf_c_values = [5 * (x + 1) for x in range(20)]
@@ -29,4 +29,9 @@ alinf_e_values = [5 * (x + 1) for x in range(20)]
 tlp_n_deltas1 = 3
 tlp_n_deltas2 = 3
 tlp_n_taus = 3
-tlp_n_folds = 2 # Greatly reduced number of CV folds due to the duration of calculations
+tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of calculations
+
+# Composite model properties
+cm_zero_thresholds = [0.0001, 0.001, 0.01]
+cm_vote_thresholds = [0.2, 0.4, 0.5, 0.6, 0.8]
+cm_magnitude_std_thresholds = [-1.0, 0.0, 1.0]
