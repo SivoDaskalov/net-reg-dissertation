@@ -47,7 +47,7 @@ class CompositeModel:
 
                     votes = np.count_nonzero(threshold(np.absolute(self.full_coef), zero_thresh), axis=0)
                     fraction_votes = votes / float(self.n_sub_models)
-                    current_predictors = np.where(fraction_votes > vote_thresh)[0]
+                    current_predictors = np.where(fraction_votes >= vote_thresh)[0]
                     X_sel = X[:, current_predictors]
 
                     errors = []
@@ -67,7 +67,7 @@ class CompositeModel:
             vote_threshold = vote_thresholds[0]
             votes = np.count_nonzero(threshold(np.absolute(self.full_coef), zero_threshold), axis=0)
             fraction_votes = votes / float(self.n_sub_models)
-            selected_predictors = np.where(fraction_votes > vote_threshold)[0]
+            selected_predictors = np.where(fraction_votes >= vote_threshold)[0]
 
         self.selected_predictors = selected_predictors
         self.params_ = {"Zero threshold": zero_threshold, "Vote threshold": vote_threshold}
@@ -85,7 +85,7 @@ class CompositeModel:
                     coef_magnitudes = np.sum(threshold(np.absolute(self.full_coef), zero_thresh), axis=0)
                     mean = np.mean(coef_magnitudes)
                     std = np.mean(coef_magnitudes)
-                    current_predictors = np.where(coef_magnitudes > mean + std * magn_std_thresh)[0]
+                    current_predictors = np.where(coef_magnitudes >= mean + std * magn_std_thresh)[0]
                     X_sel = X[:, current_predictors]
 
                     errors = []
@@ -107,7 +107,7 @@ class CompositeModel:
             coef_magnitudes = np.sum(threshold(np.absolute(self.full_coef), zero_threshold), axis=0)
             mean = np.mean(coef_magnitudes)
             std = np.mean(coef_magnitudes)
-            selected_predictors = np.where(coef_magnitudes > mean + std * magnitude_std_threshold)[0]
+            selected_predictors = np.where(coef_magnitudes >= mean + std * magnitude_std_threshold)[0]
 
         self.selected_predictors = selected_predictors
         mst = magnitude_std_threshold
