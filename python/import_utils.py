@@ -1,7 +1,9 @@
 import networkx as nx
 import pandas as pd
+import numpy as np
 import os.path
 import csv
+from commons import Dataset
 
 tumor_data_files = {
     "body": {
@@ -30,3 +32,24 @@ def adjm_to_edgel():
                 writer = csv.writer(f, delimiter=',')
                 for edge in nx.edges(graph):
                     writer.writerow(edge)
+
+
+def batch_import_datasets():
+    datasets = []
+    for case, files in tumor_data_files.items():
+        expression_url = files["methylation"]
+        annotation_utl = files["annotation"]
+        network_url = files["network_edge_list"]
+        expr = anno = netwk = deg = None
+
+        if os.path.exists(expression_url):
+            expr = pd.read_csv(expression_url, index_col=0)
+        if os.path.exists(annotation_utl):
+            anno = pd.read_csv(annotation_utl, index_col=0)
+        if os.path.exists(network_url):
+            with open(network_url, 'rb') as f:
+                netwk = [(int(row[0]), int(row[1])) for row in csv.reader(f, delimiter=',')]
+                idx, deg = np.unique(netwk, return_counts=True)
+
+        datasets.append(Dataset(label=case, expression=expr, annotation=anno, network=netwk, degrees=deg))
+    return datasets
