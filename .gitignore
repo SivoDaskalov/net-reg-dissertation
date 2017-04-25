@@ -5,3 +5,5 @@ tmp/
 .Rproj.user
 .idea
 *.pyc
+*gitignore*
+Thumbs.db

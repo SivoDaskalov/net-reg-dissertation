@@ -31,10 +31,16 @@ def batch_evaluate_models(fits):
     for (setup, models) in fits:
         for model_name, model in models.items():
             mse, n_predictors, corr, sens, spec, prec = evaluate_model(setup, model)
-            params = ', '.join(['{}={}'.format(k,v) for k,v in model.params_.iteritems()])
+            params = ', '.join(['{}={}'.format(k, v) for k, v in model.params_.iteritems()])
             new_row = [setup.label, model_name, mse, n_predictors, corr, sens, spec, prec, params]
             results = np.append(results, new_row)
 
     results.shape = (int(results.shape[0] / len(result_fields)), len(result_fields))
     results = pd.DataFrame(data=results, columns=result_fields)
+    results = results.sort_values(['model', 'setup'])
+    results.to_csv("results/p%d.csv" % fits[0][0].x_test.shape[1], sep=',')
     return results
+
+
+def load_results_from_csv(p):
+    return pd.read_csv("results/p%d.csv" % p, sep=',', index_col=0)
