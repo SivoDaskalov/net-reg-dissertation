@@ -1,6 +1,9 @@
 csvExportRData = function(filename){
-  variableName = load(paste(filename,".RData", sep = ""))
-  write.csv(get(variableName), file = paste(filename,".csv", sep = ""))
+  variableNames <<- load(paste(filename,".RData", sep = ""))
+  for (i in 1:length(variableNames)){
+    print(variableNames[i])
+    write.csv(get(variableNames[i]), file = paste(filename, "_", variableNames[i],  ".csv", sep = ""))
+  }
 }
 
 csvExportRData("tumor_data/adjm_body_data")
