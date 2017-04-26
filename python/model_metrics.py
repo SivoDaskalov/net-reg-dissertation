@@ -7,24 +7,27 @@ import pandas as pd
 def evaluate_model(setup, model):
     y_true = setup.y_test
     y_pred = model.predict(setup.x_test)
-    true_coef = setup.true_coefficients
     estimated_coef = model.coef_
 
     mse = mean_squared_error(y_true=y_true, y_pred=y_pred)
-    correlation = np.corrcoef(true_coef, estimated_coef)[0, 1]
     n_predictors = np.count_nonzero(estimated_coef)
 
-    true_predictors = np.count_nonzero(true_coef)
-    false_positive_coef = np.count_nonzero(estimated_coef[true_predictors:])
+    if setup.true_coefficients is None:
+        correlation = sensitivity = specificity = precision = None
+    else:
+        true_coef = setup.true_coefficients
+        correlation = np.corrcoef(true_coef, estimated_coef)[0, 1]
+        true_predictors = np.count_nonzero(true_coef)
+        false_positive_coef = np.count_nonzero(estimated_coef[true_predictors:])
 
-    sensitivity = np.count_nonzero(estimated_coef[:true_predictors]) / true_predictors
-    specificity = (len(true_coef) - true_predictors - false_positive_coef) / (len(true_coef) - true_predictors)
-    precision = np.count_nonzero(estimated_coef[:true_predictors]) / np.count_nonzero(estimated_coef)
+        sensitivity = np.count_nonzero(estimated_coef[:true_predictors]) / true_predictors
+        specificity = (len(true_coef) - true_predictors - false_positive_coef) / (len(true_coef) - true_predictors)
+        precision = np.count_nonzero(estimated_coef[:true_predictors]) / np.count_nonzero(estimated_coef)
 
     return [mse, n_predictors, correlation, sensitivity, specificity, precision]
 
 
-def batch_evaluate_models(fits):
+def batch_evaluate_models(fits, filename=None):
     result_fields = ["setup", "model", "mse", "predictors", "correlation", "sens", "spec", "prec", "params"]
     results = []
 
@@ -37,8 +40,10 @@ def batch_evaluate_models(fits):
 
     results.shape = (int(results.shape[0] / len(result_fields)), len(result_fields))
     results = pd.DataFrame(data=results, columns=result_fields)
-    results = results.sort_values(['model', 'setup'])
-    results.to_csv("results/p%d.csv" % fits[0][0].x_test.shape[1], sep=',')
+    results = results.sort_values(['setup', 'model'])
+    if filename is None:
+        filename = "results/p%d.csv" % fits[0][0].x_test.shape[1]
+    results.to_csv(filename, sep=',')
     return results
 
 

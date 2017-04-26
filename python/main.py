@@ -25,5 +25,8 @@ time.clock()
 # plut.plot_results(results)
 
 datasets = imp.batch_import_datasets()
-
+fits = fitting.batch_fit_tumor_data(datasets, methods=["lasso"])
+results = metrics.batch_evaluate_models(fits, filename="results/tumor_data")
+pd.set_option('display.width', 200)
+print(results)
 print("Total time elapsed: %.0f seconds" % time.clock())
