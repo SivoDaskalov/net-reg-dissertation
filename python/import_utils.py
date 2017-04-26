@@ -10,13 +10,13 @@ tumor_data_files = {
         "methylation": "tumor_data/meth_body_data.csv",
         "adjacency_matrix": "tumor_data/adjm_body_data.csv",
         "network_edge_list": "tumor_data/edgel_body_data.csv",
-        "annotation": "tumor_data/anno_body_data.csv"
+        "expression": "tumor_data/expr_body_data.csv"
     },
     "prom": {
         "methylation": "tumor_data/meth_prom_data.csv",
         "adjacency_matrix": "tumor_data/adjm_prom_data.csv",
         "network_edge_list": "tumor_data/edgel_prom_data.csv",
-        "annotation": "tumor_data/anno_prom_data.csv"
+        "expression": "tumor_data/expr_prom_data.csv"
     }
 }
 
@@ -37,19 +37,19 @@ def adjm_to_edgel():
 def batch_import_datasets():
     datasets = []
     for case, files in tumor_data_files.items():
-        expression_url = files["methylation"]
-        annotation_utl = files["annotation"]
+        meth_url = files["methylation"]
+        expr_utl = files["expression"]
         network_url = files["network_edge_list"]
-        expr = anno = netwk = deg = None
+        meth = expr = netwk = deg = None
 
-        if os.path.exists(expression_url):
-            expr = pd.read_csv(expression_url, index_col=0)
-        if os.path.exists(annotation_utl):
-            anno = pd.read_csv(annotation_utl, index_col=0)
+        if os.path.exists(meth_url):
+            meth = pd.read_csv(meth_url, index_col=0)
+        if os.path.exists(expr_utl):
+            expr = pd.read_csv(expr_utl, index_col=0)
         if os.path.exists(network_url):
             with open(network_url, 'rb') as f:
                 netwk = [(int(row[0]), int(row[1])) for row in csv.reader(f, delimiter=',')]
                 idx, deg = np.unique(netwk, return_counts=True)
 
-        datasets.append(Dataset(label=case, expression=expr, annotation=anno, network=netwk, degrees=deg))
+        datasets.append(Dataset(label=case, methylation=meth, expression=expr, network=netwk, degrees=deg))
     return datasets

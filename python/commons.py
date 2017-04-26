@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-Dataset = namedtuple('Dataset', ['label', 'network', 'degrees', 'expression', 'annotation'])
+Dataset = namedtuple('Dataset', ['label', 'network', 'degrees', 'methylation', 'expression'])
 Setup = namedtuple('Setup', ['label', 'true_coefficients', 'network', 'degrees',
                              'x_tune', 'y_tune', 'x_train', 'y_train', 'x_test', 'y_test'])
 
