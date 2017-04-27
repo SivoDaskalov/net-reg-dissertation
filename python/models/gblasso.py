@@ -41,7 +41,7 @@ def gblasso(Y, X, wt, network, lam, gam):
     b0 = np.zeros(X.shape[1])
     net_pen_mult = lam * (2.0 ** (1.0 - (1.0 / gam)))
     return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method,
-                    options={"maxiter": maxiter, "disp": True}).x
+                    options={"maxiter": maxiter}).x
 
 
 def gblasso_penalty(b, Y, X, wt, network, gam, net_pen_mult):

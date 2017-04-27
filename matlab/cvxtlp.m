@@ -7,6 +7,8 @@ function [b, s] = cvxtlp(Y, X, wt, netwk, b0, delta1, delta2, tau1, tau2)
     S2=sign(b0).*(1+lgt);
     
     cvx_begin quiet
+        cvx_precision(0.999);
+        cvx_solver sedumi;
         variable b(p);
         minimize (...
             0.5*square_pos(norm(Y-X*b))+...
