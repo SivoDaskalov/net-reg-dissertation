@@ -1,3 +1,4 @@
+from commons import real_data_methods
 import data_gen_utils as gen
 import import_utils as imp
 import model_fitting as fitting
@@ -27,7 +28,7 @@ def tune_method_parameters_with_generated_dataset():
 
 def fit_optimal_parameter_models_on_real_data():
     datasets = imp.batch_import_datasets()
-    fits = fitting.batch_fit_tumor_data(datasets)
+    fits = fitting.batch_fit_tumor_data(datasets, methods=real_data_methods)
     results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
 
 

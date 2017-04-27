@@ -23,13 +23,13 @@ def fit_composite_magnitude_model(setup, models):
 
 def fit_composite_vote_model_opt(setup, models):
     return CompositeModel(models=models, supporting_model=LinearRegression(fit_intercept=False)) \
-        .select_predictors_by_vote(opt_zero_thresh, opt_vote_thresh, setup.x_tune, setup.y_tune) \
+        .select_predictors_by_vote([opt_zero_thresh], [opt_vote_thresh], setup.x_tune, setup.y_tune) \
         .fit(X=setup.x_train, y=setup.y_train)
 
 
 def fit_composite_magnitude_model_opt(setup, models):
     return CompositeModel(models=models, supporting_model=LinearRegression(fit_intercept=False)) \
-        .select_predictors_by_magnitude(opt_zero_thresh, opt_mag_std_thresh, setup.x_tune, setup.y_tune) \
+        .select_predictors_by_magnitude([opt_zero_thresh], [opt_mag_std_thresh], setup.x_tune, setup.y_tune) \
         .fit(X=setup.x_train, y=setup.y_train)
 
 
