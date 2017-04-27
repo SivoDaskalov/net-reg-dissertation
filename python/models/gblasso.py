@@ -1,4 +1,5 @@
-from commons import gblasso_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas
+from commons import gblasso_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
+    gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from models import Model
@@ -47,3 +48,8 @@ def gblasso_penalty(b, Y, X, wt, network, gam, net_pen_mult):
     network_penalty = sum([abs(b[i1 - 1]) ** gam / wt[i1 - 1] + abs(b[i2 - 1]) ** gam / wt[i2 - 1]
                            for (i1, i2) in network]) ** (1.0 / gam)
     return errors + network_penalty * net_pen_mult
+
+
+def fit_gblasso_opt(setup):
+    coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, opt_lambda, opt_gamma)
+    return Model(coef, params={"lambda": opt_lambda, "gamma": opt_gamma}, from_matlab=False)

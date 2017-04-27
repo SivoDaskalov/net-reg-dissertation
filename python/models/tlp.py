@@ -1,4 +1,5 @@
-from commons import tlp_n_folds as n_folds, tlp_n_deltas1 as n_deltas1, tlp_n_deltas2 as n_deltas2, tlp_n_taus as n_taus
+from commons import tlp_n_folds as n_folds, tlp_n_deltas1 as n_deltas1, tlp_n_deltas2 as n_deltas2, \
+    tlp_n_taus as n_taus, ttlp_delta1_opt, ttlp_delta2_opt, ttlp_tau_opt, ltlp_delta1_opt, ltlp_delta2_opt, ltlp_tau_opt
 from models import Model
 import matlab.engine
 import numpy as np
@@ -59,3 +60,36 @@ def fit_ltlp(setup, matlab_engine, lasso_fit):
     coef = matlab_engine.tlp(m_y, m_X, m_wt, m_netwk, m_b0, del1, del2, 100.0, tau)
 
     return Model(coef, params={"delta 1": del1, "delta 2": del2, "tau": tau})
+
+
+def fit_ttlp_opt(setup, matlab_engine, lasso_fit):
+    t = max(abs(lasso_fit.coef_))
+    p = setup.x_tune.shape[1]
+    g = len(setup.network)
+    delta1 = np.mean([t, p * t / 4])
+    delta2 = np.mean([t, t * g])
+    tau = np.mean([1e-6, t / 2])
+    m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(setup.x_train.shape[1], 1))
+    m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
+    m_b0 = matlab.double(lasso_fit.coef_.tolist(), size=(p, 1))
+    m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
+    m_X = matlab.double(setup.x_train.tolist())
+    coef = matlab_engine.tlp(m_y, m_X, m_wt, m_netwk, m_b0, delta1, delta2, tau, tau)
+    return Model(coef, params={"delta 1": delta1, "delta 2": delta2, "tau": tau})
+
+
+def fit_ltlp_opt(setup, matlab_engine, lasso_fit):
+    t = max(abs(lasso_fit.coef_))
+    p = setup.x_tune.shape[1]
+    g = len(setup.network)
+    lasso_alpha = lasso_fit.params_["alpha"]
+    delta1 = np.mean([lasso_alpha / 1.5, lasso_alpha * 1.5])
+    delta2 = np.mean([t, t * g])
+    tau = np.mean([1e-6, t / 2])
+    m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(setup.x_train.shape[1], 1))
+    m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
+    m_b0 = matlab.double(lasso_fit.coef_.tolist(), size=(p, 1))
+    m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
+    m_X = matlab.double(setup.x_train.tolist())
+    coef = matlab_engine.tlp(m_y, m_X, m_wt, m_netwk, m_b0, delta1, delta2, 100.0, tau)
+    return Model(coef, params={"delta 1": delta1, "delta 2": delta2, "tau": tau})
