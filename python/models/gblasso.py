@@ -1,5 +1,5 @@
 from commons import gblasso_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
-    gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda
+    gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda, gblasso_maxiter as maxiter
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from models import Model
@@ -40,7 +40,8 @@ def cvGblasso(Y, X, wt, network, lambdas, gammas):
 def gblasso(Y, X, wt, network, lam, gam):
     b0 = np.zeros(X.shape[1])
     net_pen_mult = lam * (2.0 ** (1.0 - (1.0 / gam)))
-    return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method).x
+    return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method,
+                    options={"maxiter": maxiter, "disp": True}).x
 
 
 def gblasso_penalty(b, Y, X, wt, network, gam, net_pen_mult):
