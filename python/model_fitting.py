@@ -44,6 +44,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
         base_dump_url = "dumps/%s_n%d_p%d/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1],
                                                           setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
     models = {}
+    t_ = time.clock()
 
     if "agrace" in methods and "enet" not in methods:
         methods.append("enet")
@@ -94,6 +95,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
         method = "composite-magnitude"
         models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model, [models], base_dump_url)
 
+    print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
 
 
@@ -107,6 +109,7 @@ def fit_models_opt_params(setup, engine, methods=full_method_list, load_dump=Tru
         base_dump_url = "dumps/%s_n%d_p%d/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1],
                                                           setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
     models = {}
+    t_ = time.clock()
 
     if "agrace" in methods and "enet" not in methods:
         methods.append("enet")
@@ -123,47 +126,48 @@ def fit_models_opt_params(setup, engine, methods=full_method_list, load_dump=Tru
         method = "enet"
         models[method] = fit_or_load(setup, method, load_dump, fit_enet_opt, [], base_dump_url)
 
-        if "grace" in methods:
-            method = "grace"
-            models[method] = fit_or_load(setup, method, load_dump, fit_grace_opt, [engine], base_dump_url)
+    if "grace" in methods:
+        method = "grace"
+        models[method] = fit_or_load(setup, method, load_dump, fit_grace_opt, [engine], base_dump_url)
 
-        if "agrace" in methods:
-            method = "agrace"
-            models[method] = fit_or_load(setup, method, load_dump, fit_agrace_opt, [engine, models["enet"]],
-                                         base_dump_url)
+    if "agrace" in methods:
+        method = "agrace"
+        models[method] = fit_or_load(setup, method, load_dump, fit_agrace_opt, [engine, models["enet"]],
+                                     base_dump_url)
 
-        if "gblasso" in methods:
-            method = "gblasso"
-            models[method] = fit_or_load(setup, method, load_dump, fit_gblasso_opt, [], base_dump_url)
+    if "gblasso" in methods:
+        method = "gblasso"
+        models[method] = fit_or_load(setup, method, load_dump, fit_gblasso_opt, [], base_dump_url)
 
-        if "linf" in methods:
-            method = "linf"
-            models[method] = fit_or_load(setup, method, load_dump, fit_linf_opt, [engine], base_dump_url)
+    if "linf" in methods:
+        method = "linf"
+        models[method] = fit_or_load(setup, method, load_dump, fit_linf_opt, [engine], base_dump_url)
 
-        if "alinf" in methods:
-            method = "alinf"
-            models[method] = fit_or_load(setup, method, load_dump, fit_alinf_opt, [engine, models["linf"]],
-                                         base_dump_url)
+    if "alinf" in methods:
+        method = "alinf"
+        models[method] = fit_or_load(setup, method, load_dump, fit_alinf_opt, [engine, models["linf"]],
+                                     base_dump_url)
 
-        if "ttlp" in methods:
-            method = "ttlp"
-            models[method] = fit_or_load(setup, method, load_dump, fit_ttlp_opt, [engine, models["lasso"]],
-                                         base_dump_url)
+    if "ttlp" in methods:
+        method = "ttlp"
+        models[method] = fit_or_load(setup, method, load_dump, fit_ttlp_opt, [engine, models["lasso"]],
+                                     base_dump_url)
 
-        if "ltlp" in methods:
-            method = "ltlp"
-            models[method] = fit_or_load(setup, method, load_dump, fit_ltlp_opt, [engine, models["lasso"]],
-                                         base_dump_url)
+    if "ltlp" in methods:
+        method = "ltlp"
+        models[method] = fit_or_load(setup, method, load_dump, fit_ltlp_opt, [engine, models["lasso"]],
+                                     base_dump_url)
 
-        if "composite" in methods:
-            method = "composite-vote"
-            models[method] = fit_or_load(setup, method, load_dump, fit_composite_vote_model_opt, [models],
-                                         base_dump_url)
-            method = "composite-magnitude"
-            models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model_opt, [models],
-                                         base_dump_url)
+    if "composite" in methods:
+        method = "composite-vote"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_vote_model_opt, [models],
+                                     base_dump_url)
+        method = "composite-magnitude"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model_opt, [models],
+                                     base_dump_url)
 
-        return models
+    print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
+    return models
 
 
 def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
@@ -182,7 +186,7 @@ def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
         netwk = dataset.network
         deg = dataset.degrees
 
-        x_full = dataset.methylation
+        x_full = dataset.methylation.as_matrix()
         test_fraction = 0.25
 
         train_test_cutoff = x_full.shape[0] - int(math.ceil(x_full.shape[0] * test_fraction))
@@ -195,7 +199,7 @@ def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
                 os.makedirs(gene_dir)
             base_dump_url = "%s/" % gene_dir
 
-            y_full = dataset.expression.loc[:, gene].values.tolist()
+            y_full = dataset.expression.loc[:, gene].values
             y_tr = y_full[:train_test_cutoff]
             y_ts = y_full[train_test_cutoff:]
 

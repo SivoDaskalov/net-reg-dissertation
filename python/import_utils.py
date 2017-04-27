@@ -48,7 +48,7 @@ def batch_import_datasets():
             expr = pd.read_csv(expr_utl, index_col=0)
         if os.path.exists(network_url):
             with open(network_url, 'rb') as f:
-                netwk = [(int(row[0]), int(row[1])) for row in csv.reader(f, delimiter=',')]
+                netwk = [(int(row[0])+1, int(row[1])+1) for row in csv.reader(f, delimiter=',')]
                 idx, deg = np.unique(netwk, return_counts=True)
 
         datasets.append(Dataset(label=case, methylation=meth, expression=expr, network=netwk, degrees=deg))

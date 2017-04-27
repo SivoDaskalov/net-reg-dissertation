@@ -1,5 +1,4 @@
-from commons import tlp_n_folds as n_folds, tlp_n_deltas1 as n_deltas1, tlp_n_deltas2 as n_deltas2, \
-    tlp_n_taus as n_taus, ttlp_delta1_opt, ttlp_delta2_opt, ttlp_tau_opt, ltlp_delta1_opt, ltlp_delta2_opt, ltlp_tau_opt
+from commons import tlp_n_folds as n_folds, tlp_n_deltas1 as n_deltas1, tlp_n_deltas2 as n_deltas2, tlp_n_taus as n_taus
 from models import Model
 import matlab.engine
 import numpy as np
