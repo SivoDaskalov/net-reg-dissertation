@@ -2,6 +2,7 @@ import networkx as nx
 import pandas as pd
 import numpy as np
 import os.path
+import pickle
 import csv
 from commons import Dataset
 
@@ -34,22 +35,29 @@ def adjm_to_edgel():
                     writer.writerow(edge)
 
 
-def batch_import_datasets():
-    datasets = []
-    for case, files in tumor_data_files.items():
-        meth_url = files["methylation"]
-        expr_utl = files["expression"]
-        network_url = files["network_edge_list"]
-        meth = expr = netwk = deg = None
+def batch_import_datasets(load_dump=True):
+    dump_url = "dumps/datasets"
+    if load_dump and os.path.exists(dump_url):
+        with open(dump_url, 'rb') as f:
+            datasets = pickle.load(f)
+    else:
+        datasets = []
+        for case, files in tumor_data_files.items():
+            meth_url = files["methylation"]
+            expr_utl = files["expression"]
+            network_url = files["network_edge_list"]
+            meth = expr = netwk = deg = None
 
-        if os.path.exists(meth_url):
-            meth = pd.read_csv(meth_url, index_col=0)
-        if os.path.exists(expr_utl):
-            expr = pd.read_csv(expr_utl, index_col=0)
-        if os.path.exists(network_url):
-            with open(network_url, 'rb') as f:
-                netwk = [(int(row[0])+1, int(row[1])+1) for row in csv.reader(f, delimiter=',')]
-                idx, deg = np.unique(netwk, return_counts=True)
+            if os.path.exists(meth_url):
+                meth = pd.read_csv(meth_url, index_col=0)
+            if os.path.exists(expr_utl):
+                expr = pd.read_csv(expr_utl, index_col=0)
+            if os.path.exists(network_url):
+                with open(network_url, 'rb') as f:
+                    netwk = [(int(row[0]) + 1, int(row[1]) + 1) for row in csv.reader(f, delimiter=',')]
+                    idx, deg = np.unique(netwk, return_counts=True)
 
-        datasets.append(Dataset(label=case, methylation=meth, expression=expr, network=netwk, degrees=deg))
+            datasets.append(Dataset(label=case, methylation=meth, expression=expr, network=netwk, degrees=deg))
+        with open(dump_url, 'wb') as f:
+            pickle.dump(datasets, f)
     return datasets

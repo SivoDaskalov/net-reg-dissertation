@@ -6,6 +6,7 @@ from models.tlp import fit_ttlp, fit_ltlp, fit_ttlp_opt, fit_ltlp_opt
 from models.composite import fit_composite_model, fit_composite_model_opt
 from commons import Setup
 from datetime import datetime
+import model_utils as modut
 import matlab.engine
 import os.path
 import pickle
@@ -159,7 +160,7 @@ def fit_models_opt_params(setup, engine, methods=full_method_list, load_dump=Tru
 
 
 def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
-    engine = matlab.engine.start_matlab("-nodesktop")
+    # engine = matlab.engine.start_matlab("-nodesktop")
 
     fits_dir = "fits"
     if not os.path.exists(fits_dir):
@@ -167,33 +168,39 @@ def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
 
     fits = []
     for dataset in datasets:
-        dataset_dir = "%s/%s" % (fits_dir, dataset.label)
-        if not os.path.exists(dataset_dir):
-            os.makedirs(dataset_dir)
+        # dataset_dir = "%s/%s" % (fits_dir, dataset.label)
+        # if not os.path.exists(dataset_dir):
+        #     os.makedirs(dataset_dir)
+        #
+        # netwk = dataset.network
+        # deg = dataset.degrees
+        #
+        # x_full = dataset.methylation.as_matrix()
+        # test_fraction = 0.25
+        #
+        # train_test_cutoff = x_full.shape[0] - int(math.ceil(x_full.shape[0] * test_fraction))
+        # x_tr = x_full[:train_test_cutoff]
+        # x_ts = x_full[train_test_cutoff:]
+        #
+        # dataset_fits = []
+        # for gene in dataset.expression.columns:
+        #     gene_dir = "%s/%s" % (dataset_dir, gene)
+        #     if not os.path.exists(gene_dir):
+        #         os.makedirs(gene_dir)
+        #     base_dump_url = "%s/" % gene_dir
+        #
+        #     y_full = dataset.expression.loc[:, gene].values
+        #     y_tr = y_full[:train_test_cutoff]
+        #     y_ts = y_full[train_test_cutoff:]
+        #
+        #     setup = Setup(label="%s_%s" % (gene, dataset.label), network=netwk, degrees=deg, true_coefficients=None,
+        #                   x_tune=x_tr, y_tune=y_tr, x_train=x_tr, y_train=y_tr, x_test=x_ts, y_test=y_ts)
+        #     dataset_fits.append(
+        #         (setup, fit_models_opt_params(setup=setup, engine=engine, methods=methods, load_dump=load_dump,
+        #                                       base_dump_url=base_dump_url)))
 
-        netwk = dataset.network
-        deg = dataset.degrees
-
-        x_full = dataset.methylation.as_matrix()
-        test_fraction = 0.25
-
-        train_test_cutoff = x_full.shape[0] - int(math.ceil(x_full.shape[0] * test_fraction))
-        x_tr = x_full[:train_test_cutoff]
-        x_ts = x_full[train_test_cutoff:]
-
-        for gene in dataset.expression.columns:
-            gene_dir = "%s/%s" % (dataset_dir, gene)
-            if not os.path.exists(gene_dir):
-                os.makedirs(gene_dir)
-            base_dump_url = "%s/" % gene_dir
-
-            y_full = dataset.expression.loc[:, gene].values
-            y_tr = y_full[:train_test_cutoff]
-            y_ts = y_full[train_test_cutoff:]
-
-            setup = Setup(label="%s_%s" % (gene, dataset.label), network=netwk, degrees=deg, true_coefficients=None,
-                          x_tune=x_tr, y_tune=y_tr, x_train=x_tr, y_train=y_tr, x_test=x_ts, y_test=y_ts)
-            fits.append(
-                (setup, fit_models_opt_params(setup=setup, engine=engine, methods=methods, load_dump=load_dump,
-                                              base_dump_url=base_dump_url)))
+        with open("dumps/%s_models" % dataset.label, 'rb') as f:
+            dataset_fits = pickle.load(f)
+        modut.assemble_mappings(dataset, dataset_fits, methods)
+        fits += dataset_fits
     return fits

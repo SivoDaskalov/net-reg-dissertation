@@ -29,7 +29,7 @@ def tune_method_parameters_with_generated_dataset():
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
     datasets = imp.batch_import_datasets()
     fits = fitting.batch_fit_tumor_data(datasets, methods=methods)
-    results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
+    # results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
 
 
 # tune_method_parameters_with_generated_dataset()
