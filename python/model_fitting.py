@@ -198,6 +198,8 @@ def batch_fit_tumor_data(datasets, methods=full_method_list, load_dump=True):
         #     dataset_fits.append(
         #         (setup, fit_models_opt_params(setup=setup, engine=engine, methods=methods, load_dump=load_dump,
         #                                       base_dump_url=base_dump_url)))
+        # with open("dumps/%s_models" % dataset.label, 'wb') as f:
+        #     pickle.dump(dataset_fits, f)
 
         with open("dumps/%s_models" % dataset.label, 'rb') as f:
             dataset_fits = pickle.load(f)
