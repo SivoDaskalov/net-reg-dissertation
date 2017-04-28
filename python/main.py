@@ -26,12 +26,12 @@ def tune_method_parameters_with_generated_dataset():
     plut.plot_results(results)
 
 
-def fit_optimal_parameter_models_on_real_data():
+def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
     datasets = imp.batch_import_datasets()
-    fits = fitting.batch_fit_tumor_data(datasets, methods=real_data_methods)
+    fits = fitting.batch_fit_tumor_data(datasets, methods=methods)
     results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
 
 
 # tune_method_parameters_with_generated_dataset()
-fit_optimal_parameter_models_on_real_data()
+fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "agrace", "composite"])
 print("Total time elapsed: %.0f seconds" % time.clock())

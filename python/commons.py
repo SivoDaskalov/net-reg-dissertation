@@ -51,8 +51,6 @@ tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of cal
 # Composite model properties
 cm_zero_thresholds = [0.0001, 0.001, 0.01]
 cm_vote_thresholds = [0.2, 0.4, 0.5, 0.6, 0.8]
-cm_magnitude_std_thresholds = [-1.0, 0.0, 1.0]
 
 cm_zero_thresh_opt = 0.0001
 cm_vote_thresh_opt = 0.5
-cm_magnitude_std_thresh_opt = 0.0

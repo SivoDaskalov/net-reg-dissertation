@@ -3,8 +3,7 @@ from models.grace import fit_grace, fit_agrace, fit_agrace_opt, fit_grace_opt
 from models.gblasso import fit_gblasso, fit_gblasso_opt
 from models.linf import fit_linf, fit_alinf, fit_alinf_opt, fit_linf_opt
 from models.tlp import fit_ttlp, fit_ltlp, fit_ttlp_opt, fit_ltlp_opt
-from models.composite import fit_composite_magnitude_model, fit_composite_vote_model, \
-    fit_composite_magnitude_model_opt, fit_composite_vote_model_opt
+from models.composite import fit_composite_model, fit_composite_model_opt
 from commons import Setup
 from datetime import datetime
 import matlab.engine
@@ -13,7 +12,6 @@ import pickle
 import time
 import math
 
-enable_logging = True
 full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
 
 
@@ -90,10 +88,8 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
         models[method] = fit_or_load(setup, method, load_dump, fit_ltlp, [engine, models["lasso"]], base_dump_url)
 
     if "composite" in methods:
-        method = "composite-vote"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_vote_model, [models], base_dump_url)
-        method = "composite-magnitude"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model, [models], base_dump_url)
+        method = "composite"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
@@ -132,8 +128,7 @@ def fit_models_opt_params(setup, engine, methods=full_method_list, load_dump=Tru
 
     if "agrace" in methods:
         method = "agrace"
-        models[method] = fit_or_load(setup, method, load_dump, fit_agrace_opt, [engine, models["enet"]],
-                                     base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_agrace_opt, [engine, models["enet"]], base_dump_url)
 
     if "gblasso" in methods:
         method = "gblasso"
@@ -145,26 +140,19 @@ def fit_models_opt_params(setup, engine, methods=full_method_list, load_dump=Tru
 
     if "alinf" in methods:
         method = "alinf"
-        models[method] = fit_or_load(setup, method, load_dump, fit_alinf_opt, [engine, models["linf"]],
-                                     base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_alinf_opt, [engine, models["linf"]], base_dump_url)
 
     if "ttlp" in methods:
         method = "ttlp"
-        models[method] = fit_or_load(setup, method, load_dump, fit_ttlp_opt, [engine, models["lasso"]],
-                                     base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_ttlp_opt, [engine, models["lasso"]], base_dump_url)
 
     if "ltlp" in methods:
         method = "ltlp"
-        models[method] = fit_or_load(setup, method, load_dump, fit_ltlp_opt, [engine, models["lasso"]],
-                                     base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_ltlp_opt, [engine, models["lasso"]], base_dump_url)
 
     if "composite" in methods:
-        method = "composite-vote"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_vote_model_opt, [models],
-                                     base_dump_url)
-        method = "composite-magnitude"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_magnitude_model_opt, [models],
-                                     base_dump_url)
+        method = "composite"
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model_opt, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
