@@ -53,15 +53,23 @@ def fit_alinf(setup, matlab_engine, linf_fit):
 
 
 def fit_linf_opt(setup, matlab_engine):
+    return param_fit_linf(setup, matlab_engine, opt_c)
+
+
+def fit_alinf_opt(setup, matlab_engine, linf_fit):
+    return param_fit_alinf(setup, matlab_engine, opt_e, linf_fit)
+
+
+def param_fit_linf(setup, matlab_engine, c):
     m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(setup.x_train.shape[1], 1))
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
     m_X = matlab.double(setup.x_train.tolist())
-    coef = matlab_engine.linf(m_y, m_X, m_wt, m_netwk, opt_c)
-    return Model(coef, params={"C": opt_c})
+    coef = matlab_engine.linf(m_y, m_X, m_wt, m_netwk, c)
+    return Model(coef, params={"C": c})
 
 
-def fit_alinf_opt(setup, matlab_engine, linf_fit):
+def param_fit_alinf(setup, matlab_engine, e, linf_fit):
     b0 = [coef if abs(coef) > epsilon else 0 for coef in linf_fit.coef_]
     mask = np.array([True if b0[i1 - 1] != 0 or b0[i2 - 1] != 0 else False for (i1, i2) in setup.network], dtype=bool)
     network = np.array(setup.network)
@@ -75,5 +83,5 @@ def fit_alinf_opt(setup, matlab_engine, linf_fit):
     m_dis = matlab.double(discarded.tolist())
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
     m_X = matlab.double(setup.x_train.tolist())
-    coef = matlab_engine.alinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, opt_e)
-    return Model(coef, params={"E": opt_e})
+    coef = matlab_engine.alinf(m_y, m_X, m_wt, m_netwk, m_adj, m_dis, e)
+    return Model(coef, params={"E": e})

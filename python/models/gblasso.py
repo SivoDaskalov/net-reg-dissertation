@@ -52,5 +52,9 @@ def gblasso_penalty(b, Y, X, wt, network, gam, net_pen_mult):
 
 
 def fit_gblasso_opt(setup):
-    coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, opt_lambda, opt_gamma)
-    return Model(coef, params={"lambda": opt_lambda, "gamma": opt_gamma}, from_matlab=False)
+    return param_fit_gblasso(setup, opt_lambda, opt_gamma)
+
+
+def param_fit_gblasso(setup, lam, gam):
+    coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, lam, gam)
+    return Model(coef, params={"lambda": lam, "gamma": gam}, from_matlab=False)

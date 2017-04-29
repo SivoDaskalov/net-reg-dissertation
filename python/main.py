@@ -1,4 +1,5 @@
 from commons import real_data_methods
+import orchestrated_tuning as orctun
 import data_gen_utils as gen
 import import_utils as imp
 import model_fitting as fitting
@@ -18,12 +19,14 @@ def tune_method_parameters_with_generated_dataset():
     setups = gen.batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor,
                                        n_trans_factors=n_trans_factors, load_dump=True,
                                        n_tune_obs=200, n_train_obs=100, n_test_obs=100)
-    fits = fitting.batch_fit_models(setups, load_dump=True)
+    # fits = fitting.batch_fit_models(setups, load_dump=True)
+    orctun_fits = orctun.batch_do_orchestrated_tuning(setups, load_dump=True)
 
-    results = metrics.batch_evaluate_models(fits)
-    pd.set_option('display.width', 200)
-    print(results)
-    plut.plot_results(results)
+    # results = metrics.batch_evaluate_models(fits)
+    # orctun_results = metrics.batch_evaluate_models(orctun_fits, "orctun_results.csv")
+    # pd.set_option('display.width', 200)
+    # print(results)
+    # plut.plot_results(results)
 
 
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
@@ -32,6 +35,6 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
     results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
 
 
-# tune_method_parameters_with_generated_dataset()
-fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "agrace", "composite"])
+tune_method_parameters_with_generated_dataset()
+# fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "agrace", "composite"])
 print("Total time elapsed: %.0f seconds" % time.clock())

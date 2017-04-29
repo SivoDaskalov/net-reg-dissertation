@@ -56,16 +56,24 @@ def fit_agrace(setup, matlab_engine, enet_fit=None):
 
 
 def fit_grace_opt(setup, matlab_engine):
+    return param_fit_grace(setup, matlab_engine, opt_lambda1, opt_lambda2)
+
+
+def fit_agrace_opt(setup, matlab_engine, enet_fit=None):
+    return param_fit_agrace(setup, matlab_engine, opt_lambda1, opt_lambda2, enet_fit)
+
+
+def param_fit_grace(setup, matlab_engine, lambda1, lambda2):
     m_adj = matlab.double([1] * len(setup.network))
     m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(setup.x_train.shape[1], 1))
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
     m_X = matlab.double(setup.x_train.tolist())
-    coef = matlab_engine.grace(m_y, m_X, m_wt, m_netwk, m_adj, opt_lambda1, opt_lambda2)
-    return Model(coef, params={"lambda 1": opt_lambda1, "lambda 2": opt_lambda2})
+    coef = matlab_engine.grace(m_y, m_X, m_wt, m_netwk, m_adj, lambda1, lambda2)
+    return Model(coef, params={"lambda 1": lambda1, "lambda 2": lambda2})
 
 
-def fit_agrace_opt(setup, matlab_engine, enet_fit=None):
+def param_fit_agrace(setup, matlab_engine, lambda1, lambda2, enet_fit=None):
     n = setup.x_tune.shape[0]
     p = setup.x_tune.shape[1]
     if p < n:
@@ -79,5 +87,5 @@ def fit_agrace_opt(setup, matlab_engine, enet_fit=None):
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
     m_y = matlab.double(setup.y_train.tolist(), size=(len(setup.y_train), 1))
     m_X = matlab.double(setup.x_train.tolist())
-    coef = matlab_engine.grace(m_y, m_X, m_wt, m_netwk, m_adj, opt_lambda1, opt_lambda2)
-    return Model(coef, params={"lambda 1": opt_lambda1, "lambda 2": opt_lambda2})
+    coef = matlab_engine.grace(m_y, m_X, m_wt, m_netwk, m_adj, lambda1, lambda2)
+    return Model(coef, params={"lambda 1": lambda1, "lambda 2": lambda2})
