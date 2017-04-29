@@ -55,6 +55,9 @@ def fit_gblasso_opt(setup):
     return param_fit_gblasso(setup, opt_lambda, opt_gamma)
 
 
-def param_fit_gblasso(setup, lam, gam):
-    coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, lam, gam)
+def param_fit_gblasso(setup, lam, gam, use_tuning_set=False):
+    if use_tuning_set:
+        coef = gblasso(setup.y_tune, setup.x_tune, setup.degrees, setup.network, lam, gam)
+    else:
+        coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, lam, gam)
     return Model(coef, params={"lambda": lam, "gamma": gam}, from_matlab=False)

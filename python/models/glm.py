@@ -37,13 +37,19 @@ def fit_enet_opt(setup):
     return param_fit_enet(setup, opt_alpha, opt_l1_ratio)
 
 
-def param_fit_lasso(setup, alpha):
+def param_fit_lasso(setup, alpha, use_tuning_set=False):
     model = Lasso(alpha=alpha, random_state=1, fit_intercept=False, max_iter=iter)
-    model.fit(setup.x_train, y=setup.y_train)
+    if use_tuning_set:
+        model.fit(setup.x_tune, y=setup.y_tune)
+    else:
+        model.fit(setup.x_train, y=setup.y_train)
     return Model(model.coef_, params={"alpha": alpha}, from_matlab=False)
 
 
-def param_fit_enet(setup, alpha, l1_ratio):
+def param_fit_enet(setup, alpha, l1_ratio, use_tuning_set=False):
     model = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=1, fit_intercept=False, max_iter=iter)
-    model.fit(setup.x_train, y=setup.y_train)
+    if use_tuning_set:
+        model.fit(setup.x_tune, y=setup.y_tune)
+    else:
+        model.fit(setup.x_train, y=setup.y_train)
     return Model(model.coef_, params={"alpha": alpha, "l1_ratio": l1_ratio}, from_matlab=False)
