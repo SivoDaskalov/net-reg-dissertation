@@ -17,7 +17,8 @@ import math
 
 methods = ["lasso", "enet", "grace", "gblasso", "linf"]
 optimization_methods = ["coef_correlation", "n_predictors"]
-optimization_method = "n_predictors"
+optimization_method = "coef_correlation"
+use_tuning_set_for_final_training = False
 
 
 def init_methods(setup, matlab_engine, method_names, load_dump):
@@ -67,23 +68,25 @@ def init_cache(setup, reference_methods, load_dump):
 
 def train_methods(setup, matlab_engine, reference_methods):
     models = {}
+    use_tuning_set = [use_tuning_set_for_final_training]
     print("%sTraining methods with tuned parameters" % timestamp())
     for name, reference in reference_methods.iteritems():
-        if name is "lasso":
-            models[name] = param_fit_lasso(setup, *reference["cur_params"].values())
-        if name is "enet":
-            models[name] = param_fit_enet(setup, *reference["cur_params"].values())
-        if name is "grace":
-            models[name] = param_fit_grace(setup, matlab_engine, *reference["cur_params"].values())
-        if name is "agrace":
+        if name == "lasso":
+            models[name] = param_fit_lasso(setup, *(reference["cur_params"].values() + use_tuning_set))
+        if name == "enet":
+            models[name] = param_fit_enet(setup, *(reference["cur_params"].values() + use_tuning_set))
+        if name == "grace":
+            models[name] = param_fit_grace(setup, matlab_engine, *(reference["cur_params"].values() + use_tuning_set))
+        if name == "agrace":
             models[name] = param_fit_agrace(setup, matlab_engine,
-                                            *(reference["cur_params"].values() + [models["enet"]]))
-        if name is "gblasso":
-            models[name] = param_fit_gblasso(setup, *reference["cur_params"].values())
-        if name is "linf":
-            models[name] = param_fit_linf(setup, matlab_engine, *reference["cur_params"].values())
-        if name is "alinf":
-            models[name] = param_fit_alinf(setup, matlab_engine, *(reference["cur_params"].values() + [models["linf"]]))
+                                            *(reference["cur_params"].values() + [models["enet"]] + use_tuning_set))
+        if name == "gblasso":
+            models[name] = param_fit_gblasso(setup, *(reference["cur_params"].values() + use_tuning_set))
+        if name == "linf":
+            models[name] = param_fit_linf(setup, matlab_engine, *(reference["cur_params"].values() + use_tuning_set))
+        if name == "alinf":
+            models[name] = param_fit_alinf(setup, matlab_engine,
+                                           *(reference["cur_params"].values() + [models["linf"]] + use_tuning_set))
     return models
 
 
@@ -146,8 +149,8 @@ def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
     converged = False
     while not converged and iter < max_iter:
         iter += 1
-        if iter % 100 == 0:
-            print("%sIteration %d" % (timestamp(), iter))
+        # if iter % 100 == 0:
+        #     print("%sIteration %d" % (timestamp(), iter))
         current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, load_dump, cache, i)
                            for i in range(len(reference_methods))]
         converged = np.all(

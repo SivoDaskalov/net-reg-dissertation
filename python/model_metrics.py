@@ -8,6 +8,8 @@ def evaluate_model(setup, model):
     y_true = setup.y_test
     y_pred = model.predict(setup.x_test)
     estimated_coef = model.coef_
+    if np.isnan(estimated_coef).any():
+        return [None, None, None, None, None, None]
 
     mse = mean_squared_error(y_true=y_true, y_pred=y_pred)
     n_predictors = np.count_nonzero(estimated_coef)
