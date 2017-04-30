@@ -40,7 +40,7 @@ def batch_evaluate_models(fits, filename=None):
 
     results.shape = (int(results.shape[0] / len(result_fields)), len(result_fields))
     results = pd.DataFrame(data=results, columns=result_fields)
-    results = results.sort_values(['setup', 'model'])
+    results = results.sort_values(['model', 'setup'])
     if filename is None:
         filename = "results/p%d.csv" % fits[0][0].x_test.shape[1]
     results.to_csv(filename, sep=',')

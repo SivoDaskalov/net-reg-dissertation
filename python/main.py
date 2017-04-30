@@ -15,18 +15,21 @@ def tune_method_parameters_with_generated_dataset():
     n_trans_factors = 20
     n_regulated_genes_per_trans_factor = 10
     p = n_trans_factors * (n_regulated_genes_per_trans_factor + 1)
+    pd.set_option('display.width', 200)
 
     setups = gen.batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor,
                                        n_trans_factors=n_trans_factors, load_dump=True,
                                        n_tune_obs=200, n_train_obs=100, n_test_obs=100)
-    # fits = fitting.batch_fit_models(setups, load_dump=True)
-    orctun_fits = orctun.batch_do_orchestrated_tuning(setups, load_dump=True)
 
+    # fits = fitting.batch_fit_models(setups, load_dump=True)
     # results = metrics.batch_evaluate_models(fits)
-    # orctun_results = metrics.batch_evaluate_models(orctun_fits, "orctun_results.csv")
-    # pd.set_option('display.width', 200)
     # print(results)
     # plut.plot_results(results)
+
+    orctun_fits = orctun.batch_do_orchestrated_tuning(setups, load_dump=True)
+    orctun_results = metrics.batch_evaluate_models(orctun_fits, "results/orctun_results.csv")
+    print(orctun_results)
+    plut.plot_results(orctun_results)
 
 
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
