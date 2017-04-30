@@ -1,4 +1,6 @@
 from collections import namedtuple
+from datetime import datetime
+import pickle
 
 Dataset = namedtuple('Dataset', ['label', 'network', 'degrees', 'methylation', 'expression'])
 Setup = namedtuple('Setup', ['label', 'true_coefficients', 'network', 'degrees',
@@ -55,3 +57,17 @@ cm_vote_thresholds = [0.2, 0.4, 0.5, 0.6, 0.8]
 
 cm_zero_thresh_opt = 1e-9
 cm_vote_thresh_opt = 0.5
+
+
+def timestamp():
+    return "%s >>> " % datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+
+def dump(obj, url):
+    with open(url, 'wb') as f:
+        pickle.dump(obj, f)
+
+
+def load(url):
+    with open(url, 'rb') as f:
+        return pickle.load(f)

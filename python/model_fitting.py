@@ -4,8 +4,7 @@ from models.gblasso import fit_gblasso, fit_gblasso_opt
 from models.linf import fit_linf, fit_alinf, fit_alinf_opt, fit_linf_opt
 from models.tlp import fit_ttlp, fit_ltlp, fit_ttlp_opt, fit_ltlp_opt
 from models.composite import fit_composite_model, fit_composite_model_opt
-from commons import Setup
-from datetime import datetime
+from commons import Setup, timestamp
 import model_utils as modut
 import matlab.engine
 import os.path
@@ -14,10 +13,6 @@ import time
 import math
 
 full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
-
-
-def timestamp():
-    return "%s >>> " % datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url):
