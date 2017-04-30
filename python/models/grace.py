@@ -73,7 +73,7 @@ def param_fit_grace(setup, matlab_engine, lambda1, lambda2, use_tuning_set=False
     m_adj = matlab.double([1] * len(setup.network))
     m_wt = matlab.double(np.sqrt(setup.degrees).tolist(), size=(x.shape[1], 1))
     m_netwk = matlab.double([[p1, p2] for (p1, p2) in setup.network])
-    m_y = matlab.double(setup.y_train.tolist(), size=(len(y), 1))
+    m_y = matlab.double(y.tolist(), size=(len(y), 1))
     m_X = matlab.double(x.tolist())
     coef = matlab_engine.grace(m_y, m_X, m_wt, m_netwk, m_adj, lambda1, lambda2)
     return Model(coef, params={"lambda 1": lambda1, "lambda 2": lambda2})

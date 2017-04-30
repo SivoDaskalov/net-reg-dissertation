@@ -1,18 +1,32 @@
-from glm import init_enet_model, init_lasso_model, tune_enet, tune_lasso
-from utilities import get_cache_key
-import matlab.engine
-import numpy as np
-import itertools
+from glm import init_enet_model, init_lasso_model
+from grace import init_grace_model, init_agrace_model
+from gblasso import init_gblasso_model
+from linf import init_linf_model, init_alinf_model
 from models.glm import param_fit_lasso, param_fit_enet
 from models.grace import param_fit_grace, param_fit_agrace
 from models.gblasso import param_fit_gblasso
 from models.linf import param_fit_linf, param_fit_alinf
+from utilities import get_cache_key
+from commons import orchestrated_tuning_max_iter as max_iter
+import matlab.engine
+import numpy as np
+import itertools
+import os.path
+import pickle
 
 methods = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf"]
 
 
 def init_methods(setup, matlab_engine):
-    return [init_lasso_model(setup), init_enet_model(setup)]
+    np.seterr(divide='ignore', invalid='ignore')
+    lasso = init_lasso_model(setup)
+    enet = init_enet_model(setup)
+    grace = init_grace_model(setup, matlab_engine)
+    agrace = init_agrace_model(setup, matlab_engine, enet["cur_fit"])
+    gblasso = init_gblasso_model(setup)
+    linf = init_linf_model(setup, matlab_engine)
+    alinf = init_alinf_model(setup, matlab_engine, linf["cur_fit"])
+    return [lasso, enet, grace, agrace, gblasso, linf, alinf]
 
 
 def train_methods(setup, matlab_engine, reference_methods):
@@ -22,10 +36,21 @@ def train_methods(setup, matlab_engine, reference_methods):
             models[name] = param_fit_lasso(setup, *reference["cur_params"].values())
         if name is "enet":
             models[name] = param_fit_enet(setup, *reference["cur_params"].values())
+        if name is "grace":
+            models[name] = param_fit_grace(setup, matlab_engine, *reference["cur_params"].values())
+        if name is "agrace":
+            models[name] = param_fit_agrace(setup, matlab_engine,
+                                            *(reference["cur_params"].values() + [models["enet"]]))
+        if name is "gblasso":
+            models[name] = param_fit_gblasso(setup, *reference["cur_params"].values())
+        if name is "linf":
+            models[name] = param_fit_linf(setup, matlab_engine, *reference["cur_params"].values())
+        if name is "alinf":
+            models[name] = param_fit_alinf(setup, matlab_engine, *(reference["cur_params"].values() + [models["linf"]]))
     return models
 
 
-def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
+def tune_abstract_method(setup, matlab_engine, methods, load_dump, cache, method_idx):
     method = methods[method_idx]
     current_param_indices = method["cur_param_idx"].values()
     method_param_lengths = [len(values) for values in method["param_values"].values()]
@@ -39,7 +64,7 @@ def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
     method_name = method["method"]
     for params in param_combinations:
         model_key = get_cache_key(method_name, params)
-        if model_key in cache[method_name].keys():
+        if load_dump and model_key in cache[method_name].keys():
             # print("Cache hit for %s with param indices (%s)" % (method_name, ', '.join(str(param) for param in params)))
             new_fits.append(cache[method_name][model_key])
         else:
@@ -57,21 +82,34 @@ def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
 def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
     print("Orchestrated tuning for %s" % setup.label)
     reference_methods = init_methods(setup, matlab_engine)
-    cache = {}
+
+    dump_url = "dumps/cache/%s_p%d" % (setup.label, setup.x_tune.shape[1])
+    if load_dump and os.path.exists(dump_url):
+        print("Loaded cache")
+        with open(dump_url, 'rb') as f:
+            cache = pickle.load(f)
+    else:
+        cache = {}
+
     for method in reference_methods:
         cache[method["method"]] = {get_cache_key(method["method"], method["cur_param_idx"].values()): method}
 
     iter = 0
     converged = False
-    while not converged:
+    while not converged and iter < max_iter:
         iter += 1
-        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, cache, i) for i in
-                           range(len(reference_methods))]
+        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, load_dump, cache, i)
+                           for i in range(len(reference_methods))]
         converged = np.all(
             [utilities.compare_params(reference_methods[i], current_methods[i]) for i in range(len(reference_methods))])
         reference_methods = current_methods
 
-    print("Orchestrated tuning converged after %d iterations" % iter)
+    if iter < max_iter:
+        print("Orchestrated tuning converged after %d iterations" % iter)
+    else:
+        print("Orchestrated tuning not converged after max iterations (%d)" % iter)
+    with open(dump_url, 'wb') as f:
+        pickle.dump(cache, f)
     return train_methods(setup, matlab_engine, {method["method"]: method for method in reference_methods})
 
 

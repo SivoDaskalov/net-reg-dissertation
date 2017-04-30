@@ -22,7 +22,10 @@ def evaluate_model(setup, model):
 
         sensitivity = np.count_nonzero(estimated_coef[:true_predictors]) / true_predictors
         specificity = (len(true_coef) - true_predictors - false_positive_coef) / (len(true_coef) - true_predictors)
-        precision = np.count_nonzero(estimated_coef[:true_predictors]) / np.count_nonzero(estimated_coef)
+        if np.count_nonzero(estimated_coef) == 0:
+            precision = 0.0
+        else:
+            precision = np.count_nonzero(estimated_coef[:true_predictors]) / np.count_nonzero(estimated_coef)
 
     return [mse, n_predictors, correlation, sensitivity, specificity, precision]
 

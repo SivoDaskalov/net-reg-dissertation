@@ -12,7 +12,7 @@ time.clock()
 
 
 def tune_method_parameters_with_generated_dataset():
-    n_trans_factors = 20
+    n_trans_factors = 50
     n_regulated_genes_per_trans_factor = 10
     p = n_trans_factors * (n_regulated_genes_per_trans_factor + 1)
     pd.set_option('display.width', 200)
