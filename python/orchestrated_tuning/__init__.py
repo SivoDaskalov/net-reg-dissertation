@@ -91,7 +91,7 @@ def train_methods(setup, matlab_engine, reference_methods):
     return models
 
 
-def tune_abstract_method(setup, matlab_engine, methods, load_dump, cache, method_idx):
+def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
     method = methods[method_idx]
     current_param_indices = method["cur_param_idx"].values()
     method_param_lengths = [len(values) for values in method["param_values"].values()]
@@ -105,7 +105,7 @@ def tune_abstract_method(setup, matlab_engine, methods, load_dump, cache, method
     method_name = method["method"]
     for params in param_combinations:
         model_key = get_cache_key(method_name, params)
-        if method_name not in always_recalculate and load_dump and model_key in cache[method_name].keys():
+        if method_name not in always_recalculate and model_key in cache[method_name].keys():
             # print("%sCache hit for %s with param indices (%s)" % (
             #     timestamp(), method_name, ', '.join(str(param) for param in params)))
             new_fits.append(cache[method_name][model_key])
@@ -152,7 +152,7 @@ def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
         iter += 1
         # if iter % 100 == 0:
         print("%sIteration %d" % (timestamp(), iter))
-        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, load_dump, cache, i)
+        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, cache, i)
                            for i in range(len(reference_methods))]
         converged = np.all(
             [utilities.compare_params(reference_methods[i], current_methods[i]) for i in range(len(reference_methods))])

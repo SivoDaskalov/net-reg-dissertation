@@ -10,7 +10,7 @@ real_data_methods = ["lasso", "enet", "agrace", "gblasso", "alinf", "ltlp"]
 # General properties
 orchestrated_tuning_max_iter = 1000
 cv_n_folds = 10
-epsilon = 1e-6
+epsilon = 1e-6 # Trim coefficients with absolute value below epsilon
 
 # GLM properties
 glm_n_alphas = 100
@@ -52,10 +52,8 @@ tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of cal
 
 
 # Composite model properties
-cm_zero_thresholds = [0.0001, 0.001, 0.01]
 cm_vote_thresholds = [0.2, 0.4, 0.5, 0.6, 0.8]
 
-cm_zero_thresh_opt = 1e-9
 cm_vote_thresh_opt = 0.5
 
 

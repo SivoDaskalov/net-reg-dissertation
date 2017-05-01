@@ -12,7 +12,7 @@ time.clock()
 
 
 def tune_method_parameters_with_generated_dataset():
-    n_trans_factors = 50
+    n_trans_factors = 20
     n_regulated_genes_per_trans_factor = 10
     p = n_trans_factors * (n_regulated_genes_per_trans_factor + 1)
     pd.set_option('display.width', 200)
@@ -21,9 +21,9 @@ def tune_method_parameters_with_generated_dataset():
                                        n_trans_factors=n_trans_factors, load_dump=True,
                                        n_tune_obs=200, n_train_obs=100, n_test_obs=100)
 
-    # fits = fitting.batch_fit_models(setups, load_dump=True)
-    # results = metrics.batch_evaluate_models(fits)
-    # print(results)
+    fits = fitting.batch_fit_models(setups, load_dump=True)
+    results = metrics.batch_evaluate_models(fits)
+    print(results)
     # plut.plot_results(results)
 
     model_dump_url = "dumps/cache/orctun_models_p%d" % p

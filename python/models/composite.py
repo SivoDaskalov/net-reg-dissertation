@@ -1,7 +1,5 @@
-from commons import cm_vote_thresholds as vote_thresh, cm_zero_thresholds as zero_thresh, \
-    cm_vote_thresh_opt as opt_vote_thresh, cm_zero_thresh_opt as opt_zero_thresh
+from commons import cm_vote_thresholds as vote_thresh, cm_vote_thresh_opt as opt_vote_thresh
 import numpy as np
-from scipy.stats import threshold
 from commons import cv_n_folds as n_folds
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
@@ -10,13 +8,13 @@ from sklearn.linear_model import LinearRegression
 
 def fit_composite_model(setup, models):
     return CompositeModel(models=models, supporting_model=LinearRegression(fit_intercept=False)) \
-        .select_predictors(zero_thresh, vote_thresh, setup.x_tune, setup.y_tune) \
+        .select_predictors(vote_thresh, setup.x_tune, setup.y_tune) \
         .fit(X=setup.x_train, y=setup.y_train)
 
 
 def fit_composite_model_opt(setup, models):
     return CompositeModel(models=models, supporting_model=LinearRegression(fit_intercept=False)) \
-        .select_predictors([opt_zero_thresh], [opt_vote_thresh]) \
+        .select_predictors([opt_vote_thresh]) \
         .fit(X=setup.x_train, y=setup.y_train)
 
 
@@ -38,42 +36,38 @@ class CompositeModel:
         self.supporting_model = supporting_model
 
     # Retain all predictors which have non-zero coefficients in a vote_thresholds fraction of sub-models
-    def select_predictors(self, zero_thresholds=[0.01], vote_thresholds=[0.5], X=None, y=None):
-        if len(zero_thresholds) > 1 or len(vote_thresholds) > 1:
+    def select_predictors(self, vote_thresholds=[0.5], X=None, y=None):
+        if len(vote_thresholds) > 1:
             best_mse = 999999
             kf = KFold(n_splits=n_folds, shuffle=True, random_state=1)
 
-            for zero_thresh in zero_thresholds:
-                for vote_thresh in vote_thresholds:
+            for vote_thresh in vote_thresholds:
+                votes = np.count_nonzero(self.full_coef, axis=0)
+                current_fraction_votes = votes / float(self.n_sub_models)
+                current_predictors = np.where(current_fraction_votes >= vote_thresh)[0]
+                X_sel = X[:, current_predictors]
 
-                    votes = np.count_nonzero(threshold(np.absolute(self.full_coef), zero_thresh), axis=0)
-                    current_fraction_votes = votes / float(self.n_sub_models)
-                    current_predictors = np.where(current_fraction_votes >= vote_thresh)[0]
-                    X_sel = X[:, current_predictors]
+                errors = []
+                for training, holdout in kf.split(X_sel):
+                    self.supporting_model = self.supporting_model.fit(X=X_sel[training, :], y=y[training])
+                    errors.append(mean_squared_error(y[holdout], self.supporting_model.predict(X_sel[holdout, :])))
+                mse = np.mean(errors)
 
-                    errors = []
-                    for training, holdout in kf.split(X_sel):
-                        self.supporting_model = self.supporting_model.fit(X=X_sel[training, :], y=y[training])
-                        errors.append(mean_squared_error(y[holdout], self.supporting_model.predict(X_sel[holdout, :])))
-                    mse = np.mean(errors)
-
-                    # print("Zero thresh = %.2f,\t Vote thresh = %.2f,\t MSE = %.2f" % (zero_thresh, vote_thresh, mse))
-                    if mse < best_mse:
-                        best_mse = mse
-                        zero_threshold = zero_thresh
-                        vote_threshold = vote_thresh
-                        fraction_votes = current_fraction_votes
-                        selected_predictors = current_predictors
+                # print("Zero thresh = %.2f,\t Vote thresh = %.2f,\t MSE = %.2f" % (zero_thresh, vote_thresh, mse))
+                if mse < best_mse:
+                    best_mse = mse
+                    vote_threshold = vote_thresh
+                    fraction_votes = current_fraction_votes
+                    selected_predictors = current_predictors
         else:
-            zero_threshold = zero_thresholds[0]
             vote_threshold = vote_thresholds[0]
-            votes = np.count_nonzero(threshold(np.absolute(self.full_coef), zero_threshold), axis=0)
+            votes = np.count_nonzero(self.full_coef, axis=0)
             fraction_votes = votes / float(self.n_sub_models)
             selected_predictors = np.where(fraction_votes >= vote_threshold)[0]
 
         self.fraction_votes_ = fraction_votes
         self.selected_predictors_ = selected_predictors
-        self.params_ = {"Zero threshold": zero_threshold, "Vote threshold": vote_threshold}
+        self.params_ = {"Vote threshold": vote_threshold}
         return self
 
     def get_fraction_votes(self):
