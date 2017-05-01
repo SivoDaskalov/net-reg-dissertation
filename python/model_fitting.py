@@ -37,8 +37,9 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
     if base_dump_url is None:
         base_dump_url = "dumps/%s_n%d_p%d/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1],
                                                           setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
-    if not os.path.exists(base_dump_url):
-        os.makedirs(base_dump_url)
+        dir_url = "dumps/%s_n%d_p%d" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
+        if not os.path.exists(dir_url):
+            os.makedirs(dir_url)
 
     models = {}
     t_ = time.clock()

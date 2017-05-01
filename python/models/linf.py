@@ -24,7 +24,7 @@ def fit_linf(setup, matlab_engine):
 
 
 def fit_alinf(setup, matlab_engine, linf_fit):
-    b0 = [coef if abs(coef) > epsilon else 0 for coef in linf_fit.coef_]
+    b0 = [coef if abs(coef) > epsilon else 0.0 for coef in linf_fit.coef_]
     mask = np.array([True if b0[i1 - 1] != 0 or b0[i2 - 1] != 0 else False for (i1, i2) in setup.network], dtype=bool)
     network = np.array(setup.network)
     discarded = np.unique(network[~mask])

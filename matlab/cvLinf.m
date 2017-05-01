@@ -12,7 +12,7 @@ for i=1:size(c,2)
     cur_mse = mean(fold_errors);
     
     fprintf( 'C = %.2f,\t MSE = %.2f\n', c(i), cur_mse)
-    if exist('best_mse', 'var') == 0 || cur_mse < best_mse
+    if exist('best_mse', 'var') == 0 || isnan(best_mse) || cur_mse < best_mse
         best_c = c(i);
         best_mse = cur_mse;
     end

@@ -3,7 +3,7 @@ from commons import epsilon
 
 
 class Model:
-    coef_full = None
+    coef_full_ = None
     coef_ = None
     params_ = None
 
@@ -13,7 +13,7 @@ class Model:
         else:
             self.coef_full_ = coef
         self.coef_ = self.coef_full_
-        self.coef_[abs(self.coef_) < epsilon] = 0
+        self.coef_[abs(self.coef_) < epsilon] = 0.0
         self.params_ = params
 
     def predict(self, X):
