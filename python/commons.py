@@ -9,7 +9,7 @@ real_data_methods = ["lasso", "enet", "agrace", "gblasso", "alinf", "ltlp"]
 
 # General properties
 orchestrated_tuning_max_iter = 1000
-cv_n_folds = 10
+cv_n_folds = 5
 epsilon = 1e-6 # Trim coefficients with absolute value below epsilon
 
 # GLM properties
@@ -30,7 +30,6 @@ grace_lambda2_opt = 0.01
 # GBLasso properties
 gblasso_lambda_values = [10.0 ** x for x in range(-2, 5)]
 gblasso_gamma_values = [2.0, 3.0]
-gblasso_n_folds = 5  # Reduced number of CV folds due to the duration of calculations
 gblasso_maxiter = 1
 
 gblasso_lambda_opt = 10.0

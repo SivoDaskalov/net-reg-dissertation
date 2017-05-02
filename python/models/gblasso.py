@@ -1,4 +1,4 @@
-from commons import gblasso_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
+from commons import cv_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
     gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda, gblasso_maxiter as maxiter
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error

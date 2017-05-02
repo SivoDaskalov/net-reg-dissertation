@@ -151,7 +151,7 @@ def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
     while not converged and iter < max_iter:
         iter += 1
         # if iter % 100 == 0:
-        print("%sIteration %d" % (timestamp(), iter))
+        # print("%sIteration %d" % (timestamp(), iter))
         current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, cache, i)
                            for i in range(len(reference_methods))]
         converged = np.all(
