@@ -1,4 +1,5 @@
 import pandas as pd
+import os.path
 
 
 def assemble_mappings(dataset, fits, methods):
@@ -7,7 +8,6 @@ def assemble_mappings(dataset, fits, methods):
     for method in methods:
         coef[method] = pd.DataFrame(data=None, columns=dataset.expression.columns, index=dataset.expression.columns)
 
-
     for fit in fits:
         gene = fit[0].label.split("_")[0]
         for method, model in fit[1].iteritems():
@@ -15,7 +15,10 @@ def assemble_mappings(dataset, fits, methods):
             if method == "composite":
                 votes[gene] = model.fraction_votes_
 
+    mappings_dir = "mappings/%s" % dataset.label
+    if not os.path.exists(mappings_dir):
+        os.makedirs(mappings_dir)
     for method, coef_matrix in coef.iteritems():
-        coef_matrix.to_csv("mappings/%s_%s.csv" % (dataset.label, method), sep=',')
-    votes.to_csv("mappings/%s_composite_fraction_votes.csv" % dataset.label, sep=',')
+        coef_matrix.to_csv(os.path.join(mappings_dir, "%s.csv" % method), sep=',')
+    votes.to_csv(os.path.join(mappings_dir, "composite_fraction_votes.csv"), sep=',')
     return coef
