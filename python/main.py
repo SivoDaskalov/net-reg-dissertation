@@ -26,22 +26,22 @@ def tune_method_parameters_with_generated_dataset():
     print(results)
     # plut.plot_results(results)
 
-    # model_dump_url = "dumps/cache/orctun_models_p%d" % p
-    # orctun_fits = orctun.batch_do_orchestrated_tuning(setups, load_dump=True)
-    # dump(orctun_fits, model_dump_url)
-    # orctun_fits = load(model_dump_url)
-    # orctun_results = metrics.batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d.csv" % (
-    #     orctun.optimization_method, p))
-    # print(orctun_results)
+    model_dump_url = "dumps/cache/orctun_models_p%d" % p
+    orctun_fits = orctun.batch_do_orchestrated_tuning(setups, load_dump=True)
+    dump(orctun_fits, model_dump_url)
+    orctun_fits = load(model_dump_url)
+    orctun_results = metrics.batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d.csv" % (
+        orctun.optimization_method, p))
+    print(orctun_results)
     # plut.plot_results(orctun_results)
 
 
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
     datasets = imp.batch_import_datasets()
-    fits = fitting.batch_fit_tumor_data(datasets, methods=methods)
+    fits = fitting.batch_fit_real_data(datasets, methods=methods)
     results = metrics.batch_evaluate_models(fits, filename="results/tumor_data.csv")
 
 
-tune_method_parameters_with_generated_dataset()
-# fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "agrace", "composite"])
+# tune_method_parameters_with_generated_dataset()
+fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "composite"])
 print("Total time elapsed: %.0f seconds" % time.clock())

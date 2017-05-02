@@ -17,8 +17,8 @@ glm_n_alphas = 100
 glm_l1_ratios = [0.1, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95, .99]
 glm_max_iter = 10000
 
-glm_alpha_opt = 0.04
-glm_l1_ratio_opt = 0.99
+glm_alpha_opt = 0.1
+glm_l1_ratio_opt = 0.9
 
 # Grace properties
 grace_lambda1_values = [10.0 ** x for x in range(-2, 5)]
@@ -35,11 +35,14 @@ gblasso_maxiter = 1
 gblasso_lambda_opt = 10.0
 gblasso_gamma_opt = 2.0
 
+# IMPORTANT!
+# Beware of Matlab CVX settings for Linf, aLinf, TTLP and LTLP models, using SeDuMi solver with reduced precision
+
 # Linf properties
 linf_c_values = [5.0 * (x + 1) for x in range(20)]
 alinf_e_values = [5.0 * (x + 1) for x in range(20)]
 
-linf_c_opt = 50.0
+linf_c_opt = 35.0
 alinf_e_opt = 70.0
 
 # TLP properties
@@ -47,7 +50,7 @@ tlp_n_deltas1 = 3
 tlp_n_deltas2 = 3
 tlp_n_taus = 3
 tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of calculations
-# Use center of calculated intervals for the tuning parameters
+# Use center of calculated intervals for the tuning parameters as optimal tuning parameter values
 
 
 # Composite model properties
