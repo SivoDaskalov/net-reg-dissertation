@@ -30,7 +30,7 @@ grace_lambda2_opt = 0.01
 # GBLasso properties
 gblasso_lambda_values = [10.0 ** x for x in range(-2, 5)]
 gblasso_gamma_values = [2.0, 3.0]
-gblasso_maxiter = 1
+gblasso_maxiter = 10
 
 gblasso_lambda_opt = 10.0
 gblasso_gamma_opt = 2.0

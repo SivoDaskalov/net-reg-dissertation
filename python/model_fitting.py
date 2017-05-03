@@ -13,7 +13,7 @@ import time
 import math
 
 full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
-real_data_method_list = ["lasso", "enet", "grace", "gblasso", "linf", "ttlp", "composite"]
+real_data_method_list = ["lasso", "enet", "grace", "gblasso", "linf", "composite"]
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url):
@@ -198,6 +198,7 @@ def batch_fit_real_data(datasets, methods=full_method_list, load_dump=True):
             dataset_fits.append(
                 (setup, fit_models_opt_params(setup=setup, engine=engine, methods=methods, load_dump=load_dump,
                                               base_dump_url=base_dump_url)))
+
         with open("dumps/%s_models" % dataset.label, 'wb') as f:
             pickle.dump(dataset_fits, f)
 
