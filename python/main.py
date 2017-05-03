@@ -45,5 +45,4 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
 
 # tune_method_parameters_with_generated_dataset()
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "composite"])
-export_errors(None)
 print("Total time elapsed: %.0f seconds" % time.clock())
