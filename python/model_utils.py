@@ -19,6 +19,16 @@ def assemble_mappings(dataset, fits, methods):
     if not os.path.exists(mappings_dir):
         os.makedirs(mappings_dir)
     for method, coef_matrix in coef.iteritems():
-        coef_matrix.to_csv(os.path.join(mappings_dir, "%s.csv" % method), sep=',')
-    votes.to_csv(os.path.join(mappings_dir, "composite_fraction_votes.csv"), sep=',')
+        coef_matrix.transpose().to_csv(os.path.join(mappings_dir, "%s.csv" % method), sep=',')
+    votes.transpose().to_csv(os.path.join(mappings_dir, "composite_fraction_votes.csv"), sep=',')
     return coef
+
+
+import pickle
+
+
+def export_errors(results):
+    tmp = "dumps/tmp"
+    with open(tmp, 'rb') as f:
+        results = pickle.load(f)
+    return None

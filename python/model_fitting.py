@@ -153,7 +153,7 @@ def fit_models_opt_params(setup, engine, methods=real_data_method_list, load_dum
 
     if "composite" in methods:
         method = "composite"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model_opt, [models], base_dump_url)
+        models[method] = fit_or_load(setup, method, False, fit_composite_model_opt, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models

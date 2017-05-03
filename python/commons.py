@@ -17,7 +17,7 @@ glm_n_alphas = 100
 glm_l1_ratios = [0.1, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95, .99]
 glm_max_iter = 10000
 
-glm_alpha_opt = 0.1
+glm_alpha_opt = 0.04
 glm_l1_ratio_opt = 0.9
 
 # Grace properties
