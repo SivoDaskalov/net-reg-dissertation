@@ -6,7 +6,12 @@
 \def\dissertationtitle{Machine learning network-constrained regression of epigenetic data}
 \def\wordcount{00,000}
 
-\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace} 
+\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx} 
+
+\sisetup{
+	round-mode          = places,
+	round-precision     = 2,
+}
 
 \begin{document}
 
@@ -29,27 +34,27 @@
 \chapter{Introduction}
 \pagenumbering{arabic} 
 \setcounter{page}{1}
-\input{introduction} 
+\input{chapters/introduction} 
 
 \chapter{Background} 
-\input{background}
+\input{chapters/background}
 
 \chapter{Related Work} 
-\input{related_work}
+\input{chapters/related_work}
 
 \chapter{Design and Implementation} 
-\input{design_and_implementation}
+\input{chapters/design_and_implementation}
  
 \chapter{Evaluation} 
-\input{evaluation}
+\input{chapters/evaluation}
 
 \chapter{Summary and Conclusions} 
-\input{summary}
+\input{chapters/summary}
 
 \appendix
 \singlespacing
 
 \bibliographystyle{unsrt} 
-%\bibliography{dissertation} 
+\bibliography{references} 
 
 \end{document}
