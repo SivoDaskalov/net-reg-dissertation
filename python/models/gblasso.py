@@ -40,6 +40,8 @@ def cvGblasso(Y, X, wt, network, lambdas, gammas):
 def gblasso(Y, X, wt, network, lam, gam):
     b0 = np.zeros(X.shape[1])
     net_pen_mult = lam * (2.0 ** (1.0 - (1.0 / gam)))
+    if maxiter == 0:
+        return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method).x
     return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method,
                     options={"maxiter": maxiter}).x
 
