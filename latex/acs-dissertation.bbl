@@ -1,8 +1,14 @@
 \begin{thebibliography}{1}
 
-\bibitem{kim_pan_shen_2013}
-Sunkyung Kim, Wei Pan, and Xiaotong Shen.
-\newblock Network-based penalized regression with application to genomic data.
-\newblock {\em Biometrics}, 69(3):582–593, Mar 2013.
+\bibitem{holliday2006epigenetics}
+Robin Holliday.
+\newblock Epigenetics: a historical overview.
+\newblock {\em Epigenetics}, 1(2):76--80, 2006.
+
+\bibitem{jaenisch2003epigenetic}
+Rudolf Jaenisch and Adrian Bird.
+\newblock Epigenetic regulation of gene expression: how the genome integrates
+  intrinsic and environmental signals.
+\newblock {\em Nature genetics}, 33:245--254, 2003.
 
 \end{thebibliography}

@@ -1,0 +1,11 @@
+Model,Tuning,MSE,Predictors,Correlation,Sensitivity,Specificity,Precision
+enet,MSE,5.897,83,0.886,0.706,0.888,0.314
+enet,Correlation,7.363,91,0.858,0.831,0.879,0.359
+gblasso,MSE,169.955,550,0.470,1.000,0.000,0.062
+gblasso,Correlation,177.788,550,0.485,1.000,0.000,0.062
+grace,MSE,5.792,117,0.889,0.706,0.821,0.230
+grace,Correlation,5.922,132,0.871,0.884,0.803,0.244
+lasso,MSE,6.634,85,0.874,0.706,0.885,0.300
+lasso,Correlation,6.212,83,0.892,0.695,0.888,0.295
+linf,MSE,5.482,550,0.864,1.000,0.000,0.062
+linf,Correlation,6.509,550,0.850,1.000,0.000,0.062
