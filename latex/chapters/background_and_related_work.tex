@@ -32,15 +32,42 @@ S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\b
 \end{equation}
 $alpha = \lambda_1 + \lambda_2$ and $l1\_ratio = \lambda_1/(\lambda_1+\lambda_2)$
 
+
 \section{Grace}
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
+\end{equation}
+
 
 \section{aGrace}
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{b}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{b}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
+\end{equation}
+
 
 \section{GBLasso}
+Not decent enough, beware of weights; should recalculate everything with $w_i = d_i^{(\gamma+1)/2}$ 
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}-\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma}
+\end{equation}
+$w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ or $w_i = d_i^\gamma$ 
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
+\lambda\sum_{u \sim v}
+\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma-
+\left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}
+\end{equation}
+
+
 
 \section{Linf and aLinf}
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
+\lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)
+\end{equation}
 
 \section{TTLP and LTLP}
+
 
 \newpage
 
