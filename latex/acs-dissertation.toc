@@ -1,6 +1,14 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Background}{5}
-\contentsline {chapter}{\numberline {3}Related Work}{7}
-\contentsline {chapter}{\numberline {4}Design and Implementation}{9}
-\contentsline {chapter}{\numberline {5}Evaluation}{11}
-\contentsline {chapter}{\numberline {6}Summary and Conclusions}{13}
+\contentsline {chapter}{\numberline {2}Background and Related Work}{5}
+\contentsline {section}{\numberline {2.1}Linear Regression}{5}
+\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{5}
+\contentsline {section}{\numberline {2.3}Lasso}{6}
+\contentsline {section}{\numberline {2.4}Elastic Net}{6}
+\contentsline {section}{\numberline {2.5}Grace}{6}
+\contentsline {section}{\numberline {2.6}aGrace}{6}
+\contentsline {section}{\numberline {2.7}GBLasso}{6}
+\contentsline {section}{\numberline {2.8}Linf and aLinf}{6}
+\contentsline {section}{\numberline {2.9}TTLP and LTLP}{6}
+\contentsline {chapter}{\numberline {3}Design and Implementation}{9}
+\contentsline {chapter}{\numberline {4}Evaluation}{11}
+\contentsline {chapter}{\numberline {5}Summary and Conclusions}{13}

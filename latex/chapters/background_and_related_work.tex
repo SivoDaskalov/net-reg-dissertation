@@ -1,0 +1,79 @@
+Some introduction of the chapter
+
+
+\section{Linear Regression}
+\begin{equation}
+y_i = \beta_01+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_px_{ip}
+\end{equation}
+
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+\end{equation}
+
+
+\section{Ordinary Least Squares Estimation}
+Sum of squared residuals; objective function
+\begin{equation}
+S(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
+\end{equation}
+
+
+\section{Lasso}
+least absolute shrinkage and selection operator
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right|
+\end{equation}
+$alpha = \lambda_1$
+
+
+\section{Elastic Net}
+\begin{equation}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
+\end{equation}
+$alpha = \lambda_1 + \lambda_2$ and $l1\_ratio = \lambda_1/(\lambda_1+\lambda_2)$
+
+\section{Grace}
+
+\section{aGrace}
+
+\section{GBLasso}
+
+\section{Linf and aLinf}
+
+\section{TTLP and LTLP}
+
+\newpage
+
+A more extensive coverage of what's required to understand your 
+work. In general you should assume the reader has a good undergraduate 
+degree in computer science, but is not necessarily an expert in 
+the particular area you've been working on. Hence this chapter 
+may need to summarize some ``text book'' material. 
+
+This is not something you'd normally require in an academic paper, 
+and it may not be appropriate for your particular circumstances. 
+Indeed, in some cases it's possible to cover all of the ``background'' 
+material either in the introduction or at appropriate places in 
+the rest of the dissertation. 
+
+\newpage
+
+This chapter covers relevant (and typically, recent) research 
+which you build upon (or improve upon). There are two complementary 
+goals for this chapter: 
+\begin{enumerate} 
+  \item to show that you know and understand the state of the art; and 
+  \item to put your work in context
+\end{enumerate} 
+
+Ideally you can tackle both together by providing a critique of
+related work, and describing what is insufficient (and how you do
+better!)
+
+The related work chapter should usually come either near the front or
+near the back of the dissertation. The advantage of the former is that
+you get to build the argument for why your work is important before
+presenting your solution(s) in later chapters; the advantage of the
+latter is that don't have to forward reference to your solution too
+much. The correct choice will depend on what you're writing up, and
+your own personal preference.
