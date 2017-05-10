@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{holliday2006epigenetics}
 Robin Holliday.
@@ -25,5 +25,45 @@ Manel Esteller.
 Cancer Genome~Atlas Network et~al.
 \newblock Comprehensive molecular portraits of human breast tumors.
 \newblock {\em Nature}, 490(7418):61, 2012.
+
+\bibitem{tibshirani1996regression}
+Robert Tibshirani.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)}, pages 267--288, 1996.
+
+\bibitem{zou2005regularization}
+Hui Zou and Trevor Hastie.
+\newblock Regularization and variable selection via the elastic net.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 67(2):301--320, 2005.
+
+\bibitem{li2008network}
+Caiyan Li and Hongzhe Li.
+\newblock Network-constrained regularization and variable selection for
+  analysis of genomic data.
+\newblock {\em Bioinformatics}, 24(9):1175--1182, 2008.
+
+\bibitem{li2010variable}
+Caiyan Li and Hongzhe Li.
+\newblock Variable selection and regression analysis for graph-structured
+  covariates with an application to genomics.
+\newblock {\em The annals of applied statistics}, 4(3):1498, 2010.
+
+\bibitem{pan2010incorporating}
+Wei Pan, Benhuai Xie, and Xiaotong Shen.
+\newblock Incorporating predictor network in penalized regression with
+  application to microarray data.
+\newblock {\em Biometrics}, 66(2):474--484, 2010.
+
+\bibitem{luo2012two}
+Chong Luo, Wei Pan, and Xiaotong Shen.
+\newblock A two-step penalized regression method with networked predictors.
+\newblock {\em Statistics in biosciences}, 4(1):27--46, 2012.
+
+\bibitem{kim2013network}
+Sunkyung Kim, Wei Pan, and Xiaotong Shen.
+\newblock Network-based penalized regression with application to genomic data.
+\newblock {\em Biometrics}, 69(3):582--593, 2013.
 
 \end{thebibliography}
