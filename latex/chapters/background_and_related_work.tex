@@ -1,21 +1,26 @@
-Some introduction of the chapter
+This chapter briefly reviews concepts related to parametric estimation and linear regression. We describe in detail the various methods for penalized regression found in literature and used in this project.
 
 
 \section{Linear Regression}
-\begin{equation}
-y_i = \beta_01+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_px_{ip}
-\end{equation}
+Let us consider an entity with a number of scalar measurable (observable) properties, for example temperature, weight, and size. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a list $y$ of length $n$ containing the corresponding observed values of an arbitrary property.
 
-\begin{equation}
-Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+Linear regression is an approach for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $p_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in \ref{eq:lin_reg}
+\begin{equation} \label{eq:lin_reg}
+y_i = \beta_01+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_pX_{ip}, \quad for\ i=1,2,...,n
 \end{equation}
 
 
 \section{Ordinary Least Squares Estimation}
-Sum of squared residuals; objective function
-\begin{equation}
+Ordinary least squares (OLS) is a method of estimating the unknown parameters $\beta$ in a linear regression model. It aims to minimize the sum of squared deviations of the observed values from the model prediction, called residual sum of squares (RSS). The objective function of the minimization is shown on equation \ref{eq:rss}. 
+\begin{equation} \label{eq:rss}
 S(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
 \end{equation}
+
+\begin{equation} \label{eq:beta_estimation}
+\hat{\beta} = argmin_{\beta \in R}\ S(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
+\end{equation}
+
+\section{Penalized Regression}
 
 
 \section{Lasso}
@@ -41,17 +46,19 @@ S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\b
 
 \section{aGrace}
 \begin{equation}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{b}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{b}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
 
 
-\section{GBLasso}
-Not decent enough, beware of weights; should recalculate everything with $w_i = d_i^{(\gamma+1)/2}$ 
-\begin{equation}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}-\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma}
+\section{GBLasso} \label{sec:gblasso}
+This method was initially suggested in \cite{pan2010incorporating}. Pan, Xie and Shen considered the objective function shown in equation \ref{eq:gblasso_full}. 
+\begin{equation} \label{eq:gblasso_full}
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}-\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
 \end{equation}
-$w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ or $w_i = d_i^\gamma$ 
-\begin{equation}
+where $w_i$ is a weight function attributed to each node. Three types of functions, dependent on the node's degree $d_i$ and/or $\gamma$, were considered by the authors: $w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ and $w_i = d_i^\gamma$.
+
+A simplification of the penalty function is presented in \cite{kim2013network}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty multiplier $\lambda2^{1/\gamma'}$ has been transformed to $\lambda$. The simplified objective function is shown in \ref{eq:gblasso_simplified}.
+\begin{equation} \label{eq:gblasso_simplified}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
 \lambda\sum_{u \sim v}
 \left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma-
@@ -61,10 +68,45 @@ S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 +
 
 
 \section{Linf and aLinf}
-\begin{equation}
+The authors of \cite{luo2012two} continued the study presented in section \ref{sec:gblasso}. They noted that as $\gamma\rightarrow\infty$ the penalty \ref{eq:gblasso_simplified} becomes \ref{eq:linf_full}.
+\begin{equation} \label{eq:linf_full}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
 \lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)
 \end{equation}
+
+Luo, Pan and Shen also suggest an equivalent formulation of the penalized estimation in \ref{eq:gblasso_simplified} as the constrained minimization problem shown in \ref{eq:gblasso_constrained}.
+\begin{align} \label{eq:gblasso_constrained}
+\begin{split}
+S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
+&subject\ to\ \sum_{u \sim v}
+\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma-
+\left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}\leq C
+\end{split}
+\end{align}
+
+As previously shown, under $\gamma\rightarrow\infty$ equation \ref{eq:gblasso_constrained} transforms to \ref{eq:linf_constrained}. 
+
+\begin{align} \label{eq:linf_constrained}
+\begin{split}
+S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
+&subject\ to\ \sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)\leq C
+\end{split}
+\end{align}
+
+The authors suggest an additional modification to reduce bias in the parameter estimates of the standard Linf method. They propose a two-step approach ...
+
+\begin{equation} \label{eq:alinf_pen}
+P(\beta) = \lambda\sum_{u \sim v}\left|\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right|
+\end{equation}
+
+Which produces the following constrained minimization problem:
+\begin{align} \label{eq:alinf_constrained}
+\begin{split}
+S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
+&subject\ to\ \sum_{u \sim v}\left|\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right|\leq E
+\end{split}
+\end{align}
+
 
 \section{TTLP and LTLP}
 
