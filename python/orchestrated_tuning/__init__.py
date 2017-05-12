@@ -6,6 +6,7 @@ from models.glm import param_fit_lasso, param_fit_enet
 from models.grace import param_fit_grace, param_fit_agrace
 from models.gblasso import param_fit_gblasso
 from models.linf import param_fit_linf, param_fit_alinf
+from models.composite import fit_composite_model_opt
 from utilities import get_cache_key
 from commons import orchestrated_tuning_max_iter as max_iter, timestamp
 import matlab.engine
@@ -88,6 +89,7 @@ def train_methods(setup, matlab_engine, reference_methods):
             models[name] = param_fit_linf(setup, matlab_engine, params["c"], use_tuning_set)
         if name == "alinf":
             models[name] = param_fit_alinf(setup, matlab_engine, params["e"], models["linf"], use_tuning_set)
+    models["composite"] = fit_composite_model_opt(setup, models)
     return models
 
 
