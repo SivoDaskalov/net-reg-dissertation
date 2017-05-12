@@ -10,11 +10,12 @@ minimization_method = "BFGS"
 
 
 def fit_gblasso(setup):
+    wt = np.sqrt(setup.degrees)
     # Tuning
-    lam, gam = cvGblasso(setup.y_tune, setup.x_tune, setup.degrees, setup.network, lambdas, gammas)
+    lam, gam = cvGblasso(setup.y_tune, setup.x_tune, wt, setup.network, lambdas, gammas)
 
     # Training
-    coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, lam, gam)
+    coef = gblasso(setup.y_train, setup.x_train, wt, setup.network, lam, gam)
 
     return Model(coef, params={"lambda": lam, "gamma": gam}, from_matlab=False)
 
@@ -39,18 +40,18 @@ def cvGblasso(Y, X, wt, network, lambdas, gammas):
 
 def gblasso(Y, X, wt, network, lam, gam):
     b0 = np.zeros(X.shape[1])
-    net_pen_mult = lam * (2.0 ** (1.0 - (1.0 / gam)))
     if maxiter == 0:
-        return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method).x
-    return minimize(gblasso_penalty, b0, (Y, X, wt, network, gam, net_pen_mult), method=minimization_method,
+        return minimize(gblasso_penalty, b0, (Y, X, wt, network, lam, gam), method=minimization_method).x
+    return minimize(gblasso_penalty, b0, (Y, X, wt, network, lam, gam), method=minimization_method,
                     options={"maxiter": maxiter}).x
 
 
-def gblasso_penalty(b, Y, X, wt, network, gam, net_pen_mult):
+def gblasso_penalty(b, Y, X, wt, network, lam, gam):
     errors = sum(np.power(np.sum(X * b, axis=1) - Y, 2))
-    network_penalty = sum([abs(b[i1 - 1]) ** gam / wt[i1 - 1] + abs(b[i2 - 1]) ** gam / wt[i2 - 1]
-                           for (i1, i2) in network]) ** (1.0 / gam)
-    return errors + network_penalty * net_pen_mult
+    network_penalty = sum(np.power(
+        [(abs(b[i1 - 1]) / wt[i1 - 1]) ** gam + (abs(b[i2 - 1]) / wt[i2 - 1]) ** gam for (i1, i2) in network],
+        1.0 / gam))
+    return errors + lam * network_penalty
 
 
 def fit_gblasso_opt(setup):
@@ -58,8 +59,9 @@ def fit_gblasso_opt(setup):
 
 
 def param_fit_gblasso(setup, lam, gam, use_tuning_set=False):
+    wt = np.sqrt(setup.degrees)
     if use_tuning_set:
-        coef = gblasso(setup.y_tune, setup.x_tune, setup.degrees, setup.network, lam, gam)
+        coef = gblasso(setup.y_tune, setup.x_tune, wt, setup.network, lam, gam)
     else:
-        coef = gblasso(setup.y_train, setup.x_train, setup.degrees, setup.network, lam, gam)
+        coef = gblasso(setup.y_train, setup.x_train, wt, setup.network, lam, gam)
     return Model(coef, params={"lambda": lam, "gamma": gam}, from_matlab=False)
