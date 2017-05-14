@@ -33,7 +33,7 @@ gblasso_gamma_values = [2.0, 3.0]
 gblasso_maxiter = 1000
 
 gblasso_lambda_opt = 10.0
-gblasso_gamma_opt = 2.0
+gblasso_gamma_opt = 3.0
 
 # IMPORTANT!
 # Beware of Matlab CVX settings for Linf, aLinf, TTLP and LTLP models, using SeDuMi solver with reduced precision
