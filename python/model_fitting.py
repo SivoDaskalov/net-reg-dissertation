@@ -20,7 +20,7 @@ def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url
     dump_url = base_dump_url + method_name
     if load_dump and os.path.exists(dump_url):
         print("%sLoaded %s model for %s" % (timestamp(), method_name, setup.label))
-        with open(dump_url, 'rb') as f:
+        with open(dump_url, 'rbU') as f:
             fit = pickle.load(f)
     else:
         print("%sFitting %s model for %s" % (timestamp(), method_name, setup.label))
@@ -90,7 +90,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
 
     if "composite" in methods:
         method = "composite"
-        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model, [models], base_dump_url)
+        models[method] = fit_or_load(setup, method, False, fit_composite_model, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
@@ -202,7 +202,7 @@ def batch_fit_real_data(datasets, methods=full_method_list, load_dump=True):
         with open("dumps/%s_models" % dataset.label, 'wb') as f:
             pickle.dump(dataset_fits, f)
 
-        with open("dumps/%s_models" % dataset.label, 'rb') as f:
+        with open("dumps/%s_models" % dataset.label, 'rbU') as f:
             dataset_fits = pickle.load(f)
         modut.assemble_mappings(dataset, dataset_fits, methods)
         fits += dataset_fits

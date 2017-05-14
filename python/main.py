@@ -2,7 +2,7 @@ from commons import real_data_methods, dump, load
 from orchestrated_tuning import batch_do_orchestrated_tuning, optimization_method
 from data_gen_utils import batch_generate_setups
 from import_utils import batch_import_datasets
-from model_fitting import batch_fit_models, batch_fit_real_data
+from model_fitting import batch_fit_models, batch_fit_real_data, full_method_list
 from model_metrics import batch_evaluate_models
 from model_utils import export_errors
 import plotting_utils as plut
@@ -22,7 +22,7 @@ def tune_method_parameters_with_generated_dataset():
                                    n_trans_factors=n_trans_factors, load_dump=True,
                                    n_tune_obs=200, n_train_obs=100, n_test_obs=100)
 
-    fits = batch_fit_models(setups, methods=["gblasso"], load_dump=True)
+    fits = batch_fit_models(setups, methods=full_method_list, load_dump=True)
     results = batch_evaluate_models(fits)
     print(results)
     # plut.plot_results(results)

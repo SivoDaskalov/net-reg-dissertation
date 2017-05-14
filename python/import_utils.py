@@ -38,7 +38,7 @@ def adjm_to_edgel():
 def batch_import_datasets(load_dump=True):
     dump_url = "dumps/datasets"
     if load_dump and os.path.exists(dump_url):
-        with open(dump_url, 'rb') as f:
+        with open(dump_url, 'rbU') as f:
             datasets = pickle.load(f)
     else:
         datasets = []

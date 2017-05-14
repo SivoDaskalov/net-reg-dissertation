@@ -66,7 +66,7 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
                                                           n_tune_obs, n_train_obs, n_test_obs)
     if load_dump and os.path.exists(dump_url):
         print("%sLoading previously generated dataset" % timestamp())
-        with open(dump_url, 'rb') as f:
+        with open(dump_url, 'rbU') as f:
             setups = pickle.load(f)
         print("%sLoaded previously generated dataset" % timestamp())
     else:

@@ -28,7 +28,7 @@ def init_methods(setup, matlab_engine, method_names, load_dump):
     dump_url = "dumps/cache/initial_%s_p%d" % (setup.label, setup.x_tune.shape[1])
     if load_dump and os.path.exists(dump_url):
         print("%sLoading initial method models" % timestamp())
-        with open(dump_url, 'rb') as f:
+        with open(dump_url, 'rbU') as f:
             methods = pickle.load(f)
         print("%sLoaded initial method models" % timestamp())
     else:
@@ -58,7 +58,7 @@ def init_cache(setup, reference_methods, load_dump):
     dump_url = "dumps/cache/models_%s_p%d" % (setup.label, setup.x_tune.shape[1])
     if load_dump and os.path.exists(dump_url):
         print("%sLoading model cache" % timestamp())
-        with open(dump_url, 'rb') as f:
+        with open(dump_url, 'rbU') as f:
             cache = pickle.load(f)
         print("%sLoaded model cache" % timestamp())
     else:

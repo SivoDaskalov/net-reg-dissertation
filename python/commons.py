@@ -69,5 +69,5 @@ def dump(obj, url):
 
 
 def load(url):
-    with open(url, 'rb') as f:
+    with open(url, 'rbU') as f:
         return pickle.load(f)
