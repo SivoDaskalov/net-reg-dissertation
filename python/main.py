@@ -36,13 +36,13 @@ def tune_method_parameters_with_generated_dataset():
     # plut.plot_results(orctun_results)
 
 
-def fit_optimal_parameter_models_on_real_data(methods=real_data_methods):
+def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_dump=True):
     datasets = batch_import_datasets()
-    fits = batch_fit_real_data(datasets, methods=methods, load_dump=True)
+    fits = batch_fit_real_data(datasets, methods=methods, load_dump=load_dump)
     results = batch_evaluate_models(fits, filename="results/real_data.csv")
     export_errors(results)
 
 
 # tune_method_parameters_with_generated_dataset()
-fit_optimal_parameter_models_on_real_data(methods=["gblasso"])
+fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "gblasso", "linf", "composite"], load_dump=True)
 print("Total time elapsed: %.0f seconds" % time.clock())

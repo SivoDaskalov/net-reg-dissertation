@@ -18,7 +18,7 @@ real_data_method_list = ["lasso", "enet", "grace", "gblasso", "linf", "composite
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url):
     dump_url = base_dump_url + method_name
-    if load_dump and os.path.exists(dump_url):
+    if load_dump and os.path.exists(dump_url) and method_name != "composite":
         print("%sLoaded %s model for %s" % (timestamp(), method_name, setup.label))
         with open(dump_url, 'rbU') as f:
             fit = pickle.load(f)
@@ -29,8 +29,9 @@ def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url
         print(
             "%sFitting %s model for %s took %.0f seconds\n" % (
                 timestamp(), method_name, setup.label, time.clock() - t_))
-        with open(dump_url, 'wb') as f:
-            pickle.dump(fit, f)
+        if method_name != "composite":
+            with open(dump_url, 'wb') as f:
+                pickle.dump(fit, f)
     return fit
 
 
@@ -90,7 +91,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
 
     if "composite" in methods:
         method = "composite"
-        models[method] = fit_or_load(setup, method, False, fit_composite_model, [models], base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
@@ -153,7 +154,7 @@ def fit_models_opt_params(setup, engine, methods=real_data_method_list, load_dum
 
     if "composite" in methods:
         method = "composite"
-        models[method] = fit_or_load(setup, method, False, fit_composite_model_opt, [models], base_dump_url)
+        models[method] = fit_or_load(setup, method, load_dump, fit_composite_model_opt, [models], base_dump_url)
 
     print("%sFitting models for %s took %.0f seconds\n" % (timestamp(), setup.label, time.clock() - t_))
     return models
