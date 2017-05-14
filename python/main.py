@@ -22,17 +22,17 @@ def tune_method_parameters_with_generated_dataset():
                                    n_trans_factors=n_trans_factors, load_dump=True,
                                    n_tune_obs=200, n_train_obs=100, n_test_obs=100)
 
-    fits = batch_fit_models(setups, methods=["gblasso"], load_dump=False)
+    fits = batch_fit_models(setups, methods=["gblasso"], load_dump=True)
     results = batch_evaluate_models(fits)
     print(results)
     # plut.plot_results(results)
 
-    # model_dump_url = "dumps/cache/orctun_models_p%d" % p
-    # orctun_fits = batch_do_orchestrated_tuning(setups, load_dump=False)
-    # dump(orctun_fits, model_dump_url)
-    # orctun_fits = load(model_dump_url)
-    # orctun_results = batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d.csv" % (optimization_method, p))
-    # print(orctun_results)
+    model_dump_url = "dumps/cache/orctun_models_%s_p%d" % (p, optimization_method)
+    orctun_fits = batch_do_orchestrated_tuning(setups, load_dump=True)
+    dump(orctun_fits, model_dump_url)
+    orctun_fits = load(model_dump_url)
+    orctun_results = batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d.csv" % (optimization_method, p))
+    print(orctun_results)
     # plut.plot_results(orctun_results)
 
 

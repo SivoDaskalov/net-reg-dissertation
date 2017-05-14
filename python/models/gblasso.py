@@ -1,5 +1,5 @@
 from commons import cv_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
-    gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda, gblasso_maxiter as maxiter
+    gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda, gblasso_maxiter as maxiter, timestamp
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from models import Model
@@ -30,7 +30,7 @@ def cvGblasso(Y, X, wt, network, lambdas, gammas):
                 coef = gblasso(Y[training], X[training, :], wt, network, lam, gam)
                 errors.append(mean_squared_error(Y[holdout], np.sum(X[holdout] * coef, axis=1)))
             mse = np.mean(errors)
-            print("Lambda = %.2f,\t Gamma = %.2f,\t MSE = %.2f" % (lam, gam, mse))
+            print("%sLambda = %.2f,\t Gamma = %.2f,\t MSE = %.2f" % (timestamp(), lam, gam, mse))
             if mse < best_mse:
                 best_mse = mse
                 best_lam = lam
