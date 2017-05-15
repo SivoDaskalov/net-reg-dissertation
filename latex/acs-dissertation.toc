@@ -3,13 +3,14 @@
 \contentsline {section}{\numberline {2.1}Linear Regression}{5}
 \contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
 \contentsline {section}{\numberline {2.3}Penalized Regression}{6}
-\contentsline {section}{\numberline {2.4}Lasso}{7}
-\contentsline {section}{\numberline {2.5}Elastic Net}{7}
-\contentsline {section}{\numberline {2.6}Grace}{7}
-\contentsline {section}{\numberline {2.7}aGrace}{7}
-\contentsline {section}{\numberline {2.8}GBLasso}{8}
-\contentsline {section}{\numberline {2.9}Linf and aLinf}{8}
-\contentsline {section}{\numberline {2.10}TTLP and LTLP}{9}
-\contentsline {chapter}{\numberline {3}Design and Implementation}{13}
-\contentsline {chapter}{\numberline {4}Evaluation}{15}
-\contentsline {chapter}{\numberline {5}Summary and Conclusions}{17}
+\contentsline {section}{\numberline {2.4}Ridge regression}{7}
+\contentsline {section}{\numberline {2.5}Lasso}{7}
+\contentsline {section}{\numberline {2.6}Elastic Net}{7}
+\contentsline {section}{\numberline {2.7}Grace}{8}
+\contentsline {section}{\numberline {2.8}aGrace}{8}
+\contentsline {section}{\numberline {2.9}GBLasso}{8}
+\contentsline {section}{\numberline {2.10}Linf and aLinf}{9}
+\contentsline {section}{\numberline {2.11}TTLP and LTLP}{10}
+\contentsline {chapter}{\numberline {3}Design and Implementation}{11}
+\contentsline {chapter}{\numberline {4}Evaluation}{13}
+\contentsline {chapter}{\numberline {5}Summary and Conclusions}{15}

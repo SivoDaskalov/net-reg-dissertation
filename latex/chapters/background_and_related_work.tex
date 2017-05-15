@@ -4,7 +4,7 @@ This chapter briefly reviews the main concepts of linear regression. We describe
 \section{Linear Regression}
 Let us consider an entity with a number of scalar measurable (observable) properties, for example temperature, weight, and size. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a vector $y$ of length $n$ containing the corresponding observed values of an arbitrary property of interest.
 
-Linear regression is an approach for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in \ref{eq:lin_reg}
+Linear regression is a method for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in \ref{eq:lin_reg}
 \begin{equation} \label{eq:lin_reg}
 y_i = \beta_01+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_pX_{ip}+\epsilon_i, \quad for\ i=1,2,...,n
 \end{equation}
@@ -23,25 +23,31 @@ The parameter estimate $\hat{\beta}$ for the linear regression model is obtained
 
 
 \section{Penalized Regression}
-Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties. The general form of penalized regression is shown in equation \ref{eq:pen_reg}. 
+Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties by scaling them. The general form of penalized regression is shown in equation \ref{eq:pen_reg}. 
 \begin{equation} \label{eq:pen_reg}
-S(\beta) = L(\beta) + \lambda P(\beta)
+S(\beta) = L(\beta) + P(\beta)
+\end{equation}
+
+
+\section{Ridge regression}
+Ridge regression \cite{hoerl1970ridge}, also called Tikhonov or L2 regularization, is used to penalize large values in the $\beta$ estimate. The penalty, shown in equation \ref{eq:ridge}, causes the parameter estimates of the less important predictors to be shrinked, but remain non-zero. As a result, L2 regularization does not perform feature selection.
+\begin{equation} \label{eq:ridge}
+P(\beta) = \lambda\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
 
 
 \section{Lasso}
-least absolute shrinkage and selection operator
-\begin{equation}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right|
+The least absolute shrinkage and selection operator (LASSO) was introduced by Tibshirani in \cite{tibshirani1996regression}. It produces a sparse coefficient vector, whose remaining non-zero elements define a subset of the most relevant predictors. Model sparsity is especially important in high-dimensional problems, such as those arising when processing epigenetic data. The L1 penalty, shown in equation \ref{eq:lasso}, performs both variable selection and regularization.
+\begin{equation} \label{eq:lasso}
+P(\beta) = \lambda\sum_{i=1}^{p}\left|\beta_i\right|
 \end{equation}
-$alpha = \lambda_1$
 
 
 \section{Elastic Net}
-\begin{equation}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
+The Elastic Net \cite{zou2005regularization}, suggested by Zou and Hastie, linearly combines the L1 (\ref{eq:lasso}) and L2 (\ref{eq:ridge}) penalties. This approach overcomes the individual limitations of the Lasso and Ridge methods. The elastic net penalty, shown in equation \ref{eq:enet}, is adjusted by two hyperparameters $\lambda_1$ and $\lambda_2$, one for each of the two penalty terms.
+\begin{equation} \label{eq:enet}
+P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
-$alpha = \lambda_1 + \lambda_2$ and $l1\_ratio = \lambda_1/(\lambda_1+\lambda_2)$
 
 
 \section{Grace}
@@ -115,40 +121,3 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 
 
 \section{TTLP and LTLP}
-
-
-\newpage
-
-A more extensive coverage of what's required to understand your 
-work. In general you should assume the reader has a good undergraduate 
-degree in computer science, but is not necessarily an expert in 
-the particular area you've been working on. Hence this chapter 
-may need to summarize some ``text book'' material. 
-
-This is not something you'd normally require in an academic paper, 
-and it may not be appropriate for your particular circumstances. 
-Indeed, in some cases it's possible to cover all of the ``background'' 
-material either in the introduction or at appropriate places in 
-the rest of the dissertation. 
-
-\newpage
-
-This chapter covers relevant (and typically, recent) research 
-which you build upon (or improve upon). There are two complementary 
-goals for this chapter: 
-\begin{enumerate} 
-  \item to show that you know and understand the state of the art; and 
-  \item to put your work in context
-\end{enumerate} 
-
-Ideally you can tackle both together by providing a critique of
-related work, and describing what is insufficient (and how you do
-better!)
-
-The related work chapter should usually come either near the front or
-near the back of the dissertation. The advantage of the former is that
-you get to build the argument for why your work is important before
-presenting your solution(s) in later chapters; the advantage of the
-latter is that don't have to forward reference to your solution too
-much. The correct choice will depend on what you're writing up, and
-your own personal preference.
