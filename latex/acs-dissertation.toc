@@ -3,11 +3,11 @@
 \contentsline {section}{\numberline {2.1}Linear Regression}{5}
 \contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
 \contentsline {section}{\numberline {2.3}Penalized Regression}{6}
-\contentsline {section}{\numberline {2.4}Lasso}{6}
-\contentsline {section}{\numberline {2.5}Elastic Net}{6}
+\contentsline {section}{\numberline {2.4}Lasso}{7}
+\contentsline {section}{\numberline {2.5}Elastic Net}{7}
 \contentsline {section}{\numberline {2.6}Grace}{7}
 \contentsline {section}{\numberline {2.7}aGrace}{7}
-\contentsline {section}{\numberline {2.8}GBLasso}{7}
+\contentsline {section}{\numberline {2.8}GBLasso}{8}
 \contentsline {section}{\numberline {2.9}Linf and aLinf}{8}
 \contentsline {section}{\numberline {2.10}TTLP and LTLP}{9}
 \contentsline {chapter}{\numberline {3}Design and Implementation}{13}
