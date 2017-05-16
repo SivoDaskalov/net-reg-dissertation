@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  15 MAY 2017 16:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  16 MAY 2017 14:07
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1054,12 +1054,12 @@ be ex-plained by changes
 
 ]
 Chapter 2.
-(chapters/background_and_related_work.tex
-Underfull \vbox (badness 1303) has occurred while \output is active []
+(chapters/background_and_related_work.tex [5]
+Underfull \vbox (badness 1521) has occurred while \output is active []
 
- [5]
-[6] [7]
-Overfull \hbox (13.17032pt too wide) detected at line 62
+ [6]
+[7]
+Overfull \hbox (13.17032pt too wide) detected at line 69
 \OML/cmm/m/it/12 S\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ) = [](\OM
 L/cmm/m/it/12 y[] \OMS/cmsy/m/n/12   \OML/cmm/m/it/12 x[]\OT1/cmr/m/n/12 )[] +
  \OML/cmm/m/it/12 [] [] [] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 [] [] [][] w\OT
@@ -1083,11 +1083,11 @@ Chapter 5.
 ] [17]) [18]
 (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32040 strings out of 493333
- 807505 string characters out of 3139183
- 902940 words of memory out of 3000000
- 35100 multiletter control sequences out of 15000+200000
- 11274 words of font info for 41 fonts, out of 3000000 for 9000
+ 32043 strings out of 493333
+ 807543 string characters out of 3139183
+ 902965 words of memory out of 3000000
+ 35103 multiletter control sequences out of 15000+200000
+ 11581 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -1102,7 +1102,7 @@ lic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb
 >
-Output written on acs-dissertation.pdf (30 pages, 241156 bytes).
+Output written on acs-dissertation.pdf (30 pages, 243011 bytes).
 PDF statistics:
  160 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

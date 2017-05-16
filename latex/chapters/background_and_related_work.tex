@@ -2,7 +2,7 @@ This chapter briefly reviews the main concepts of linear regression. We describe
 
 
 \section{Linear Regression}
-Let us consider an entity with a number of scalar measurable (observable) properties, for example temperature, weight, and size. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a vector $y$ of length $n$ containing the corresponding observed values of an arbitrary property of interest.
+Let us consider an entity with a number of scalar measurable (observable) properties, e.g. temperature, weight, dimensions. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a vector $y$ of length $n$ containing the corresponding observed values of an arbitrary property of interest.
 
 Linear regression is a method for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in \ref{eq:lin_reg}
 \begin{equation} \label{eq:lin_reg}
@@ -29,57 +29,64 @@ S(\beta) = L(\beta) + P(\beta)
 \end{equation}
 
 
-\section{Ridge regression}
+\subsection{Ridge regression}
 Ridge regression \cite{hoerl1970ridge}, also called Tikhonov or L2 regularization, is used to penalize large values in the $\beta$ estimate. The penalty, shown in equation \ref{eq:ridge}, causes the parameter estimates of the less important predictors to be shrinked, but remain non-zero. As a result, L2 regularization does not perform feature selection.
 \begin{equation} \label{eq:ridge}
 P(\beta) = \lambda\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
 
 
-\section{Lasso}
+\subsection{Lasso}
 The least absolute shrinkage and selection operator (LASSO) was introduced by Tibshirani in \cite{tibshirani1996regression}. It produces a sparse coefficient vector, whose remaining non-zero elements define a subset of the most relevant predictors. Model sparsity is especially important in high-dimensional problems, such as those arising when processing epigenetic data. The L1 penalty, shown in equation \ref{eq:lasso}, performs both variable selection and regularization.
 \begin{equation} \label{eq:lasso}
 P(\beta) = \lambda\sum_{i=1}^{p}\left|\beta_i\right|
 \end{equation}
 
 
-\section{Elastic Net}
+\subsection{Elastic Net}
 The Elastic Net \cite{zou2005regularization}, suggested by Zou and Hastie, linearly combines the L1 (\ref{eq:lasso}) and L2 (\ref{eq:ridge}) penalties. This approach overcomes the individual limitations of the Lasso and Ridge methods. The elastic net penalty, shown in equation \ref{eq:enet}, is adjusted by two hyperparameters $\lambda_1$ and $\lambda_2$, one for each of the two penalty terms.
 \begin{equation} \label{eq:enet}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
 
 
-\section{Grace}
-\begin{equation}
+\section{Network-constrained regularization}
+Various approaches for network-constrained regularization have been developed in recent years. They enable the use of prior knowledge in the form of a network in the parameter estimation process. This allows methods to consider known relationships between predictors. In the context of epigenetic research, prior knowledge could be provided as a gene network representing known interactions between genes. Biological knowledge about the predictors should lead to a better understanding of the data and improved (biological) meaningfulness of the results.
+
+For all network-constrained regularization approaches presented in this section, we define the following notation:\\
+Let us consider a network that is represented by a weighted graph $G = (V, E, W)$, where $V$ is the set of vertices corresponding to the $p$ predictors, $E$ is the set of edges and $W$ contains their corresponding weights. An edge between the vertices $u$ and $v$ is represented as $u \sim v$ and its edge weight is $w(u,v)$. Let us define the degree $d_v$ of a vertex $v$ as $d_v = \sum_{u \sim v}w(u,v)$.
+
+\subsection{Grace}
+\cite{li2008network}
+\begin{equation} \label{eq:grace}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
 
 
-\section{aGrace}
+\subsection{aGrace} \label{eq:agrace}
 \begin{equation}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
 
 
-\section{GBLasso} \label{sec:gblasso}
+\subsection{GBLasso} \label{sec:gblasso}
 This method was initially suggested in \cite{pan2010incorporating}. Pan, Xie and Shen considered the objective function shown in equation \ref{eq:gblasso_full}. 
 \begin{equation} \label{eq:gblasso_full}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}-\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
+S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}+\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
 \end{equation}
 where $w_i$ is a weight function attributed to each node. Three types of functions, dependent on the node's degree $d_i$ and/or $\gamma$, were considered by the authors: $w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ and $w_i = d_i^\gamma$.
 
-A simplification of the penalty function is presented in \cite{kim2013network}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty multiplier $\lambda2^{1/\gamma'}$ has been transformed to $\lambda$. The simplified objective function is shown in \ref{eq:gblasso_simplified}.
+A simplification of the penalty function is presented in \cite{luo2012two}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty multiplier $\lambda2^{1/\gamma'}$ has been transformed to $\lambda$. The simplified objective function is shown in \ref{eq:gblasso_simplified}.
 \begin{equation} \label{eq:gblasso_simplified}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
 \lambda\sum_{u \sim v}
-\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma-
+\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma+
 \left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}
 \end{equation}
 
 
 
-\section{Linf and aLinf}
+\subsection{Linf and aLinf}
 The authors of \cite{luo2012two} continued the study presented in section \ref{sec:gblasso}. They noted that as $\gamma\rightarrow\infty$ the penalty \ref{eq:gblasso_simplified} becomes \ref{eq:linf_full}.
 \begin{equation} \label{eq:linf_full}
 S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
@@ -91,7 +98,7 @@ Luo, Pan and Shen also suggest an equivalent formulation of the penalized estima
 \begin{split}
 S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
 &subject\ to\ \sum_{u \sim v}
-\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma-
+\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma+
 \left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}\leq C
 \end{split}
 \end{align}
@@ -120,4 +127,4 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 \end{align}
 
 
-\section{TTLP and LTLP}
+\subsection{TTLP and LTLP}
