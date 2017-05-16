@@ -4,7 +4,7 @@ This chapter briefly reviews the main concepts of linear regression. We describe
 \section{Linear Regression}
 Let us consider an entity with a number of scalar measurable (observable) properties, e.g. temperature, weight, dimensions. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a vector $y$ of length $n$ containing the corresponding observed values of an arbitrary property of interest.
 
-Linear regression is a method for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in \ref{eq:lin_reg}
+Linear regression is a method for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in Equation \ref{eq:lin_reg}
 \begin{equation} \label{eq:lin_reg}
 y_i = \beta_01+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_pX_{ip}+\epsilon_i, \quad for\ i=1,2,...,n
 \end{equation}
@@ -23,28 +23,28 @@ The parameter estimate $\hat{\beta}$ for the linear regression model is obtained
 
 
 \section{Penalized Regression}
-Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties by scaling them. The general form of penalized regression is shown in equation \ref{eq:pen_reg}. 
+Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties by scaling them. The general form of penalized regression is shown in Equation \ref{eq:pen_reg}. 
 \begin{equation} \label{eq:pen_reg}
 S(\beta) = L(\beta) + P(\beta)
 \end{equation}
 
 
 \subsection{Ridge regression}
-Ridge regression \cite{hoerl1970ridge}, also called Tikhonov or L2 regularization, is used to penalize large values in the $\beta$ estimate. The penalty, shown in equation \ref{eq:ridge}, causes the parameter estimates of the less important predictors to be shrinked, but remain non-zero. As a result, L2 regularization does not perform feature selection.
+Ridge regression \cite{hoerl1970ridge}, also called Tikhonov or L2 regularization, is used to penalize large values in the $\beta$ estimate. The penalty, shown in Equation \ref{eq:ridge}, causes the parameter estimates of the less important predictors to be shrinked, but remain non-zero. As a result, L2 regularization does not perform feature selection.
 \begin{equation} \label{eq:ridge}
 P(\beta) = \lambda\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
 
 
 \subsection{Lasso}
-The least absolute shrinkage and selection operator (LASSO) was introduced by Tibshirani in \cite{tibshirani1996regression}. It produces a sparse coefficient vector, whose remaining non-zero elements define a subset of the most relevant predictors. Model sparsity is especially important in high-dimensional problems, such as those arising when processing epigenetic data. The L1 penalty, shown in equation \ref{eq:lasso}, performs both variable selection and regularization.
+The least absolute shrinkage and selection operator (LASSO) was introduced by Tibshirani in \cite{tibshirani1996regression}. It produces a sparse coefficient vector, whose remaining non-zero elements define a subset of the most relevant predictors. Model sparsity is especially important in high-dimensional problems, such as those arising when processing epigenetic data. The L1 penalty, shown in Equation \ref{eq:lasso}, performs both variable selection and regularization.
 \begin{equation} \label{eq:lasso}
 P(\beta) = \lambda\sum_{i=1}^{p}\left|\beta_i\right|
 \end{equation}
 
 
 \subsection{Elastic Net} \label{sec:enet}
-The Elastic Net \cite{zou2005regularization}, suggested by Zou and Hastie, linearly combines the L1 (\ref{eq:lasso}) and L2 (\ref{eq:ridge}) penalties. This approach overcomes the individual limitations of the Lasso and Ridge methods. The elastic net penalty, shown in equation \ref{eq:enet}, is adjusted by two hyperparameters $\lambda_1$ and $\lambda_2$, one for each of the two penalty terms.
+The Elastic Net \cite{zou2005regularization}, suggested by Zou and Hastie, linearly combines the L1 (\ref{eq:lasso}) and L2 (\ref{eq:ridge}) penalties. This approach overcomes the individual limitations of the Lasso and Ridge methods. The elastic net penalty, shown in Equation \ref{eq:enet}, is adjusted by two hyperparameters $\lambda_1$ and $\lambda_2$, one for each of the two penalty terms.
 \begin{equation} \label{eq:enet}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
@@ -58,17 +58,17 @@ Let us consider a network that is represented by a weighted graph $G = (V, E, W)
 
 
 \subsection{Grace}
-The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias "Grace" is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in equation \ref{eq:grace}, contains two terms - an $L1$ penalty for variable selection and a second term that performs the network penalization.  
+The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias "Grace" is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in Equation \ref{eq:grace}, contains two terms - an $L1$ penalty for variable selection and a second term that performs the network penalization.  
 \begin{equation} \label{eq:grace}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
 The penalty is designed to smooth the parameters $\beta$ over the gene network. This is achieved by penalizing the scaled difference of the coefficients between neighboring vertices in the network. The penalty encourages genes with a higher degree in the network (e.g. hub genes) to have larger coefficients.
 
 
-\subsection{aGrace}
+\subsection{aGrace} \label{sec:agrace}
 One drawback of the original Grace approach is that it performs poorly when the coefficients of two linked predictors have different signs. This scenario is feasible because one of the two genes could be negatively correlated with the target, in which case the coefficients of both genes will be penalized.  
 
-Li and Li proposed a modification \cite{li2010variable} that performs adaptive graph-constrained regularization (aGrace) to solve this issue. It uses an initial coefficient estimate $\tilde{\beta}_v$ obtained through OLSE (\ref{sec:olse}) if $p<n$ or Elastic Net (\ref{sec:enet}) otherwise. The adaptive Grace penalty function is shown in equation \ref{eq:agrace}.
+Li and Li proposed a modification \cite{li2010variable} that performs adaptive graph-constrained regularization (aGrace) to solve this issue. It uses an initial coefficient estimate $\tilde{\beta}_v$ obtained through OLSE (\ref{sec:olse}) if $p<n$ or Elastic Net (\ref{sec:enet}) otherwise. The adaptive Grace penalty function is shown in Equation \ref{eq:agrace}.
 \begin{equation} \label{eq:agrace}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v),
 \end{equation}
@@ -76,16 +76,15 @@ where the multiplier $sign(\tilde{\beta}_u) = \left\{ \begin{aligned} -1 &\quad 
 
 
 \subsection{GBLasso} \label{sec:gblasso}
-This method was initially suggested in \cite{pan2010incorporating}. Pan, Xie and Shen considered the objective function shown in equation \ref{eq:gblasso_full}. 
+One concern regarding the adaptive grace (\ref{sec:agrace}) method is the difficulty to estimate the sign adjustment of all $\beta_i$, for which $\tilde{\beta}_i = 0$. To discard the need for this estimation, Pan et al. proposed an alternative approach \cite{pan2010incorporating}. The authors suggested the penalty function shown in Equation \ref{eq:gblasso_full}. 
 \begin{equation} \label{eq:gblasso_full}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}+\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
+P(\beta) = \lambda 2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}+\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
 \end{equation}
-where $w_i$ is a weight function attributed to each node. Three types of functions, dependent on the node's degree $d_i$ and/or $\gamma$, were considered by the authors: $w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ and $w_i = d_i^\gamma$.
+where $\gamma > 1$ and $\lambda > 0$ are hyperparameters and $\gamma'$ satisfies $\frac{1}{\gamma'}+\frac{1}{\gamma}=1$. The denominator $w_i$ is a weight function attributed to each node. Three types of weight functions, dependent on the node's degree $d_i$ and/or $\gamma$, were initially considered by the authors: $w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ and $w_i = d_i^\gamma$. 
 
-A simplification of the penalty function is presented in \cite{luo2012two}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty multiplier $\lambda2^{1/\gamma'}$ has been transformed to $\lambda$. The simplified objective function is shown in \ref{eq:gblasso_simplified}.
+A simplification of the penalty function is presented in \cite{luo2012two}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty sum multiplier $\lambda2^{1/\gamma'}$ has been modified to depend exclusively on $\lambda$. The simplified penalty function is shown in Equation \ref{eq:gblasso_simplified} and referred to with the alias GBLasso in this paper.
 \begin{equation} \label{eq:gblasso_simplified}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
-\lambda\sum_{u \sim v}
+P(\beta) = \lambda\sum_{u \sim v}
 \left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma+
 \left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}
 \end{equation}

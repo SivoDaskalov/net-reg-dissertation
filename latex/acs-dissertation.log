@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  16 MAY 2017 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  16 MAY 2017 16:42
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1055,10 +1055,10 @@ ap-tive graph-constrained
 
 ] [11]) [12] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32029 strings out of 493333
- 807255 string characters out of 3139183
- 902982 words of memory out of 3000000
- 35104 multiletter control sequences out of 15000+200000
+ 32030 strings out of 493333
+ 807267 string characters out of 3139183
+ 902994 words of memory out of 3000000
+ 35105 multiletter control sequences out of 15000+200000
  11581 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1074,7 +1074,7 @@ nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (20 pages, 238270 bytes).
+Output written on acs-dissertation.pdf (20 pages, 238956 bytes).
 PDF statistics:
  129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
