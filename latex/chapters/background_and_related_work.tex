@@ -11,7 +11,7 @@ y_i = \beta_01+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_pX_{ip}+\epsilon_i, \quad f
 where $\epsilon_i$ represents noise, capturing all external factors influencing the target values, such as inaccuracy of measurement. The error $\epsilon_i$ introduces cannot be predicted or reduced.
 
 
-\section{Ordinary Least Squares Estimation}
+\section{Ordinary Least Squares Estimation} \label{sec:olse}
 Ordinary least squares (OLS) is a method of estimating the unknown parameters $\beta$ in a linear regression model. It aims to minimize the sum of squared deviations of the observed values from the model prediction (\ref{eq:rss}), also called residual sum of squares (RSS).
 \begin{equation} \label{eq:rss}
 L(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
@@ -43,7 +43,7 @@ P(\beta) = \lambda\sum_{i=1}^{p}\left|\beta_i\right|
 \end{equation}
 
 
-\subsection{Elastic Net}
+\subsection{Elastic Net} \label{sec:enet}
 The Elastic Net \cite{zou2005regularization}, suggested by Zou and Hastie, linearly combines the L1 (\ref{eq:lasso}) and L2 (\ref{eq:ridge}) penalties. This approach overcomes the individual limitations of the Lasso and Ridge methods. The elastic net penalty, shown in equation \ref{eq:enet}, is adjusted by two hyperparameters $\lambda_1$ and $\lambda_2$, one for each of the two penalty terms.
 \begin{equation} \label{eq:enet}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}
@@ -56,17 +56,23 @@ Various approaches for network-constrained regularization have been developed in
 For all network-constrained regularization approaches presented in this section, we define the following notation:\\
 Let us consider a network that is represented by a weighted graph $G = (V, E, W)$, where $V$ is the set of vertices corresponding to the $p$ predictors, $E$ is the set of edges and $W$ contains their corresponding weights. An edge between the vertices $u$ and $v$ is represented as $u \sim v$ and its edge weight is $w(u,v)$. Let us define the degree $d_v$ of a vertex $v$ as $d_v = \sum_{u \sim v}w(u,v)$.
 
+
 \subsection{Grace}
-\cite{li2008network}
+The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias "Grace" is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in equation \ref{eq:grace}, contains two terms - an $L1$ penalty for variable selection and a second term that performs the network penalization.  
 \begin{equation} \label{eq:grace}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
+P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
+The penalty is designed to smooth the parameters $\beta$ over the gene network. This is achieved by penalizing the scaled difference of the coefficients between neighboring vertices in the network. The penalty encourages genes with a higher degree in the network (e.g. hub genes) to have larger coefficients.
 
 
-\subsection{aGrace} \label{eq:agrace}
-\begin{equation}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
+\subsection{aGrace}
+One drawback of the original Grace approach is that it performs poorly when the coefficients of two linked predictors have different signs. This scenario is feasible because one of the two genes could be negatively correlated with the target, in which case the coefficients of both genes will be penalized.  
+
+Li and Li proposed a modification \cite{li2010variable} that performs adaptive graph-constrained regularization (aGrace) to solve this issue. It uses an initial coefficient estimate $\tilde{\beta}_v$ obtained through OLSE (\ref{sec:olse}) if $p<n$ or Elastic Net (\ref{sec:enet}) otherwise. The adaptive Grace penalty function is shown in equation \ref{eq:agrace}.
+\begin{equation} \label{eq:agrace}
+P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v),
 \end{equation}
+where the multiplier $sign(\tilde{\beta}_u) = \left\{ \begin{aligned} -1 &\quad if \: \tilde{\beta}_u < 0 \cr 1 &\quad otherwise \end{aligned} \right.$ adjusts the sign of each fraction as suggested by the initial estimate $\tilde{\beta}_v$.
 
 
 \subsection{GBLasso} \label{sec:gblasso}
