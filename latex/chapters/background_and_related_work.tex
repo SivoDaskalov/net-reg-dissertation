@@ -72,7 +72,7 @@ Li and Li proposed a modification \cite{li2010variable} that performs adaptive g
 \begin{equation} \label{eq:agrace}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v),
 \end{equation}
-where the multiplier $sign(\tilde{\beta}_u) = \left\{ \begin{aligned} -1 &\quad if \: \tilde{\beta}_u < 0 \cr 1 &\quad otherwise \end{aligned} \right.$ adjusts the sign of each fraction as suggested by the initial estimate $\tilde{\beta}_v$.
+where the multiplier $sign(\tilde{\beta}_u) = \left\{ \begin{aligned} -1 &\quad if \: \tilde{\beta}_u < 0 \cr 1 &\quad otherwise \end{aligned} \right.$ adjusts the sign of each fraction as suggested by the initial estimate $\tilde{\beta}$.
 
 
 \subsection{GBLasso} \label{sec:gblasso}
@@ -92,13 +92,14 @@ P(\beta) = \lambda\sum_{u \sim v}
 
 
 \subsection{Linf and aLinf}
-The authors of \cite{luo2012two} continued the study presented in section \ref{sec:gblasso}. They noted that as $\gamma\rightarrow\infty$ the penalty \ref{eq:gblasso_simplified} becomes \ref{eq:linf_full}.
-\begin{equation} \label{eq:linf_full}
-S(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + 
-\lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)
+
+\subsubsection{Linf}
+Luo et al. \cite{luo2012two} continued researching the GBLasso method (\ref{sec:gblasso}). They noted that as $\gamma\rightarrow\infty$ the GBLasso penalty (\ref{eq:gblasso_simplified}) is transformed into Equation \ref{eq:linf_pen}. This penalty is linear and we denote the method as $L_\infty$ (Linf). 
+\begin{equation} \label{eq:linf_pen}
+P(\beta) = \lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)
 \end{equation}
 
-Luo, Pan and Shen also suggest an equivalent formulation of the penalized estimation in \ref{eq:gblasso_simplified} as the constrained minimization problem shown in \ref{eq:gblasso_constrained}.
+The authors also suggest an equivalent formulation of the GBLasso-based regression as the following constrained minimization problem:
 \begin{align} \label{eq:gblasso_constrained}
 \begin{split}
 S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
@@ -108,8 +109,7 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 \end{split}
 \end{align}
 
-As previously shown, under $\gamma\rightarrow\infty$ equation \ref{eq:gblasso_constrained} transforms to \ref{eq:linf_constrained}. 
-
+Similarly, regression with the $L_\infty$ penalty can be equivalently defined as:
 \begin{align} \label{eq:linf_constrained}
 \begin{split}
 S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
@@ -117,13 +117,14 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 \end{split}
 \end{align}
 
-The authors suggest an additional modification to reduce bias in the parameter estimates of the standard Linf method. They propose a two-step approach ...
+\subsubsection{aLinf}
+The authors suggest an additional modification to reduce bias in the parameter estimates of the standard Linf method. Similarly to \cite{li2010variable}, they propose a two-step approach using an initial parameter estimate $\tilde{\beta}$, obtained with the $L_\infty$ method. The adaptive penalty, denoted as $aL_\infty$ (aLinf), is shown in Equation \ref{eq:alinf_pen}.
 
 \begin{equation} \label{eq:alinf_pen}
 P(\beta) = \lambda\sum_{u \sim v}\left|\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right|
 \end{equation}
 
-Which produces the following constrained minimization problem:
+The following constrained minimization problem can be defined to implement the $aL_\infty$ approach:
 \begin{align} \label{eq:alinf_constrained}
 \begin{split}
 S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
@@ -133,3 +134,4 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 
 
 \subsection{TTLP and LTLP}
+

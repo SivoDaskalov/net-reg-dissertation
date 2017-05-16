@@ -11,4 +11,6 @@
 \contentsline {subsection}{\numberline {2.4.2}aGrace}{7}
 \contentsline {subsection}{\numberline {2.4.3}GBLasso}{7}
 \contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{8}
+\contentsline {subsubsection}{Linf}{8}
+\contentsline {subsubsection}{aLinf}{9}
 \contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{9}
