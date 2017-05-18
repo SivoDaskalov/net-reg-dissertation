@@ -15,16 +15,20 @@ def generate_true_coefficients(trans_factor_coefficients, regulated_denominator,
     return true_coefficients
 
 
-def generate_setup_coefficients(n_trans_factors):
+def generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups=[1]):
     # 10 regulated genes per trans factor, setups are as suggested by Li and Li, Bioinformatics 2008, section 4
-    trans_factor_coefs = [5, -5, 3, -3]
-    n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
-    setups = {
-        "Setup 1": generate_true_coefficients(trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes),
-        "Setup 2": generate_true_coefficients(trans_factor_coefs, math.sqrt(10), 3, 7, n_trailing_zero_genes),
-        "Setup 3": generate_true_coefficients(trans_factor_coefs, 10, 0, 10, n_trailing_zero_genes),
-        "Setup 4": generate_true_coefficients(trans_factor_coefs, 10, 3, 7, n_trailing_zero_genes)
-    }
+    setups = {}
+    for n_relevant_groups in n_relevant_trans_factor_groups:
+        trans_factor_coefs = [5, -5, 3, -3] * n_relevant_groups
+        n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
+        setups["Groups %d_Setup 1" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes)
+        setups["Groups %d_Setup 2" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, math.sqrt(10), 3, 7, n_trailing_zero_genes),
+        setups["Groups %d_Setup 3" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, 10, 0, 10, n_trailing_zero_genes),
+        setups["Groups %d_Setup 4" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, 10, 3, 7, n_trailing_zero_genes)
     return setups
 
 
@@ -61,7 +65,7 @@ def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
 
 
 def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
-                          n_tune_obs, n_train_obs, n_test_obs, load_dump=False):
+                          n_tune_obs, n_train_obs, n_test_obs, n_relevant_trans_factor_groups=[1], load_dump=False):
     dump_url = "dumps/setups_tf%d_rg%d_tu%d_tr%d_ts%d" % (n_trans_factors, n_regulated_genes_per_trans_factor,
                                                           n_tune_obs, n_train_obs, n_test_obs)
     if load_dump and os.path.exists(dump_url):
@@ -70,10 +74,10 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
             setups = pickle.load(f)
         print("%sLoaded previously generated dataset" % timestamp())
     else:
-        print("Generating dataset")
+        print("Generating datasets")
         setups = []
         network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
-        for label, coefficients in generate_setup_coefficients(n_trans_factors).items():
+        for label, coefficients in generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups).items():
             x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tu = generate_response(x_tune, coefficients)
 
