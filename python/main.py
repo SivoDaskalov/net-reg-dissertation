@@ -1,5 +1,6 @@
 from commons import real_data_methods, dump, load
 from orchestrated_tuning import batch_do_orchestrated_tuning
+from orchestrated_tuning.utilities import load_custom_start_points
 from data_gen_utils import batch_generate_setups
 from import_utils import batch_import_datasets
 from model_fitting import batch_fit_models, batch_fit_real_data, full_method_list
@@ -45,7 +46,8 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
     export_errors(results)
 
 
-cv_mse_tune_generated_data(methods=["lasso", "enet"], load_dump=True)
+# cv_mse_tune_generated_data(methods=["lasso", "enet"], load_dump=True)
+# load_custom_start_points("results/p550.csv")
 # orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
 # orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
 
