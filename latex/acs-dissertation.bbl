@@ -71,4 +71,10 @@ Arthur~E Hoerl and Robert~W Kennard.
 \newblock Ridge regression: Biased estimation for nonorthogonal problems.
 \newblock {\em Technometrics}, 12(1):55--67, 1970.
 
+\bibitem{shen2012likelihood}
+Xiaotong Shen, Wei Pan, and Yunzhang Zhu.
+\newblock Likelihood-based selection and sharp parameter estimation.
+\newblock {\em Journal of the American Statistical Association},
+  107(497):223--232, 2012.
+
 \end{thebibliography}

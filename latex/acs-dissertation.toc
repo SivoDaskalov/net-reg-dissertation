@@ -1,16 +1,19 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Background and Related Work}{3}
-\contentsline {section}{\numberline {2.1}Linear Regression}{3}
-\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{4}
-\contentsline {section}{\numberline {2.3}Penalized Regression}{4}
-\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{5}
-\contentsline {subsection}{\numberline {2.3.2}Lasso}{5}
-\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{5}
-\contentsline {section}{\numberline {2.4}Network-constrained regularization}{6}
-\contentsline {subsection}{\numberline {2.4.1}Grace}{6}
-\contentsline {subsection}{\numberline {2.4.2}aGrace}{7}
-\contentsline {subsection}{\numberline {2.4.3}GBLasso}{7}
-\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{8}
-\contentsline {subsubsection}{Linf}{8}
-\contentsline {subsubsection}{aLinf}{9}
-\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{9}
+\contentsline {chapter}{\numberline {2}Background and Related Work}{5}
+\contentsline {section}{\numberline {2.1}Linear Regression}{5}
+\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
+\contentsline {section}{\numberline {2.3}Penalized Regression}{6}
+\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{7}
+\contentsline {subsection}{\numberline {2.3.2}Lasso}{7}
+\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{7}
+\contentsline {section}{\numberline {2.4}Network-constrained regularization}{8}
+\contentsline {subsection}{\numberline {2.4.1}Grace}{8}
+\contentsline {subsection}{\numberline {2.4.2}aGrace}{9}
+\contentsline {subsection}{\numberline {2.4.3}GBLasso}{9}
+\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{10}
+\contentsline {subsubsection}{Linf}{10}
+\contentsline {subsubsection}{aLinf}{11}
+\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{11}
+\contentsline {subsubsection}{Indicator Functions}{12}
+\contentsline {subsubsection}{TTLP}{12}
+\contentsline {subsubsection}{LTLP}{12}

@@ -134,4 +134,35 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 
 
 \subsection{TTLP and LTLP}
+Kim et al. \cite{kim2013network} suggested two alternative network constrained regression methods based on the penalty shown in Equation \ref{eq:tlp_pen}. The first subpenalty is the $L_0$-loss for sparsest variable selection and unbiased parameter estimation proposed by Shen et al \cite{shen2012likelihood}. The second subpenalty encourages simultaneous selection or elimination of neighboring predictors in the network. the penalties are defined with the use of indicator functions notation explained in the following subsection.
+\begin{equation} \label{eq:tlp_pen}
+P(\beta) = \lambda_1 \sum_{i=1}^{p} [|\beta_i|\neq 0] + \lambda_2 \sum_{u \sim v} \left|\left[\frac{|\beta_u|}{w_u}\neq 0\right]-\left[\frac{|\beta_v|}{w_v}\neq 0\right]\right|
+\end{equation}
 
+\subsubsection{Indicator Functions}
+An indicator (characteristic) function is defined on a set $X$ and some subset $A \subset X$. The function indicates membership of elements in the subset $A$, having value of 1 for all elements of $A$ and value of 0 for all other elements in $X$. Formally, indicator functions are defined as follows:
+\begin{equation}
+[x \in A] = 1_A (x) = \left\{ 
+\begin{aligned} 
+1 & \quad if \quad x \in A \cr 
+0 & \quad if \quad x \notin A
+\end{aligned} \right.
+for\ each\ x\ in\ X
+\end{equation}
+Note that the inversion bracket notation $[P(x)]$ can be used equivalently to denote the indicator function of elements for which the condition $P$ is true.
+
+\subsubsection{TTLP}
+Because the indicator function is not continuous, Shen et al. \cite{shen2012likelihood} proposed a truncated Lasso penalty (TLP) $J_\tau$ for a computational substitute. The TLP penalty, defined in Equation \ref{eq:tlp}, tends to $[|z|\neq 0]$ as $\tau \to 0^+$. The tuning parameter $\tau$ determines the degree of approximation.
+\begin{equation} \label{eq:tlp}
+J_\tau(|z|)=min\left(\frac{|z|}{\tau},1\right)
+\end{equation}
+Applying the TLP substitute to Equation \ref{eq:tlp_pen} produces the $TTLP_I$ penalty, shown in Equation \ref{eq:ttlp}, which uses TLP for both variable selection and grouping.
+\begin{equation} \label{eq:ttlp}
+P(\beta) = \lambda_1 \sum_{i=1}^{p} J_\tau|\beta_i| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|
+\end{equation}
+
+\subsubsection{LTLP}
+As an alternative to the TTLP, Kim et al. proposed a modification of their penalty using the Lasso for variable selection. The modified penalty, which the authors call $LTLP_I$, is shown in Equation \ref{eq:ltlp}.
+\begin{equation} \label{eq:ltlp}
+P(\beta) = \lambda_1 \sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|
+\end{equation}
