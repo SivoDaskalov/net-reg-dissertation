@@ -1,3 +1,4 @@
+from __future__ import division
 from commons import Setup, timestamp
 from sklearn.preprocessing import StandardScaler
 import math
@@ -19,7 +20,7 @@ def generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups=
     # 10 regulated genes per trans factor, setups are as suggested by Li and Li, Bioinformatics 2008, section 4
     setups = {}
     for n_relevant_groups in n_relevant_trans_factor_groups:
-        trans_factor_coefs = [5, -5, 3, -3] * n_relevant_groups
+        trans_factor_coefs = [ x / n_relevant_groups for x in [5, -5, 3, -3] * n_relevant_groups]
         n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
         setups["Groups %d_Setup 1" % n_relevant_groups] = generate_true_coefficients(
             trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes)
