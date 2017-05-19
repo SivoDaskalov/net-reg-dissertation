@@ -1,6 +1,7 @@
 from __future__ import division
 from import_utils import tumor_data_files
 from sklearn.metrics.pairwise import cosine_similarity
+from plotting_utils import plot_similarities_heatmap
 import pandas as pd
 import numpy as np
 import operator
@@ -74,4 +75,5 @@ def batch_evaluate_similarities(models):
 
     summary_similarities = pd.DataFrame(data=sim_merged, index=methods, columns=methods)
     summary_similarities.to_csv("results/similarities.csv", sep=',')
+    plot_similarities_heatmap(sim_mean, methods)
     return summary_similarities
