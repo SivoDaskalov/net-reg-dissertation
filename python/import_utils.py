@@ -35,14 +35,15 @@ def adjm_to_edgel():
                     writer.writerow(edge)
 
 
-def batch_import_datasets(load_dump=True):
+def batch_import_datasets(labels, load_dump=False):
     dump_url = "dumps/datasets"
     if load_dump and os.path.exists(dump_url):
         with open(dump_url, 'rbU') as f:
             datasets = pickle.load(f)
     else:
         datasets = []
-        for case, files in tumor_data_files.items():
+        for label in labels:
+            files = tumor_data_files[label]
             meth_url = files["methylation"]
             expr_utl = files["expression"]
             network_url = files["network_edge_list"]
@@ -57,7 +58,7 @@ def batch_import_datasets(load_dump=True):
                     netwk = [(int(row[0]) + 1, int(row[1]) + 1) for row in csv.reader(f, delimiter=',')]
                     idx, deg = np.unique(netwk, return_counts=True)
 
-            datasets.append(Dataset(label=case, methylation=meth, expression=expr, network=netwk, degrees=deg))
+            datasets.append(Dataset(label=label, methylation=meth, expression=expr, network=netwk, degrees=deg))
         with open(dump_url, 'wb') as f:
             pickle.dump(datasets, f)
     return datasets
