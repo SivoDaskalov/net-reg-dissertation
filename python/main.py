@@ -26,7 +26,8 @@ setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_ge
 def cv_mse_tune_generated_data(methods, load_dump=False):
     pd.set_option('display.width', 200)
     fits = batch_fit_models(setups, methods=methods, load_dump=load_dump)
-    similarities = batch_evaluate_similarities(fits)
+    similarities = batch_evaluate_similarities(fits, url="figures/cv_mse_similarities.png",
+                                               title='Method similarities, CV of MSE tuning')
     results = batch_evaluate_models(fits, "results/p%d" % p)
     summary = summarize_results(results, "results/p%d_summary" % p)
     print(summary)
@@ -38,6 +39,8 @@ def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlati
                                                opt_method=opt_method)
     dump(orctun_fits, model_dump_url)
     orctun_fits = load(model_dump_url)
+    similarities = batch_evaluate_similarities(orctun_fits, url="figures/orchestrated_similarities.png",
+                                               title='Method similarities, Orchestrated tuning')
     orctun_results = batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d" % (opt_method, p))
     summary = summarize_results(orctun_results, "results/orctun_results_%s_p%d_summary" % (opt_method, p))
     print(summary)
@@ -57,8 +60,8 @@ cv_mse_tune_generated_data(methods=["lasso", "enet", "grace", "agrace", "linf", 
 # orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
 
 plot_summary_comparison(summary_urls={
-    "CV of MSE": "results/p550_summary.csv",
-    "Orchestrated": "results/p550_summary.csv"})
+    "CV of MSE tuning": "results/p550_summary.csv",
+    "Orchestrated tuning": "results/p550_summary.csv"})
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
 print("Total time elapsed: %.0f seconds" % time.clock())

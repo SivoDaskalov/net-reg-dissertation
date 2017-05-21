@@ -55,7 +55,7 @@ def applier(a, b, op):
     return map(lambda ro: map(op, ro[0], ro[1]), zip(a, b))
 
 
-def batch_evaluate_similarities(models):
+def batch_evaluate_similarities(models, url="figures/similarities.png", title='Method similarities'):
     methods = [method for method in export_column_order if method in models[0][1].keys()]
     similarities = np.zeros((len(methods), len(methods), len(models)))
     for i in range(len(models)):
@@ -73,5 +73,5 @@ def batch_evaluate_similarities(models):
 
     summary_similarities = pd.DataFrame(data=sim_merged, index=methods, columns=methods)
     summary_similarities.to_csv("results/similarities.csv", sep=',')
-    plot_similarities_heatmap(sim_mean, methods)
+    plot_similarities_heatmap(sim_mean, methods, url=url, title=title)
     return summary_similarities

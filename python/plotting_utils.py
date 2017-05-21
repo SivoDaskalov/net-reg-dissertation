@@ -28,7 +28,8 @@ def plot_results(results, columns=["mse", "predictors", "correlation", "sens", "
             simple_bar_plot("%s %s" % (setup, column), methods, values)
 
 
-def plot_similarities_heatmap(similarities, methods, title='Method similarities', cmap=plt.cm.Blues):
+def plot_similarities_heatmap(similarities, methods, url="figures/similarities.png", title='Method similarities',
+                              cmap=plt.cm.Blues):
     plt.figure()
     plt.title(title, y=1.15)
     plt.imshow(similarities, interpolation='nearest', cmap=cmap)
@@ -45,7 +46,7 @@ def plot_similarities_heatmap(similarities, methods, title='Method similarities'
                  horizontalalignment="center", color="white" if similarities[i, j] > thresh else "black")
 
     plt.tight_layout()
-    plt.savefig("figures/similarities.png")
+    plt.savefig(url)
 
 
 def plot_summary_comparison(summary_urls):
@@ -73,8 +74,9 @@ def plot_summary_comparison(summary_urls):
 
         j = 0
         for label, summary in summaries.iteritems():
-            subplot.bar(ind + j * width, summary["%s mean" % subplots_info[i][1]], width,
-                        yerr=summary["%s std" % subplots_info[i][1]], label=label)
+            sub_summary = summary.loc[methods]
+            subplot.bar(ind + j * width, sub_summary["%s mean" % subplots_info[i][1]], width,
+                        yerr=sub_summary["%s std" % subplots_info[i][1]], label=label)
             j += 1
         subplot.set_ylim((0.0, subplot.get_ylim()[1]))
         if i != 0:
