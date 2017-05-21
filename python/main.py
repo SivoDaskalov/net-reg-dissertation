@@ -3,9 +3,10 @@ from orchestrated_tuning import batch_do_orchestrated_tuning
 from orchestrated_tuning.utilities import load_custom_start_points
 from data_gen_utils import batch_generate_setups
 from import_utils import batch_import_datasets
-from model_fitting import batch_fit_models, batch_fit_real_data, full_method_list
+from model_fitting import batch_fit_models, batch_fit_real_data
 from model_metrics import batch_evaluate_models, summarize_results
 from model_utils import export_errors, batch_evaluate_similarities
+from plotting_utils import plot_summary_comparison
 import pandas as pd
 import time
 
@@ -42,7 +43,6 @@ def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlati
     print(summary)
 
 
-
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_dump=False):
     datasets = batch_import_datasets(labels=["body", "prom"])
     fits = batch_fit_real_data(datasets, methods=methods, load_dump=load_dump)
@@ -52,10 +52,13 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
 
 cv_mse_tune_generated_data(methods=["lasso", "enet", "grace", "agrace", "linf", "alinf", "ttlp", "ltlp", "composite"],
                            load_dump=True)
-
 # load_custom_start_points("results/p550.csv")
 # orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
 # orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
+
+plot_summary_comparison(summary_urls={
+    "CV of MSE": "results/p550_summary.csv",
+    "Orchestrated": "results/p550_summary.csv"})
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
 print("Total time elapsed: %.0f seconds" % time.clock())

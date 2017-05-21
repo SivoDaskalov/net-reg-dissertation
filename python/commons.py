@@ -5,7 +5,8 @@ import pickle
 Dataset = namedtuple('Dataset', ['label', 'network', 'degrees', 'methylation', 'expression'])
 Setup = namedtuple('Setup', ['label', 'true_coefficients', 'network', 'degrees',
                              'x_tune', 'y_tune', 'x_train', 'y_train', 'x_test', 'y_test'])
-real_data_methods = ["lasso", "enet", "agrace", "gblasso", "alinf", "ltlp"]
+full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
+real_data_methods = ["lasso", "enet", "grace", "gblasso", "linf", "composite"]
 
 # General properties
 orchestrated_tuning_max_iter = 1000

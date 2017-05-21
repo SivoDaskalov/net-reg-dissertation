@@ -2,11 +2,10 @@ from __future__ import division
 from import_utils import tumor_data_files
 from sklearn.metrics.pairwise import cosine_similarity
 from plotting_utils import plot_similarities_heatmap
+from commons import full_method_list as export_column_order
 import pandas as pd
 import numpy as np
 import os.path
-
-export_column_order = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
 
 
 def assemble_mappings(dataset, fits, methods):

@@ -64,5 +64,6 @@ def summarize_results(results, filename):
     subframe = pd.DataFrame(data=results, columns=['model', 'mse', "correlation", "sens", "spec", "prec"])
     summary = subframe.apply(pd.to_numeric, errors='ignore').groupby('model').aggregate([np.mean, np.std])
     summary = summary.reindex(method_order).dropna(axis=0, how='all')
+    summary.columns = [' '.join(col).strip() for col in summary.columns.values]
     summary.to_csv("%s.csv" % filename, sep=',')
     return summary
