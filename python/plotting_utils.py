@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import numpy as np
+import itertools
 
 
 def simple_bar_plot(title, methods, values):
@@ -21,3 +23,23 @@ def plot_results(results, columns=["mse", "predictors", "correlation", "sens", "
         for column in columns:
             values = subframe[column].values.tolist()
             simple_bar_plot("%s %s" % (setup, column), methods, values)
+
+
+def plot_similarities_heatmap(similarities, methods, title='Method similarities', cmap=plt.cm.Blues):
+    plt.title(title)
+    plt.imshow(similarities, interpolation='nearest', cmap=cmap)
+    plt.colorbar()
+
+    tick_marks = np.arange(len(methods))
+    plt.xticks(tick_marks, methods, rotation=45)
+    plt.gca().xaxis.tick_top()
+    plt.yticks(tick_marks, methods)
+
+    thresh = (similarities.max() + similarities.min()) / 2.
+    for i, j in itertools.product(range(similarities.shape[0]), range(similarities.shape[1])):
+        plt.text(j, i, "%.3f" % similarities[i, j],
+                 horizontalalignment="center", color="white" if similarities[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    # plt.subplots_adjust(top=0.93)
+    plt.savefig("figures/similarities.png")

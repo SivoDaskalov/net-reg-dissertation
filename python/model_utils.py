@@ -1,5 +1,10 @@
+from __future__ import division
 from import_utils import tumor_data_files
+from sklearn.metrics.pairwise import cosine_similarity
+from plotting_utils import plot_similarities_heatmap
 import pandas as pd
+import numpy as np
+import operator
 import os.path
 
 export_column_order = ["lasso", "enet", "grace", "gblasso", "linf", "ttlp", "composite"]
@@ -46,3 +51,29 @@ def export_errors(results):
         if not os.path.exists(mappings_dir):
             os.makedirs(mappings_dir)
         frame.to_csv(os.path.join(mappings_dir, "errors.csv"), sep=',')
+
+
+def applier(a, b, op):
+    return map(lambda ro: map(op, ro[0], ro[1]), zip(a, b))
+
+
+def batch_evaluate_similarities(models):
+    methods = [method for method in export_column_order if method in models[0][1].keys()]
+    similarities = np.zeros((len(methods), len(methods), len(models)))
+    for i in range(len(models)):
+        cur_models = models[i][1]
+        for row_idx in range(len(methods)):
+            for col_idx in range(len(methods)):
+                m1 = cur_models[methods[row_idx]].coef_
+                m2 = cur_models[methods[col_idx]].coef_
+                similarity = cosine_similarity(m1.reshape(1, -1), m2.reshape(1, -1))
+                similarities[row_idx][col_idx][i] = round(similarity, 4)
+
+    sim_mean = np.mean(similarities, 2)
+    sim_std = np.std(similarities, 2)
+    sim_merged = applier(sim_mean, sim_std, lambda mean, std: "%.3f (%.3f)" % (mean, std))
+
+    summary_similarities = pd.DataFrame(data=sim_merged, index=methods, columns=methods)
+    summary_similarities.to_csv("results/similarities.csv", sep=',')
+    plot_similarities_heatmap(sim_mean, methods)
+    return summary_similarities
