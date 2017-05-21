@@ -35,7 +35,7 @@ def adjm_to_edgel():
                     writer.writerow(edge)
 
 
-def batch_import_datasets(labels, load_dump=False):
+def batch_import_datasets(labels=["body", "prom"], load_dump=False):
     dump_url = "dumps/datasets"
     if load_dump and os.path.exists(dump_url):
         with open(dump_url, 'rbU') as f:

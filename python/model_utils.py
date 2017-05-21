@@ -4,10 +4,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from plotting_utils import plot_similarities_heatmap
 import pandas as pd
 import numpy as np
-import operator
 import os.path
 
-export_column_order = ["lasso", "enet", "grace", "gblasso", "linf", "ttlp", "composite"]
+export_column_order = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
 
 
 def assemble_mappings(dataset, fits, methods):

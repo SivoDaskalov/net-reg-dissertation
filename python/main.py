@@ -4,8 +4,8 @@ from orchestrated_tuning.utilities import load_custom_start_points
 from data_gen_utils import batch_generate_setups
 from import_utils import batch_import_datasets
 from model_fitting import batch_fit_models, batch_fit_real_data, full_method_list
-from model_metrics import batch_evaluate_models
-from model_utils import export_errors
+from model_metrics import batch_evaluate_models, summarize_results
+from model_utils import export_errors, batch_evaluate_similarities
 import pandas as pd
 import time
 
@@ -24,9 +24,11 @@ setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_ge
 
 def cv_mse_tune_generated_data(methods, load_dump=False):
     pd.set_option('display.width', 200)
-    fits, similarities = batch_fit_models(setups, methods=methods, load_dump=load_dump)
-    results = batch_evaluate_models(fits)
-    print(results)
+    fits = batch_fit_models(setups, methods=methods, load_dump=load_dump)
+    similarities = batch_evaluate_similarities(fits)
+    results = batch_evaluate_models(fits, "results/p%d" % p)
+    summary = summarize_results(results, "results/p%d_summary" % p)
+    print(summary)
 
 
 def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlation"):
@@ -35,8 +37,10 @@ def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlati
                                                opt_method=opt_method)
     dump(orctun_fits, model_dump_url)
     orctun_fits = load(model_dump_url)
-    orctun_results = batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d.csv" % (opt_method, p))
-    print(orctun_results)
+    orctun_results = batch_evaluate_models(orctun_fits, "results/orctun_results_%s_p%d" % (opt_method, p))
+    summary = summarize_results(orctun_results, "results/orctun_results_%s_p%d_summary" % (opt_method, p))
+    print(summary)
+
 
 
 def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_dump=False):
@@ -46,10 +50,12 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
     export_errors(results)
 
 
-# cv_mse_tune_generated_data(methods=["gblasso"], load_dump=False)
+cv_mse_tune_generated_data(methods=["lasso", "enet", "grace", "agrace", "linf", "alinf", "ttlp", "ltlp", "composite"],
+                           load_dump=True)
+
 # load_custom_start_points("results/p550.csv")
 # orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
 # orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
 
-fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
+# fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
 print("Total time elapsed: %.0f seconds" % time.clock())

@@ -100,8 +100,7 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
 def batch_fit_models(setups, methods=full_method_list, load_dump=True):
     engine = matlab.engine.start_matlab("-nodesktop")
     models = [(setup, fit_models(setup=setup, engine=engine, methods=methods, load_dump=load_dump)) for setup in setups]
-    similarities = modut.batch_evaluate_similarities(models)
-    return models, similarities
+    return models
 
 
 def fit_models_opt_params(setup, engine, methods=real_data_method_list, load_dump=True, base_dump_url=None):

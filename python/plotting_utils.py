@@ -26,7 +26,7 @@ def plot_results(results, columns=["mse", "predictors", "correlation", "sens", "
 
 
 def plot_similarities_heatmap(similarities, methods, title='Method similarities', cmap=plt.cm.Blues):
-    plt.title(title)
+    plt.title(title, y=1.15)
     plt.imshow(similarities, interpolation='nearest', cmap=cmap)
     plt.colorbar()
 
