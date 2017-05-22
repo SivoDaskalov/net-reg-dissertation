@@ -17,6 +17,9 @@ n_regulated_genes_per_trans_factor = 10
 p = n_trans_factors * (n_regulated_genes_per_trans_factor + 1)
 relevant_trans_factor_groups = [1, 2, 3, 4, 5]
 
+setups = None
+
+
 # setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor,
 #                                n_trans_factors=n_trans_factors, load_dump=True,
 #                                n_relevant_trans_factor_groups=relevant_trans_factor_groups,
@@ -62,7 +65,7 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
 # plot_summary_comparison(summary_urls={
 #     "CV of MSE tuning": "results/p550_summary.csv",
 #     "Orchestrated tuning": "results/p550_summary.csv"})
-# plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
+plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
 print("Total time elapsed: %.0f seconds" % time.clock())

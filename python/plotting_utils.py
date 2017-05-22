@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import itertools
+import math
 from commons import full_method_list as method_order, glm_l1_ratios, grace_lambda1_values, grace_lambda2_values, \
     gblasso_gamma_values, gblasso_lambda_values, linf_c_values, alinf_e_values, cm_vote_thresholds
 
@@ -112,42 +113,67 @@ def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
 
     for model, params in parsed_params.iteritems():
         if len(params) == 1:
-            plt.figure()
-            ax = sns.distplot(params.values()[0], bins=15, kde=False)
+            fig = plt.figure(figsize=(8, 5))
+            ax = plt.gca()
             if model in xticks.keys():
                 ax.set_xticks(xticks[model])
+                bins = [xticks[model][0]] + [(j + i) / 2 for i, j in zip(xticks[model][:-1], xticks[model][1:])] + [
+                    xticks[model][-1]]
+            else:
+                bins = 15
             if model in xlim.keys():
                 ax.set_xlim(xlim[model])
+            sns.distplot(params.values()[0], bins=bins, kde=False, ax=ax)
             ax.set_xscale(xscale[model])
             ax.set_xlabel(xlabel[model])
-            plt.tight_layout()
-            plt.savefig("figures/tuning/%s.png" % model)
-            plt.clf()
+            ax.set_ylabel("Number of times selected")
+
         elif len(params) == 2:
-            plt.figure()
             count = pd.DataFrame(params).groupby([params.keys()[0], params.keys()[1]]).size()
             data = pd.DataFrame({'count': count}).reset_index()
 
-            g = sns.jointplot(x=data.columns[0], y=data.columns[1], data=data, xlim=xlim[model], ylim=ylim[model],
-                              stat_func=None)
+            g = sns.JointGrid(x=data.columns[0], y=data.columns[1], data=data)
             ax = g.ax_joint
-            plt.sca(ax)
-            plt.scatter(x=data.iloc[:, 0], y=data.iloc[:, 1], s=data.iloc[:, 2] * 100, c=data.iloc[:, 2], cmap="Blues",
-                        edgecolors="Blue")
-
-            ax.set_xscale(xscale[model])
-            ax.set_yscale(yscale[model])
-            g.ax_marg_x.set_xscale(xscale[model])
-            g.ax_marg_y.set_yscale(yscale[model])
-
+            ax.set_xlim(xlim[model])
+            ax.set_ylim(ylim[model])
             ax.set_xticks(xticks[model])
             ax.set_xlabel(xlabel[model])
             ax.set_yticks(yticks[model])
             ax.set_ylabel(ylabel[model])
 
-            plt.tight_layout()
-            plt.savefig("figures/tuning/%s.png" % model)
-            plt.clf()
+            if xscale[model] == "log":
+                ax.set_xscale(xscale[model])
+                g.ax_marg_x.set_xscale(xscale[model])
+                xbins = np.logspace(math.log10(xticks[model][0]), math.log10(xticks[model][-1]),
+                                    2 * len(xticks[model]))
+            else:
+                xbins = [xticks[model][0]] + [(j + i) / 2 for i, j in zip(xticks[model][:-1], xticks[model][1:])] + [
+                    xticks[model][-1]]
+
+            if yscale[model] == "log":
+                ax.set_yscale(yscale[model])
+                g.ax_marg_y.set_yscale(yscale[model])
+                ybins = np.logspace(math.log10(yticks[model][0]), math.log10(yticks[model][-1]),
+                                    2 * len(yticks[model]))
+            else:
+                ybins = [yticks[model][0]] + [(j + i) / 2 for i, j in zip(yticks[model][:-1], yticks[model][1:])] + [
+                    yticks[model][-1]]
+
+            g.ax_marg_x.hist(data.iloc[:, 0], color="b", alpha=.6, bins=xbins)
+            g.ax_marg_y.hist(data.iloc[:, 1], color="b", alpha=.6, orientation="horizontal", bins=ybins)
+
+            plt.sca(ax)
+            plt.scatter(x=data.iloc[:, 0], y=data.iloc[:, 1], s=data.iloc[:, 2] * 100, c=data.iloc[:, 2], cmap="Blues",
+                        edgecolors="Blue")
+
+        else:
+            continue
+            # No tuning plots for the TLP methods
+
+        plt.suptitle("Parameter tuning for the %s method" % model)
+        plt.tight_layout()
+        plt.subplots_adjust(top=0.93)
+        plt.savefig("figures/tuning/%s.png" % model)
 
 
 xlabel = {
