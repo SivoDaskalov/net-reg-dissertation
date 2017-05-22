@@ -250,23 +250,20 @@ yscale = {
 }
 
 
-def plot_distribution_hist(data, title, xlabel, ylabel, url, default_settings=True, bins=30, yscale="linear",
-                           normed=True):
-    plt.figure()
-    if not default_settings:
+def plot_distribution_hist(ax, data, title, xlabel, ylabel, bins=10, yscale="linear", normed=True,
+                           customize_x_axis=False):
+    if customize_x_axis:
         lim = (0, max(data))
         ticks = range(lim[1] + 1)
         bins = np.subtract(ticks, 0.5).tolist() + [ticks[-1] + 0.5]
         ticks = [x for x in ticks if x % 2 == 0]
-        plt.xlim(lim)
-        plt.xticks(ticks)
-    plt.hist(data, bins=bins, normed=normed)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.yscale(yscale)
-    plt.title(title)
-    plt.tight_layout()
-    plt.savefig(url)
+        ax.set_xlim(lim)
+        ax.set_xticks(ticks)
+    ax.hist(data, bins=bins, normed=normed)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_yscale(yscale)
+    ax.set_title(title)
 
 
 def plot_mapping_summary(mapping_files=mapping_files):
@@ -275,19 +272,23 @@ def plot_mapping_summary(mapping_files=mapping_files):
         mapping = pd.read_csv(url, index_col=0)
         method, dataset = label.split("_")
 
+        fig, axes = plt.subplots(1, 2, figsize=(10, 4))
         dependencies = np.count_nonzero(mapping, axis=1)
-        plot_distribution_hist(data=dependencies, xlabel="Number of covariates", ylabel="Fraction of data",
-                               title="%s method dependency distribution for %s dataset" % (method, dataset),
-                               url="figures/mappings/dependencies/%s.png" % label, default_settings=False)
+        plot_distribution_hist(ax=axes[0], data=dependencies, xlabel="Number of covariates", ylabel="Fraction of data",
+                               title="Distribution of gene dependencies", customize_x_axis=True)
         n_resolved = np.count_nonzero(dependencies)
         n_unresolved = len(dependencies) - n_resolved
 
         influences = np.count_nonzero(mapping, axis=0)
-        plot_distribution_hist(data=influences, xlabel="Number of influenced genes", ylabel="Fraction of data",
-                               title="%s method influence distribution for %s dataset" % (method, dataset),
-                               url="figures/mappings/influences/%s.png" % label)
+        plot_distribution_hist(ax=axes[1], data=influences, bins=30, title="Distribution of influenced genes",
+                               xlabel="Number of influenced genes", ylabel="Fraction of data")
         n_influencers = np.count_nonzero(influences)
         n_non_influencers = len(influences) - n_influencers
+
+        plt.suptitle("Gene interactions for %s method on %s dataset" % (method, dataset))
+        plt.tight_layout()
+        plt.subplots_adjust(top=0.85)
+        plt.savefig("figures/mappings/distributions/%s.png" % label)
 
         summary.loc[label] = [dataset, method, n_resolved, n_unresolved, n_influencers, n_non_influencers]
     summary = summary.sort_values(["Dataset", "Method"])
@@ -321,8 +322,15 @@ def plot_mapping_errors(error_files=error_files):
 
 
 def plot_mapping_fraction_votes(fraction_votes_files=fraction_votes_files):
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    i = 0
     for dataset, url in fraction_votes_files.iteritems():
         fracvotes = pd.read_csv(url, index_col=0).as_matrix().flatten()
-        plot_distribution_hist(data=fracvotes, title="Vote distribution for %s dataset" % dataset, yscale="log",
-                               xlabel="Fraction of votes", ylabel="Number of cases", default_settings=True,
-                               url="figures/mappings/%s_vote_distribution.png" % dataset, bins=10, normed=False)
+        plot_distribution_hist(ax=axes[i], data=fracvotes, title="%s dataset" % dataset,
+                               yscale="log", xlabel="Fraction of votes", ylabel="Number of cases", bins=10,
+                               normed=False)
+        i += 1
+    plt.suptitle("Gene importance distribution of method votes")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.85)
+    plt.savefig("figures/mappings/vote_distribution.png")

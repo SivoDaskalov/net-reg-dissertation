@@ -58,8 +58,8 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
 
 
 def summarize_mapping_results():
-    # plot_mapping_summary()
-    # plot_mapping_errors()
+    plot_mapping_summary()
+    plot_mapping_errors()
     plot_mapping_fraction_votes()
 
 
@@ -75,5 +75,5 @@ def summarize_mapping_results():
 # plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
-summarize_mapping_results()
+# summarize_mapping_results()
 print("Total time elapsed: %.0f seconds" % time.clock())
