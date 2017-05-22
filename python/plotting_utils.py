@@ -5,7 +5,8 @@ import pandas as pd
 import itertools
 import math
 from commons import full_method_list as method_order, glm_l1_ratios, grace_lambda1_values, grace_lambda2_values, \
-    gblasso_gamma_values, gblasso_lambda_values, linf_c_values, alinf_e_values, cm_vote_thresholds
+    gblasso_gamma_values, gblasso_lambda_values, linf_c_values, alinf_e_values, cm_vote_thresholds, mapping_files, \
+    error_files, fraction_votes_files
 
 
 def simple_bar_plot(title, methods, values):
@@ -247,3 +248,81 @@ yscale = {
     "agrace": "log",
     "gblasso": "log"
 }
+
+
+def plot_distribution_hist(data, title, xlabel, ylabel, url, default_settings=True, bins=30, yscale="linear",
+                           normed=True):
+    plt.figure()
+    if not default_settings:
+        lim = (0, max(data))
+        ticks = range(lim[1] + 1)
+        bins = np.subtract(ticks, 0.5).tolist() + [ticks[-1] + 0.5]
+        ticks = [x for x in ticks if x % 2 == 0]
+        plt.xlim(lim)
+        plt.xticks(ticks)
+    plt.hist(data, bins=bins, normed=normed)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.yscale(yscale)
+    plt.title(title)
+    plt.tight_layout()
+    plt.savefig(url)
+
+
+def plot_mapping_summary(mapping_files=mapping_files):
+    summary = pd.DataFrame(columns=["Dataset", "Method", "Resolved", "Unresolved", "Influencing", "Non-influencing"])
+    for label, url in mapping_files.iteritems():
+        mapping = pd.read_csv(url, index_col=0)
+        method, dataset = label.split("_")
+
+        dependencies = np.count_nonzero(mapping, axis=1)
+        plot_distribution_hist(data=dependencies, xlabel="Number of covariates", ylabel="Fraction of data",
+                               title="%s method dependency distribution for %s dataset" % (method, dataset),
+                               url="figures/mappings/dependencies/%s.png" % label, default_settings=False)
+        n_resolved = np.count_nonzero(dependencies)
+        n_unresolved = len(dependencies) - n_resolved
+
+        influences = np.count_nonzero(mapping, axis=0)
+        plot_distribution_hist(data=influences, xlabel="Number of influenced genes", ylabel="Fraction of data",
+                               title="%s method influence distribution for %s dataset" % (method, dataset),
+                               url="figures/mappings/influences/%s.png" % label)
+        n_influencers = np.count_nonzero(influences)
+        n_non_influencers = len(influences) - n_influencers
+
+        summary.loc[label] = [dataset, method, n_resolved, n_unresolved, n_influencers, n_non_influencers]
+    summary = summary.sort_values(["Dataset", "Method"])
+    summary.to_csv("results/mapping_summary.csv", sep=',', index=False)
+
+
+def plot_mapping_errors(error_files=error_files):
+    summary = pd.DataFrame(columns=["Dataset", "Method", "MSE", "STD"])
+    for dataset, url in error_files.iteritems():
+        errors = pd.read_csv(url, index_col=0)
+        mses = np.mean(errors, axis=0)
+        stds = np.std(errors, axis=0)
+        for method in errors.columns:
+            summary.loc[len(summary.index)] = [dataset, method, mses[method], stds[method]]
+    summary = summary.sort_values(["Dataset", "Method"])
+    summary.to_csv("results/mapping_errors.csv", sep=',', index=False)
+
+    plt.figure()
+    ind = range(len(summary.index))
+    width = 0.8
+
+    ax = plt.gca()
+    ax.bar(ind, summary["MSE"], width, yerr=summary["STD"])
+    ax.set_xticks(ind)
+    ax.set_xticklabels([summary.iloc[i, 0] + " " + summary.iloc[i, 1] for i in range(len(summary.index))], rotation=45)
+    ax.set_ylim(bottom=0)
+    ax.set_ylabel("MSE")
+    plt.title("Prediction errors by method, real data")
+    plt.tight_layout()
+    plt.savefig("figures/mappings/errors.png")
+
+
+def plot_mapping_fraction_votes(fraction_votes_files=fraction_votes_files):
+    for dataset, url in fraction_votes_files.iteritems():
+        fracvotes = pd.read_csv(url, index_col=0).as_matrix().flatten()
+        plot_distribution_hist(data=fracvotes, title="Vote distribution for %s dataset" % dataset, yscale="log",
+                               xlabel="Fraction of votes", ylabel="Number of cases", default_settings=True,
+                               url="figures/mappings/%s_vote_distribution.png" % dataset, bins=10, normed=False)

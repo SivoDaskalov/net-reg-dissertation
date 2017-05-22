@@ -6,7 +6,8 @@ from import_utils import batch_import_datasets
 from model_fitting import batch_fit_models, batch_fit_real_data
 from model_metrics import batch_evaluate_models, summarize_results
 from model_utils import export_errors, batch_evaluate_similarities
-from plotting_utils import plot_summary_comparison, plot_parameter_tuning
+from plotting_utils import plot_summary_comparison, plot_parameter_tuning, plot_mapping_summary, plot_mapping_errors, \
+    plot_mapping_fraction_votes
 import pandas as pd
 import time
 
@@ -56,6 +57,12 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
     export_errors(results)
 
 
+def summarize_mapping_results():
+    # plot_mapping_summary()
+    # plot_mapping_errors()
+    plot_mapping_fraction_votes()
+
+
 # cv_mse_tune_generated_data(methods=["lasso", "enet", "grace", "agrace", "linf", "alinf", "ttlp", "ltlp", "composite"],
 #                            load_dump=True)
 # load_custom_start_points("results/p550.csv")
@@ -65,7 +72,8 @@ def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_du
 # plot_summary_comparison(summary_urls={
 #     "CV of MSE tuning": "results/p550_summary.csv",
 #     "Orchestrated tuning": "results/p550_summary.csv"})
-plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
+# plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
+summarize_mapping_results()
 print("Total time elapsed: %.0f seconds" % time.clock())

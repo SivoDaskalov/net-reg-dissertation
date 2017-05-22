@@ -11,7 +11,7 @@ real_data_methods = ["lasso", "enet", "grace", "gblasso", "linf", "composite"]
 # General properties
 orchestrated_tuning_max_iter = 1000
 cv_n_folds = 5
-epsilon = 1e-6 # Trim coefficients with absolute value below epsilon
+epsilon = 1e-6  # Trim coefficients with absolute value below epsilon
 
 # GLM properties
 glm_n_alphas = 100
@@ -75,3 +75,25 @@ def dump(obj, url):
 def load(url):
     with open(url, 'rbU') as f:
         return pickle.load(f)
+
+
+mapping_files = {
+    "Lasso_Body": "mappings/body/lasso.csv",
+    "Enet_Body": "mappings/body/enet.csv",
+    "Grace_Body": "mappings/body/grace.csv",
+    "Composite_Body": "mappings/body/composite.csv",
+    "Lasso_Prom": "mappings/prom/lasso.csv",
+    "Enet_Prom": "mappings/prom/enet.csv",
+    "Grace_Prom": "mappings/prom/grace.csv",
+    "Composite_Prom": "mappings/prom/composite.csv"
+}
+
+error_files = {
+    "Body": "mappings/body/errors.csv",
+    "Prom": "mappings/prom/errors.csv"
+}
+
+fraction_votes_files = {
+    "Body": "mappings/body/composite_fraction_votes.csv",
+    "Prom": "mappings/prom/composite_fraction_votes.csv"
+}
