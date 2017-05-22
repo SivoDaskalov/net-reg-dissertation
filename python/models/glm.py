@@ -1,5 +1,5 @@
 from commons import cv_n_folds as n_folds, glm_n_alphas as n_alphas, glm_l1_ratios as l1_ratios, glm_max_iter as iter, \
-    glm_alpha_opt as opt_alpha, glm_l1_ratio_opt as opt_l1_ratio
+    enet_alpha_opt, glm_l1_ratio_opt, lasso_alpha_opt
 from sklearn.linear_model import Lasso, LassoCV, ElasticNet, ElasticNetCV
 from models import Model
 
@@ -30,11 +30,11 @@ def fit_enet(setup):
 
 
 def fit_lasso_opt(setup):
-    return param_fit_lasso(setup, opt_alpha)
+    return param_fit_lasso(setup, lasso_alpha_opt)
 
 
 def fit_enet_opt(setup):
-    return param_fit_enet(setup, opt_alpha, opt_l1_ratio)
+    return param_fit_enet(setup, enet_alpha_opt, glm_l1_ratio_opt)
 
 
 def param_fit_lasso(setup, alpha, use_tuning_set=False):

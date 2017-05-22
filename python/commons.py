@@ -18,7 +18,8 @@ glm_n_alphas = 100
 glm_l1_ratios = [0.1, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95, .99]
 glm_max_iter = 10000
 
-glm_alpha_opt = 0.04
+lasso_alpha_opt = 0.01
+enet_alpha_opt = 0.04
 glm_l1_ratio_opt = 0.9
 
 # Grace properties
@@ -26,7 +27,9 @@ grace_lambda1_values = [10.0 ** x for x in range(-2, 5)]
 grace_lambda2_values = [10.0 ** x for x in range(-2, 5)]
 
 grace_lambda1_opt = 10.0
-grace_lambda2_opt = 0.01
+grace_lambda2_opt = 10000
+agrace_lambda1_opt = 10.0
+agrace_lambda2_opt = 0.1
 
 # GBLasso properties
 gblasso_lambda_values = [10.0 ** x for x in range(-2, 5)]
@@ -44,7 +47,7 @@ linf_c_values = [5.0 * (x + 1) for x in range(20)]
 alinf_e_values = [5.0 * (x + 1) for x in range(20)]
 
 linf_c_opt = 35.0
-alinf_e_opt = 70.0
+alinf_e_opt = 50.0
 
 # TLP properties
 tlp_n_deltas1 = 3
@@ -55,9 +58,9 @@ tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of cal
 
 
 # Composite model properties
-cm_vote_thresholds = [0.2, 0.4, 0.5, 0.6, 0.8]
+cm_vote_thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
-cm_vote_thresh_opt = 0.5
+cm_vote_thresh_opt = 0.6
 
 
 def timestamp():

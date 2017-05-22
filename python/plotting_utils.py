@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import itertools
-from commons import full_method_list as method_order
+from commons import full_method_list as method_order, glm_l1_ratios, grace_lambda1_values, grace_lambda2_values, \
+    gblasso_gamma_values, gblasso_lambda_values, linf_c_values, alinf_e_values, cm_vote_thresholds
 
 
 def simple_bar_plot(title, methods, values):
@@ -87,4 +88,136 @@ def plot_summary_comparison(summary_urls):
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.07, top=0.93)
     plt.figlegend(h, l, bbox_to_anchor=[0.5, 0.02], loc='center', ncol=len(summaries.keys()))
+    plt.tight_layout()
     plt.savefig("figures/tuning_method_comparison.png")
+
+
+def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
+    import seaborn as sns
+    parsed_params = {}
+
+    for results_file_url in results_file_urls:
+        results = pd.read_csv(results_file_url, index_col=0)
+        for idx, row in results.iterrows():
+            model = row['model']
+            cur_params = [key_value.strip().split('=') for key_value in row["params"].split(',')]
+
+            if not model in parsed_params:
+                parsed_params[model] = {}
+                for param_name, param_value in cur_params:
+                    parsed_params[model][param_name] = []
+
+            for param_name, param_value in cur_params:
+                parsed_params[model][param_name].append(float(param_value))
+
+    for model, params in parsed_params.iteritems():
+        if len(params) == 1:
+            plt.figure()
+            ax = sns.distplot(params.values()[0], bins=15, kde=False)
+            if model in xticks.keys():
+                ax.set_xticks(xticks[model])
+            if model in xlim.keys():
+                ax.set_xlim(xlim[model])
+            ax.set_xscale(xscale[model])
+            ax.set_xlabel(xlabel[model])
+            plt.tight_layout()
+            plt.savefig("figures/tuning/%s.png" % model)
+            plt.clf()
+        elif len(params) == 2:
+            plt.figure()
+            count = pd.DataFrame(params).groupby([params.keys()[0], params.keys()[1]]).size()
+            data = pd.DataFrame({'count': count}).reset_index()
+
+            g = sns.jointplot(x=data.columns[0], y=data.columns[1], data=data, xlim=xlim[model], ylim=ylim[model],
+                              stat_func=None)
+            ax = g.ax_joint
+            plt.sca(ax)
+            plt.scatter(x=data.iloc[:, 0], y=data.iloc[:, 1], s=data.iloc[:, 2] * 100, c=data.iloc[:, 2], cmap="Blues",
+                        edgecolors="Blue")
+
+            ax.set_xscale(xscale[model])
+            ax.set_yscale(yscale[model])
+            g.ax_marg_x.set_xscale(xscale[model])
+            g.ax_marg_y.set_yscale(yscale[model])
+
+            ax.set_xticks(xticks[model])
+            ax.set_xlabel(xlabel[model])
+            ax.set_yticks(yticks[model])
+            ax.set_ylabel(ylabel[model])
+
+            plt.tight_layout()
+            plt.savefig("figures/tuning/%s.png" % model)
+            plt.clf()
+
+
+xlabel = {
+    "lasso": "Alpha",
+    "enet": "Alpha",
+    "grace": "Lambda 1",
+    "agrace": "Lambda 1",
+    "gblasso": "Gamma",
+    "linf": "C",
+    "alinf": "E",
+    "composite": "Fraction of votes"
+}
+
+ylabel = {
+    "enet": "L1 ratio",
+    "grace": "Lambda 2",
+    "agrace": "Lambda 2",
+    "gblasso": "Lambda"
+}
+
+xticks = {
+    # "lasso": [x * 0.02 for x in range(11)],
+    "enet": [x * 0.02 for x in range(11)],
+    "grace": grace_lambda1_values,
+    "agrace": grace_lambda1_values,
+    "gblasso": gblasso_gamma_values,
+    "linf": linf_c_values,
+    "alinf": alinf_e_values,
+    "composite": cm_vote_thresholds
+}
+
+yticks = {
+    "enet": glm_l1_ratios,
+    "grace": grace_lambda2_values,
+    "agrace": grace_lambda2_values,
+    "gblasso": gblasso_lambda_values
+}
+
+xlim = {
+    # "lasso": (0.0, 0.2),
+    "enet": (0.0, 0.2),
+    "grace": (min(grace_lambda1_values), max(grace_lambda1_values)),
+    "agrace": (min(grace_lambda1_values), max(grace_lambda1_values)),
+    "gblasso": (min(gblasso_gamma_values), max(gblasso_gamma_values)),
+    "linf": (min(linf_c_values), max(linf_c_values)),
+    "alinf": (min(alinf_e_values), max(alinf_e_values)),
+    "composite": (min(cm_vote_thresholds), max(cm_vote_thresholds))
+}
+
+ylim = {
+    "enet": (0.0, 1.0),
+    "grace": (min(grace_lambda2_values), max(grace_lambda2_values)),
+    "agrace": (min(grace_lambda2_values), max(grace_lambda2_values)),
+    "gblasso": (min(gblasso_lambda_values), max(gblasso_lambda_values))
+}
+
+xscale = {
+    "lasso": "linear",
+    "enet": "linear",
+    "grace": "log",
+    "agrace": "log",
+    "gblasso": "linear",
+    "linf": "linear",
+    "alinf": "linear",
+    "composite": "linear"
+}
+
+yscale = {
+    "enet": "linear",
+    "grace": "log",
+    "agrace": "log",
+    "gblasso": "log"
+}

@@ -1,5 +1,5 @@
 from commons import cv_n_folds as n_folds, epsilon, grace_lambda1_values as lambdas1, grace_lambda2_values as lambdas2, \
-    grace_lambda1_opt as opt_lambda1, grace_lambda2_opt as opt_lambda2
+    grace_lambda1_opt, grace_lambda2_opt, agrace_lambda1_opt, agrace_lambda2_opt
 from sklearn.linear_model import LinearRegression
 from models import Model
 import matlab.engine
@@ -56,11 +56,11 @@ def fit_agrace(setup, matlab_engine, enet_fit=None):
 
 
 def fit_grace_opt(setup, matlab_engine):
-    return param_fit_grace(setup, matlab_engine, opt_lambda1, opt_lambda2)
+    return param_fit_grace(setup, matlab_engine, grace_lambda1_opt, grace_lambda2_opt)
 
 
 def fit_agrace_opt(setup, matlab_engine, enet_fit=None):
-    return param_fit_agrace(setup, matlab_engine, opt_lambda1, opt_lambda2, enet_fit)
+    return param_fit_agrace(setup, matlab_engine, agrace_lambda1_opt, agrace_lambda2_opt, enet_fit)
 
 
 def param_fit_grace(setup, matlab_engine, lambda1, lambda2, use_tuning_set=False):
