@@ -20,7 +20,7 @@ def generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups=
     # 10 regulated genes per trans factor, setups are as suggested by Li and Li, Bioinformatics 2008, section 4
     setups = {}
     for n_relevant_groups in n_relevant_trans_factor_groups:
-        trans_factor_coefs = [ x / n_relevant_groups for x in [5, -5, 3, -3] * n_relevant_groups]
+        trans_factor_coefs = [x / n_relevant_groups for x in [5, -5, 3, -3] * n_relevant_groups]
         n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
         setups["Groups %d_Setup 1" % n_relevant_groups] = generate_true_coefficients(
             trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes)
@@ -65,10 +65,10 @@ def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
     return network, degrees
 
 
-def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
-                          n_tune_obs, n_train_obs, n_test_obs, n_relevant_trans_factor_groups=[1], load_dump=False):
-    dump_url = "dumps/setups_tf%d_rg%d_tu%d_tr%d_ts%d" % (n_trans_factors, n_regulated_genes_per_trans_factor,
-                                                          n_tune_obs, n_train_obs, n_test_obs)
+def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor, train_on_tuning_dataset=False,
+                          n_tune_obs=200, n_train_obs=200, n_test_obs=100, n_relevant_trans_factor_groups=[1],
+                          load_dump=False):
+    dump_url = "dumps/synthetic_setups"
     if load_dump and os.path.exists(dump_url):
         print("%sLoading previously generated dataset" % timestamp())
         with open(dump_url, 'rbU') as f:
@@ -82,8 +82,12 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
             x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tu = generate_response(x_tune, coefficients)
 
-            x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
-            y_tr = generate_response(x_train, coefficients)
+            if train_on_tuning_dataset:
+                x_train = x_tune
+                y_tr = y_tu
+            else:
+                x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
+                y_tr = generate_response(x_train, coefficients)
 
             x_test = generate_expressions(n_test_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_ts = generate_response(x_test, coefficients)
