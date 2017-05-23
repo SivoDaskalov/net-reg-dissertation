@@ -20,9 +20,10 @@ relevant_trans_factor_groups = [1, 2, 3, 4, 5]
 
 setups = None
 
-setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
-                               n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
-                               n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
+
+# setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
+#                                n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
+#                                n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
 
 
 def cv_mse_tune_generated_data(methods, load_dump=False):
@@ -48,10 +49,10 @@ def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlati
     print(summary)
 
 
-def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, load_dump=False):
-    datasets = batch_import_datasets(labels=["body", "prom"])
+def fit_optimal_parameter_models_on_real_data(methods=real_data_methods, labels=["body", "prom"], load_dump=False):
+    datasets = batch_import_datasets(labels=labels)
     fits = batch_fit_real_data(datasets, methods=methods, load_dump=load_dump)
-    results = batch_evaluate_models(fits, filename="results/real_data.csv")
+    results = batch_evaluate_models(fits, filename="results/real_data")
     export_errors(results)
 
 
@@ -62,7 +63,7 @@ def summarize_mapping_results():
 
 
 # cv_mse_tune_generated_data(
-#     methods=["lasso", "enet", "grace", "agrace", "gblasso" "linf", "alinf", "ttlp", "ltlp", "composite"],
+#     methods=["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"],
 #     load_dump=True)
 # load_custom_start_points("results/p550.csv")
 # orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
@@ -73,6 +74,6 @@ def summarize_mapping_results():
 #     "Orchestrated tuning": "results/p550_summary.csv"})
 # plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
 
-# fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace"], load_dump=True)
+# fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"], load_dump=True)
 # summarize_mapping_results()
 print("Total time elapsed: %.0f seconds" % time.clock())

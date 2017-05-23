@@ -82,10 +82,12 @@ mapping_files = {
     "Lasso_Body": "mappings/body/lasso.csv",
     "Enet_Body": "mappings/body/enet.csv",
     "Grace_Body": "mappings/body/grace.csv",
+    "Linf_Body": "mappings/body/linf.csv",
     "Composite_Body": "mappings/body/composite.csv",
     "Lasso_Prom": "mappings/prom/lasso.csv",
     "Enet_Prom": "mappings/prom/enet.csv",
     "Grace_Prom": "mappings/prom/grace.csv",
+    "Linf_Prom": "mappings/prom/linf.csv",
     "Composite_Prom": "mappings/prom/composite.csv"
 }
 
