@@ -30,11 +30,12 @@ def generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups=
             trans_factor_coefs, 10, 0, 10, n_trailing_zero_genes),
         setups["Groups %d_Setup 4" % n_relevant_groups] = generate_true_coefficients(
             trans_factor_coefs, 10, 3, 7, n_trailing_zero_genes)
+    setups = {key: value[0] if isinstance(value, tuple) else value for (key, value) in setups.iteritems()}
     return setups
 
 
 def generate_observation(n_trans_factors, n_regulated_genes_per_trans_factor):
-    tf_expression_levels = np.random.normal(loc=0.0, scale=1.1, size=n_trans_factors)
+    tf_expression_levels = np.random.normal(loc=0.0, scale=1.0, size=n_trans_factors)
     expressions = [
         [tf] + np.random.normal(loc=0.7 * tf, scale=math.sqrt(0.51), size=n_regulated_genes_per_trans_factor).tolist()
         for tf in tf_expression_levels]
@@ -52,7 +53,8 @@ def generate_expressions(n_observations, n_trans_factors, n_regulated_genes_per_
 
 def generate_response(expressions, coefficients):
     response = np.sum(expressions * coefficients, axis=1)
-    noise = np.random.normal(loc=0, scale=math.sqrt(np.var(coefficients)), size=response.shape[0])
+    noise_variance = np.sum(np.array(coefficients)**2)/4
+    noise = np.random.normal(loc=0, scale=math.sqrt(noise_variance), size=response.shape[0])
     noisy_response = [response[i] + noise[i] for i in range(response.shape[0])]
     normalized_response = noisy_response - np.mean(noisy_response)
     return normalized_response
@@ -78,7 +80,7 @@ def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor, t
         print("Generating datasets")
         setups = []
         network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
-        for label, coefficients in generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups).items():
+        for label, coefficients in generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups).iteritems():
             x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tu = generate_response(x_tune, coefficients)
 

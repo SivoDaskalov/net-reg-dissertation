@@ -20,8 +20,6 @@ def evaluate_model(setup, model):
         correlation = sensitivity = specificity = precision = None
     else:
         true_coef = setup.true_coefficients
-        if isinstance(true_coef, tuple):
-            true_coef = true_coef[0]
         correlation = np.corrcoef(true_coef, estimated_coef)[0, 1]
         true_predictors = np.count_nonzero(true_coef)
         false_positive_coef = np.count_nonzero(estimated_coef[true_predictors:])
