@@ -77,4 +77,16 @@ Xiaotong Shen, Wei Pan, and Yunzhang Zhu.
 \newblock {\em Journal of the American Statistical Association},
   107(497):223--232, 2012.
 
+\bibitem{grant2014cvx}
+Michael Grant and Stephen Boyd.
+\newblock {CVX}: Matlab software for disciplined convex programming, version
+  2.1, March 2014.
+
+\bibitem{grant2008graph}
+Michael Grant and Stephen Boyd.
+\newblock Graph implementations for nonsmooth convex programs.
+\newblock In V.~Blondel, S.~Boyd, and H.~Kimura, editors, {\em Recent Advances
+  in Learning and Control}, Lecture Notes in Control and Information Sciences,
+  pages 95--110. Springer-Verlag Limited, 2008.
+
 \end{thebibliography}

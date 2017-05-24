@@ -1,19 +1,28 @@
-\contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Background and Related Work}{5}
-\contentsline {section}{\numberline {2.1}Linear Regression}{5}
-\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
-\contentsline {section}{\numberline {2.3}Penalized Regression}{6}
-\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{7}
-\contentsline {subsection}{\numberline {2.3.2}Lasso}{7}
-\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{7}
-\contentsline {section}{\numberline {2.4}Network-constrained regularization}{8}
-\contentsline {subsection}{\numberline {2.4.1}Grace}{8}
-\contentsline {subsection}{\numberline {2.4.2}aGrace}{9}
-\contentsline {subsection}{\numberline {2.4.3}GBLasso}{9}
-\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{10}
-\contentsline {subsubsection}{Linf}{10}
-\contentsline {subsubsection}{aLinf}{11}
-\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{11}
-\contentsline {subsubsection}{Indicator Functions}{12}
-\contentsline {subsubsection}{TTLP}{12}
-\contentsline {subsubsection}{LTLP}{12}
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {chapter}{\numberline {2}Background and Related Work}{7}
+\contentsline {section}{\numberline {2.1}Linear Regression}{7}
+\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{8}
+\contentsline {section}{\numberline {2.3}Penalized Regression}{8}
+\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{9}
+\contentsline {subsection}{\numberline {2.3.2}Lasso}{9}
+\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{9}
+\contentsline {section}{\numberline {2.4}Network-constrained regularization}{10}
+\contentsline {subsection}{\numberline {2.4.1}Grace}{10}
+\contentsline {subsection}{\numberline {2.4.2}aGrace}{11}
+\contentsline {subsection}{\numberline {2.4.3}GBLasso}{11}
+\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{12}
+\contentsline {subsubsection}{Linf}{12}
+\contentsline {subsubsection}{aLinf}{13}
+\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{13}
+\contentsline {subsubsection}{Indicator Functions}{14}
+\contentsline {subsubsection}{TTLP}{14}
+\contentsline {subsubsection}{LTLP}{14}
+\contentsline {chapter}{\numberline {3}Implementation Details}{17}
+\contentsline {section}{\numberline {3.1}Libraries used}{17}
+\contentsline {section}{\numberline {3.2}Method implementation}{17}
+\contentsline {chapter}{\numberline {4}Synthetic Dataset Generation}{19}
+\contentsline {chapter}{\numberline {5}Composite Voting Regressor}{21}
+\contentsline {chapter}{\numberline {6}Parameter Tuning Approaches}{23}
+\contentsline {chapter}{\numberline {7}Evaluation of tuning approaches and method similarities}{25}
+\contentsline {chapter}{\numberline {8}Real Data Analysis}{27}
+\contentsline {chapter}{\numberline {9}Summary and Conclusions}{29}

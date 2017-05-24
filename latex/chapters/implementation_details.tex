@@ -1,0 +1,20 @@
+\chapter{Implementation Details}
+Python is the main programming language used in developing the system to prepare, execute and evaluate the experiments discussed in this report. However, Matlab has been used to implement most of the network constrained regression methods. This is due to the extensive use of Matlab's CVX package \cite{grant2014cvx}\cite{grant2008graph} for solving the convex optimization problems defined by the various regression methods. The MATLAB Engine API for Python has been used to integrate the two platforms and enable the invocation of Matlab functions from a Python environment.
+
+\section{Libraries used}
+
+
+\section{Regression methods implementation}
+The various regression methods discussed in Chapter \ref{background} are implemented as described below:
+\begin{description}
+	\item[OLSE (\ref{sec:olse})] description
+	\item[Lasso (\ref{sec:lasso})] description
+	\item[Elastic Net (\ref{sec:enet})] description
+	\item[Grace (\ref{sec:grace})] description
+	\item[aGrace (\ref{sec:agrace})] description
+	\item[GBLasso (\ref{sec:gblasso})] description
+	\item[Linf (\ref{sec:linf})] description
+	\item[aLinf (\ref{sec:alinf})] description
+	\item[TTLP (\ref{sec:ttlp})] description
+	\item[LTLP (\ref{sec:ltlp})] description
+\end{description}

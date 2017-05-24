@@ -1,3 +1,4 @@
+\chapter{Background and Related Work} \label{background}
 This chapter briefly reviews the main concepts of linear regression. We describe in detail the various methods for penalized regression found in literature and used in this project.
 
 
@@ -36,7 +37,7 @@ P(\beta) = \lambda\sqrt{\sum_{i=1}^{p}\beta_i^2}
 \end{equation}
 
 
-\subsection{Lasso}
+\subsection{Lasso} \label{sec:lasso}
 The least absolute shrinkage and selection operator (LASSO) was introduced by Tibshirani in \cite{tibshirani1996regression}. It produces a sparse coefficient vector, whose remaining non-zero elements define a subset of the most relevant predictors. Model sparsity is especially important in high-dimensional problems, such as those arising when processing epigenetic data. The L1 penalty, shown in Equation \ref{eq:lasso}, performs both variable selection and regularization.
 \begin{equation} \label{eq:lasso}
 P(\beta) = \lambda\sum_{i=1}^{p}\left|\beta_i\right|
@@ -57,7 +58,7 @@ For all network-constrained regularization approaches presented in this section,
 Let us consider a network that is represented by a weighted graph $G = (V, E, W)$, where $V$ is the set of vertices corresponding to the $p$ predictors, $E$ is the set of edges and $W$ contains their corresponding weights. An edge between the vertices $u$ and $v$ is represented as $u \sim v$ and its edge weight is $w(u,v)$. Let us define the degree $d_v$ of a vertex $v$ as $d_v = \sum_{u \sim v}w(u,v)$.
 
 
-\subsection{Grace}
+\subsection{Grace} \label{sec:grace}
 The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias "Grace" is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in Equation \ref{eq:grace}, contains two terms - an $L1$ penalty for variable selection and a second term that performs the network penalization.  
 \begin{equation} \label{eq:grace}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
@@ -93,7 +94,7 @@ P(\beta) = \lambda\sum_{u \sim v}
 
 \subsection{Linf and aLinf}
 
-\subsubsection{Linf}
+\subsubsection{Linf} \label{sec:linf}
 Luo et al. \cite{luo2012two} continued researching the GBLasso method (\ref{sec:gblasso}). They noted that as $\gamma\rightarrow\infty$ the GBLasso penalty (\ref{eq:gblasso_simplified}) is transformed into Equation \ref{eq:linf_pen}. This penalty is linear and we denote the method as $L_\infty$ (Linf). 
 \begin{equation} \label{eq:linf_pen}
 P(\beta) = \lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)
@@ -117,7 +118,7 @@ S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\
 \end{split}
 \end{align}
 
-\subsubsection{aLinf}
+\subsubsection{aLinf} \label{sec:alinf}
 The authors suggest an additional modification to reduce bias in the parameter estimates of the standard Linf method. Similarly to \cite{li2010variable}, they propose a two-step approach using an initial parameter estimate $\tilde{\beta}$, obtained with the $L_\infty$ method. The adaptive penalty, denoted as $aL_\infty$ (aLinf), is shown in Equation \ref{eq:alinf_pen}.
 
 \begin{equation} \label{eq:alinf_pen}
@@ -151,7 +152,7 @@ for\ each\ x\ in\ X
 \end{equation}
 Note that the inversion bracket notation $[P(x)]$ can be used equivalently to denote the indicator function of elements for which the condition $P$ is true.
 
-\subsubsection{TTLP}
+\subsubsection{TTLP} \label{sec:ttlp}
 Because the indicator function is not continuous, Shen et al. \cite{shen2012likelihood} proposed a truncated Lasso penalty (TLP) $J_\tau$ for a computational substitute. The TLP penalty, defined in Equation \ref{eq:tlp}, tends to $[|z|\neq 0]$ as $\tau \to 0^+$. The tuning parameter $\tau$ determines the degree of approximation.
 \begin{equation} \label{eq:tlp}
 J_\tau(|z|)=min\left(\frac{|z|}{\tau},1\right)
@@ -161,7 +162,7 @@ Applying the TLP substitute to Equation \ref{eq:tlp_pen} produces the $TTLP_I$ p
 P(\beta) = \lambda_1 \sum_{i=1}^{p} J_\tau|\beta_i| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|
 \end{equation}
 
-\subsubsection{LTLP}
+\subsubsection{LTLP} \label{sec:ltlp}
 As an alternative to the TTLP, Kim et al. proposed a modification of their penalty using the Lasso for variable selection. The modified penalty, which the authors call $LTLP_I$, is shown in Equation \ref{eq:ltlp}.
 \begin{equation} \label{eq:ltlp}
 P(\beta) = \lambda_1 \sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|
