@@ -23,14 +23,14 @@ The parameter estimate $\hat{\beta}$ for the linear regression model is obtained
 \end{equation}
 
 
-\section{Penalized Regression}
+\section{Penalized Regression} \label{sec:pen_reg}
 Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties by scaling them. The general form of penalized regression is shown in Equation \ref{eq:pen_reg}. 
 \begin{equation} \label{eq:pen_reg}
 S(\beta) = L(\beta) + P(\beta)
 \end{equation}
 
 
-\subsection{Ridge regression}
+\subsection{Ridge regression} \label{sec:ridge}
 Ridge regression \cite{hoerl1970ridge}, also called Tikhonov or L2 regularization, is used to penalize large values in the $\beta$ estimate. The penalty, shown in Equation \ref{eq:ridge}, causes the parameter estimates of the less important predictors to be shrinked, but remain non-zero. As a result, L2 regularization does not perform feature selection.
 \begin{equation} \label{eq:ridge}
 P(\beta) = \lambda\sqrt{\sum_{i=1}^{p}\beta_i^2}

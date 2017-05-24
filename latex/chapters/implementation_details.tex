@@ -1,20 +1,52 @@
 \chapter{Implementation Details}
 Python is the main programming language used in developing the system to prepare, execute and evaluate the experiments discussed in this report. However, Matlab has been used to implement most of the network constrained regression methods. This is due to the extensive use of Matlab's CVX package \cite{grant2014cvx}\cite{grant2008graph} for solving the convex optimization problems defined by the various regression methods. The MATLAB Engine API for Python has been used to integrate the two platforms and enable the invocation of Matlab functions from a Python environment.
 
-\section{Libraries used}
-
-
-\section{Regression methods implementation}
-The various regression methods discussed in Chapter \ref{background} are implemented as described below:
+%\section{Libraries used}
+The various libraries widely used in the implementation of this project are introduced as follows:
 \begin{description}
-	\item[OLSE (\ref{sec:olse})] description
-	\item[Lasso (\ref{sec:lasso})] description
-	\item[Elastic Net (\ref{sec:enet})] description
-	\item[Grace (\ref{sec:grace})] description
-	\item[aGrace (\ref{sec:agrace})] description
-	\item[GBLasso (\ref{sec:gblasso})] description
-	\item[Linf (\ref{sec:linf})] description
-	\item[aLinf (\ref{sec:alinf})] description
-	\item[TTLP (\ref{sec:ttlp})] description
-	\item[LTLP (\ref{sec:ltlp})] description
+	\item[Pandas (Python)] is used for data wrangling tasks and its data structures
+	\item[Numpy (Python)] is used for its implementation of N-dimensional arrays and the wide range of operations performed on them
+	\item[Scipy (Python)] is used to minimize the non-convex objective function of the GBLasso (\ref{sec:gblasso}) method
+	\item[Scikit-Learn (Python)] is used to obtain OLSE, Lasso and Elastic Net estimates, calculate cosine vector similarity and other model metrics 
+	\item[Matlab Engine (Python)] is used for Python-Matlab integration and enables invocation of Matlab functions from a Python environment
+	\item[CVX (Matlab)] is used to find a solution to the convex optimization problems defined by the objective functions of the Grace, Linf and TLP
+	\item[Matplotlib (Python)] is used for the plotting of various figures
 \end{description}
+
+%\section{Regression methods implementation}
+The various regression methods discussed in Chapter \ref{background} are implemented as described in Table \ref{tab:method_impl}.
+{\def\arraystretch{1.5}\tabcolsep=10pt
+\begin{table}[ht]
+	\label{tab:method_impl}
+	\caption{Regression methods implementation details}
+	\centering
+	\begin{tabular}{l l l l}
+		\hline\hline 
+		Platform & Library & Class / function used & Regression Method \\
+		\hline
+		Python 	& 	Scikit-Learn	&	LinearRegression			&	OLSE (\ref{sec:olse})			\\
+				&					&	Lasso, LassoCV 				&	Lasso (\ref{sec:lasso})*		\\
+				&					&	ElasticNet, ElasticNetCV	&	Elastic Net (\ref{sec:enet})*	\\
+				&	Scipy			&	minimize					&	GBLasso (\ref{sec:gblasso})		\\
+		Matlab	&	CVX				&	-							&	Grace (\ref{sec:grace})			\\
+				&					&	-							&	aGrace (\ref{sec:agrace})		\\
+				&					&	-							&	Linf (\ref{sec:linf})			\\
+				&					&	-							&	aLinf (\ref{sec:alinf})			\\
+				&					&	-							&	TTLP (\ref{sec:ttlp})			\\
+				&					&	-							&	LTLP (\ref{sec:ltlp})			\\
+		\hline
+	\end{tabular}
+\end{table}
+}
+
+* Scikit-Learn's implementation of the Lasso and Elastic Net does not control the $L1$ and $L2$ penalties independently with hyperparameters $\lambda_1$ and $\lambda_2$ as discussed in Section \ref{sec:pen_reg} and shown in Equation \ref{eq:enet_simplified}.
+\begin{equation} \label{eq:enet_simplified}
+P(\beta) = \lambda_1L1 + \lambda_2L2
+\end{equation} 
+Instead, the hyperparameters $alpha$ and $l1\_ratio$ are used, $alpha>0$ controlling the magnitude of penalization and $l1\_ratio \in [0,1]$ defining the level of contribution of each penalty. The two approaches to parametrization could be expressed equivalently through the relationship shown in Equation \ref{eq:alpha_l1_ratio}. Specifically, $l1\_ratio=0$ performs Ridge Regression (\ref{sec:ridge}), $l1\_ratio=1$ performs the Lasso (\ref{sec:lasso})  and $l1\_ratio \in (0,1)$ performs Elastic Net (\ref{sec:enet}) regression.
+\begin{equation} \label{eq:alpha_l1_ratio}
+\begin{aligned} 
+alpha		&=	\lambda_1+\lambda_2 \\
+l1\_ratio	&=	\frac{\lambda_1}{\lambda_1+\lambda_2}
+\end{aligned}
+\end{equation}

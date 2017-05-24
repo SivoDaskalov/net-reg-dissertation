@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  24 MAY 2017 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  24 MAY 2017 19:12
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1018,14 +1018,19 @@ ap-tive graph-constrained
 
 ]
 Chapter 3.
+
+Overfull \hbox (29.77296pt too wide) in paragraph at lines 23--39
+ [][] 
+ []
+
 [11]) (acs-dissertation.bbl [12] [13
 
 ]) [14] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32010 strings out of 493333
- 806905 string characters out of 3139183
- 905130 words of memory out of 3000000
- 35098 multiletter control sequences out of 15000+200000
+ 32016 strings out of 493333
+ 807003 string characters out of 3139183
+ 905183 words of memory out of 3000000
+ 35104 multiletter control sequences out of 15000+200000
  10933 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1039,7 +1044,7 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (14 pages, 158541 bytes).
+Output written on acs-dissertation.pdf (14 pages, 161740 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
