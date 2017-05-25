@@ -11,10 +11,63 @@ All simulation setups share the following common predictor network. Consider a s
 \section{Generation of predictor observations} \label{sec:obs_gen}
 As a consequence of using the shared predictor network described in the previous section, all synthetic datasets contain 550 predictors. The expression levels for each of the 50 transcription factors follow a standard normal distribution $X_{TF_j} \sim N(\mu = 0, \sigma = 1)$. 
 
-The expression level of the regulated genes (RG) is dependent on the expression level of their corresponding $TF_j$ and follows a $X_{RG} \sim N(\mu = 0.7*X_{TF_j}, \sigma = 0.71)$. This means that the expression levels of a TF and each of its RG are jointly distributed as a bivariate normal with a correlation of $0.7$.
+The expression level of the regulated genes (RG) is dependent on the expression level of their corresponding $TF_j$ and follows the normal distribution $X_{RG} \sim N(\mu = 0.7*X_{TF_j}, \sigma = 0.71)$. This means that the expression levels of a TF and each of its RG are jointly distributed as a bivariate normal with a correlation of $0.7$.
 
 \section{Response variable generation}
+Values of the response variable $y$ are generated according to a linear model $y = X\beta + \epsilon$, where $\epsilon$ is added noise and the coefficient vector $\beta$ is specified by the current simulation setup.
+
+The added noise follows a normal distribution $\epsilon \sim N(\mu = 0, \sigma = F(\beta)))$, whose shape is calculated from the coefficient vector $\beta$ for the current setup according to equation \ref{eq:noise}.
+\begin{equation} \label{eq:noise}
+\sigma_\epsilon = F(\beta) = \sqrt{\frac{\sum_{j=1}^{p}\beta_j^2}{4}}
+\end{equation}
 
 \subsection{Primary simulation setups}
+The primary simulation setups assume that four transcription factors and their regulated genes are related to the response variable $y$.
+
+\subsubsection{Setup 1}
+\begin{equation} \label{eq:setup1} 
+\begin{aligned}
+\beta = (	5&,& \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,& \\
+-5&,& \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,& \\
+3&,& \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,& \\
+-3&,& \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 2}
+\begin{equation} \label{eq:setup2} 
+\begin{aligned}
+\beta = (	5&,& \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,& \\
+-5&,& \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,& \\
+3&,& \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,& \\
+-3&,& \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 3}
+\begin{equation} \label{eq:setup3} 
+\begin{aligned}
+\beta = (	5&,& \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,& \\
+-5&,& \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,& \\
+3&,& \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,& \\
+-3&,& \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 4}
+\begin{equation} \label{eq:setup4} 
+\begin{aligned}
+\beta = (	5&,& \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,& \\
+-5&,& \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,& \\
+3&,& \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,& \\
+-3&,& \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+
 
 \subsection{Secondary simulation setups}
