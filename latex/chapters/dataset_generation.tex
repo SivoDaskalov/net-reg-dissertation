@@ -3,11 +3,15 @@ Synthetic datasets have been generated for use in the hyperparameter tuning proc
 
 The benefit of using synthetic data for parameter tuning is the existence of ground truth about the relationship between predictors and the target variable. This ground truth enables comparing the various regression methods not only in terms of prediction error, but also with regard to the sensitivity, specificity and precision of their variable selection.
 
+The sections of this chapter describe in detail the synthetic dataset generation process. The gene network, simulated expression levels of all genes and the primary simulation setups of the response variable are implemented as suggested by Li and Li \cite{li2008network}. Four secondary simulation setups are derived from each of the four primary setups, resulting in a total of 20 independent simulation setups.
 
+\section{Predictor network generation} \label{sec:pred_net}
+All simulation setups share the following common predictor network. Consider a setup, for which 50 transcription factors regulate 10 independent genes each. In the gene network corresponding to this scenario, there would be edges between all transcription factors (TFs) and their 10 regulated genes. The resulting network contains 550 nodes and 500 edges, all edge weights set to 1. This graph consists of 50 star-shaped connected components of 11 nodes, the central node of each representing the corresponding TF. 
 
-\section{Predictor network and observation generation}
+\section{Generation of predictor observations} \label{sec:obs_gen}
+As a consequence of using the shared predictor network described in the previous section, all synthetic datasets contain 550 predictors. The expression levels for each of the 50 transcription factors follow a standard normal distribution $X_{TF_j} \sim N(\mu = 0, \sigma = 1)$. 
 
-%$N(\mu = 0, \sigma = 1)$
+The expression level of the regulated genes (RG) is dependent on the expression level of their corresponding $TF_j$ and follows a $X_{RG} \sim N(\mu = 0.7*X_{TF_j}, \sigma = 0.71)$. This means that the expression levels of a TF and each of its RG are jointly distributed as a bivariate normal with a correlation of $0.7$.
 
 \section{Response variable generation}
 
