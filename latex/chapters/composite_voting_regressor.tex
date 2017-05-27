@@ -1,1 +1,31 @@
-\chapter{Composite Voting Regressor}
+\chapter{Composite Voting Regression}
+Several different methods for linear regression are present in the context of this research. They all operate on the same input data and share a similar goal. However, the solutions produced by the different methods can vary greatly due to differences in the objective functions. Each method exhibits its strengths and weaknesses in performance when processing different input data and no method is better than the others in all considered scenarios. For this reason it is not possible to claim that any of the methods would be superior for an arbitrary real dataset. As a way to reduce inconsistencies in performance, our solution is to independently process the data with a selected set of regression methods and merge their outputs. 
+
+All regression methods considered in this report perform variable selection while building their linear models. However, the sets of predictors selected by the different methods are rarely identical. We propose a voting scheme to merge the results of variable selection in the context of multiple methods for multiple linear regression. 
+
+Let there be $k$ different regression methods processing a dataset with $p$ predictors. We compose the matrix $B$ of size $k$-by-$p$, where each element $B_{i,j}$ is the coefficient corresponding to the predictor $j$ estimated by the method $i$ as shown in \ref{eq:coef_matrix}. 
+
+{\def\arraystretch{1.5}\tabcolsep=10pt
+\begin{equation} \label{eq:coef_matrix}
+\begin{array}{l|rrrr} 
+& Predictor\ 1 & Predictor\ 2 & \quad\quad\quad... & Predictor\ p \\
+\hline	
+Method\ 1 & M_1(\beta_1) & M_1(\beta_2) & ... & M_1(\beta_p) \\
+Method\ 2 & M_2(\beta_1) & M_2(\beta_2) & ... & M_2(\beta_p) \\
+... & ... & ... & ... & ... \\
+Method\ k & M_k(\beta_1) & M_k(\beta_2) & ... & M_k(\beta_p)
+\end{array}
+\end{equation}
+}
+
+For each predictor we count the number of non-zero coefficients in its corresponding column. This is equivalent to calculating how many of the methods consider the current predictor relevant to the target variable. We then calculate the fraction of votes $FV$ for the predictor's importance by dividing that number by $k$ as shown in Equation \ref{eq:frac_votes}. $FV$ would then be in the range $[0,1]$, $0$ meaning that all regression methods consider the predictor unimportant, while 1 indicates complete agreement on the predictor's relevance to the response.
+
+\begin{equation} \label{eq:frac_votes}
+FV_j = \frac{\sum_{i=1}^{k}B_{i,j}}{k}\text{, where j is the index of the current predictor} 
+\end{equation}
+
+The FV statistic can be used to perform variable selection by retaining only the predictors with score above a set threshold. Different predictor selection strategies can be implemented through modifying the vote fraction threshold, for example selecting a predictor if $all\ /any\ /\ at\ least\ 50\%$ of the predictors consider it relevant to the target variable. 
+
+After variable selection is performed, predictor coefficients can be estimated through any regression approach using the selected set of predictors. We use the OLSE (\ref{sec:olse}) for this estimation to avoid using a hyperparameterized approach. 
+
+The proposed composite voting regression approach, denoted as Composite in the following chapters, is designed to balance the benefits and drawbacks of its underlying regression methods when processing arbitrary datasets. It is primarily a method for output fusion of the contained regression approaches. As a result, its performance depends on both the selection of underlying regression approaches and the choice of hyperparameter values for each of them.

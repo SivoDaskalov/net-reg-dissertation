@@ -28,3 +28,4 @@
 \contentsline {subsubsection}{Setup 3}{18}
 \contentsline {subsubsection}{Setup 4}{18}
 \contentsline {subsection}{\numberline {4.3.2}Secondary simulation setups}{18}
+\contentsline {chapter}{\numberline {5}Composite Voting Regression}{19}
