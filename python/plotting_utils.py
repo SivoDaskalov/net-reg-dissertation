@@ -90,7 +90,6 @@ def plot_summary_comparison(summary_urls):
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.07, top=0.93)
     plt.figlegend(h, l, bbox_to_anchor=[0.5, 0.02], loc='center', ncol=len(summaries.keys()))
-    plt.tight_layout()
     plt.savefig("figures/tuning_method_comparison.png")
 
 
@@ -197,7 +196,7 @@ ylabel = {
 
 xticks = {
     # "lasso": [x * 0.02 for x in range(11)],
-    "enet": [x * 0.02 for x in range(11)],
+    "enet": [x * 0.1 for x in range(11)],
     "grace": grace_lambda1_values,
     "agrace": grace_lambda1_values,
     "gblasso": gblasso_gamma_values,
@@ -215,7 +214,7 @@ yticks = {
 
 xlim = {
     # "lasso": (0.0, 0.2),
-    "enet": (0.0, 0.2),
+    "enet": (0.0, 1.0),
     "grace": (min(grace_lambda1_values), max(grace_lambda1_values)),
     "agrace": (min(grace_lambda1_values), max(grace_lambda1_values)),
     "gblasso": (min(gblasso_gamma_values), max(gblasso_gamma_values)),

@@ -21,9 +21,9 @@ relevant_trans_factor_groups = [1, 2, 3, 4, 5]
 setups = None
 
 
-setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
-                               n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
-                               n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
+# setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
+#                                n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
+#                                n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
 
 
 def cv_mse_tune_generated_data(methods, load_dump=False):
@@ -62,7 +62,7 @@ def summarize_mapping_results():
     plot_mapping_fraction_votes()
 
 
-cv_mse_tune_generated_data(methods=["grace", "agrace", "linf", "alinf", "ttlp", "ltlp"], load_dump=True)
+# cv_mse_tune_generated_data(methods=["grace", "agrace", "linf", "alinf", "ttlp", "ltlp"], load_dump=True)
 # load_custom_start_points("results/p550.csv")
 # orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
 # orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
