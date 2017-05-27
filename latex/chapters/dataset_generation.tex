@@ -1,1 +1,86 @@
 \chapter{Synthetic Dataset Generation}
+Synthetic datasets have been generated for use in the hyperparameter tuning process for the various regression methods. These synthetic datasets have been designed to be very similar to real epigenetic datasets. The assumption is that the various regression methods would continue performing well in the context of real epigenetic data after having been tuned on similar generated datasets.
+
+The benefit of using synthetic data for parameter tuning is the existence of ground truth about the relationship between predictors and the target variable. This ground truth enables comparing the various regression methods not only in terms of prediction error, but also with regard to the sensitivity, specificity and precision of their variable selection.
+
+The sections of this chapter describe in detail the synthetic dataset generation process. The gene network, simulated expression levels of all genes and the primary simulation setups of the response variable are implemented as suggested by Li and Li \cite{li2008network}. Four secondary simulation setups are derived from each of the four primary setups, resulting in a total of 20 different simulation setups.
+
+
+\section{Predictor network generation} \label{sec:pred_net}
+All simulation setups share the following common predictor network. Consider a setup, for which 50 transcription factors regulate 10 independent genes each. In the gene network corresponding to this scenario, there would be edges between all transcription factors (TFs) and their 10 regulated genes. The resulting network contains 550 nodes and 500 edges, all edge weights set to 1. This graph consists of 50 star-shaped connected components of 11 nodes, the central node of each representing the corresponding TF. 
+
+
+\section{Generation of predictor observations} \label{sec:obs_gen}
+As a consequence of using the shared predictor network described in the previous section, all synthetic datasets contain 550 predictors. The expression levels for each of the 50 transcription factors follow a standard normal distribution $X_{TF_j} \sim N(\mu = 0, \sigma = 1)$. 
+
+The expression level of the regulated genes (RG) is dependent on the expression level of their corresponding $TF_j$ and follows the normal distribution $X_{RG} \sim N(\mu = 0.7*X_{TF_j}, \sigma = 0.71)$. This means that the expression levels of a TF and each of its RG are jointly distributed as a bivariate normal with a correlation of $0.7$.
+
+The predictor order in the expression matrix $X$ is shown in Equation \ref{eq:pred_order}.
+\begin{equation} \label{eq:pred_order}
+[TF_1, RG_{1,1}, ..., RG_{1,10}, ..., TF_{50}, RG_{50,1}, ..., RG_{50,10}]
+\end{equation} 
+
+
+\section{Response variable generation}
+Values of the response variable $y$ are generated according to a linear model $y = X\beta + \epsilon$, where $\epsilon$ is added noise and the coefficient vector $\beta$ is specified by the current simulation setup.
+
+The added noise follows a normal distribution $\epsilon \sim N(\mu = 0, \sigma = F(\beta)))$, whose shape is calculated from the coefficient vector $\beta$ for the current setup according to equation \ref{eq:noise}.
+\begin{equation} \label{eq:noise}
+\sigma_\epsilon = F(\beta) = \sqrt{\frac{\sum_{j=1}^{p}\beta_j^2}{4}}
+\end{equation}
+
+
+\subsection{Primary simulation setups} \label{sec:prim_sim_setups}
+The four primary simulation setups assume that four transcription factors and their regulated genes are related to the response variable $y$. Therefore, only the first 44 coefficients of the coefficient vector $\beta$ are non-zero.
+
+\subsubsection{Setup 1}
+The first model, shown in Equation \ref{eq:setup1}, assumes that the regulated genes of each transcript factor affect the response variable in the same way as the TF itself, either positively or negatively.
+\begin{equation} \label{eq:setup1} 
+\begin{aligned}
+\beta = (	5&,& \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,& \\
+-5&,& \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,& \\
+3&,& \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,& \\
+-3&,& \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 2}
+The second model, shown in Equation \ref{eq:setup2}, assumes that the regulated genes of each transcript factor can have both positive and negative effects on the response variable.
+\begin{equation} \label{eq:setup2} 
+\begin{aligned}
+\beta = (	5&,& \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,& \\
+-5&,& \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,&  \frac{-5}{\sqrt{10}}&,& \\
+3&,& \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,& \\
+-3&,& \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,&  \frac{-3}{\sqrt{10}}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 3}
+The third setup, shown in Equation \ref{eq:setup3}, is similar to the first setup, but with reduced effect magnitude of the regulated genes. 
+\begin{equation} \label{eq:setup3} 
+\begin{aligned}
+\beta = (	5&,& \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,& \\
+-5&,& \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,& \\
+3&,& \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,& \\
+-3&,& \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+\subsubsection{Setup 4}
+The fourth setup, shown in Equation \ref{eq:setup4}, is similar to the second setup, but with reduced effect magnitude of the regulated genes. 
+\begin{equation} \label{eq:setup4} 
+\begin{aligned}
+\beta = (	5&,& \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,& \\
+-5&,& \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,&  \frac{-5}{10}&,& \\
+3&,& \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,& \\
+-3&,& \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,&  \frac{-3}{10}&,& \\
+0&,& ...&,& 0&)&
+\end{aligned}
+\end{equation}
+
+
+\subsection{Secondary simulation setups}
+Four secondary setups have been derived from each primary simulation setup. As discussed in Section \ref{sec:prim_sim_setups}, the primary setups define a linear model relating four transcript factors and their regulated genes to the response variable. Instead, the derived secondary simulation setups distribute the same effect evenly over 8, 12, 16, and 20 transcript factors and their regulated genes. This enables to tune and compare the various regression methods in scenarios with a varying number of relevant predictors.
