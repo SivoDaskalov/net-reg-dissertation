@@ -1,0 +1,31 @@
+\chapter{Hyperparameter Tuning}
+Many machine learning algorithms have one or more hyperparameters, whose role is to modify different aspects of the learning process. Their values are not estimated through use of the training data, but must be chosen prior to the start of the learning process. Choosing a set of suitable hyperparameter values for a learning algorithm, also called model selection, is an important step to ensure that the algorithm performs well and does not overfit the training data.
+
+\section{Traditional approaches}
+
+\subsubsection{Grid Search}
+Grid search, also called parameter sweep, is commonly used to perform hyperparameter optimization. A predefined set of values is selected for each of the tuning parameters used by the learning algorithm. Models are then trained with each possible combination of tuning parameter values. All models are evaluated according to some performance metric. The combination of parameter values that produces the model performing best (minimizing/maximizing the performance metric) is chosen as optimal. The performance metric used typically in regression problems is the mean squared prediction error (MSE), calculated as shown in Equation \ref{eq:mse}.
+\begin{equation} \label{eq:mse}
+MSE = \frac{1}{n} \sum_{i=1}^{n} (\hat{y_i}-y_i)^2, 
+\end{equation}
+where $\hat{y_i}$ is the model's predicted value and $y_i$ is the true value of the target. 
+
+\subsubsection{The Validation Set Approach}
+Estimating a model's MSE using the same data it was trained on is not truly indicative of the model's performance due to the possibility of overfitting. One way to measure a model's accuracy of prediction on unseen data is to calculate generalization error, also known as out-of-sample error. 
+
+This could be done through the validation set approach by partitioning the available data into two mutually exclusive subsets called training and test (validation) sets. Models are then trained on the training subset of observations and their prediction MSE is calculated using the test set, also called holdout. However, this method has the following drawbacks \cite{james2013introduction}:
+\begin{itemize}
+	\item The validation estimate of the test error rate can vary greatly depending on the training-validation set partitioning
+	\item The method makes inefficient use of the data as a significant part of the observations are never used for training
+\end{itemize} 
+
+\subsubsection{K-Fold Cross Validation}
+Cross validation \cite{james2013introduction, kohavi1995study} is a resampling method closely related to and addressing the drawbacks of the validation set approach. The often used k-fold cross-validation involves partitioning the data into $k$ subsets (folds). One of the folds is treated as a validation set and the model is trained on the remaining $k-1$ folds. The mean squared error for the fold $MSE_i$ is computed for the observations in the held-out fold $i$. The process is repeated $k$ times, each of the folds being held out once, and the k-fold CV estimate is obtained by averaging the estimates for the different folds as shown in Equation \ref{eq:cv}.
+\begin{equation} \label{eq:cv}
+MSE_{(k)} = \frac{1}{k} \sum_{i=1}^{k} MSE_i
+\end{equation}
+
+\subsubsection{Grid Search minimizing the Cross-Validated MSE}
+One traditional approach of performing model selection uses a grid search with cross-validated mean squared prediction error for a metric of model performance. The final model is then trained on the whole dataset using the optimal hyperparameter values that minimize the cross-validated MSE. This model selection approach is denoted as "CV-MSE" tuning in the latter chapters of this report.
+
+%\section{Orchestrated Parameter Tuning}

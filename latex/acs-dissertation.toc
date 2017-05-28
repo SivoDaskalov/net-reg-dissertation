@@ -1,31 +1,37 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}
-\contentsline {chapter}{\numberline {2}Background and Related Work}{7}
-\contentsline {section}{\numberline {2.1}Linear Regression}{7}
-\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{8}
-\contentsline {section}{\numberline {2.3}Penalized Regression}{8}
-\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{9}
-\contentsline {subsection}{\numberline {2.3.2}Lasso}{9}
-\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{9}
-\contentsline {section}{\numberline {2.4}Network-constrained regularization}{10}
-\contentsline {subsection}{\numberline {2.4.1}Grace}{10}
-\contentsline {subsection}{\numberline {2.4.2}aGrace}{11}
-\contentsline {subsection}{\numberline {2.4.3}GBLasso}{11}
-\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{12}
-\contentsline {subsubsection}{Linf}{12}
-\contentsline {subsubsection}{aLinf}{13}
-\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{13}
-\contentsline {subsubsection}{Indicator Functions}{14}
-\contentsline {subsubsection}{TTLP}{14}
-\contentsline {subsubsection}{LTLP}{14}
-\contentsline {chapter}{\numberline {3}Implementation Details}{17}
-\contentsline {chapter}{\numberline {4}Synthetic Dataset Generation}{21}
-\contentsline {section}{\numberline {4.1}Predictor network generation}{22}
-\contentsline {section}{\numberline {4.2}Generation of predictor observations}{22}
-\contentsline {section}{\numberline {4.3}Response variable generation}{22}
-\contentsline {subsection}{\numberline {4.3.1}Primary simulation setups}{23}
-\contentsline {subsubsection}{Setup 1}{23}
-\contentsline {subsubsection}{Setup 2}{23}
-\contentsline {subsubsection}{Setup 3}{24}
-\contentsline {subsubsection}{Setup 4}{25}
-\contentsline {subsection}{\numberline {4.3.2}Secondary simulation setups}{25}
-\contentsline {chapter}{\numberline {5}Composite Voting Regression}{27}
+\contentsline {chapter}{\numberline {2}Background and Related Work}{5}
+\contentsline {section}{\numberline {2.1}Linear Regression}{5}
+\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
+\contentsline {section}{\numberline {2.3}Penalized Regression}{6}
+\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{6}
+\contentsline {subsection}{\numberline {2.3.2}Lasso}{7}
+\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{7}
+\contentsline {section}{\numberline {2.4}Network-constrained regularization}{7}
+\contentsline {subsection}{\numberline {2.4.1}Grace}{8}
+\contentsline {subsection}{\numberline {2.4.2}aGrace}{8}
+\contentsline {subsection}{\numberline {2.4.3}GBLasso}{9}
+\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{9}
+\contentsline {subsubsection}{Linf}{9}
+\contentsline {subsubsection}{aLinf}{10}
+\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{10}
+\contentsline {subsubsection}{Indicator Functions}{11}
+\contentsline {subsubsection}{TTLP}{11}
+\contentsline {subsubsection}{LTLP}{11}
+\contentsline {chapter}{\numberline {3}Implementation Details}{13}
+\contentsline {chapter}{\numberline {4}Synthetic Dataset Generation}{15}
+\contentsline {section}{\numberline {4.1}Predictor network generation}{15}
+\contentsline {section}{\numberline {4.2}Generation of predictor observations}{16}
+\contentsline {section}{\numberline {4.3}Response variable generation}{16}
+\contentsline {subsection}{\numberline {4.3.1}Primary simulation setups}{16}
+\contentsline {subsubsection}{Setup 1}{17}
+\contentsline {subsubsection}{Setup 2}{17}
+\contentsline {subsubsection}{Setup 3}{18}
+\contentsline {subsubsection}{Setup 4}{18}
+\contentsline {subsection}{\numberline {4.3.2}Secondary simulation setups}{18}
+\contentsline {chapter}{\numberline {5}Composite Voting Regression}{19}
+\contentsline {chapter}{\numberline {6}Hyperparameter Tuning}{21}
+\contentsline {section}{\numberline {6.1}Traditional approaches}{21}
+\contentsline {subsubsection}{Grid Search}{21}
+\contentsline {subsubsection}{The Validation Set Approach}{22}
+\contentsline {subsubsection}{K-Fold Cross Validation}{22}
+\contentsline {subsubsection}{Grid Search minimizing the Cross-Validated MSE}{22}

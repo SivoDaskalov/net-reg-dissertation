@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  28 MAY 2017 11:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  28 MAY 2017 19:01
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1009,57 +1009,14 @@ File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
 \c__siunitx_mathsf_int=\count266
 \c__siunitx_mathtt_int=\count267
- (titlepage.tex
-Package epstopdf Info: Source file: <CUni3.eps>
-(epstopdf)                    date: 2010-05-17 13:27:03
-(epstopdf)                    size: 193497 bytes
-(epstopdf)             Output file: <CUni3-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-07 13:29:49
-(epstopdf)                    size: 60284 bytes
-(epstopdf)             Command: <epstopdf --outfile=CUni3-eps-converted-to.pdf 
-CUni3.eps>
-(epstopdf)             \includegraphics on input line 17.
-Package epstopdf Info: Output file is already uptodate.
-
-<CUni3-eps-converted-to.pdf, id=4, 174.6525pt x 36.135pt>
-File: CUni3-eps-converted-to.pdf Graphic file (type pdf)
-
-<use CUni3-eps-converted-to.pdf>
-Package pdftex.def Info: CUni3-eps-converted-to.pdf used on input line 17.
-(pdftex.def)             Requested size: 174.65207pt x 36.13489pt.
- [1
-
-{C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./CUni3
--eps-converted-to.pdf>]) (declaration.tex
-[2] (wordcount.txt)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
-
-[3]) (abstract.tex [4] [5]) [0] (acs-dissertation.toc)
+ (acs-dissertation.toc)
 \tf@toc=\write4
 \openout4 = `acs-dissertation.toc'.
 
- [1
-
-] [2
-
-]
-(acs-dissertation.lof)
-\tf@lof=\write5
-\openout5 = `acs-dissertation.lof'.
-
- [3] [4
-
-] (acs-dissertation.lot)
-\tf@lot=\write6
-\openout6 = `acs-dissertation.lot'.
+ (chapters/introduction.tex [1
 
 
-(chapters/introduction.tex [1] [2
+{C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
 Chapter 1.
@@ -1069,42 +1026,30 @@ Overfull \hbox (2.47649pt too wide) in paragraph at lines 2--3
 be ex-plained by changes
  []
 
-[3]) (chapters/background_and_related_work.tex [4] [5] [6
-
-]
+[3]) (chapters/background_and_related_work.tex [4]
 Chapter 2.
-[7]
-Underfull \vbox (badness 1521) has occurred while \output is active []
+[5
 
- [8]
-[9] [10]
+] [6] [7]
 Overfull \hbox (6.75006pt too wide) in paragraph at lines 72--73
 []\OT1/cmr/m/n/12 Li and Li pro-posed a mod-i-fi-ca-tion [[]] that per-forms ad
 ap-tive graph-constrained
  []
 
-[11] [12]
-Underfull \vbox (badness 3019) has occurred while \output is active []
-
- [13]
-[14]) (chapters/implementation_details.tex [15] [16
+[8] [9] [10]) (chapters/implementation_details.tex [11] [12
 
 ]
 Chapter 3.
-[17]
+
 Overfull \hbox (29.77296pt too wide) in paragraph at lines 23--39
  [][] 
  []
 
-[18]) (chapters/dataset_generation.tex [19] [20
-
-]
+[13]) (chapters/dataset_generation.tex [14]
 Chapter 4.
+[15
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [21]
-[22]
+] [16]
 Overfull \hbox (34.25517pt too wide) detected at line 46
 [] []
  []
@@ -1114,41 +1059,55 @@ Overfull \hbox (34.25517pt too wide) detected at line 58
 [] []
  []
 
-[23]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24])
-(chapters/composite_voting_regressor.tex [25] [26
+ [17])
+(chapters/composite_voting_regressor.tex [18]
+Chapter 5.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19
+
+])
+(chapters/parameter_tuning.tex [20]
+Chapter 6.
+[21
 
 ]
-Chapter 5.
-[27]) [28] (acs-dissertation.bbl [29] [30
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 18.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
+)
+(acs-dissertation.bbl [22] [23
 
-] [31]) [32] (acs-dissertation.aux) ) 
+]) [24] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32153 strings out of 493333
- 809311 string characters out of 3139183
- 929824 words of memory out of 3000000
- 35204 multiletter control sequences out of 15000+200000
- 11581 words of font info for 42 fonts, out of 3000000 for 9000
+ 32135 strings out of 493333
+ 809042 string characters out of 3139183
+ 931844 words of memory out of 3000000
+ 35201 multiletter control sequences out of 15000+200000
+ 10933 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
-2.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12
-.pfb>
-Output written on acs-dissertation.pdf (42 pages, 287409 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmti12.pfb>
+Output written on acs-dissertation.pdf (24 pages, 196488 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
+ 126 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
