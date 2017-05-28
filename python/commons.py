@@ -54,7 +54,7 @@ alinf_e_opt = 50.0
 tlp_n_deltas1 = 3
 tlp_n_deltas2 = 3
 tlp_n_taus = 3
-tlp_n_folds = 2  # Greatly reduced number of CV folds due to the duration of calculations
+tlp_n_folds = 5  # Greatly reduced number of CV folds due to the duration of calculations
 # Use center of calculated intervals for the tuning parameters as optimal tuning parameter values
 
 
