@@ -63,4 +63,5 @@ def load_custom_start_points(results_dump_url):
         if not method in custom_start_points[setup]:
             custom_start_points[setup][method] = {}
         custom_start_points[setup][method] = {param[0]: float(param[1]) for param in params}
+    print("Custom orchestrated tuning start points loaded")
     return custom_start_points

@@ -20,7 +20,6 @@ relevant_trans_factor_groups = [1, 2, 3, 4, 5]
 
 setups = None
 
-
 setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
                                n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
                                n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
@@ -62,15 +61,16 @@ def summarize_mapping_results():
     plot_mapping_fraction_votes()
 
 
-cv_mse_tune_generated_data(methods=["grace", "agrace", "linf", "alinf", "ttlp", "ltlp", "composite"], load_dump=True)
-# load_custom_start_points("results/p550.csv")
-# orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=False)
-# orchestrated_tune_generated_data(opt_method="n_predictors", load_dump=False)
+# cv_mse_tune_generated_data(
+#     methods=["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"],
+#     load_dump=True)
+load_custom_start_points("results/p550.csv")
+orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=True)
 
-plot_summary_comparison(summary_urls={
-    "CV of MSE tuning": "results/p550_summary.csv",
-    "Orchestrated tuning": "results/p550_summary.csv"})
-plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
+# plot_summary_comparison(summary_urls={
+#     "CV of MSE tuning": "results/p550_summary.csv",
+#     "Orchestrated tuning": "results/p550_summary.csv"})
+# plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"], load_dump=True)
 # summarize_mapping_results()
