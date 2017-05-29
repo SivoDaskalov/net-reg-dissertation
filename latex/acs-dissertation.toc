@@ -35,3 +35,7 @@
 \contentsline {subsubsection}{The Validation Set Approach}{22}
 \contentsline {subsubsection}{K-Fold Cross Validation}{22}
 \contentsline {subsubsection}{Grid Search minimizing the Cross-Validated MSE}{22}
+\contentsline {section}{\numberline {6.2}Orchestrated Parameter Tuning}{23}
+\contentsline {subsection}{\numberline {6.2.1}Context and motivation}{23}
+\contentsline {subsection}{\numberline {6.2.2}Inspiration}{23}
+\contentsline {subsection}{\numberline {6.2.3}Methodology}{24}
