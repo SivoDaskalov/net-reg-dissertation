@@ -22,21 +22,22 @@ The various regression methods discussed in Chapter \ref{background} are impleme
 	\centering
 	\begin{tabular}{l l l l}
 		\hline\hline 
-		Platform & Library & Class / function used & Regression Method \\
+		Platform & Library & Class/function/solver used & Regression Method \\
 		\hline
 		Python 	& 	Scikit-Learn	&	LinearRegression			&	OLSE (\ref{sec:olse})			\\
 				&					&	Lasso, LassoCV 				&	Lasso (\ref{sec:lasso})*		\\
 				&					&	ElasticNet, ElasticNetCV	&	Elastic Net (\ref{sec:enet})*	\\
 				&	Scipy			&	minimize					&	GBLasso (\ref{sec:gblasso})		\\
-		Matlab	&	CVX				&	-							&	Grace (\ref{sec:grace})			\\
-				&					&	-							&	aGrace (\ref{sec:agrace})		\\
-				&					&	-							&	Linf (\ref{sec:linf})			\\
-				&					&	-							&	aLinf (\ref{sec:alinf})			\\
-				&					&	-							&	TTLP (\ref{sec:ttlp})			\\
-				&					&	-							&	LTLP (\ref{sec:ltlp})			\\
+		Matlab	&	CVX				&	SDPT3						&	Grace (\ref{sec:grace})			\\
+				&					&	SDPT3						&	aGrace (\ref{sec:agrace})		\\
+				&					&	SDPT3						&	Linf (\ref{sec:linf})			\\
+				&					&	SDPT3						&	aLinf (\ref{sec:alinf})			\\
+				&					&	SDPT3						&	TTLP (\ref{sec:ttlp})			\\
+				&					&	SDPT3						&	LTLP (\ref{sec:ltlp})			\\
 		\hline
 	\end{tabular}
-\end{table}
+\end{table}
+
 }
 
 * Scikit-Learn's implementation of the Lasso and Elastic Net does not control the $L1$ and $L2$ penalties independently with hyperparameters $\lambda_1$ and $\lambda_2$ as discussed in Section \ref{sec:pen_reg} and shown in Equation \ref{eq:enet_simplified}.
