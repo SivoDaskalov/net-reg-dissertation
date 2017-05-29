@@ -37,8 +37,7 @@ def cv_mse_tune_generated_data(methods, load_dump=False):
 
 def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlation"):
     model_dump_url = "dumps/cache/orctun_models_%s_p%d" % (opt_method, p)
-    orctun_fits = batch_do_orchestrated_tuning(setups, tune_focus="coef_correlation", load_dump=load_dump,
-                                               opt_method=opt_method)
+    orctun_fits = batch_do_orchestrated_tuning(setups, load_dump=load_dump, opt_method=opt_method)
     dump(orctun_fits, model_dump_url)
     orctun_fits = load(model_dump_url)
     similarities = batch_evaluate_similarities(orctun_fits, url="figures/orchestrated_similarities.png",
