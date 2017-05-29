@@ -1,6 +1,6 @@
 from commons import cv_n_folds as n_folds, gblasso_lambda_values as lambdas, gblasso_gamma_values as gammas, \
     gblasso_gamma_opt as opt_gamma, gblasso_lambda_opt as opt_lambda, gblasso_train_maxiter, gblasso_tune_maxiter, \
-    timestamp
+    timestamp, gblasso_real_maxiter
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from models import Model
@@ -56,13 +56,15 @@ def gblasso_penalty(b, Y, X, wt, network, lam, gam):
 
 
 def fit_gblasso_opt(setup):
-    return param_fit_gblasso(setup, opt_lambda, opt_gamma)
+    return param_fit_gblasso(setup, opt_lambda, opt_gamma, maxiter=gblasso_real_maxiter)
 
 
-def param_fit_gblasso(setup, lam, gam, use_tuning_set=False):
+def param_fit_gblasso(setup, lam, gam, use_tuning_set=False, maxiter=None):
+    if maxiter is None:
+        maxiter = gblasso_train_maxiter
     wt = np.sqrt(setup.degrees)
     if use_tuning_set:
-        coef = gblasso(setup.y_tune, setup.x_tune, wt, setup.network, lam, gam, gblasso_train_maxiter)
+        coef = gblasso(setup.y_tune, setup.x_tune, wt, setup.network, lam, gam, maxiter)
     else:
-        coef = gblasso(setup.y_train, setup.x_train, wt, setup.network, lam, gam, gblasso_train_maxiter)
+        coef = gblasso(setup.y_train, setup.x_train, wt, setup.network, lam, gam, maxiter)
     return Model(coef, params={"lambda": lam, "gamma": gam}, from_matlab=False)
