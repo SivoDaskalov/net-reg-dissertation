@@ -52,7 +52,8 @@ def plot_similarities_heatmap(similarities, methods, url="figures/similarities.p
     plt.savefig(url)
 
 
-def plot_summary_comparison(summary_urls):
+def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comparison.png",
+                            suptitle="Properties by tuning method"):
     summaries = {}
     for label, url in summary_urls.iteritems():
         summaries[label] = pd.read_csv(url, index_col=0)
@@ -72,8 +73,8 @@ def plot_summary_comparison(summary_urls):
         subplot = subplots[int(i / 2), int(i % 2)]
         title = "%s" % subplots_info[i][0]
         subplot.set_title(title)
-        subplot.set_xticks(ind + width / 2)
-        subplot.set_xticklabels(methods)
+        subplot.set_xticks(np.subtract(ind + width / 2, 0.4 if n_tuning_methods == 1 else 0.0))
+        subplot.set_xticklabels(methods, rotation=45 if n_tuning_methods == 1 else 0)
 
         j = 0
         for label, summary in summaries.iteritems():
@@ -86,11 +87,13 @@ def plot_summary_comparison(summary_urls):
             subplot.set_ylim((0.0, 1.0))
 
     h, l = subplot.get_legend_handles_labels()
-    plt.suptitle("Properties by tuning method")
+    plt.suptitle(suptitle)
     plt.tight_layout()
-    plt.subplots_adjust(bottom=0.07, top=0.93)
-    plt.figlegend(h, l, bbox_to_anchor=[0.5, 0.02], loc='center', ncol=len(summaries.keys()))
-    plt.savefig("figures/tuning_method_comparison.png")
+    plt.subplots_adjust(top=0.93)
+    if n_tuning_methods > 1:
+        plt.figlegend(h, l, bbox_to_anchor=[0.5, 0.02], loc='center', ncol=len(summaries.keys()))
+        plt.subplots_adjust(bottom=0.07)
+    plt.savefig(figure_url)
 
 
 def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
@@ -258,11 +261,11 @@ def plot_distribution_hist(ax, data, title, xlabel, ylabel, bins=10, yscale="lin
         ticks = [x for x in ticks if x % 2 == 0]
         ax.set_xlim(lim)
         ax.set_xticks(ticks)
-    ax.hist(data, bins=bins, normed=normed)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_yscale(yscale)
     ax.set_title(title)
+    ax.hist(data, bins=bins, normed=normed)
 
 
 def plot_mapping_summary(mapping_files=mapping_files):
@@ -273,7 +276,8 @@ def plot_mapping_summary(mapping_files=mapping_files):
 
         fig, axes = plt.subplots(1, 2, figsize=(10, 4))
         dependencies = np.count_nonzero(mapping, axis=1)
-        plot_distribution_hist(ax=axes[0], data=dependencies, xlabel="Number of covariates", ylabel="Fraction of data",
+        plot_distribution_hist(ax=axes[0], data=dependencies[dependencies < 100], xlabel="Number of covariates",
+                               ylabel="Fraction of data",
                                title="Distribution of gene dependencies", customize_x_axis=True)
         n_resolved = np.count_nonzero(dependencies)
         n_unresolved = len(dependencies) - n_resolved
