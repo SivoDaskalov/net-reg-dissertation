@@ -1,7 +1,7 @@
 \chapter{Hyperparameter Tuning}
 Many machine learning algorithms have one or more hyperparameters, whose role is to modify different aspects of the learning process. Their values are not estimated through use of the training data, but must be chosen prior to the start of the learning process. Choosing a set of suitable hyperparameter values for a learning algorithm, also called model selection, is an important step to ensure that the algorithm performs well and does not overfit the training data.
 
-\section{Traditional approaches}
+\section{Traditional approaches} \label{sec:trad_tuning}
 
 \subsubsection{Grid Search}
 Grid search, also called parameter sweep, is commonly used to perform hyperparameter optimization. A predefined set of values is selected for each of the tuning parameters used by the learning algorithm. Models are then trained with each possible combination of tuning parameter values. All models are evaluated according to some performance metric. The combination of parameter values that produces the model performing best (minimizing/maximizing the performance metric) is chosen as optimal. The performance metric used typically in regression problems is the mean squared prediction error (MSE), calculated as shown in Equation \ref{eq:mse}.
@@ -74,10 +74,17 @@ This iterative procedure converges when any movement along the parameter grids i
 If the parameter search grids for the various methods are coarse, fluctuation between two parameter combinations can occur preventing convergence. A maximum number of iterations can be defined to force the completion of the tuning process, resulting in an approximate solution. 
 
 \subsubsection{Choice of starting points for the search}
-%Initially, each of the methods is trained using the median value of each of its parameters (that is, if the considered values are lambda1= [0.05, 0.1, 1, 10, 20] and lambda2 = [0.1, 0.2, 0.3, 0.4, 0.5], values lambda1=0.1 and lambda2=0.3 will be used) 
+The choice of hyperparameter starting points in the search grid for the ensemble of regression methods should greatly affect the convergence state of the tuning process. This initial state of the system can be chosen in one of several ways.
+
+\begin{enumerate}
+\item A naive approach could initialize the tuning process with hyperparameter values located in the centers of the search grids of all methods.
+\item An alternative approach would be to start the tuning procedure from a corner of the search grids. Depending on whether we wish to promote simpler or more complete models, the appropriate griid corner should be chosen.
+\item The proposed orchestrated hyperparameter tuning could be combined with the traditional tuning approach discussed in Section \ref{sec:trad_tuning}. This can be done by obtaining the initial parameter values for the orchestrated tuning from a previously ran CV-MSE tuning. Such a fused tuning procedure could potentially combine the benefits of both tuning approaches - selection of models with good generalized prediction capabilities, but also coordinated for better agreement across regression methods.
+\item A randomized orchestrated tuning procedure could be constructed by repeatedly initializing the search with randomized starting points and collecting statistics from each convergence. The optimal hyperparameter combinations would be selected after analysis of the convergense statistics for all tuning reruns.
+\end{enumerate}
 
 \subsubsection{Discussion}
-%Such a parameter tuning process finds such values for the various methods' parameters that lead to the production of similar coefficient vectors across methods. As explained earlier, the focus is on the predictor coefficients that are estimated in each iteration and not on the prediction error, this is why cross validation is not needed and the parameter tuning process is optimized in terms of computing power. What is more, it uses the fact that we have multiple methods and they perform their parameter tuning cooperatively so as to ensure consensus across methods after the training with arbitrary data.
+Such a parameter tuning process aims to find combinations of values for the various methods' hyperparameters that lead to the production of similar coefficient vectors across methods. As previously shown, the focus is on the estimated predictor coefficients and not on the prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, it uses the fact that we have multiple methods and they perform their hyperparameter tuning cooperatively so as to promote consensus across methods after the training with arbitrary data.
 
 
 
