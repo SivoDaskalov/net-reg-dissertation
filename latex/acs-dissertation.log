@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  29 MAY 2017 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  30 MAY 2017 02:51
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -913,39 +913,45 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \tab@size=\count192
 \listing@line=\count193
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count194
+\float@exts=\toks40
+\float@box=\box63
+\@float@everytoks=\toks41
+\@floatcapt=\box64
+)
 runsystem(texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex >
  wordcount.txt)...executed.
 
-
-(acs-dissertation.aux)
+ (acs-dissertation.aux)
 \openout1 = `acs-dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-
-(C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+ (C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count194
+\scratchcounter=\count195
 \scratchdimen=\dimen295
-\scratchbox=\box63
-\nofMPsegments=\count195
-\nofMParguments=\count196
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count197
+\scratchbox=\box65
+\nofMPsegments=\count196
+\nofMParguments=\count197
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count198
 \MPscratchDim=\dimen296
-\MPnumerator=\count198
-\makeMPintoPDFobject=\count199
-\everyMPtoPDFconversion=\toks41
+\MPnumerator=\count199
+\makeMPintoPDFobject=\count266
+\everyMPtoPDFconversion=\toks43
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -996,7 +1002,7 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
 your preamble.
- on input line 20.
+ on input line 21.
 
 
 (C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\translator\dict
@@ -1007,8 +1013,8 @@ Dictionary: translator-basic-dictionary, Language: English
 iations.cfg
 File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
-\c__siunitx_mathsf_int=\count266
-\c__siunitx_mathtt_int=\count267
+\c__siunitx_mathsf_int=\count267
+\c__siunitx_mathtt_int=\count268
  (acs-dissertation.toc [1
 
 
@@ -1082,19 +1088,27 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
- [22])
-(acs-dissertation.bbl
+ [22]
+<figures/orchestrated_tuning_methodology.png, id=84, 501.875pt x 443.6575pt>
+File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
+
+<use figures/orchestrated_tuning_methodology.png>
+Package pdftex.def Info: figures/orchestrated_tuning_methodology.png used on in
+put line 50.
+(pdftex.def)             Requested size: 376.40532pt x 332.7423pt.
+
 Underfull \vbox (badness 1721) has occurred while \output is active []
 
- [23]
-[24] [25
+ [23])
+(acs-dissertation.bbl [24 <./figures/orchestrated_tuning_methodology.png>]
+[25
 
 ]) [26] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32136 strings out of 493333
- 809056 string characters out of 3139183
- 931857 words of memory out of 3000000
- 35202 multiletter control sequences out of 15000+200000
+ 32204 strings out of 493333
+ 810093 string characters out of 3139183
+ 933260 words of memory out of 3000000
+ 35263 multiletter control sequences out of 15000+200000
  10933 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1109,9 +1123,9 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (26 pages, 199708 bytes).
+Output written on acs-dissertation.pdf (26 pages, 241813 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
