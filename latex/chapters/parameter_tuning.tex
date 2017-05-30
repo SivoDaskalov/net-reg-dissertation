@@ -44,3 +44,24 @@ The behavior of each regression method in our proposed hyperparameter tuning clo
 
 \subsection{Methodology} \label{sec:orc_meth}
 %A novel method of hyperparameter tuning is developed as an alternative to the widely used method of minimizing the cross-validated mean squared test error. In our context we have a bundle of regression methods that operate on the same training data and share a common goal - to correctly identify the relationship between predictor and target variables. Instead of tuning the various regression methods independently, our approach performs cooperative hyperparameter tuning on all methods simultaneously. It uses an iterative algorithm to increase the similarity of estimated coefficients for the various methods by tuning their hyperparameters. For each method and iteration, the method's parameter grid neighborhood is searched for a set of parameters that maximizes the correlation between its estimated coefficients and the averaged estimates of all other methods for the previous iteration. When this process converges a set of parameters is defined for each method that maximizes the overall agreement across the whole set of methods.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{orchestrated_tuning_methodology}
+	\caption{Orchestrated tuning of three methods}
+	\label{fig:orc_tun_struct}
+\end{figure}
+
+%We propose an alternative approach for parameter tuning that uses the fact that we have implementations of multiple methods that attempt to do a similar thing. It features the following iterative process:
+%
+%1. Initially, each of the methods is trained using the median value of each of its parameters (that is, if the considered values are lambda1= [0.05, 0.1, 1, 10, 20] and lambda2 = [0.1, 0.2, 0.3, 0.4, 0.5], values lambda1=0.1 and lambda2=0.3 will be used) 
+%2. Each iteration performs the following for all of the methods:
+%- Consider the coefficient vectors of all other methods for the previous iteration, they are averaged to produce the current coefficient vector target
+%- Consider combinations of parameter values that are located in the grid next to the previously used set of parameters (in the example from 1. those would be lambda1=[0.1, 1, 10] and lambda2=[0.2, 0.3, 0.4] because the parameters chosen by the previous iteration would be lambda1=0.1 and lambda2=0.3)
+%- Fit the method with each of the parameter combinations described above, in this case 9 combinations
+%- Consider the coefficient vectors produced by each of the 9 parameter combinations, choose the parameter combination that results in the largest correlation between its coefficient vector and the coefficient vector target (the one we obtained from all other methods)
+%- The method's output for the current iteration is the best of the 9 parameter combinations, along with the coefficient vector it produces
+%3. Repeat the iterations described in 2. until the movement along the parameter grid is settled (that is, for the latest iteration none of the methods has selected different parameters than the previous iteration)
+%4. The parameter values of the last iteration are to be considered optimal for their respective method 
+%
+%Such a parameter tuning process finds such values for the various methods' parameters that lead to the production of similar coefficient vectors across methods. As explained earlier, the focus is on the predictor coefficients that are estimated in each iteration and not on the prediction error, this is why cross validation is not needed and the parameter tuning process is optimized in terms of computing power. What is more, it uses the fact that we have multiple methods and they perform their parameter tuning cooperatively so as to ensure consensus across methods after the training with arbitrary data.
