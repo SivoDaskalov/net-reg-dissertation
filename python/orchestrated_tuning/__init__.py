@@ -19,7 +19,6 @@ import math
 methods = ["lasso", "enet", "grace", "gblasso", "linf"]
 always_recalculate = ["agrace", "alinf"]
 optimization_methods = ["coef_correlation", "n_predictors"]
-optimization_method = "coef_correlation"
 use_tuning_set_for_final_training = False
 
 
@@ -93,7 +92,7 @@ def train_methods(setup, matlab_engine, reference_methods):
     return models
 
 
-def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
+def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx, opt_method):
     method = methods[method_idx]
     current_param_indices = method["cur_param_idx"].values()
     method_param_lengths = [len(values) for values in method["param_values"].values()]
@@ -118,13 +117,13 @@ def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
             cache[method_name][model_key] = fit
             new_fits.append(fit)
 
-    if optimization_method is "coef_correlation":
+    if opt_method is "coef_correlation":
         target_coef = np.mean(np.array([method["cur_coef"] for idx, method in enumerate(methods) if idx != method_idx]),
                               axis=0)
         coef_correlations = [np.corrcoef(new_fits[i]["cur_coef"], target_coef)[0, 1] for i in range(len(new_fits))]
         opt_index = coef_correlations.index(max(coef_correlations))
 
-    if optimization_method is "n_predictors":
+    if opt_method is "n_predictors":
         n_predictors_target = math.ceil(np.mean(
             np.count_nonzero([method["cur_coef"] for idx, method in enumerate(methods) if idx != method_idx], axis=1)))
         n_predictors_cur = [np.count_nonzero(new_fits[i]["cur_coef"]) for i in range(len(new_fits))]
@@ -143,7 +142,7 @@ def tune_abstract_method(setup, matlab_engine, methods, cache, method_idx):
     return new_fits[opt_index]
 
 
-def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
+def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True, opt_method="coef_correlation"):
     print("%sOrchestrated tuning for %s" % (timestamp(), setup.label))
     reference_methods = init_methods(setup, matlab_engine, method_names, load_dump)
     cache, dump_url = init_cache(setup, reference_methods, load_dump)
@@ -154,7 +153,7 @@ def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
         iter += 1
         # if iter % 100 == 0:
         # print("%sIteration %d" % (timestamp(), iter))
-        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, cache, i)
+        current_methods = [tune_abstract_method(setup, matlab_engine, reference_methods, cache, i, opt_method)
                            for i in range(len(reference_methods))]
         converged = np.all(
             [utilities.compare_params(reference_methods[i], current_methods[i]) for i in range(len(reference_methods))])
@@ -170,6 +169,6 @@ def do_orchestrated_tuning(setup, matlab_engine, method_names, load_dump=True):
     return train_methods(setup, matlab_engine, {method["method"]: method for method in reference_methods})
 
 
-def batch_do_orchestrated_tuning(setups, load_dump=True):
+def batch_do_orchestrated_tuning(setups, load_dump=True, opt_method="coef_correlation"):
     engine = matlab.engine.start_matlab("-nodesktop")
-    return [(setup, do_orchestrated_tuning(setup, engine, methods, load_dump)) for setup in setups]
+    return [(setup, do_orchestrated_tuning(setup, engine, methods, load_dump, opt_method)) for setup in setups]

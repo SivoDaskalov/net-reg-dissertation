@@ -1,12 +1,17 @@
 \documentclass[a4paper,12pt,twoside,openright]{report}
 
+\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath, moreverb, float} 
+
+\immediate\write18{texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex > wordcount.txt}
+\newcommand\wc{\input{wordcount.txt}}
+\graphicspath{ {figures/} }
+
 \def\authorname{Sivo V. Daskalov\xspace}
 \def\authorcollege{Corpus Christi College\xspace}
 \def\authoremail{sivodaskalov@gmail.com}
 \def\dissertationtitle{Machine learning network-constrained regression of epigenetic data}
-\def\wordcount{00,000}
+\def\wordcount{\wc}
 
-\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath} 
 
 \sisetup{
 	round-mode          = places,
@@ -15,38 +20,37 @@
 
 \begin{document}
 
-\pagestyle{empty}
-\singlespacing
-\input{titlepage}
-\onehalfspacing
-\input{declaration}
-\singlespacing
-\input{abstract}
+%TC:ignore
+%\pagestyle{empty}
+%\singlespacing
+%\input{titlepage}
+%\onehalfspacing
+%\input{declaration}
+%\singlespacing
+%\input{abstract}
 
-\pagenumbering{roman}
-\setcounter{page}{0}
-\pagestyle{plain}
+%\pagenumbering{roman}
+%\setcounter{page}{0}
+%\pagestyle{plain}
 \tableofcontents
-\listoffigures
-\listoftables
-\onehalfspacing
+%\listoffigures
+%\listoftables
+%\onehalfspacing
+%\pagenumbering{arabic} 
+%\setcounter{page}{1}
+%TC:endignore
 
-\chapter{Introduction}
-\pagenumbering{arabic} 
-\setcounter{page}{1}
 \input{chapters/introduction} 
-
-\chapter{Background and Related Work} 
 \input{chapters/background_and_related_work}
+\input{chapters/implementation_details}
+\input{chapters/dataset_generation}
+\input{chapters/composite_voting_regressor}
 
-\chapter{Design and Implementation} 
-\input{chapters/design_and_implementation}
- 
-\chapter{Evaluation} 
-\input{chapters/evaluation}
+\input{chapters/parameter_tuning}
 
-\chapter{Summary and Conclusions} 
-\input{chapters/summary}
+%\input{chapters/similarities_tuning_evaluation}
+%\input{chapters/real_data_analysis}
+%\input{chapters/summary_conclusions}
 
 \appendix
 \singlespacing

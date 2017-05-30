@@ -2,6 +2,8 @@ from __future__ import division
 from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
+from commons import load, dump
+from model_fitting import full_method_list as method_order
 
 
 def evaluate_model(setup, model):
@@ -47,10 +49,19 @@ def batch_evaluate_models(fits, filename=None):
     results = pd.DataFrame(data=results, columns=result_fields)
     results = results.sort_values(['model', 'setup'])
     if filename is None:
-        filename = "results/p%d.csv" % fits[0][0].x_test.shape[1]
-    results.to_csv(filename, sep=',')
+        filename = "results/p%d" % fits[0][0].x_test.shape[1]
+    results.to_csv("%s.csv" % filename, sep=',')
     return results
 
 
 def load_results_from_csv(p):
     return pd.read_csv("results/p%d.csv" % p, sep=',', index_col=0)
+
+
+def summarize_results(results, filename):
+    subframe = pd.DataFrame(data=results, columns=['model', 'mse', "correlation", "sens", "spec", "prec"])
+    summary = subframe.apply(pd.to_numeric, errors='ignore').groupby('model').aggregate([np.mean, np.std])
+    summary = summary.reindex(method_order).dropna(axis=0, how='all')
+    summary.columns = [' '.join(col).strip() for col in summary.columns.values]
+    summary.to_csv("%s.csv" % filename, sep=',')
+    return summary

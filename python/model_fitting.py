@@ -4,16 +4,13 @@ from models.gblasso import fit_gblasso, fit_gblasso_opt
 from models.linf import fit_linf, fit_alinf, fit_alinf_opt, fit_linf_opt
 from models.tlp import fit_ttlp, fit_ltlp, fit_ttlp_opt, fit_ltlp_opt
 from models.composite import fit_composite_model, fit_composite_model_opt
-from commons import Setup, timestamp
+from commons import Setup, timestamp, full_method_list, real_data_methods
 import model_utils as modut
 import matlab.engine
 import os.path
 import pickle
 import time
 import math
-
-full_method_list = ["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"]
-real_data_method_list = ["lasso", "enet", "grace", "gblasso", "linf", "composite"]
 
 
 def fit_or_load(setup, method_name, load_dump, fitting_func, args, base_dump_url):
@@ -99,10 +96,11 @@ def fit_models(setup, engine, methods=full_method_list, load_dump=True, base_dum
 
 def batch_fit_models(setups, methods=full_method_list, load_dump=True):
     engine = matlab.engine.start_matlab("-nodesktop")
-    return [(setup, fit_models(setup=setup, engine=engine, methods=methods, load_dump=load_dump)) for setup in setups]
+    models = [(setup, fit_models(setup=setup, engine=engine, methods=methods, load_dump=load_dump)) for setup in setups]
+    return models
 
 
-def fit_models_opt_params(setup, engine, methods=real_data_method_list, load_dump=True, base_dump_url=None):
+def fit_models_opt_params(setup, engine, methods, load_dump=True, base_dump_url=None):
     if base_dump_url is None:
         base_dump_url = "dumps/%s_n%d_p%d/%s_n%d_p%d_" % (setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1],
                                                           setup.label, setup.x_tune.shape[0], setup.x_tune.shape[1])
@@ -160,7 +158,7 @@ def fit_models_opt_params(setup, engine, methods=real_data_method_list, load_dum
     return models
 
 
-def batch_fit_real_data(datasets, methods=full_method_list, load_dump=True):
+def batch_fit_real_data(datasets, methods=real_data_methods, load_dump=True):
     engine = matlab.engine.start_matlab("-nodesktop")
 
     fits_dir = "fits"

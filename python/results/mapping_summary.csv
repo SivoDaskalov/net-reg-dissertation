@@ -1,0 +1,11 @@
+Dataset,Method,Resolved,Unresolved,Influencing,Non-influencing
+Body,Composite,471.0,8.0,206.0,273.0
+Body,Enet,473.0,6.0,242.0,237.0
+Body,Grace,474.0,5.0,234.0,245.0
+Body,Lasso,470.0,9.0,205.0,274.0
+Body,Linf,479.0,0.0,307.0,172.0
+Prom,Composite,455.0,13.0,155.0,313.0
+Prom,Enet,458.0,10.0,166.0,302.0
+Prom,Grace,461.0,7.0,175.0,293.0
+Prom,Lasso,453.0,15.0,151.0,317.0
+Prom,Linf,468.0,0.0,468.0,0.0

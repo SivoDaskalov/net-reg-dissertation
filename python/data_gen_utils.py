@@ -1,3 +1,4 @@
+from __future__ import division
 from commons import Setup, timestamp
 from sklearn.preprocessing import StandardScaler
 import math
@@ -15,21 +16,26 @@ def generate_true_coefficients(trans_factor_coefficients, regulated_denominator,
     return true_coefficients
 
 
-def generate_setup_coefficients(n_trans_factors):
+def generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups=[1]):
     # 10 regulated genes per trans factor, setups are as suggested by Li and Li, Bioinformatics 2008, section 4
-    trans_factor_coefs = [5, -5, 3, -3]
-    n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
-    setups = {
-        "Setup 1": generate_true_coefficients(trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes),
-        "Setup 2": generate_true_coefficients(trans_factor_coefs, math.sqrt(10), 3, 7, n_trailing_zero_genes),
-        "Setup 3": generate_true_coefficients(trans_factor_coefs, 10, 0, 10, n_trailing_zero_genes),
-        "Setup 4": generate_true_coefficients(trans_factor_coefs, 10, 3, 7, n_trailing_zero_genes)
-    }
+    setups = {}
+    for n_relevant_groups in n_relevant_trans_factor_groups:
+        trans_factor_coefs = [x / n_relevant_groups for x in [5, -5, 3, -3] * n_relevant_groups]
+        n_trailing_zero_genes = (n_trans_factors - len(trans_factor_coefs)) * 11
+        setups["Groups %d_Setup 1" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, math.sqrt(10), 0, 10, n_trailing_zero_genes)
+        setups["Groups %d_Setup 2" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, math.sqrt(10), 3, 7, n_trailing_zero_genes),
+        setups["Groups %d_Setup 3" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, 10, 0, 10, n_trailing_zero_genes),
+        setups["Groups %d_Setup 4" % n_relevant_groups] = generate_true_coefficients(
+            trans_factor_coefs, 10, 3, 7, n_trailing_zero_genes)
+    setups = {key: value[0] if isinstance(value, tuple) else value for (key, value) in setups.iteritems()}
     return setups
 
 
 def generate_observation(n_trans_factors, n_regulated_genes_per_trans_factor):
-    tf_expression_levels = np.random.normal(loc=0.0, scale=1.1, size=n_trans_factors)
+    tf_expression_levels = np.random.normal(loc=0.0, scale=1.0, size=n_trans_factors)
     expressions = [
         [tf] + np.random.normal(loc=0.7 * tf, scale=math.sqrt(0.51), size=n_regulated_genes_per_trans_factor).tolist()
         for tf in tf_expression_levels]
@@ -47,7 +53,8 @@ def generate_expressions(n_observations, n_trans_factors, n_regulated_genes_per_
 
 def generate_response(expressions, coefficients):
     response = np.sum(expressions * coefficients, axis=1)
-    noise = np.random.normal(loc=0, scale=math.sqrt(np.var(coefficients)), size=response.shape[0])
+    noise_variance = np.sum(np.array(coefficients)**2)/4
+    noise = np.random.normal(loc=0, scale=math.sqrt(noise_variance), size=response.shape[0])
     noisy_response = [response[i] + noise[i] for i in range(response.shape[0])]
     normalized_response = noisy_response - np.mean(noisy_response)
     return normalized_response
@@ -60,25 +67,29 @@ def generate_network(n_trans_factors, n_regulated_genes_per_trans_factor):
     return network, degrees
 
 
-def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor,
-                          n_tune_obs, n_train_obs, n_test_obs, load_dump=False):
-    dump_url = "dumps/setups_tf%d_rg%d_tu%d_tr%d_ts%d" % (n_trans_factors, n_regulated_genes_per_trans_factor,
-                                                          n_tune_obs, n_train_obs, n_test_obs)
+def batch_generate_setups(n_trans_factors, n_regulated_genes_per_trans_factor, train_on_tuning_dataset=False,
+                          n_tune_obs=200, n_train_obs=200, n_test_obs=100, n_relevant_trans_factor_groups=[1],
+                          load_dump=False):
+    dump_url = "dumps/synthetic_setups"
     if load_dump and os.path.exists(dump_url):
         print("%sLoading previously generated dataset" % timestamp())
         with open(dump_url, 'rbU') as f:
             setups = pickle.load(f)
         print("%sLoaded previously generated dataset" % timestamp())
     else:
-        print("Generating dataset")
+        print("Generating datasets")
         setups = []
         network, degrees = generate_network(n_trans_factors, n_regulated_genes_per_trans_factor)
-        for label, coefficients in generate_setup_coefficients(n_trans_factors).items():
+        for label, coefficients in generate_setup_coefficients(n_trans_factors, n_relevant_trans_factor_groups).iteritems():
             x_tune = generate_expressions(n_tune_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_tu = generate_response(x_tune, coefficients)
 
-            x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
-            y_tr = generate_response(x_train, coefficients)
+            if train_on_tuning_dataset:
+                x_train = x_tune
+                y_tr = y_tu
+            else:
+                x_train = generate_expressions(n_train_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
+                y_tr = generate_response(x_train, coefficients)
 
             x_test = generate_expressions(n_test_obs, n_trans_factors, n_regulated_genes_per_trans_factor)
             y_ts = generate_response(x_test, coefficients)
