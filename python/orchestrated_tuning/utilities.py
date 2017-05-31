@@ -1,6 +1,9 @@
 import pandas as pd
+
 custom_start_points = None
 from commons import timestamp
+
+converge_iterations = [106, 146, 91, 95, 92, 70, 23, 59, 187, 210, 53, 113, 391, 33, 30, 32, 84, 13, 82, 55]
 
 
 def get_middle_param(grid):

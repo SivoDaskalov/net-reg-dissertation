@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import itertools
 import math
+from orchestrated_tuning.utilities import converge_iterations
 from commons import full_method_list as method_order, glm_l1_ratios, grace_lambda1_values, grace_lambda2_values, \
     gblasso_gamma_values, gblasso_lambda_values, linf_c_values, alinf_e_values, cm_vote_thresholds, mapping_files, \
     error_files, fraction_votes_files
@@ -55,7 +56,7 @@ def plot_similarities_heatmap(similarities, methods, url="figures/similarities.p
 def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comparison.png",
                             suptitle="Properties by tuning method"):
     summaries = {}
-    for label, url in summary_urls.iteritems():
+    for label, url in sorted(summary_urls.iteritems(), reverse=True):
         summaries[label] = pd.read_csv(url, index_col=0)
 
     methods = set(method_order)
@@ -77,7 +78,7 @@ def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comp
         subplot.set_xticklabels(methods, rotation=45 if n_tuning_methods == 1 else 0)
 
         j = 0
-        for label, summary in summaries.iteritems():
+        for label, summary in sorted(summaries.iteritems()):
             sub_summary = summary.loc[methods]
             subplot.bar(ind + j * width, sub_summary["%s mean" % subplots_info[i][1]], width,
                         yerr=sub_summary["%s std" % subplots_info[i][1]], label=label)
@@ -104,6 +105,8 @@ def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
         results = pd.read_csv(results_file_url, index_col=0)
         for idx, row in results.iterrows():
             model = row['model']
+            if model == "composite" and results_file_url == "results/orctun_results_coef_correlation_p550.csv":
+                continue
             cur_params = [key_value.strip().split('=') for key_value in row["params"].split(',')]
 
             if not model in parsed_params:
@@ -149,6 +152,9 @@ def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
                 g.ax_marg_x.set_xscale(xscale[model])
                 xbins = np.logspace(math.log10(xticks[model][0]), math.log10(xticks[model][-1]),
                                     2 * len(xticks[model]))
+                xbins = [xticks[model][0]] + [np.logspace(math.log10(i), math.log10(j), 3)[1] for i, j in
+                                              zip(xticks[model][:-1], xticks[model][1:])] + [
+                            xticks[model][-1]]
             else:
                 xbins = [xticks[model][0]] + [(j + i) / 2 for i, j in zip(xticks[model][:-1], xticks[model][1:])] + [
                     xticks[model][-1]]
@@ -157,13 +163,22 @@ def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
                 ax.set_yscale(yscale[model])
                 g.ax_marg_y.set_yscale(yscale[model])
                 ybins = np.logspace(math.log10(yticks[model][0]), math.log10(yticks[model][-1]),
-                                    2 * len(yticks[model]))
+                                    2 * len(yticks[model]) - 1)
+                ybins = [yticks[model][0]] + [np.logspace(math.log10(i), math.log10(j), 3)[1] for i, j in
+                                              zip(yticks[model][:-1], yticks[model][1:])] + [
+                            yticks[model][-1]]
             else:
                 ybins = [yticks[model][0]] + [(j + i) / 2 for i, j in zip(yticks[model][:-1], yticks[model][1:])] + [
                     yticks[model][-1]]
 
-            g.ax_marg_x.hist(data.iloc[:, 0], color="b", alpha=.6, bins=xbins)
-            g.ax_marg_y.hist(data.iloc[:, 1], color="b", alpha=.6, orientation="horizontal", bins=ybins)
+            xhist_values = [val for sublist in
+                            [[data.iloc[idx, 0]] * int(data.iloc[idx, 2]) for idx in range(data.shape[0])]
+                            for val in sublist]
+            yhist_values = [val for sublist in
+                            [[data.iloc[idx, 1]] * int(data.iloc[idx, 2]) for idx in range(data.shape[0])]
+                            for val in sublist]
+            g.ax_marg_x.hist(xhist_values, color="b", alpha=.6, bins=xbins)
+            g.ax_marg_y.hist(yhist_values, color="b", alpha=.6, orientation="horizontal", bins=ybins)
 
             plt.sca(ax)
             plt.scatter(x=data.iloc[:, 0], y=data.iloc[:, 1], s=data.iloc[:, 2] * 100, c=data.iloc[:, 2], cmap="Blues",
@@ -337,3 +352,12 @@ def plot_mapping_fraction_votes(fraction_votes_files=fraction_votes_files):
     plt.tight_layout()
     plt.subplots_adjust(top=0.85)
     plt.savefig("figures/mappings/vote_distribution.png")
+
+
+def plot_convergence_statistics():
+    plt.figure()
+    ax = plt.gca()
+    plot_distribution_hist(ax, converge_iterations, "Orchestrated tuning iterations required to converge",
+                           "Iterations required", "Fraction of cases")
+    plt.tight_layout()
+    plt.savefig("figures/tuning/convergence_statistics.png")
