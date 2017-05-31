@@ -22,9 +22,9 @@ relevant_trans_factor_groups = [1, 2, 3, 4, 5]
 setups = None
 
 
-setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
-                               n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
-                               n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
+# setups = batch_generate_setups(n_regulated_genes_per_trans_factor=n_regulated_genes_per_trans_factor, load_dump=True,
+#                                n_trans_factors=n_trans_factors, train_on_tuning_dataset=True, n_tune_obs=300,
+#                                n_test_obs=100, n_relevant_trans_factor_groups=relevant_trans_factor_groups)
 
 
 def cv_mse_tune_generated_data(methods, load_dump=False):
@@ -76,17 +76,17 @@ def summarize_mapping_results():
 #     methods=["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"],
 #     load_dump=True)
 # load_custom_start_points("results/p550.csv")
-orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=True)
+# orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=True)
 # plot_convergence_statistics()
 
 # plot_summary_comparison(summary_urls={"CV of MSE tuning": "results/p550_summary.csv"},
 #                         figure_url="figures/cv_mse_tuning.png",
 #                         suptitle="Properties by regression method, CV-MSE tuning")
-plot_summary_comparison(summary_urls={
-    "CV of MSE tuning": "results/p550_summary.csv",
-    "Orchestrated tuning": "results/orctun_results_coef_correlation_p550_summary.csv"},
-    figure_url="figures/tuning_method_comparison.png",
-    suptitle="Properties by tuning method")
+# plot_summary_comparison(summary_urls={
+#     "CV of MSE tuning": "results/p550_summary.csv",
+#     "Orchestrated tuning": "results/orctun_results_coef_correlation_p550_summary.csv"},
+#     figure_url="figures/tuning_method_comparison.png",
+#     suptitle="Properties by tuning method")
 # plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/orctun_results_coef_correlation_p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"], load_dump=True)
