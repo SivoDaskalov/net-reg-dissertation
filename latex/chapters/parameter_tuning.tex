@@ -55,23 +55,25 @@ Initially, each of the methods is trained using some hyperparameter combination 
 	\label{fig:orc_tun_search_grid}
 \end{figure}
 
-The orchestrated tuning procedure for each method $M$ in iteration $t$ is defined as follows:
+The orchestrated tuning procedure of $k$ regression methods is defined below. The following sequence of steps is performed for each method $M_{i \in 1..k}$ in an arbitrary iteration $t$.
 \begin{enumerate}
-	\item \label{target_vector} Consider the coefficient vectors estimated by all other methods for the previous iteration. A target coefficient vector is calculated by averaging the estimated parameters of all other methods.
-	\item \label{cand_comb} Consider the candidate hyperparameter value combinations located in proximity (in the search grid) to the combination selected by the previous iteration. An example of a set of candidate combinations is shown on Figure \ref{fig:orc_tun_search_grid} for a regression method with two tuning parameters. Train the regression method with each of the candidate combinations.
-	\item Consider the estimated coefficient vectors resulting from each of the candidate parameter combinations. The hyperparameter combination chosen for the current iteration is the one that maximizes correlation between its estimated vector and the target vector defined in \ref{target_vector}. The method's estimate for the current iteration is the one produced by the chosen candidate combination.
+	\item \label{target_vector} Consider the coefficient vectors $\beta_{j, t-1}$ estimated by all other methods $M_{j \ne i}$ for the previous iteration $t-1$. A target coefficient vector $\beta_{tar, t}$ is created by calculating the mean coefficient value for each predictor estimated by the regression methods $M_{j \ne i}$.
+	\item \label{cand_comb} Consider the candidate hyperparameter value combinations located in proximity (in the search grid) to the combination selected by the previous iteration $P_{t-1}$. An example of a set of candidate combinations is shown on Figure \ref{fig:orc_tun_search_grid} for a regression method with two tuning parameters. We train the current method $M_i$ using each of the candidate hyperparameter combinations.
+	\item Consider the estimated coefficient vectors resulting from each of the candidate hyperparameter combinations defined in \ref{cand_comb}. The combination $P_t$ selected for the current iteration $t$ is the one that maximizes correlation between its estimated coefficient vector and the target vector $\beta_{tar, t}$ defined in \ref{target_vector}. The method's estimate $\beta_{i, t}$ for the current iteration is the one produced by the chosen candidate combination.
 \end{enumerate}
 
-\begin{figure}[bh]
+This iterative procedure converges when any movement along the parameter grids is settled for all methods. The tuning stops when the selected hyperparameter combinations for the current iteration are identical to those of the previous one for all methods. The combinations of hyperparameter values selected in the last iteration are considered optimal for their respective regression methods.
+
+If the parameter search grids for the various methods are coarse, fluctuation between two parameter combinations can occur, preventing convergence. A maximum number of iterations can be defined to force the completion of the tuning process, resulting in an approximate solution. 
+
+The temporal relationships that occur between the various regression methods during the orchestrated hyperparameter tuning can be illustrated with the graph shown in Figure \ref{fig:orc_tun_struct}. This abstract structure of method interactions resembles a recurrent neural network.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.75]{orchestrated_tuning_methodology}
 	\caption{Orchestrated tuning abstract structure, three regression methods; $M1_{t-1}$ denotes the parameter estimates of method $1$ for iteration $t-1$; Each tuning iteration $t$ of a method uses the common input data and the parameter estimates of all other methods for the previous iteration}
 	\label{fig:orc_tun_struct}
 \end{figure}
-
-This iterative procedure converges when any movement along the parameter grids is settled for all methods. The tuning stops when the selected hyperparameter combinations for the current iteration are identical to those of the previous iteration for all methods. The combination of parameter values for each method selected by the last iteration is considered optimal.
-
-If the parameter search grids for the various methods are coarse, fluctuation between two parameter combinations can occur preventing convergence. A maximum number of iterations can be defined to force the completion of the tuning process, resulting in an approximate solution. 
 
 \subsubsection{Choice of starting points for the search}
 The choice of hyperparameter starting points in the search grid for the ensemble of regression methods should greatly affect the convergence state of the tuning process. This initial state of the system can be chosen in one of several ways.

@@ -40,5 +40,5 @@
 \contentsline {subsection}{\numberline {6.2.2}Inspiration}{23}
 \contentsline {subsection}{\numberline {6.2.3}Methodology}{24}
 \contentsline {subsubsection}{Iterative procedure}{24}
-\contentsline {subsubsection}{Choice of starting points for the search}{25}
-\contentsline {subsubsection}{Discussion}{25}
+\contentsline {subsubsection}{Choice of starting points for the search}{26}
+\contentsline {subsubsection}{Discussion}{27}
