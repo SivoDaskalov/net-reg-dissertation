@@ -1,7 +1,7 @@
 Method,Tuning,MSE,Correlation,Sensitivity,Specificity,Precision
 Lasso,CV-MSE,19.55,0.83,0.56,0.92,0.68
 ,Orchestrated,20.78,0.79,0.64,0.78,0.46
-Elastic Net,CV-MSE,18.60,0.85,0.67,0.81,0.62
+ENet,CV-MSE,18.6,0.85,0.67,0.81,0.62
 ,Orchestrated,19.78,0.77,0.76,0.79,0.52
 Grace,CV-MSE,15.47,0.86,0.95,0.43,0.35
 ,Orchestrated,18.46,0.82,0.84,0.66,0.47

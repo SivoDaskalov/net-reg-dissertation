@@ -1,0 +1,31 @@
+\begin{table}[h!]
+	\begin{center}
+		\caption{Orchestrated tuning model similarities}
+		\label{tab:sim_orctun}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		columns={Method,Lasso,ENet,Grace,GBLasso,Linf,Composite},
+		display columns/0/.style={string type, column type = {l}},
+		display columns/1/.style={column type={S}, string type, column type = {c}},
+		display columns/2/.style={column type={S}, string type, column type = {c}},
+		display columns/3/.style={column type={S}, string type, column type = {c}},
+		display columns/4/.style={column type={S}, string type, column type = {c}},
+		display columns/5/.style={column type={S}, string type, column type = {c}},
+		display columns/6/.style={column type={S}, string type, column type = {c}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row/.add={}{
+				\arraybackslash
+				&$(\sigma_{Lasso})$&$(\sigma_{ENet})$&$(\sigma_{Grace})$&($\sigma_{GBLasso})$&$(\sigma_{Linf})$&$(\sigma_{Composite})$\\
+				\midrule\midrule
+			}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		every nth row={2}{before row=\midrule},
+		]{tables/similarity_orctun.csv}
+	\end{center}
+\end{table}

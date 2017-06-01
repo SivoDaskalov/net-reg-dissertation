@@ -1,0 +1,27 @@
+\begin{table}[h!]
+	\begin{center}
+		\caption{Comparison of model metrics by tuning method}
+		\label{tab:met_comp}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		columns={Method,Tuning,MSE,Correlation,Sensitivity,Specificity,Precision},
+		display columns/0/.style={string type, column type = {l}},
+		display columns/1/.style={string type, column type = {l}},
+		display columns/2/.style={column type={S}, string type, column type = {r}},
+		display columns/3/.style={column name=Correlation, column type={S}, string type, column type = {r}},
+		display columns/4/.style={column name=Sens, column type={S}, string type, column type = {r}},
+		display columns/5/.style={column name=Spec, column type={S}, string type, column type = {r}},
+		display columns/6/.style={column name=Prec, column type={S}, string type, column type = {r}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row={\midrule\midrule}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		every nth row={2}{before row=\midrule},
+		]{tables/metrics_comparison.csv}
+	\end{center}
+\end{table}

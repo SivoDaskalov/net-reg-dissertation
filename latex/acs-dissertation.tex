@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt,twoside,openright]{report}
 
-\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath, moreverb, float} 
+\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath, moreverb, float,rotating} 
 
 \immediate\write18{texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex > wordcount.txt}
 \newcommand\wc{\input{wordcount.txt}}
@@ -15,7 +15,7 @@
 
 \sisetup{
 	round-mode          = places,
-	round-precision     = 2,
+	round-precision     = 2
 }
 
 \begin{document}
@@ -45,8 +45,9 @@
 \input{chapters/implementation_details}
 \input{chapters/dataset_generation}
 \input{chapters/composite_voting_regressor}
-
 \input{chapters/parameter_tuning}
+
+\input{chapters/tuning_evaluation}
 
 %\input{chapters/similarities_tuning_evaluation}
 %\input{chapters/real_data_analysis}

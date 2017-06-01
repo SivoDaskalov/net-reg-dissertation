@@ -19,15 +19,15 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{background}{{2}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Linear Regression}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Linear regression}{5}}
 \newlabel{eq:lin_reg}{{2.1}{5}}
 \citation{hoerl1970ridge}
 \citation{tibshirani1996regression}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Ordinary least squares estimation}{6}}
 \newlabel{sec:olse}{{2.2}{6}}
 \newlabel{eq:rss}{{2.2}{6}}
 \newlabel{eq:beta_est}{{2.3}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Penalized Regression}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Penalized regression}{6}}
 \newlabel{sec:pen_reg}{{2.3}{6}}
 \newlabel{eq:pen_reg}{{2.4}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{6}}
@@ -72,7 +72,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{10}}
 \newlabel{eq:tlp_pen}{{2.17}{10}}
 \citation{shen2012likelihood}
-\@writefile{toc}{\contentsline {subsubsection}{Indicator Functions}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{Indicator functions}{11}}
 \@writefile{toc}{\contentsline {subsubsection}{TTLP}{11}}
 \newlabel{sec:ttlp}{{2.4.5}{11}}
 \newlabel{eq:tlp}{{2.19}{11}}
@@ -121,16 +121,16 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {6.1}Traditional approaches}{21}}
 \newlabel{sec:trad_tuning}{{6.1}{21}}
-\@writefile{toc}{\contentsline {subsubsection}{Grid Search}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{Grid search}{21}}
 \newlabel{eq:mse}{{6.1}{21}}
 \citation{james2013introduction}
 \citation{james2013introduction}
 \citation{kohavi1995study}
-\@writefile{toc}{\contentsline {subsubsection}{The Validation Set Approach}{22}}
-\@writefile{toc}{\contentsline {subsubsection}{K-Fold Cross Validation}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{The validation set approach}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{K-fold cross validation}{22}}
 \newlabel{eq:cv}{{6.2}{22}}
-\@writefile{toc}{\contentsline {subsubsection}{Grid Search minimizing the Cross-Validated MSE}{22}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Orchestrated Parameter Tuning}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{Grid search minimizing the cross-validated MSE}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Orchestrated parameter tuning}{23}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Context and motivation}{23}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Inspiration}{23}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Methodology}{24}}
@@ -143,9 +143,29 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Orchestrated tuning abstract structure, three regression methods; $M1_{t-1}$ denotes the parameter estimates of method $1$ for iteration $t-1$; Each tuning iteration $t$ of a method uses the common input data and the parameter estimates of all other methods for the previous iteration}}{26}}
 \newlabel{fig:orc_tun_struct}{{6.2}{26}}
 \@writefile{toc}{\contentsline {subsubsection}{Choice of starting points for the search}{26}}
+\@writefile{toc}{\contentsline {subsubsection}{Discussion}{27}}
 \bibstyle{unsrt}
 \bibdata{references}
-\@writefile{toc}{\contentsline {subsubsection}{Discussion}{27}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Tuning Results and Evaluation}{29}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Hyperparameter search spaces}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Model metrics}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}CV-MSE tuning}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Orchestrated tuning}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Comparison of model metrics by tuning method}}{30}}
+\newlabel{tab:met_comp}{{7.1}{30}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces CV-MSE tuning model metrics by regression method}}{31}}
+\newlabel{tab:met_cvmse}{{7.2}{31}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces Orchestrated tuning model metrics by regression method}}{32}}
+\newlabel{tab:met_orctun}{{7.3}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Comparison of model similarities by tuning method}}{32}}
+\newlabel{tab:sim_comp}{{7.4}{32}}
+\newlabel{RF1}{33}
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces CV-MSE tuning model similarities}}{33}}
+\newlabel{tab:sim_cvmse}{{7.5}{33}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces Orchestrated tuning model similarities}}{34}}
+\newlabel{tab:sim_orctun}{{7.6}{34}}
 \bibcite{holliday2006epigenetics}{1}
 \bibcite{jaenisch2003epigenetic}{2}
 \bibcite{egger2004epigenetics}{3}

@@ -1,8 +1,8 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}
 \contentsline {chapter}{\numberline {2}Background and Related Work}{5}
-\contentsline {section}{\numberline {2.1}Linear Regression}{5}
-\contentsline {section}{\numberline {2.2}Ordinary Least Squares Estimation}{6}
-\contentsline {section}{\numberline {2.3}Penalized Regression}{6}
+\contentsline {section}{\numberline {2.1}Linear regression}{5}
+\contentsline {section}{\numberline {2.2}Ordinary least squares estimation}{6}
+\contentsline {section}{\numberline {2.3}Penalized regression}{6}
 \contentsline {subsection}{\numberline {2.3.1}Ridge regression}{6}
 \contentsline {subsection}{\numberline {2.3.2}Lasso}{7}
 \contentsline {subsection}{\numberline {2.3.3}Elastic Net}{7}
@@ -14,7 +14,7 @@
 \contentsline {subsubsection}{Linf}{9}
 \contentsline {subsubsection}{aLinf}{10}
 \contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{10}
-\contentsline {subsubsection}{Indicator Functions}{11}
+\contentsline {subsubsection}{Indicator functions}{11}
 \contentsline {subsubsection}{TTLP}{11}
 \contentsline {subsubsection}{LTLP}{11}
 \contentsline {chapter}{\numberline {3}Implementation Details}{13}
@@ -31,14 +31,19 @@
 \contentsline {chapter}{\numberline {5}Composite Voting Regression}{19}
 \contentsline {chapter}{\numberline {6}Hyperparameter Tuning}{21}
 \contentsline {section}{\numberline {6.1}Traditional approaches}{21}
-\contentsline {subsubsection}{Grid Search}{21}
-\contentsline {subsubsection}{The Validation Set Approach}{22}
-\contentsline {subsubsection}{K-Fold Cross Validation}{22}
-\contentsline {subsubsection}{Grid Search minimizing the Cross-Validated MSE}{22}
-\contentsline {section}{\numberline {6.2}Orchestrated Parameter Tuning}{23}
+\contentsline {subsubsection}{Grid search}{21}
+\contentsline {subsubsection}{The validation set approach}{22}
+\contentsline {subsubsection}{K-fold cross validation}{22}
+\contentsline {subsubsection}{Grid search minimizing the cross-validated MSE}{22}
+\contentsline {section}{\numberline {6.2}Orchestrated parameter tuning}{23}
 \contentsline {subsection}{\numberline {6.2.1}Context and motivation}{23}
 \contentsline {subsection}{\numberline {6.2.2}Inspiration}{23}
 \contentsline {subsection}{\numberline {6.2.3}Methodology}{24}
 \contentsline {subsubsection}{Iterative procedure}{24}
 \contentsline {subsubsection}{Choice of starting points for the search}{26}
 \contentsline {subsubsection}{Discussion}{27}
+\contentsline {chapter}{\numberline {7}Tuning Results and Evaluation}{29}
+\contentsline {section}{\numberline {7.1}Hyperparameter search spaces}{29}
+\contentsline {section}{\numberline {7.2}Model metrics}{29}
+\contentsline {section}{\numberline {7.3}CV-MSE tuning}{29}
+\contentsline {section}{\numberline {7.4}Orchestrated tuning}{29}

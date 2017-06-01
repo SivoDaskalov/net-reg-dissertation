@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  1 JUN 2017 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  1 JUN 2017 22:05
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -921,10 +921,23 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks41
 \@floatcapt=\box64
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\rotating.sty"
+Package: rotating 2016/05/22 v2.16c rotated objects in LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count195
+\rotFPtop=\skip58
+\rotFPbot=\skip59
+\rot@float@box=\box65
+\rot@mess@toks=\toks42
+)
 runsystem(texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex >
  wordcount.txt)...executed.
 
- (acs-dissertation.aux)
+
+(acs-dissertation.aux)
 \openout1 = `acs-dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
@@ -939,19 +952,20 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
- (C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+
+(C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count195
+\scratchcounter=\count196
 \scratchdimen=\dimen295
-\scratchbox=\box65
-\nofMPsegments=\count196
-\nofMParguments=\count197
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count198
+\scratchbox=\box66
+\nofMPsegments=\count197
+\nofMParguments=\count198
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count199
 \MPscratchDim=\dimen296
-\MPnumerator=\count199
-\makeMPintoPDFobject=\count266
-\everyMPtoPDFconversion=\toks43
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
+\everyMPtoPDFconversion=\toks44
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1013,8 +1027,8 @@ Dictionary: translator-basic-dictionary, Language: English
 iations.cfg
 File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
-\c__siunitx_mathsf_int=\count267
-\c__siunitx_mathtt_int=\count268
+\c__siunitx_mathsf_int=\count268
+\c__siunitx_mathtt_int=\count269
  (acs-dissertation.toc [1
 
 
@@ -1110,32 +1124,93 @@ put line 73.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
-[26 <./figures/orchestrated_tuning_methodology.png>]) (acs-dissertation.bbl
-[27] [28
+[26 <./figures/orchestrated_tuning_methodology.png>])
+(chapters/tuning_evaluation.tex [27] [28
 
-] [29]) [30] (acs-dissertation.aux) ) 
+]
+Chapter 7.
+(tables/metrics_comparison.tex
+PGFPlots: reading {tables/metrics_comparison.csv}
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (tables/metrics_cvmse.tex
+PGFPlots: reading {tables/metrics_cvmse.csv}
+
+Overfull \hbox (6.7027pt too wide) in paragraph at lines 28--29
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (tables/metrics_orctun.tex
+PGFPlots: reading {tables/metrics_orctun.csv}
+
+Overfull \hbox (6.7027pt too wide) in paragraph at lines 28--29
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (tables/similarity_comparison.tex
+PGFPlots: reading {tables/similarity_comparison.csv}
+
+Overfull \hbox (33.31754pt too wide) in paragraph at lines 26--27
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (tables/similarity_cvmse.tex
+PGFPlots: reading {tables/similarity_cvmse.csv}
+
+Overfull \hbox (18.6296pt too wide) in paragraph at lines 34--35
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (tables/similarity_orctun.tex
+PGFPlots: reading {tables/similarity_orctun.csv}
+
+Overfull \hbox (7.83018pt too wide) in paragraph at lines 29--30
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+)) (acs-dissertation.bbl [29] [30] [31] [32] [33] [34] [35
+
+]) [36]
+(acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32213 strings out of 493333
- 810287 string characters out of 3139183
- 933301 words of memory out of 3000000
- 35271 multiletter control sequences out of 15000+200000
+ 32545 strings out of 493333
+ 819806 string characters out of 3139183
+ 944913 words of memory out of 3000000
+ 35568 multiletter control sequences out of 15000+200000
  10933 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (30 pages, 263717 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
+x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb>
+Output written on acs-dissertation.pdf (36 pages, 274971 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
+ 168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

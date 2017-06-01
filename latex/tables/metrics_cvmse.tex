@@ -1,0 +1,30 @@
+\begin{table}[h!]
+	\begin{center}
+		\caption{CV-MSE tuning model metrics by regression method}
+		\label{tab:met_cvmse}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		columns={Method,MSE,Correlation,Sensitivity,Specificity,Precision},
+		display columns/0/.style={string type, column type = {l}},
+		display columns/1/.style={column type={S}, string type, column type = {c}},
+		display columns/2/.style={column name=Correlation, column type={S}, string type, column type = {c}},
+		display columns/3/.style={column name=Sensitivity, column type={S}, string type, column type = {c}},
+		display columns/4/.style={column name=Specificity, column type={S}, string type, column type = {c}},
+		display columns/5/.style={column name=Precision, column type={S}, string type, column type = {c}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row/.add={}{
+				\arraybackslash
+				&$(\sigma_{MSE})$&$(\sigma_{Correlation})$&($\sigma_{Sensitivity})$&$(\sigma_{Specificity})$&$(\sigma_{Precision})$\\
+				\midrule\midrule
+			}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		every nth row={2}{before row=\midrule},
+		]{tables/metrics_cvmse.csv}
+	\end{center}
+\end{table}

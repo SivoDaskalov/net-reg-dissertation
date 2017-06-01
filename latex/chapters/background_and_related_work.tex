@@ -2,7 +2,7 @@
 This chapter briefly reviews the main concepts of linear regression. We describe in detail the various methods for penalized regression found in literature and used in this project.
 
 
-\section{Linear Regression}
+\section{Linear regression}
 Let us consider an entity with a number of scalar measurable (observable) properties, e.g. temperature, weight, dimensions. We can define a matrix $X$ of $n$ rows and $p$ columns, such that each column contains the observed values of a particular property and each row represents an independent observation of values for all properties. Let us also define a vector $y$ of length $n$ containing the corresponding observed values of an arbitrary property of interest.
 
 Linear regression is a method for modeling the relationships between a scalar dependent (target) variable $y$ and a number of explanatory variables (predictors) $X_1,...,X_p$. It assumes that this relationship is linear and assigns a regression coefficient $\beta_i$ to each predictor $X_i$, as well as a constant (offset) term $\beta_0$. The linear regression model takes the form shown in Equation \ref{eq:lin_reg}
@@ -12,7 +12,7 @@ y_i = \beta_01+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_pX_{ip}+\epsilon_i, \quad f
 where $\epsilon_i$ represents noise, capturing all external factors influencing the target values, such as inaccuracy of measurement. The error $\epsilon_i$ introduces cannot be predicted or reduced.
 
 
-\section{Ordinary Least Squares Estimation} \label{sec:olse}
+\section{Ordinary least squares estimation} \label{sec:olse}
 Ordinary least squares (OLS) is a method of estimating the unknown parameters $\beta$ in a linear regression model. It aims to minimize the sum of squared deviations of the observed values from the model prediction (\ref{eq:rss}), also called residual sum of squares (RSS).
 \begin{equation} \label{eq:rss}
 L(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
@@ -23,7 +23,7 @@ The parameter estimate $\hat{\beta}$ for the linear regression model is obtained
 \end{equation}
 
 
-\section{Penalized Regression} \label{sec:pen_reg}
+\section{Penalized regression} \label{sec:pen_reg}
 Penalized regression methods introduce a penalty $P(\beta)$ to the objective function $S(\beta)$ in addition to the loss function $L(\beta)$. $P$ penalizes values of the unknown parameters that are considered unrealistic in the current context, which is done to obtain a more meaningful estimation. One or more regularization parameters $\lambda_i$ can be used to balance the effect of any introduced penalties by scaling them. The general form of penalized regression is shown in Equation \ref{eq:pen_reg}. 
 \begin{equation} \label{eq:pen_reg}
 S(\beta) = L(\beta) + P(\beta)
@@ -140,7 +140,7 @@ Kim et al. \cite{kim2013network} suggested two alternative network constrained r
 P(\beta) = \lambda_1 \sum_{i=1}^{p} [|\beta_i|\neq 0] + \lambda_2 \sum_{u \sim v} \left|\left[\frac{|\beta_u|}{w_u}\neq 0\right]-\left[\frac{|\beta_v|}{w_v}\neq 0\right]\right|
 \end{equation}
 
-\subsubsection{Indicator Functions}
+\subsubsection{Indicator functions}
 An indicator (characteristic) function is defined on a set $X$ and some subset $A \subset X$. The function indicates membership of elements in the subset $A$, having value of 1 for all elements of $A$ and value of 0 for all other elements in $X$. Formally, indicator functions are defined as follows:
 \begin{equation}
 [x \in A] = 1_A (x) = \left\{ 

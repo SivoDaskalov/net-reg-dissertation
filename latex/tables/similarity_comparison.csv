@@ -1,7 +1,7 @@
-Method,Tuning,Lasso,Elastic Net,Grace,GBLasso,Linf,Composite
+Method,Tuning,Lasso,ENet,Grace,GBLasso,Linf,Composite
 Lasso,CV-MSE,1.00,0.94,0.81,0.70,0.82,0.90
 ,Orchestrated,1.00,0.95,0.91,0.83,0.86,0.93
-Elastic Net,CV-MSE,0.94,1.00,0.85,0.78,0.85,0.91
+ENet,CV-MSE,0.94,1.00,0.85,0.78,0.85,0.91
 ,Orchestrated,0.95,1.00,0.95,0.93,0.93,0.92
 Grace,CV-MSE,0.81,0.85,1.00,0.81,0.91,0.79
 ,Orchestrated,0.91,0.95,1.00,0.89,0.92,0.86
