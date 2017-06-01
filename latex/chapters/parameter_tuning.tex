@@ -76,17 +76,18 @@ The temporal relationships that occur between the various regression methods dur
 \end{figure}
 
 \subsubsection{Choice of starting points for the search}
-The choice of hyperparameter starting points in the search grid for the ensemble of regression methods should greatly affect the convergence state of the tuning process. This initial state of the system can be chosen in one of several ways.
+The choice of hyperparameter starting points in the search grids for the ensemble of regression methods directly affects the convergence state of the tuning process. This initial state of the system can be chosen in one of the following ways:
 
 \begin{enumerate}
-\item A naive approach could initialize the tuning process with hyperparameter values located in the centers of the search grids of all methods.
-\item An alternative approach would be to start the tuning procedure from a corner of the search grids. Depending on whether we wish to promote simpler or more complete models, the appropriate griid corner should be chosen.
-\item The proposed orchestrated hyperparameter tuning could be combined with the traditional tuning approach discussed in Section \ref{sec:trad_tuning}. This can be done by obtaining the initial parameter values for the orchestrated tuning from a previously ran CV-MSE tuning. Such a fused tuning procedure could potentially combine the benefits of both tuning approaches - selection of models with good generalized prediction capabilities, but also coordinated for better agreement across regression methods.
-\item A randomized orchestrated tuning procedure could be constructed by repeatedly initializing the search with randomized starting points and collecting statistics from each convergence. The optimal hyperparameter combinations would be selected after analysis of the convergense statistics for all tuning reruns.
+\item One approach could be to initialize the tuning process with hyperparameter values located in the centers of the search grids of all methods. Such initialization would allow the tuning procedure to decide which orthant of the search space to converge in. 
+\item An alternative approach would be to start the tuning procedure from specific corners of the search grids. Depending on whether we wish to promote simpler or more complete models, the appropriate grid corner should be chosen, maximizing or minimizing the severity of imposed penalties.
+\item The proposed orchestrated hyperparameter tuning could be combined with the traditional tuning approach discussed in Section \ref{sec:trad_tuning}. This can be done by obtaining the initial parameter values for the orchestrated tuning from a previously performed CV-MSE tuning. Such a combined tuning procedure could potentially benefit from the strengths of both tuning approaches - selection of models with good generalized prediction capabilities, but also coordinated for better agreement between regression methods.
+\item A randomized orchestrated tuning procedure could be constructed by repeatedly performing the search with randomized starting points and collecting statistics from each convergence. The optimal hyperparameter combinations would be selected after analysis of the convergence statistics for all tuning executions.
 \end{enumerate}
 
 \subsubsection{Discussion}
-Such a parameter tuning process aims to find combinations of values for the various methods' hyperparameters that lead to the production of similar coefficient vectors across methods. As previously shown, the focus is on the estimated predictor coefficients and not on the prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, it uses the fact that we have multiple methods and they perform their hyperparameter tuning cooperatively so as to promote consensus across methods after the training with arbitrary data.
+The orchestrated hyperparameter tuning approach presented in this chapter operates in the context of an ensemble of alternative methods sharing a common input and goals. In the case of regression, the approach aims to find combinations of hyperparameter values for the various methods that result in increased similarity of their estimated coefficients.
 
+As previously discussed, the optimization focus is on the estimated predictor coefficients, not on the prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, not optimizing the hyperparameters in terms of prediction error could result in reduction of overfitting.
 
-
+The proposed hyperparameter tuning approach introduces cooperation between otherwise completely independent regression methods. This collective simultaneous tuning promotes consensus and agreement between the different methods. The resulting increased similarity of estimates simplifies the results interpretation because fewer conflicts between method outputs occur. 
