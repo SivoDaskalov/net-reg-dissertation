@@ -1,0 +1,41 @@
+{\def\arraystretch{1.5}\tabcolsep=10pt
+	\begin{table}[t]
+		\label{tab:tuning_values}
+		\caption{Hyperparameter search space for all regression methods}
+		\centering
+		\begin{tabular}{l p{2.8cm} p{6.3cm}}
+			\hline\hline 
+			Method name & Parameter & Search space \\
+			\hline\hline
+			Lasso (\ref{sec:lasso})		&Alpha $(\alpha)$&100 values chosen by Scikit-Learn's implementation of the Lasso\\
+			\hline
+			ENet (\ref{sec:enet})	&Alpha $(\alpha)$&100 values chosen by Scikit-Learn's implementation of the Elastic Net\\
+			&L1 ratio&[0.1, 0.25, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, .95, .99]\\
+			\hline
+			Grace (\ref{sec:grace})			&Lambda 1 $(\lambda_1)$&[0.01, 0.1, 1, 10, 100, 1000, 10000]\\
+			&Lambda 2  $(\lambda_2)$&[0.01, 0.1, 1, 10, 100, 1000, 10000]\\
+			\hline
+			aGrace (\ref{sec:agrace})		&Lambda 1 $(\lambda_1)$&[0.01, 0.1, 1, 10, 100, 1000, 10000]\\
+			&Lambda 2  $(\lambda_2)$&[0.01, 0.1, 1, 10, 100, 1000, 10000]\\
+			\hline
+			GBLasso (\ref{sec:gblasso})		&Gamma $(\gamma)$&[2, 3, 4]\\
+			&Lambda $(\lambda)$&[0.01, 0.1, 1, 10, 100, 1000, 10000]\\
+			\hline
+			Linf (\ref{sec:linf})			&C&[5, 10, 15, ..., 100]\\
+			\hline
+			aLinf (\ref{sec:alinf})			&E&[5, 10, 15, ..., 100]\\
+			\hline
+			TTLP (\ref{sec:ttlp})			&Delta 1 $(\delta_1)$*&3 evenly spaced values in the range $[t,\frac{pt}{4}]$**\\
+			&Delta 2 $(\delta_2)$*&3 evenly spaced values in the range $[t,tg]$**\\
+			&Tau $(\tau)$&3 evenly spaced values in the range $[10^{-6},\frac{t}{2}]$**\\
+			\hline
+			LTLP (\ref{sec:ltlp})			&Delta 1 $(\delta_1)$*&3 evenly spaced values in the range $[\frac{\hat{\lambda_{lasso}}}{1.5},1.5\hat{\lambda_{lasso}}]$**\\
+			&Delta 2*, Tau&Same as TTLP\\
+			\multicolumn{3}{p{13.5cm}}{*Where Lambda 1 $(\lambda_1) = f(\delta_1,\tau) = \frac{\delta_1}{\tau}$ and Lambda 2 $(\lambda_2) = f(\delta_2,\tau) = \frac{\delta_2}{\tau}$}\\
+			\multicolumn{3}{p{13.5cm}}{**Where $t$ is the maximum absolute value of the coefficients estimated by the Lasso, $p$ is the number of predictors, $g$ is the number of edges in the network and $\hat{\lambda_{lasso}}$ is the tuning parameter value selected by the Lasso}\\
+			\hline
+			Composite (\ref{sec:comp_reg})	&Vote Threshold&[0.1, 0.2, 0.3, ... 1]\\
+			\hline
+		\end{tabular}
+	\end{table}
+}
