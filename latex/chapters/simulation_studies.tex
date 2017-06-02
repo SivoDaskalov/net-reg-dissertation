@@ -1,0 +1,53 @@
+\chapter{Simulation studies}
+Suitable search spaces have been selected for the hyperparameters of the various regression methods discussed in Chapter \ref{background}. Hyperparameter tuning has been performed using both approaches discussed in Chapter \ref{tuning} on synthetic datasets generated according to the specification defined in Chapter \ref{sec:datagen}. Various model metrics have been calculated to evaluate the performance of the different regression methods, as well as compare the two parameter tuning approaches.
+
+\section{Simulation setup}
+A bundle of 20 synthetic datasets has been generated according to the specification discussed in Chapter \ref{sec:datagen}. Each of the datasets contains 400 observations and is split into a training dataset of 300 and test dataset of 100 observations. Both hyperparameter tuning and fitting of the final models for each approach have been performed on the training dataset. All model metrics have been calculated for the final models on the test dataset.
+
+\section{Hyperparameter search spaces}
+Suitable hyperparameter values have been considered in the tuning of the various regression methods. The hyperparameter search spaces for each regression method are shown in Table \ref{tab:tuning_values}. Values for the TTLP and LTLP methods are selected as suggested by \cite{kim2013network}.
+\input{tables/param_search_space}
+
+\section{Model metrics}
+A combination of prediction evaluation and variable selection metrics has been used to compare the regression and hyperparameter tuning methods discussed in the previous chapters.
+
+\subsection{Prediction evaluation metrics}
+The mean squared error (MSE) is calculated as defined in Section \ref{sec:trad_tuning} on the independent test datasets. 
+
+\subsection{Variable selection metrics}
+Ground truth about the true relationships between the predictors and the target variable is available resulting from the use of synthetic datasets for model selection and evaluation. Knowing the true predictor coefficients, we can define a number of metrics to evaluate the variable selection of each model. Note the use of Iverson bracket notation to express conditional counting in Equations \ref{eq:sensitivity}, \ref{eq:specificity} and \ref{eq:precision}.
+
+\subsubsection{Correlation}
+We define the Correlation metric of a model $M$ as the Pearson correlation coefficient between the estimated coefficient vector $\beta_M$ and the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:correlation}. 
+\begin{equation} \label{eq:correlation}
+Correlation(M) = \rho_{\beta_M,\beta_{true}} = \frac{cov(\beta_M,\beta_{true})}{\sigma_{\beta_M} \sigma_{\beta_{true}}}
+\end{equation}
+
+\subsubsection{Sensitivity}
+We define the variable selection Sensitivity of a model $M$ as the fraction of correctly identified relevant predictors. Formally, this is the fraction of predictors with non-zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have non-zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:sensitivity}. 
+\begin{equation} \label{eq:sensitivity}
+Sensitivity(M) = \frac{\sum_{i=1}^{p}[\beta_{true_i} \ne 0, \beta_{M_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{true_i} \ne 0]}
+\end{equation}
+
+\subsubsection{Specificity}
+We define the variable selection Specificity of a model $M$ as the fraction of correctly identified irrelevant predictors. Formally, this is the fraction of predictors with zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:specificity}. 
+\begin{equation} \label{eq:specificity}
+Specificity(M) = \frac{\sum_{i=1}^{p}[\beta_{true_i} = 0, \beta_{M_i} = 0]}{\sum_{i=1}^{p}[\beta_{true_i} = 0]}
+\end{equation}
+
+\subsubsection{Precision}
+We define the variable selection Precision of a model $M$ as the fraction of identified predictors that are truly relevant. Formally, this is the fraction of predictors with non-zero coefficients in the estimated coefficient vector $\beta_M$ that have non-zero coefficients in the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:precision}. 
+\begin{equation} \label{eq:precision}
+Precision(M) = \frac{\sum_{i=1}^{p}[\beta_{M_i} \ne 0, \beta_{true_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{M_i} \ne 0]}
+\end{equation}
+
+%\section{CV-MSE tuning}
+%5-fold CV
+%\input{tables/metrics_cvmse}
+%
+%\section{Orchestrated tuning}
+%\input{tables/metrics_orctun}
+%
+%\section{Comparison of tuning approaches}
+%\input{tables/metrics_comparison}
+

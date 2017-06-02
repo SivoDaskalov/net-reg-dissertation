@@ -42,10 +42,13 @@
 \contentsline {subsubsection}{Iterative procedure}{24}
 \contentsline {subsubsection}{Choice of starting points for the search}{26}
 \contentsline {subsubsection}{Discussion}{27}
-\contentsline {chapter}{\numberline {7}Tuning Results and Evaluation}{29}
-\contentsline {section}{\numberline {7.1}Hyperparameter search spaces}{29}
-\contentsline {section}{\numberline {7.2}Simulation setup}{29}
-\contentsline {section}{\numberline {7.3}Model metrics}{29}
-\contentsline {section}{\numberline {7.4}CV-MSE tuning}{29}
-\contentsline {section}{\numberline {7.5}Orchestrated tuning}{29}
-\contentsline {section}{\numberline {7.6}Comparison of tuning approaches}{29}
+\contentsline {chapter}{\numberline {7}Simulation studies}{29}
+\contentsline {section}{\numberline {7.1}Simulation setup}{29}
+\contentsline {section}{\numberline {7.2}Hyperparameter search spaces}{29}
+\contentsline {section}{\numberline {7.3}Model metrics}{31}
+\contentsline {subsection}{\numberline {7.3.1}Prediction evaluation metrics}{31}
+\contentsline {subsection}{\numberline {7.3.2}Variable selection metrics}{31}
+\contentsline {subsubsection}{Correlation}{31}
+\contentsline {subsubsection}{Sensitivity}{31}
+\contentsline {subsubsection}{Specificity}{32}
+\contentsline {subsubsection}{Precision}{32}
