@@ -1,12 +1,15 @@
 \chapter{Simulation studies}
 Suitable search spaces have been selected for the hyperparameters of the various regression methods discussed in Chapter \ref{background}. Hyperparameter tuning has been performed using both approaches discussed in Chapter \ref{tuning} on synthetic datasets generated according to the specification defined in Chapter \ref{sec:datagen}. Various model metrics have been calculated to evaluate the performance of the different regression methods, as well as compare the two parameter tuning approaches.
 
+
 \section{Simulation setup}
 A bundle of 20 synthetic datasets has been generated according to the specification discussed in Chapter \ref{sec:datagen}. Each of the datasets contains 400 observations and is split into a training dataset of 300 and test dataset of 100 observations. Both hyperparameter tuning and fitting of the final models for each approach have been performed on the training dataset. All model metrics have been calculated for the final models on the test dataset.
+
 
 \section{Hyperparameter search spaces}
 Suitable hyperparameter values have been considered in the tuning of the various regression methods. The hyperparameter search spaces for each regression method are shown in Table \ref{tab:tuning_values}. Values for the TTLP and LTLP methods are selected as suggested by \cite{kim2013network}.
 \input{tables/param_search_space}
+
 
 \section{Model metrics}
 A combination of prediction evaluation and variable selection metrics has been used to compare the regression and hyperparameter tuning methods discussed in the previous chapters.
@@ -14,7 +17,7 @@ A combination of prediction evaluation and variable selection metrics has been u
 \subsection{Prediction evaluation metrics}
 The mean squared error (MSE) is calculated as defined in Section \ref{sec:trad_tuning} on the independent test datasets. 
 
-\subsection{Variable selection metrics}
+\subsection{Variable selection metrics} \label{sec:varsel}
 Ground truth about the true relationships between the predictors and the target variable is available resulting from the use of synthetic datasets for model selection and evaluation. Knowing the true predictor coefficients, we can define a number of metrics to evaluate the variable selection of each model. Note the use of Iverson bracket notation to express conditional counting in Equations \ref{eq:sensitivity}, \ref{eq:specificity} and \ref{eq:precision}.
 
 \subsubsection{Correlation}
@@ -41,36 +44,46 @@ We define the variable selection Precision of a model $M$ as the fraction of ide
 Precision(M) = \frac{\sum_{i=1}^{p}[\beta_{M_i} \ne 0, \beta_{true_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{M_i} \ne 0]}
 \end{equation}
 
-\section{CV-MSE tuning}
-The traditional hyperparameter optimization approach, discussed in Section \ref{sec:trad_tuning}, was used with 5-fold cross-validation to tune all regression methods. The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_cvmse} and Figure \ref{fig:met_cvmse}.
 
-The relatively large obtained standard deviations for the various model metrics are immediately evident. They can be explained by the significant differences between the synthetic datasets.
+\section{CV-MSE tuning} \label{sec:disc_cvmse_tun}
+The traditional hyperparameter optimization approach, discussed in Section \ref{sec:trad_tuning}, was used with 5-fold cross-validation to tune all 10 regression methods. The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_cvmse} and Figure \ref{fig:met_cvmse}. The following observations can be made regarding the model metric data:
+
+\begin{itemize}
+	\item The relatively large obtained standard deviations for the various model metrics are immediately evident. It must be noted that this standard deviation does not result from multiple executions of the same scenario. It is obtained from evaluation of the metrics for significantly different synthetic datasets, which explains the large standard deviation values. 
+	\item All 10 regression methods achieve similar values for MSE and its standard deviation. Because these mean  errors are small, their corresponding standard deviations appear especially large. 
+	\item The GBLasso regression method consistently performs poorly in terms of variable selection Specificity and Precision. It tends to select a larger subset of the predictors, which could be a characteristic of the method itself or could be due to the differences in implementation. As discussed in Chapter \ref{sec:implementation}, it is the only regression method whose implementation is based on Scipy's minimize function.
+	\item The Linf and aLinf methods perform best in terms of the variable selection metrics Sensitivity, Specificity and Precision. Furthermore, the Linf method also achieves the second lowest mean squared test error out of all regression methods.
+\end{itemize}
 
 \input{tables/metrics_cvmse}
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.60]{cv_mse_tuning}
+	\includegraphics[scale=0.55]{cv_mse_tuning}
 	\caption{CV-MSE tuning mean model metrics with standard deviation error bars for 20 synthetic datasets}
 	\label{fig:met_cvmse}
 \end{figure}
 
 \section{Orchestrated tuning}
-Subset of methods
+The orchestrated hyperparameter tuning approach, discussed in Section \ref{sec:orc_par_tun}, was used to tune a subset of all regression methods. We excluded those approaches that inherently rely on previous estimates by other regression methods, namely the aGrace, aLinf, TTLP, LTLP and Composite. As a result, the ensemble of regression methods used for orchestrated tuning includes the Lasso, Elastic Net, Grace, GBLasso and Linf.
 
-\input{tables/metrics_orctun}
+The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_orctun} and Figure \ref{fig:met_orchestrated}. All of the observations made in Section \ref{sec:disc_cvmse_tun} continue to be true for the results of this parameter tuning method. 
+
+The GBLasso method continues to perform poor variable selection. However, in the context of orchestrated tuning its poor performance has a direct effect on the parameter tuning of all other methods in the ensemble. For some cases it might be suitable to discard such a method from the ensemble in order to avoid possible distortions in the tuning process. The discarded method can either be tuned separately or not considered at all in the experiments.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.60]{orchestrated_tuning}
+	\includegraphics[scale=0.50]{orchestrated_tuning}
 	\caption{Orchestrated tuning mean model metrics with standard deviation error bars for 20 synthetic datasets}
 	\label{fig:met_orchestrated}
 \end{figure}
+\input{tables/metrics_orctun}
 
 \section{Comparison of tuning approaches}
+
 \input{tables/metrics_comparison}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.60]{tuning_method_comparison}
+	\includegraphics[scale=0.55]{tuning_method_comparison}
 	\caption{Comparison of mean model metrics by parameter tuning method}
 	\label{fig:met_comparison}
 \end{figure}

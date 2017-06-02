@@ -28,7 +28,7 @@ MSE_{(k)} = \frac{1}{k} \sum_{i=1}^{k} MSE_i
 \subsubsection{Grid search minimizing the cross-validated MSE}
 One traditional approach of performing model selection uses a grid search with cross-validated mean squared prediction error for a metric of model performance. The final model is then trained on the whole dataset using the optimal hyperparameter values that minimize the cross-validated MSE. This model selection approach is denoted as "CV-MSE" tuning in the latter chapters of this report.
 
-\section{Orchestrated parameter tuning}
+\section{Orchestrated parameter tuning} \label{sec:orc_par_tun}
 
 \subsection{Context and motivation}
 In the context of this project multiple methods of performing regression are defined, each of them minimizing a different objective function. All approaches operate on the same training data and share a common goal to correctly identify the relationship between predictors and the target variable. 
