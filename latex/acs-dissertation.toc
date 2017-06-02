@@ -52,3 +52,16 @@
 \contentsline {subsubsection}{Sensitivity}{31}
 \contentsline {subsubsection}{Specificity}{32}
 \contentsline {subsubsection}{Precision}{32}
+\contentsline {section}{\numberline {7.4}CV-MSE tuning}{32}
+\contentsline {section}{\numberline {7.5}Orchestrated tuning}{34}
+\contentsline {section}{\numberline {7.6}Comparison of tuning approaches}{37}
+\contentsline {section}{\numberline {7.7}Optimal hyperparameter value selection}{39}
+\contentsline {subsubsection}{Lasso}{39}
+\contentsline {subsubsection}{Elastic Net}{40}
+\contentsline {subsubsection}{Grace}{41}
+\contentsline {subsubsection}{aGrace}{42}
+\contentsline {subsubsection}{GBLasso}{43}
+\contentsline {subsubsection}{Linf}{44}
+\contentsline {subsubsection}{aLinf}{45}
+\contentsline {subsubsection}{TTLP and LTLP}{45}
+\contentsline {subsubsection}{Composite}{46}

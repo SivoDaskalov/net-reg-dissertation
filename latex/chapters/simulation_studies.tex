@@ -41,13 +41,105 @@ We define the variable selection Precision of a model $M$ as the fraction of ide
 Precision(M) = \frac{\sum_{i=1}^{p}[\beta_{M_i} \ne 0, \beta_{true_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{M_i} \ne 0]}
 \end{equation}
 
-%\section{CV-MSE tuning}
-%5-fold CV
-%\input{tables/metrics_cvmse}
-%
-%\section{Orchestrated tuning}
-%\input{tables/metrics_orctun}
-%
-%\section{Comparison of tuning approaches}
-%\input{tables/metrics_comparison}
+\section{CV-MSE tuning}
+The traditional hyperparameter optimization approach, discussed in Section \ref{sec:trad_tuning}, was used with 5-fold cross-validation to tune all regression methods. The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_cvmse} and Figure \ref{fig:met_cvmse}.
 
+The relatively large obtained standard deviations for the various model metrics are immediately evident. They can be explained by the significant differences between the synthetic datasets.
+
+\input{tables/metrics_cvmse}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{cv_mse_tuning}
+	\caption{CV-MSE tuning mean model metrics with standard deviation error bars for 20 synthetic datasets}
+	\label{fig:met_cvmse}
+\end{figure}
+
+\section{Orchestrated tuning}
+Subset of methods
+
+\input{tables/metrics_orctun}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{orchestrated_tuning}
+	\caption{Orchestrated tuning mean model metrics with standard deviation error bars for 20 synthetic datasets}
+	\label{fig:met_orchestrated}
+\end{figure}
+
+\section{Comparison of tuning approaches}
+\input{tables/metrics_comparison}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{tuning_method_comparison}
+	\caption{Comparison of mean model metrics by parameter tuning method}
+	\label{fig:met_comparison}
+\end{figure}
+
+\section{Optimal hyperparameter value selection}
+
+\subsubsection{Lasso}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.70]{tuning/lasso}
+	\caption{Lasso method distribution of optimal tuning parameters}
+	\label{fig:tun_lasso}
+\end{figure}
+
+\subsubsection{Elastic Net}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.80]{tuning/enet}
+	\caption{Elastic Net method distribution of optimal tuning parameters}
+	\label{fig:tun_enet}
+\end{figure}
+
+\subsubsection{Grace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.80]{tuning/grace}
+	\caption{Grace method distribution of optimal tuning parameters}
+	\label{fig:tun_grace}
+\end{figure}
+
+\subsubsection{aGrace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.80]{tuning/agrace}
+	\caption{aGrace method distribution of optimal tuning parameters}
+	\label{fig:tun_agrace}
+\end{figure}
+
+\subsubsection{GBLasso}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.80]{tuning/gblasso}
+	\caption{GBLasso method distribution of optimal tuning parameters}
+	\label{fig:tun_gblasso}
+\end{figure}
+
+\subsubsection{Linf}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.70]{tuning/linf}
+	\caption{Linf method distribution of optimal tuning parameters}
+	\label{fig:tun_linf}
+\end{figure}
+
+\subsubsection{aLinf}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.70]{tuning/alinf}
+	\caption{aLinf method distribution of optimal tuning parameters}
+	\label{fig:tun_alinf}
+\end{figure}
+
+\subsubsection{TTLP and LTLP}
+The TTLP and LTLP methods use search spaces for their tuning parameters derived from dataset properties and the Lasso estimate. For this reason attempting to extract an optimal combination of hyperparameter values from tuning with external independent datasets is not feasible. 
+
+\subsubsection{Composite}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.70]{tuning/composite}
+	\caption{Composite method distribution of optimal tuning parameters}
+	\label{fig:tun_composite}
+\end{figure}

@@ -81,12 +81,16 @@ def summarize_mapping_results():
 
 # plot_summary_comparison(summary_urls={"CV of MSE tuning": "results/p550_summary.csv"},
 #                         figure_url="figures/cv_mse_tuning.png",
-#                         suptitle="Properties by regression method, CV-MSE tuning")
+#                         suptitle="Model metrics by regression method, CV-MSE tuning")
+# plot_summary_comparison(color="#FF7F0E",
+#     summary_urls={"Orchestrated tuning": "results/orctun_results_coef_correlation_p550_summary.csv"},
+#     figure_url="figures/orchestrated_tuning.png",
+#     suptitle="Model metrics by regression method, Orchestrated tuning")
 # plot_summary_comparison(summary_urls={
-#     "CV of MSE tuning": "results/p550_summary.csv",
+#     "CV-MSE tuning": "results/p550_summary.csv",
 #     "Orchestrated tuning": "results/orctun_results_coef_correlation_p550_summary.csv"},
 #     figure_url="figures/tuning_method_comparison.png",
-#     suptitle="Properties by tuning method")
+#     suptitle="Model metrics comparison by tuning method")
 # plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/orctun_results_coef_correlation_p550.csv"])
 
 # fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"], load_dump=True)

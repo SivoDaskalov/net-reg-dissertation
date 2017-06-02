@@ -54,7 +54,7 @@ def plot_similarities_heatmap(similarities, methods, url="figures/similarities.p
 
 
 def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comparison.png",
-                            suptitle="Properties by tuning method"):
+                            suptitle="Properties by tuning method", color=None):
     summaries = {}
     for label, url in sorted(summary_urls.iteritems(), reverse=True):
         summaries[label] = pd.read_csv(url, index_col=0)
@@ -81,7 +81,7 @@ def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comp
         for label, summary in sorted(summaries.iteritems()):
             sub_summary = summary.loc[methods]
             subplot.bar(ind + j * width, sub_summary["%s mean" % subplots_info[i][1]], width,
-                        yerr=sub_summary["%s std" % subplots_info[i][1]], label=label)
+                        yerr=sub_summary["%s std" % subplots_info[i][1]], label=label, color=color)
             j += 1
         subplot.set_ylim((0.0, subplot.get_ylim()[1]))
         if i != 0:
