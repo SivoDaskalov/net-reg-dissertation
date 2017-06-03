@@ -35,7 +35,7 @@ def plot_results(results, columns=["mse", "predictors", "correlation", "sens", "
 def plot_similarities_heatmap(similarities, methods, url="figures/similarities.png", title='Method similarities',
                               cmap=plt.cm.Blues):
     plt.figure()
-    plt.title(title, y=1.15)
+    # plt.title(title, y=1.15)
     plt.imshow(similarities, interpolation='nearest', cmap=cmap)
     plt.colorbar()
 
@@ -88,9 +88,9 @@ def plot_summary_comparison(summary_urls, figure_url="figures/tuning_method_comp
             subplot.set_ylim((0.0, 1.0))
 
     h, l = subplot.get_legend_handles_labels()
-    plt.suptitle(suptitle)
+    # plt.suptitle(suptitle)
     plt.tight_layout()
-    plt.subplots_adjust(top=0.93)
+    # plt.subplots_adjust(top=0.93)
     if n_tuning_methods > 1:
         plt.figlegend(h, l, bbox_to_anchor=[0.5, 0.02], loc='center', ncol=len(summaries.keys()))
         plt.subplots_adjust(bottom=0.07)
@@ -188,9 +188,9 @@ def plot_parameter_tuning(results_file_urls=["results/p550.csv"]):
             continue
             # No tuning plots for the TLP methods
 
-        plt.suptitle("Parameter tuning for the %s method" % model)
+        # plt.suptitle("Parameter tuning for the %s method" % model)
         plt.tight_layout()
-        plt.subplots_adjust(top=0.93)
+        # plt.subplots_adjust(top=0.93)
         plt.savefig("figures/tuning/%s.png" % model)
 
 
@@ -279,7 +279,7 @@ def plot_distribution_hist(ax, data, title, xlabel, ylabel, bins=10, yscale="lin
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_yscale(yscale)
-    ax.set_title(title)
+    # ax.set_title(title)
     ax.hist(data, bins=bins, normed=normed)
 
 
@@ -303,9 +303,9 @@ def plot_mapping_summary(mapping_files=mapping_files):
         n_influencers = np.count_nonzero(influences)
         n_non_influencers = len(influences) - n_influencers
 
-        plt.suptitle("Gene interactions for %s method on %s dataset" % (method, dataset))
+        # plt.suptitle("Gene interactions for %s method on %s dataset" % (method, dataset))
         plt.tight_layout()
-        plt.subplots_adjust(top=0.85)
+        # plt.subplots_adjust(top=0.85)
         plt.savefig("figures/mappings/distributions/%s.png" % label)
 
         summary.loc[label] = [dataset, method, n_resolved, n_unresolved, n_influencers, n_non_influencers]
@@ -334,7 +334,7 @@ def plot_mapping_errors(error_files=error_files):
     ax.set_xticklabels([summary.iloc[i, 0] + " " + summary.iloc[i, 1] for i in range(len(summary.index))], rotation=45)
     ax.set_ylim(bottom=0)
     ax.set_ylabel("MSE")
-    plt.title("Prediction errors by method, real data")
+    # plt.title("Prediction errors by method, real data")
     plt.tight_layout()
     plt.savefig("figures/mappings/errors.png")
 
@@ -348,9 +348,9 @@ def plot_mapping_fraction_votes(fraction_votes_files=fraction_votes_files):
                                yscale="log", xlabel="Fraction of votes", ylabel="Number of cases", bins=10,
                                normed=False)
         i += 1
-    plt.suptitle("Gene importance distribution of method votes")
+    # plt.suptitle("Gene importance distribution of method votes")
     plt.tight_layout()
-    plt.subplots_adjust(top=0.85)
+    # plt.subplots_adjust(top=0.85)
     plt.savefig("figures/mappings/vote_distribution.png")
 
 
