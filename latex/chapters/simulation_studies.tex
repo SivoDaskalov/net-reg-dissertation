@@ -15,31 +15,31 @@ Suitable hyperparameter values have been considered in the tuning of the various
 A combination of prediction evaluation and variable selection metrics has been used to compare the regression and hyperparameter tuning methods discussed in the previous chapters.
 
 \subsection{Prediction evaluation metrics}
-The mean squared error (MSE) is calculated as defined in Section \ref{sec:trad_tuning} on the independent test datasets. 
+The mean squared error (MSE) is calculated as defined in Section \ref{sec:trad_tuning} on the independent test datasets. / Lower is better /
 
 \subsection{Variable selection metrics} \label{sec:varsel}
 Ground truth about the true relationships between the predictors and the target variable is available resulting from the use of synthetic datasets for model selection and evaluation. Knowing the true predictor coefficients, we can define a number of metrics to evaluate the variable selection of each model. Note the use of Iverson bracket notation to express conditional counting in Equations \ref{eq:sensitivity}, \ref{eq:specificity} and \ref{eq:precision}.
 
 \subsubsection{Correlation}
-We define the Correlation metric of a model $M$ as the Pearson correlation coefficient between the estimated coefficient vector $\beta_M$ and the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:correlation}. 
+We define the Correlation metric of a model $M$ as the Pearson correlation coefficient between the estimated coefficient vector $\beta_M$ and the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:correlation}. / Higher is better /
 \begin{equation} \label{eq:correlation}
 Correlation(M) = \rho_{\beta_M,\beta_{true}} = \frac{cov(\beta_M,\beta_{true})}{\sigma_{\beta_M} \sigma_{\beta_{true}}}
 \end{equation}
 
 \subsubsection{Sensitivity}
-We define the variable selection Sensitivity of a model $M$ as the fraction of correctly identified relevant predictors. Formally, this is the fraction of predictors with non-zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have non-zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:sensitivity}. 
+We define the variable selection Sensitivity of a model $M$ as the fraction of correctly identified relevant predictors. Formally, this is the fraction of predictors with non-zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have non-zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:sensitivity}. / Higher is better /
 \begin{equation} \label{eq:sensitivity}
 Sensitivity(M) = \frac{\sum_{i=1}^{p}[\beta_{true_i} \ne 0, \beta_{M_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{true_i} \ne 0]}
 \end{equation}
 
 \subsubsection{Specificity}
-We define the variable selection Specificity of a model $M$ as the fraction of correctly identified irrelevant predictors. Formally, this is the fraction of predictors with zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:specificity}. 
+We define the variable selection Specificity of a model $M$ as the fraction of correctly identified irrelevant predictors. Formally, this is the fraction of predictors with zero coefficients in the true coefficient vector $\beta_{true}$ that correctly have zero coefficients in the estimated coefficient vector $\beta_M$ as shown in Equation \ref{eq:specificity}. / Higher is better /
 \begin{equation} \label{eq:specificity}
 Specificity(M) = \frac{\sum_{i=1}^{p}[\beta_{true_i} = 0, \beta_{M_i} = 0]}{\sum_{i=1}^{p}[\beta_{true_i} = 0]}
 \end{equation}
 
 \subsubsection{Precision}
-We define the variable selection Precision of a model $M$ as the fraction of identified predictors that are truly relevant. Formally, this is the fraction of predictors with non-zero coefficients in the estimated coefficient vector $\beta_M$ that have non-zero coefficients in the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:precision}. 
+We define the variable selection Precision of a model $M$ as the fraction of identified predictors that are truly relevant. Formally, this is the fraction of predictors with non-zero coefficients in the estimated coefficient vector $\beta_M$ that have non-zero coefficients in the true coefficient vector $\beta_{true}$ as shown in Equation \ref{eq:precision}. / Higher is better /
 \begin{equation} \label{eq:precision}
 Precision(M) = \frac{\sum_{i=1}^{p}[\beta_{M_i} \ne 0, \beta_{true_i} \ne 0]}{\sum_{i=1}^{p}[\beta_{M_i} \ne 0]}
 \end{equation}
@@ -63,10 +63,8 @@ The traditional hyperparameter optimization approach, discussed in Section \ref{
 	\label{fig:met_cvmse}
 \end{figure}
 
-\section{Orchestrated tuning}
-The orchestrated hyperparameter tuning approach, discussed in Section \ref{sec:orc_par_tun}, was used to tune a subset of all regression methods. We excluded those approaches that inherently rely on previous estimates by other regression methods, namely the aGrace, aLinf, TTLP, LTLP and Composite. As a result, the ensemble of regression methods used for orchestrated tuning includes the Lasso, Elastic Net, Grace, GBLasso and Linf.
-
-The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_orctun} and Figure \ref{fig:met_orchestrated}. All of the observations made in Section \ref{sec:disc_cvmse_tun} continue to be true for the results of this parameter tuning method. 
+\section{Orchestrated tuning} \label{sec:disc_orc_tun}
+The orchestrated hyperparameter tuning approach, discussed in Section \ref{sec:orc_par_tun}, was used to tune a subset of all regression methods. We excluded those approaches that inherently rely on previous estimates by other regression methods, namely the aGrace, aLinf, TTLP, LTLP and Composite. As a result, the ensemble of regression methods used for orchestrated tuning includes the Lasso, Elastic Net, Grace, GBLasso and Linf. Hyperparameter combinations selected by the CV-MSE tuning have been chosen for starting points in initialization of the orchestrated tuning procedure. The mean model metrics and their corresponding standard deviations for all synthetic datasets are shown on Table \ref{tab:met_orctun} and Figure \ref{fig:met_orchestrated}. All of the observations made in Section \ref{sec:disc_cvmse_tun} continue to be true for the results of this parameter tuning method. 
 
 The GBLasso method continues to perform poor variable selection. However, in the context of orchestrated tuning its poor performance has a direct effect on the parameter tuning of all other methods in the ensemble. For some cases it might be suitable to discard such a method from the ensemble in order to avoid possible distortions in the tuning process. The discarded method can either be tuned separately or not considered at all in the experiments.
 
@@ -79,13 +77,22 @@ The GBLasso method continues to perform poor variable selection. However, in the
 \input{tables/metrics_orctun}
 
 \section{Comparison of tuning approaches}
+The model metrics results from Sections \ref{sec:disc_cvmse_tun} and \ref{sec:disc_orc_tun} have been merged for easier visual comparison of the different parameter tuning approaches. The combined results are shown in Table \ref{tab:met_comp} and Figure \ref{fig:met_comp}.
 
 \input{tables/metrics_comparison}
+
+The difference between model metrics is immediately evident - in some cases the use of orchestrated tuning has improved certain model metrics for a subset of the regression methods, while the performance of other methods has been flawed. For example, the Specificity and Precision of the Grace method have been significantly improved at the cost of slightly reduced Sensitivity. Conversely, Sensitivity of the Lasso and Elastic Net has been increased at the expense of their Specificity and Precision. A number of factors could potentially affect the performance of the proposed orchestrated tuning approach:
+\begin{itemize}
+	\item The choice of alternative methods forming the orchestrated ensemble
+	\item The hyperparameter search spaces selected for each ensemble method
+	\item The starting points used to initialize the orchestrated tuning procedure
+\end{itemize}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{tuning_method_comparison}
+	\includegraphics[scale=0.50]{tuning_method_comparison}
 	\caption{Comparison of mean model metrics by parameter tuning method}
-	\label{fig:met_comparison}
+	\label{fig:met_comp}
 \end{figure}
 
 \section{Optimal hyperparameter value selection}
