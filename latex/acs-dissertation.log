@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  4 JUN 2017 22:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  5 JUN 2017 00:35
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1355,12 +1355,6 @@ Overfull \hbox (26.27133pt too wide) in paragraph at lines 27--28
  [][] 
  []
 
-
-Overfull \hbox (6.39311pt too wide) in paragraph at lines 34--35
-\OT1/cmr/m/n/12 Results from the re-gres-sion method sim-i-lar-ity anal-y-sis f
-or all syn-thetic datasets
- []
-
 [46 <./figures/cv_mse_similarities.png>] [47] (tables/similarity_orctun.tex
 PGFPlots: reading {tables/similarity_orctun.csv}
 )
@@ -1369,31 +1363,32 @@ File: figures/orchestrated_similarities.png Graphic file (type png)
 
 <use figures/orchestrated_similarities.png>
 Package pdftex.def Info: figures/orchestrated_similarities.png used on input li
-ne 40.
-(pdftex.def)             Requested size: 416.27133pt x 312.2035pt.
-
-Overfull \hbox (26.27133pt too wide) in paragraph at lines 40--41
- [][] 
- []
-
+ne 44.
+(pdftex.def)             Requested size: 346.89514pt x 260.17136pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
+<figures/tuning/convergence_statistics.png, id=248, 462.528pt x 346.896pt>
+File: figures/tuning/convergence_statistics.png Graphic file (type png)
+
+<use figures/tuning/convergence_statistics.png>
+Package pdftex.def Info: figures/tuning/convergence_statistics.png used on inpu
+t line 53.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+ [49 <./figures/orchestrated_similarities.png> <./figures/tuning/convergence_st
+atistics.png>]
 (tables/similarity_comparison.tex
 PGFPlots: reading {tables/similarity_comparison.csv}
-))
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49 <./figures/orchestrated_similarities.png>] (acs-dissertation.bbl [50] [51
+)) (acs-dissertation.bbl [50] [51
 
 ]) [52]
 (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32676 strings out of 493333
- 822775 string characters out of 3139183
- 940400 words of memory out of 3000000
- 35660 multiletter control sequences out of 15000+200000
+ 32682 strings out of 493333
+ 823001 string characters out of 3139183
+ 940409 words of memory out of 3000000
+ 35665 multiletter control sequences out of 15000+200000
  11581 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1410,9 +1405,9 @@ nts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (64 pages, 746173 bytes).
+Output written on acs-dissertation.pdf (64 pages, 762745 bytes).
 PDF statistics:
- 308 PDF objects out of 1000 (max. 8388607)
+ 310 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

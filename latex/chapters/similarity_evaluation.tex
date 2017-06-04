@@ -31,18 +31,36 @@ Results from the regression method similarity analysis for all synthetic dataset
 
 
 \section{Similarity for Orchestrated tuning} \label{sec:sim_orctun}
-Results from the regression method similarity analysis for all synthetic datasets and use of orchestrated hyperparameter tuning is shown in Table \ref{tab:sim_orctun} and Figure \ref{fig:sim_orctun}.
+Orchestrated tuning was performed with a subset of the regression methods, the selection of which is discussed in Section \ref{sec:disc_orc_tun}. The ensemble contained the Lasso, Elastic Net, Grace, GBLasso and Linf methods. The orchestrated tuning approach is initialized with parameter starting points obtained from the CV-MSE tuning approach. Results from the regression method similarity analysis for all synthetic datasets is shown in Table \ref{tab:sim_orctun} and Figure \ref{fig:sim_orctun}. 
+
+The observations made in Section \ref{sec:sim_cvmse} regarding the methods contained in the orchestrated ensemble remain true. The Lasso and Elastic Net, as well as the GBLasso and Linf methods continue to produce similar coefficient estimates. 
+
+The Elastic Net method shows consistent high similarity to all other regression methods in the ensemble. This could be due to the high number of hyperparameter combinations in its search grid providing a higher flexibility in comparison to the other methods.
 
 \input{tables/similarity_orctun}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{orchestrated_similarities}
+	\includegraphics[scale=0.75]{orchestrated_similarities}
 	\caption{Orchestrated tuning mean regression method similarities}
 	\label{fig:sim_orctun}
 \end{figure}
 
+Figure \ref{fig:conv_orctun} shows the distribution of iterations elapsed before the orchestrated tuning procedure converged for all synthetic datasets.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{tuning/convergence_statistics}
+	\caption{Iterations elapsed before convergence for all synthetic datasets}
+	\label{fig:conv_orctun}
+\end{figure}
+
 
 \section{Similarity comparison by tuning method}
-The regression method similarities discussed in sections \ref{sec:sim_cvmse} and \ref{sec:sim_orctun} have been merged for easier comparison 
+The regression method similarities discussed in sections \ref{sec:sim_cvmse} and \ref{sec:sim_orctun} have been merged in Table \ref{tab:sim_comp}. Only the similarities regarding methods in the orchestrated tuning ensemble are retained from the CV-MSE results. This is done to enable a more visible comparison between similarities obtained through both hyperparameter tuning approaches.
+
+The mean similarity between each pair of regression methods is increased in all of the cases. For some pairs, an increase of over 0.1 cosine similarity is visible. The overall mean similarity between different methods, which in the case of CV-MSE tuning is 0.836, reaches a value of 0.915 when orchestrated tuning is used. 
+
 \input{tables/similarity_comparison}
+
+The comparison between method similarities obtained in the context of CV-MSE and orchestrated hyperparameter tuning clearly shows a similarity increase when our proposed tuning approach is used. This indicates that the desired effect of improved cross-method consensus is achieved. 
