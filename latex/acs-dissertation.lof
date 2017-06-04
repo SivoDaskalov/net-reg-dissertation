@@ -18,3 +18,6 @@
 \contentsline {figure}{\numberline {7.9}{\ignorespaces Linf distribution of selected parameter values}}{41}
 \contentsline {figure}{\numberline {7.10}{\ignorespaces aLinf distribution of selected parameter values}}{42}
 \contentsline {figure}{\numberline {7.11}{\ignorespaces Composite method distribution of selected parameter values}}{43}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces CV-MSE tuning mean regression method similarities}}{46}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Orchestrated tuning mean regression method similarities}}{49}

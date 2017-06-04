@@ -10,3 +10,7 @@
 \contentsline {table}{\numberline {7.2}{\ignorespaces CV-MSE tuning mean model metrics for 20 synthetic datasets}}{31}
 \contentsline {table}{\numberline {7.3}{\ignorespaces Orchestrated tuning mean model metrics for 20 synthetic datasets}}{34}
 \contentsline {table}{\numberline {7.4}{\ignorespaces Comparison of mean model metrics by parameter tuning method}}{34}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces CV-MSE tuning regression method similarities}}{47}
+\contentsline {table}{\numberline {8.2}{\ignorespaces Orchestrated tuning regression method similarities}}{48}
+\contentsline {table}{\numberline {8.3}{\ignorespaces Comparison of regression method similarities by tuning method}}{50}

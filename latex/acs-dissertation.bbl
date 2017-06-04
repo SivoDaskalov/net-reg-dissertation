@@ -100,4 +100,9 @@ Ron Kohavi et~al.
   model selection.
 \newblock In {\em Ijcai}, volume~14, pages 1137--1145. Stanford, CA, 1995.
 
+\bibitem{manning2008introduction}
+Christopher~D Manning, Prabhakar Raghavan, Hinrich Sch{\"u}tze, et~al.
+\newblock {\em Introduction to information retrieval}, volume~1.
+\newblock Cambridge university press Cambridge, 2008.
+
 \end{thebibliography}
