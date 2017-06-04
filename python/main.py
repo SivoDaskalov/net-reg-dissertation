@@ -45,11 +45,15 @@ def orchestrated_tune_generated_data(load_dump=False, opt_method="coef_correlati
     # dump(orctun_fits, model_dump_url)
     orctun_fits = load(model_dump_url)
 
-    recalculate_composite_models = True
+    recalculate_composite_models = False
     if recalculate_composite_models:
         for setup, fits in orctun_fits:
-            del fits["composite"]
             fits["composite"] = fit_composite_model_opt(setup, fits)
+
+    delete_composite_models = True
+    if delete_composite_models:
+        for setup, fits in orctun_fits:
+            del fits["composite"]
 
     similarities = batch_evaluate_similarities(orctun_fits, summary_url="results/orctun_similarities.csv",
                                                figure_url="figures/orchestrated_similarities.png",
