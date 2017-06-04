@@ -1,67 +1,67 @@
-\contentsline {chapter}{\numberline {1}Introduction}{3}
-\contentsline {chapter}{\numberline {2}Background and Related Work}{5}
-\contentsline {section}{\numberline {2.1}Linear regression}{5}
-\contentsline {section}{\numberline {2.2}Ordinary least squares estimation}{6}
-\contentsline {section}{\numberline {2.3}Penalized regression}{6}
-\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{6}
-\contentsline {subsection}{\numberline {2.3.2}Lasso}{7}
-\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{7}
-\contentsline {section}{\numberline {2.4}Network-constrained regularization}{7}
-\contentsline {subsection}{\numberline {2.4.1}Grace}{8}
-\contentsline {subsection}{\numberline {2.4.2}aGrace}{8}
-\contentsline {subsection}{\numberline {2.4.3}GBLasso}{9}
-\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{9}
-\contentsline {subsubsection}{Linf}{9}
-\contentsline {subsubsection}{aLinf}{10}
-\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{10}
-\contentsline {subsubsection}{Indicator functions}{11}
-\contentsline {subsubsection}{TTLP}{11}
-\contentsline {subsubsection}{LTLP}{11}
-\contentsline {chapter}{\numberline {3}Implementation Details}{13}
-\contentsline {chapter}{\numberline {4}Synthetic Dataset Generation}{15}
-\contentsline {section}{\numberline {4.1}Predictor network generation}{15}
-\contentsline {section}{\numberline {4.2}Generation of predictor observations}{16}
-\contentsline {section}{\numberline {4.3}Response variable generation}{16}
-\contentsline {subsection}{\numberline {4.3.1}Primary simulation setups}{16}
-\contentsline {subsubsection}{Setup 1}{17}
-\contentsline {subsubsection}{Setup 2}{17}
-\contentsline {subsubsection}{Setup 3}{18}
-\contentsline {subsubsection}{Setup 4}{18}
-\contentsline {subsection}{\numberline {4.3.2}Secondary simulation setups}{18}
-\contentsline {chapter}{\numberline {5}Composite Voting Regression}{19}
-\contentsline {chapter}{\numberline {6}Hyperparameter Tuning}{21}
-\contentsline {section}{\numberline {6.1}Traditional approaches}{21}
-\contentsline {subsubsection}{Grid search}{21}
-\contentsline {subsubsection}{The validation set approach}{22}
-\contentsline {subsubsection}{K-fold cross validation}{22}
-\contentsline {subsubsection}{Grid search minimizing the cross-validated MSE}{22}
-\contentsline {section}{\numberline {6.2}Orchestrated parameter tuning}{23}
-\contentsline {subsection}{\numberline {6.2.1}Context and motivation}{23}
-\contentsline {subsection}{\numberline {6.2.2}Inspiration}{23}
-\contentsline {subsection}{\numberline {6.2.3}Methodology}{24}
-\contentsline {subsubsection}{Iterative procedure}{24}
-\contentsline {subsubsection}{Choice of starting points for the search}{26}
-\contentsline {subsubsection}{Discussion}{27}
-\contentsline {chapter}{\numberline {7}Simulation studies}{29}
-\contentsline {section}{\numberline {7.1}Simulation setup}{29}
-\contentsline {section}{\numberline {7.2}Hyperparameter search spaces}{29}
-\contentsline {section}{\numberline {7.3}Model metrics}{31}
-\contentsline {subsection}{\numberline {7.3.1}Prediction evaluation metrics}{31}
-\contentsline {subsection}{\numberline {7.3.2}Variable selection metrics}{31}
-\contentsline {subsubsection}{Correlation}{31}
-\contentsline {subsubsection}{Sensitivity}{31}
-\contentsline {subsubsection}{Specificity}{32}
-\contentsline {subsubsection}{Precision}{32}
-\contentsline {section}{\numberline {7.4}CV-MSE tuning}{32}
-\contentsline {section}{\numberline {7.5}Orchestrated tuning}{34}
-\contentsline {section}{\numberline {7.6}Comparison of tuning approaches}{36}
-\contentsline {section}{\numberline {7.7}Optimal hyperparameter value selection}{38}
-\contentsline {subsubsection}{Lasso}{38}
-\contentsline {subsubsection}{Elastic Net}{39}
-\contentsline {subsubsection}{Grace}{40}
-\contentsline {subsubsection}{aGrace}{41}
-\contentsline {subsubsection}{GBLasso}{42}
-\contentsline {subsubsection}{Linf}{43}
-\contentsline {subsubsection}{aLinf}{44}
-\contentsline {subsubsection}{TTLP and LTLP}{44}
-\contentsline {subsubsection}{Composite}{45}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {chapter}{\numberline {2}Background and Related Work}{3}
+\contentsline {section}{\numberline {2.1}Linear regression}{3}
+\contentsline {section}{\numberline {2.2}Ordinary least squares estimation}{4}
+\contentsline {section}{\numberline {2.3}Penalized regression}{4}
+\contentsline {subsection}{\numberline {2.3.1}Ridge regression}{4}
+\contentsline {subsection}{\numberline {2.3.2}Lasso}{5}
+\contentsline {subsection}{\numberline {2.3.3}Elastic Net}{5}
+\contentsline {section}{\numberline {2.4}Network-constrained regularization}{5}
+\contentsline {subsection}{\numberline {2.4.1}Grace}{6}
+\contentsline {subsection}{\numberline {2.4.2}aGrace}{6}
+\contentsline {subsection}{\numberline {2.4.3}GBLasso}{7}
+\contentsline {subsection}{\numberline {2.4.4}Linf and aLinf}{7}
+\contentsline {subsubsection}{Linf}{7}
+\contentsline {subsubsection}{aLinf}{8}
+\contentsline {subsection}{\numberline {2.4.5}TTLP and LTLP}{8}
+\contentsline {subsubsection}{Indicator functions}{9}
+\contentsline {subsubsection}{TTLP}{9}
+\contentsline {subsubsection}{LTLP}{9}
+\contentsline {chapter}{\numberline {3}Implementation Details}{11}
+\contentsline {chapter}{\numberline {4}Synthetic Dataset Generation}{13}
+\contentsline {section}{\numberline {4.1}Predictor network generation}{13}
+\contentsline {section}{\numberline {4.2}Generation of predictor observations}{14}
+\contentsline {section}{\numberline {4.3}Response variable generation}{14}
+\contentsline {subsection}{\numberline {4.3.1}Primary simulation setups}{14}
+\contentsline {subsubsection}{Setup 1}{15}
+\contentsline {subsubsection}{Setup 2}{15}
+\contentsline {subsubsection}{Setup 3}{16}
+\contentsline {subsubsection}{Setup 4}{16}
+\contentsline {subsection}{\numberline {4.3.2}Secondary simulation setups}{16}
+\contentsline {chapter}{\numberline {5}Composite Voting Regression}{17}
+\contentsline {chapter}{\numberline {6}Hyperparameter Tuning}{19}
+\contentsline {section}{\numberline {6.1}Traditional approaches}{19}
+\contentsline {subsubsection}{Grid search}{19}
+\contentsline {subsubsection}{The validation set approach}{20}
+\contentsline {subsubsection}{K-fold cross validation}{20}
+\contentsline {subsubsection}{Grid search minimizing the cross-validated MSE}{20}
+\contentsline {section}{\numberline {6.2}Orchestrated parameter tuning}{21}
+\contentsline {subsection}{\numberline {6.2.1}Context and motivation}{21}
+\contentsline {subsection}{\numberline {6.2.2}Inspiration}{21}
+\contentsline {subsection}{\numberline {6.2.3}Methodology}{22}
+\contentsline {subsubsection}{Iterative procedure}{22}
+\contentsline {subsubsection}{Choice of starting points for the search}{24}
+\contentsline {subsubsection}{Discussion}{25}
+\contentsline {chapter}{\numberline {7}Simulation studies}{27}
+\contentsline {section}{\numberline {7.1}Simulation setup}{27}
+\contentsline {section}{\numberline {7.2}Hyperparameter search spaces}{27}
+\contentsline {section}{\numberline {7.3}Model metrics}{29}
+\contentsline {subsection}{\numberline {7.3.1}Prediction evaluation metrics}{29}
+\contentsline {subsection}{\numberline {7.3.2}Variable selection metrics}{29}
+\contentsline {subsubsection}{Correlation}{29}
+\contentsline {subsubsection}{Sensitivity}{29}
+\contentsline {subsubsection}{Specificity}{30}
+\contentsline {subsubsection}{Precision}{30}
+\contentsline {section}{\numberline {7.4}CV-MSE tuning}{30}
+\contentsline {section}{\numberline {7.5}Orchestrated tuning}{32}
+\contentsline {section}{\numberline {7.6}Comparison of tuning approaches}{34}
+\contentsline {section}{\numberline {7.7}Optimal hyperparameter value selection}{36}
+\contentsline {subsection}{\numberline {7.7.1}Lasso}{36}
+\contentsline {subsection}{\numberline {7.7.2}Elastic Net}{37}
+\contentsline {subsection}{\numberline {7.7.3}Grace}{38}
+\contentsline {subsection}{\numberline {7.7.4}aGrace}{39}
+\contentsline {subsection}{\numberline {7.7.5}GBLasso}{40}
+\contentsline {subsection}{\numberline {7.7.6}Linf}{41}
+\contentsline {subsection}{\numberline {7.7.7}aLinf}{42}
+\contentsline {subsection}{\numberline {7.7.8}TTLP and LTLP}{43}
+\contentsline {subsection}{\numberline {7.7.9}Composite}{43}

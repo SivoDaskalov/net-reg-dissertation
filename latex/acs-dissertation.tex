@@ -21,23 +21,21 @@
 \begin{document}
 
 %TC:ignore
-%\pagestyle{empty}
-%\singlespacing
-%\input{titlepage}
-%\onehalfspacing
-%\input{declaration}
-%\singlespacing
-%\input{abstract}
+\pagestyle{empty}
+\input{titlepage}
+\begin{onehalfspace}
+	\input{declaration}
+\end{onehalfspace}
+\input{abstract}
 
-%\pagenumbering{roman}
-%\setcounter{page}{0}
-%\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{0}
+\pagestyle{plain}
 \tableofcontents
-%\listoffigures
-%\listoftables
-%\onehalfspacing
-%\pagenumbering{arabic} 
-%\setcounter{page}{1}
+\listoffigures
+\listoftables
+%\onehalfspacing	
+%Original template uses onehalfspacing for body of report
 %TC:endignore
 
 \input{chapters/introduction} 
@@ -46,7 +44,6 @@
 \input{chapters/dataset_generation}
 \input{chapters/composite_voting_regressor}
 \input{chapters/parameter_tuning}
-
 \input{chapters/simulation_studies}
 
 %\input{chapters/similarity_evaluation}

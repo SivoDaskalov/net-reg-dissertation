@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  3 JUN 2017 14:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  4 JUN 2017 02:37
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1029,34 +1029,94 @@ File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
 \c__siunitx_mathsf_int=\count268
 \c__siunitx_mathtt_int=\count269
- (acs-dissertation.toc [1
+ (titlepage.tex
+Package epstopdf Info: Source file: <CUni3.eps>
+(epstopdf)                    date: 2010-05-17 13:27:03
+(epstopdf)                    size: 193497 bytes
+(epstopdf)             Output file: <CUni3-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-05-07 13:29:49
+(epstopdf)                    size: 60284 bytes
+(epstopdf)             Command: <epstopdf --outfile=CUni3-eps-converted-to.pdf 
+CUni3.eps>
+(epstopdf)             \includegraphics on input line 17.
+Package epstopdf Info: Output file is already uptodate.
 
+<CUni3-eps-converted-to.pdf, id=4, 174.6525pt x 36.135pt>
+File: CUni3-eps-converted-to.pdf Graphic file (type pdf)
 
-{C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
+<use CUni3-eps-converted-to.pdf>
+Package pdftex.def Info: CUni3-eps-converted-to.pdf used on input line 17.
+(pdftex.def)             Requested size: 174.65207pt x 36.13489pt.
+ [1
+
+{C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./CUni3
+-eps-converted-to.pdf>]) (declaration.tex
+[2] (wordcount.txt)
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
+
+[3]) (abstract.tex [4] [5]) [0] (acs-dissertation.toc [1
+
+])
 \tf@toc=\write4
 \openout4 = `acs-dissertation.toc'.
 
- (chapters/introduction.tex [2]
+ [2]
+(acs-dissertation.lof
+Overfull \hbox (1.9173pt too wide) in paragraph at lines 16--16
+ [][] []\OT1/cmr/m/n/12 aGrace dis-tri-bu-tion of se-lected pa-ram-e-ter com-bi
+-na-tions; darker 
+ []
+
+
+Overfull \hbox (11.83527pt too wide) in paragraph at lines 17--17
+ [][] []\OT1/cmr/m/n/12 GBLasso dis-tri-bu-tion of se-lected pa-ram-e-ter com-b
+i-na-tions; darker 
+ []
+
+)
+\tf@lof=\write5
+\openout5 = `acs-dissertation.lof'.
+
+ [3
+
+] [4
+
+] (acs-dissertation.lot
+Overfull \hbox (3.16403pt too wide) in paragraph at lines 11--11
+ [][] []\OT1/cmr/m/n/12 Orchestrated tun-ing mean model met-rics for 20 syn-the
+tic datasets [][]  
+ []
+
+)
+\tf@lot=\write6
+\openout6 = `acs-dissertation.lot'.
+
+ (chapters/introduction.tex [5] [6
+
+]
 Chapter 1.
 
-Overfull \hbox (2.47649pt too wide) in paragraph at lines 2--3
+Overfull \hbox (2.47649pt too wide) in paragraph at lines 4--5
 \OT1/cmr/m/n/12 Epigenetics [[]] stud-ies the her-i-ta-ble traits that can-not 
 be ex-plained by changes
  []
 
+[1]) (chapters/background_and_related_work.tex [2]
+Chapter 2.
 [3
 
-]) (chapters/background_and_related_work.tex [4]
-Chapter 2.
-[5
-
-] [6] [7]
+] [4] [5]
 Overfull \hbox (6.75006pt too wide) in paragraph at lines 72--73
 []\OT1/cmr/m/n/12 Li and Li pro-posed a mod-i-fi-ca-tion [[]] that per-forms ad
 ap-tive graph-constrained
  []
 
-[8] [9] [10]) (chapters/implementation_details.tex [11] [12
+[6] [7] [8]) (chapters/implementation_details.tex [9] [10
 
 ]
 Chapter 3.
@@ -1065,11 +1125,11 @@ Overfull \hbox (35.46872pt too wide) in paragraph at lines 23--39
  [][] 
  []
 
-[13]) (chapters/dataset_generation.tex [14]
+[11]) (chapters/dataset_generation.tex [12]
 Chapter 4.
-[15
+[13
 
-] [16]
+] [14]
 Overfull \hbox (34.25517pt too wide) detected at line 46
 [] []
  []
@@ -1082,38 +1142,31 @@ Overfull \hbox (34.25517pt too wide) detected at line 58
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17])
-(chapters/composite_voting_regressor.tex [18]
+ [15])
+(chapters/composite_voting_regressor.tex [16]
 Chapter 5.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19
+ [17
 
 ])
-(chapters/parameter_tuning.tex [20]
+(chapters/parameter_tuning.tex [18]
 Chapter 6.
-[21
+[19
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 18.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
- [22]
+] [20]
 Underfull \vbox (badness 1721) has occurred while \output is active []
 
- [23]
-<figures/search_grid.png, id=87, 472.76625pt x 474.77374pt>
+ [21]
+<figures/search_grid.png, id=133, 472.76625pt x 474.77374pt>
 File: figures/search_grid.png Graphic file (type png)
 
 <use figures/search_grid.png>
 Package pdftex.def Info: figures/search_grid.png used on input line 53.
 (pdftex.def)             Requested size: 312.02669pt x 313.35164pt.
- [24 <./figures/search_grid.png>]
-<figures/orchestrated_tuning_methodology.png, id=93, 501.875pt x 443.6575pt>
+ [22 <./figures/search_grid.png>]
+<figures/orchestrated_tuning_methodology.png, id=139, 501.875pt x 443.6575pt>
 File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
 
 <use figures/orchestrated_tuning_methodology.png>
@@ -1123,9 +1176,9 @@ put line 73.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-[26 <./figures/orchestrated_tuning_methodology.png>])
-(chapters/simulation_studies.tex [27] [28
+ [23]
+[24 <./figures/orchestrated_tuning_methodology.png>])
+(chapters/simulation_studies.tex [25] [26
 
 ]
 Chapter 7.
@@ -1137,14 +1190,14 @@ Overfull \hbox (14.1122pt too wide) in paragraph at lines 6--40
 
 LaTeX Warning: Float too large for page by 6.397pt on input line 40.
 
-) [29] [30] [31] [32] (tables/metrics_cvmse.tex
+) [27] [28] [29] [30] (tables/metrics_cvmse.tex
 PGFPlots: reading {tables/metrics_cvmse.csv}
 
 Overfull \hbox (6.7027pt too wide) in paragraph at lines 28--29
  [] 
  []
 
-) <figures/cv_mse_tuning.png, id=121, 722.7pt x 722.7pt>
+) <figures/cv_mse_tuning.png, id=166, 722.7pt x 722.7pt>
 File: figures/cv_mse_tuning.png Graphic file (type png)
 
 <use figures/cv_mse_tuning.png>
@@ -1155,8 +1208,8 @@ Overfull \hbox (7.48622pt too wide) in paragraph at lines 61--62
  [][] 
  []
 
-[33] [34 <./figures/cv_mse_tuning.png>]
-<figures/orchestrated_tuning.png, id=129, 722.7pt x 722.7pt>
+[31] [32 <./figures/cv_mse_tuning.png>]
+<figures/orchestrated_tuning.png, id=175, 722.7pt x 722.7pt>
 File: figures/orchestrated_tuning.png Graphic file (type png)
 
 <use figures/orchestrated_tuning.png>
@@ -1165,140 +1218,141 @@ Package pdftex.def Info: figures/orchestrated_tuning.png used on input line 73.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
  (tables/metrics_orctun.tex
 PGFPlots: reading {tables/metrics_orctun.csv}
-) [35 <./figures/orchestrated_tuning.png>] (tables/metrics_comparison.tex
+) [33 <./figures/orchestrated_tuning.png>] (tables/metrics_comparison.tex
 PGFPlots: reading {tables/metrics_comparison.csv}
-) [36]
-<figures/tuning_method_comparison.png, id=137, 722.7pt x 722.7pt>
+) [34]
+<figures/tuning_method_comparison.png, id=183, 722.7pt x 722.7pt>
 File: figures/tuning_method_comparison.png Graphic file (type png)
 
 <use figures/tuning_method_comparison.png>
 Package pdftex.def Info: figures/tuning_method_comparison.png used on input lin
 e 93.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
-
-<figures/tuning/lasso.png, id=138, 578.16pt x 361.35pt>
+ [35 <./figures/tuning_method_comparison.png>] <figures/tuning/lasso.png, id=18
+8, 578.16pt x 361.35pt>
 File: figures/tuning/lasso.png Graphic file (type png)
 
 <use figures/tuning/lasso.png>
-Package pdftex.def Info: figures/tuning/lasso.png used on input line 103.
+Package pdftex.def Info: figures/tuning/lasso.png used on input line 105.
 (pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
 
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 103--104
+Overfull \hbox (14.70924pt too wide) in paragraph at lines 105--106
  [][] 
  []
 
-[37 <./figures/tuning_method_comparison.png>]
-<figures/tuning/enet.png, id=144, 433.62pt x 433.62pt>
+
+Underfull \vbox (badness 7907) has occurred while \output is active []
+
+ [36 <./figures/tuning/lasso.png>] <figures/tuning/enet.png, id=193, 433.62pt x
+ 433.62pt>
 File: figures/tuning/enet.png Graphic file (type png)
 
 <use figures/tuning/enet.png>
-Package pdftex.def Info: figures/tuning/enet.png used on input line 111.
-(pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
+Package pdftex.def Info: figures/tuning/enet.png used on input line 115.
+(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1924) has occurred while \output is active []
 
- [38 <./figures/tuning/lasso.png>]
-<figures/tuning/grace.png, id=149, 433.62pt x 433.62pt>
+ [37 <./figures/tuning/enet.png>] <figures/tuning/grace.png, id=199, 433.62pt x
+ 433.62pt>
 File: figures/tuning/grace.png Graphic file (type png)
 
 <use figures/tuning/grace.png>
-Package pdftex.def Info: figures/tuning/grace.png used on input line 119.
-(pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
+Package pdftex.def Info: figures/tuning/grace.png used on input line 125.
+(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6078) has occurred while \output is active []
 
- [39 <./figures/tuning/enet.png>]
-<figures/tuning/agrace.png, id=154, 433.62pt x 433.62pt>
+ [38 <./figures/tuning/grace.png>]
+<figures/tuning/agrace.png, id=204, 433.62pt x 433.62pt>
 File: figures/tuning/agrace.png Graphic file (type png)
 
 <use figures/tuning/agrace.png>
-Package pdftex.def Info: figures/tuning/agrace.png used on input line 127.
-(pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
+Package pdftex.def Info: figures/tuning/agrace.png used on input line 135.
+(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6364) has occurred while \output is active []
 
- [40 <./figures/tuning/grace.png>]
-<figures/tuning/gblasso.png, id=159, 433.62pt x 433.62pt>
+ [39 <./figures/tuning/agrace.png>]
+<figures/tuning/gblasso.png, id=209, 433.62pt x 433.62pt>
 File: figures/tuning/gblasso.png Graphic file (type png)
 
 <use figures/tuning/gblasso.png>
-Package pdftex.def Info: figures/tuning/gblasso.png used on input line 135.
+Package pdftex.def Info: figures/tuning/gblasso.png used on input line 145.
 (pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41 <./figures/tuning/agrace.png>]
-<figures/tuning/linf.png, id=164, 578.16pt x 361.35pt>
+ [40 <./figures/tuning/gblasso.png>]
+<figures/tuning/linf.png, id=214, 578.16pt x 361.35pt>
 File: figures/tuning/linf.png Graphic file (type png)
 
 <use figures/tuning/linf.png>
-Package pdftex.def Info: figures/tuning/linf.png used on input line 143.
+Package pdftex.def Info: figures/tuning/linf.png used on input line 155.
 (pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
 
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 143--144
+Overfull \hbox (14.70924pt too wide) in paragraph at lines 155--156
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42 <./figures/tuning/gblasso.png>]
-<figures/tuning/alinf.png, id=169, 578.16pt x 361.35pt>
+ [41 <./figures/tuning/linf.png>] <figures/tuning/alinf.png, id=219, 578.16pt x
+ 361.35pt>
 File: figures/tuning/alinf.png Graphic file (type png)
 
 <use figures/tuning/alinf.png>
-Package pdftex.def Info: figures/tuning/alinf.png used on input line 151.
+Package pdftex.def Info: figures/tuning/alinf.png used on input line 165.
 (pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
 
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 151--152
+Overfull \hbox (14.70924pt too wide) in paragraph at lines 165--166
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43 <./figures/tuning/linf.png>]
-<figures/tuning/composite.png, id=175, 578.16pt x 361.35pt>
+ [42 <./figures/tuning/alinf.png>]
+<figures/tuning/composite.png, id=224, 578.16pt x 361.35pt>
 File: figures/tuning/composite.png Graphic file (type png)
 
 <use figures/tuning/composite.png>
-Package pdftex.def Info: figures/tuning/composite.png used on input line 162.
+Package pdftex.def Info: figures/tuning/composite.png used on input line 178.
 (pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
 
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 162--163
+Overfull \hbox (14.70924pt too wide) in paragraph at lines 178--179
  [][] 
  []
 
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+) (acs-dissertation.bbl [43 <./figures/tuning/composite.png>] [44
 
- [44 <./figures/tuning/alinf.png>] (acs-dissertation.bbl [45 <./figures/tuning/
-composite.png>] [46
-
-] [47]) [48] (acs-dissertation.aux) ) 
+] [45])
+[46] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32549 strings out of 493333
- 819109 string characters out of 3139183
- 935393 words of memory out of 3000000
- 35568 multiletter control sequences out of 15000+200000
- 10933 words of font info for 40 fonts, out of 3000000 for 9000
+ 32575 strings out of 493333
+ 819521 string characters out of 3139183
+ 935382 words of memory out of 3000000
+ 35576 multiletter control sequences out of 15000+200000
+ 11581 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmti12.pfb>
-Output written on acs-dissertation.pdf (48 pages, 585424 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex1
+0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on acs-dissertation.pdf (58 pages, 635655 bytes).
 PDF statistics:
- 234 PDF objects out of 1000 (max. 8388607)
+ 285 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

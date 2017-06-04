@@ -202,7 +202,7 @@ xlabel = {
     "gblasso": "Gamma",
     "linf": "C",
     "alinf": "E",
-    "composite": "Fraction of votes"
+    "composite": "Vote threshold"
 }
 
 ylabel = {
