@@ -1,0 +1,11 @@
+Dataset,Method,Resolved,Unresolved,Influencing,Non-influencing
+Cell body,Composite,471,8,206,273
+,Elastic Net,473,6,242,237
+,Grace,474,5,234,245
+,Lasso,470,9,205,274
+,Linf,479,0,307,172
+Promoter,Composite,455,13,155,313
+,Elastic Net,458,10,166,302
+,Grace,461,7,175,293
+,Lasso,453,15,151,317
+,Linf,468,0,468,0

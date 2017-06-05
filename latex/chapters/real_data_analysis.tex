@@ -1,1 +1,119 @@
 \chapter{Real Data Analysis}
+
+\section{Epigenetic datasets used}
+
+\section{Gene network used}
+
+\section{Regression methods and setup}
+
+\section{Mapping summary}
+
+\pagebreak
+%\ref{tab:map_errors}
+\input{tables/mapping_errors}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{mappings/errors}
+	\caption{MSE by regression method and dataset}
+	\label{fig:map_errors}
+\end{figure}
+
+\pagebreak
+%\ref{tab:map_summary}
+\input{tables/mapping_summary}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/vote_distribution}
+	\caption{Predictor importance fraction of votes distribution for cell body (left) and promoter (right) datasets}
+	\label{fig:map_vote_dist}
+\end{figure}
+
+
+\pagebreak
+\subsection{Lasso}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Body}
+	\caption{Lasso mapping dependencies summary for cell body dataset}
+	\label{fig:map_body_lasso}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Prom}
+	\caption{Lasso mapping dependencies summary for promoter dataset}
+	\label{fig:map_prom_lasso}
+\end{figure}
+
+
+\pagebreak
+\subsection{Elastic Net}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Enet_Body}
+	\caption{Elastic Net mapping dependencies summary for cell body dataset}
+	\label{fig:map_body_enet}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Enet_Prom}
+	\caption{Elastic Net mapping dependencies summary for promoter dataset}
+	\label{fig:map_prom_enet}
+\end{figure}
+
+
+\pagebreak
+\subsection{Grace}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Grace_Body}
+	\caption{Grace mapping dependencies summary for cell body dataset}
+	\label{fig:map_body_grace}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Grace_Prom}
+	\caption{Grace mapping dependencies summary for promoter dataset}
+	\label{fig:map_prom_grace}
+\end{figure}
+
+
+\pagebreak
+\subsection{Linf}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Linf_Body}
+	\caption{Linf mapping dependencies summary for cell body dataset}
+	\label{fig:map_body_linf}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Linf_Prom}
+	\caption{Linf mapping dependencies summary for promoter dataset}
+	\label{fig:map_prom_linf}
+\end{figure}
+
+
+\pagebreak
+\subsection{Composite}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Composite_Body}
+	\caption{Composite method mapping dependencies summary for cell body dataset}
+	\label{fig:map_body_comp}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Composite_Prom}
+	\caption{Composite method mapping dependencies summary for promoter dataset}
+	\label{fig:map_prom_comp}
+\end{figure}

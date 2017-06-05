@@ -1,0 +1,27 @@
+\begin{table}[H]
+	\begin{center}
+		\caption{Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}
+		\label{tab:map_summary}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		display columns/0/.style={string type, column type = {l}},
+		display columns/1/.style={string type, column type = {l}},
+		display columns/2/.style={column type={S}, string type, column type = {|r}},
+		display columns/3/.style={column type={S}, string type, column type = {r}},
+		display columns/4/.style={column type={S}, string type, column type = {|r}},
+		display columns/5/.style={column type={S}, string type, column type = {r}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row/.add={}{
+				\midrule\midrule
+			}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		every nth row={5}{before row=\midrule},
+		]{tables/mapping_summary.csv}
+	\end{center}
+\end{table}

@@ -1,0 +1,11 @@
+Dataset,Method,MSE,STD
+Cell body,Composite,0.66,0.75
+,Elastic Net,0.66,0.74
+,Grace,0.65,0.73
+,Lasso,0.67,0.75
+,Linf,0.68,0.81
+Promoter,Composite,0.65,0.70
+,Elastic Net,0.67,0.75
+,Grace,0.66,0.72
+,Lasso,0.68,0.75
+,Linf,0.70,0.86

@@ -1,0 +1,26 @@
+\begin{table}[H]
+	\begin{center}
+		\caption{Summary of the mean squared test errors for both datasets}
+		\label{tab:map_errors}
+		\setlength{\tabcolsep}{18pt}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		display columns/0/.style={string type, column type = {l}},
+		display columns/1/.style={string type, column type = {l}},
+		display columns/2/.style={column type={S}, string type, column type = {r}},
+		display columns/3/.style={column type={S}, column name={$\sigma_{MSE}$}, string type, column type = {r}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row/.add={}{
+				\midrule\midrule
+			}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		every nth row={5}{before row=\midrule},
+		]{tables/mapping_errors.csv}
+	\end{center}
+\end{table}
