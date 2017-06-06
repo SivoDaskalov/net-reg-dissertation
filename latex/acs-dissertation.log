@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  5 JUN 2017 18:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  6 JUN 2017 16:10
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1395,7 +1395,7 @@ PGFPlots: reading {tables/similarity_comparison.csv}
 )) (chapters/real_data_analysis.tex [50]
 Chapter 9.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1960) has occurred while \output is active []
 
  [51
 
@@ -1407,10 +1407,12 @@ PGFPlots: reading {tables/mapping_errors.csv}
 File: figures/mappings/errors.png Graphic file (type png)
 
 <use figures/mappings/errors.png>
-Package pdftex.def Info: figures/mappings/errors.png used on input line 16.
+Package pdftex.def Info: figures/mappings/errors.png used on input line 26.
 (pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
- [52 <./figures/mappings/errors.png>]
-(tables/mapping_summary.tex
+
+Underfull \vbox (badness 4144) has occurred while \output is active []
+
+ [52 <./figures/mappings/errors.png>] (tables/mapping_summary.tex
 PGFPlots: reading {tables/mapping_summary.csv}
 
 Overfull \hbox (28.54367pt too wide) in paragraph at lines 25--26
@@ -1422,10 +1424,10 @@ File: figures/mappings/vote_distribution.png Graphic file (type png)
 
 <use figures/mappings/vote_distribution.png>
 Package pdftex.def Info: figures/mappings/vote_distribution.png used on input l
-ine 26.
+ine 36.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-Underfull \vbox (badness 6741) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [53 <./figures/mappings/vote_distribution.png>]
 <figures/mappings/distributions/Lasso_Body.png, id=271, 722.7pt x 289.08pt>
@@ -1433,7 +1435,7 @@ File: figures/mappings/distributions/Lasso_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Lasso_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Lasso_Body.png used on 
-input line 37.
+input line 47.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 <figures/mappings/distributions/Lasso_Prom.png, id=272, 722.7pt x 289.08pt>
@@ -1441,7 +1443,7 @@ File: figures/mappings/distributions/Lasso_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Lasso_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Lasso_Prom.png used on 
-input line 44.
+input line 54.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1453,7 +1455,7 @@ File: figures/mappings/distributions/Enet_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Enet_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Enet_Body.png used on i
-nput line 55.
+nput line 65.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 <figures/mappings/distributions/Enet_Prom.png, id=279, 722.7pt x 289.08pt>
@@ -1461,7 +1463,7 @@ File: figures/mappings/distributions/Enet_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Enet_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Enet_Prom.png used on i
-nput line 62.
+nput line 72.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1473,7 +1475,7 @@ File: figures/mappings/distributions/Grace_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Grace_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Grace_Body.png used on 
-input line 73.
+input line 83.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 <figures/mappings/distributions/Grace_Prom.png, id=287, 722.7pt x 289.08pt>
@@ -1481,7 +1483,7 @@ File: figures/mappings/distributions/Grace_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Grace_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Grace_Prom.png used on 
-input line 80.
+input line 90.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1493,7 +1495,7 @@ File: figures/mappings/distributions/Linf_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Linf_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Linf_Body.png used on i
-nput line 91.
+nput line 101.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 <figures/mappings/distributions/Linf_Prom.png, id=294, 722.7pt x 289.08pt>
@@ -1501,7 +1503,7 @@ File: figures/mappings/distributions/Linf_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Linf_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Linf_Prom.png used on i
-nput line 98.
+nput line 108.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1513,7 +1515,7 @@ File: figures/mappings/distributions/Composite_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Composite_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Composite_Body.png used
- on input line 109.
+ on input line 119.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
 <figures/mappings/distributions/Composite_Prom.png, id=301, 722.7pt x 289.08pt>
@@ -1521,35 +1523,38 @@ File: figures/mappings/distributions/Composite_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Composite_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Composite_Prom.png used
- on input line 116.
+ on input line 126.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 ) (acs-dissertation.bbl
 [58 <./figures/mappings/distributions/Composite_Body.png> <./figures/mappings/d
 istributions/Composite_Prom.png>] [59
 
-]) [60] (acs-dissertation.aux) ) 
+]
+Missing character: There is no Ì in font cmr12!
+Missing character: There is no ¤ in font cmr12!
+) [60] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32785 strings out of 493333
- 826631 string characters out of 3139183
- 940568 words of memory out of 3000000
- 35741 multiletter control sequences out of 15000+200000
+ 32786 strings out of 493333
+ 826656 string characters out of 3139183
+ 940572 words of memory out of 3000000
+ 35742 multiletter control sequences out of 15000+200000
  11581 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (72 pages, 998264 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
+x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
+6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on acs-dissertation.pdf (72 pages, 998831 bytes).
 PDF statistics:
  359 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
