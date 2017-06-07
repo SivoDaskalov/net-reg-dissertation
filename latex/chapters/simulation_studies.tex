@@ -98,7 +98,7 @@ The difference between model metrics is immediately evident - in some cases the 
 \section{Optimal hyperparameter value selection}
 Data about the optimal hyperparameter values selected when performing both kinds of parameter tuning on all synthetic datasets has been collected. It is used to select overall best combination of hyperparameter values for each regression method for use on a real dataset similar to the synthetic datasets.
 
-\subsection{Lasso}
+\subsubsection{Lasso}
 The distribution of tuning choices for the alpha hyperparameter is shown in Figure \ref{fig:tun_lasso}. Multiple values in the range $[0.05, 0.2]$ have been selected most times, of which $alpha = 0.1$ is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -109,7 +109,7 @@ The distribution of tuning choices for the alpha hyperparameter is shown in Figu
 
 \pagebreak
 
-\subsection{Elastic Net}
+\subsubsection{Elastic Net}
 The distribution of tuning choices for combinations of the alpha and L1 ratio hyperparameters is shown in Figure \ref{fig:tun_enet}. The evident choice of alpha value for use on the real dataset is 0.2, but selected values for the L1 ratio parameter are more diversely spread. Although its most commonly selected value is 0.99, we choose a value of $L1\ ratio = 0.8$ for use on the real dataset in order to differentiate the behavior of Elastic Net from that of the pure Lasso.
 \begin{figure}[H]
 	\centering
@@ -120,7 +120,7 @@ The distribution of tuning choices for combinations of the alpha and L1 ratio hy
 
 \pagebreak
 
-\subsection{Grace}
+\subsubsection{Grace}
 The distribution of tuning choices for combinations of the lambda 1 and lambda 2 hyperparameters is shown in Figure \ref{fig:tun_grace}. As the results suggest, the most commonly selected tuning parameter combination is $(\lambda_1=100,\lambda_2=10000)$ and it is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -131,7 +131,7 @@ The distribution of tuning choices for combinations of the lambda 1 and lambda 2
 
 \pagebreak
 
-\subsection{aGrace}
+\subsubsection{aGrace}
 The distribution of tuning choices for combinations of the lambda 1 and lambda 2 hyperparameters is shown in Figure \ref{fig:tun_agrace}. The tuning parameter combination $(\lambda_1=100,\lambda_2=0.01)$ is selected for the largest fraction of the synthetic datasets and therefore is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -142,7 +142,7 @@ The distribution of tuning choices for combinations of the lambda 1 and lambda 2
 
 \pagebreak
 
-\subsection{GBLasso}
+\subsubsection{GBLasso}
 The distribution of tuning choices for combinations of the gamma and lambda hyperparameters is shown in Figure \ref{fig:tun_gblasso}. The combination of parameter values selected most often is clearly $(\gamma = 4, \lambda=100)$ and it is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -153,7 +153,7 @@ The distribution of tuning choices for combinations of the gamma and lambda hype
 
 \pagebreak
 
-\subsection{Linf}
+\subsubsection{Linf}
 The distribution of tuning choices for the C hyperparameter is shown in Figure \ref{fig:tun_linf}. The value selected for most datasets is $C = 25$ and it is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -164,7 +164,7 @@ The distribution of tuning choices for the C hyperparameter is shown in Figure \
 
 \pagebreak
 
-\subsection{aLinf}
+\subsubsection{aLinf}
 The distribution of tuning choices for the E hyperparameter is shown in Figure \ref{fig:tun_alinf}. The values selected most often are 25 and 35, of which $E = 25$ is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering
@@ -175,10 +175,10 @@ The distribution of tuning choices for the E hyperparameter is shown in Figure \
 
 \pagebreak
 
-\subsection{TTLP and LTLP}
+\subsubsection{TTLP and LTLP}
 The TTLP and LTLP methods use search spaces for their tuning parameters derived from dataset properties and the Lasso estimate. For this reason attempting to extract an optimal combination of hyperparameter values from tuning with external independent datasets is not feasible. 
 
-\subsection{Composite}
+\subsubsection{Composite}
 The distribution of tuning choices for the vote threshold hyperparameter is shown in Figure \ref{fig:tun_composite}. For most synthetic datasets a value of 0.9 is chosen. Because the methods in the ensemble are less than 10, in practice this means that all underlying regression methods need to have selected a given predictor for it to be selected by the composite method. The vote threshold value of 0.9 is chosen for use on the real dataset.
 \begin{figure}[H]
 	\centering

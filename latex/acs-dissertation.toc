@@ -56,15 +56,15 @@
 \contentsline {section}{\numberline {7.5}Orchestrated tuning}{32}
 \contentsline {section}{\numberline {7.6}Comparison of tuning approaches}{34}
 \contentsline {section}{\numberline {7.7}Optimal hyperparameter value selection}{36}
-\contentsline {subsection}{\numberline {7.7.1}Lasso}{36}
-\contentsline {subsection}{\numberline {7.7.2}Elastic Net}{37}
-\contentsline {subsection}{\numberline {7.7.3}Grace}{38}
-\contentsline {subsection}{\numberline {7.7.4}aGrace}{39}
-\contentsline {subsection}{\numberline {7.7.5}GBLasso}{40}
-\contentsline {subsection}{\numberline {7.7.6}Linf}{41}
-\contentsline {subsection}{\numberline {7.7.7}aLinf}{42}
-\contentsline {subsection}{\numberline {7.7.8}TTLP and LTLP}{43}
-\contentsline {subsection}{\numberline {7.7.9}Composite}{43}
+\contentsline {subsubsection}{Lasso}{36}
+\contentsline {subsubsection}{Elastic Net}{37}
+\contentsline {subsubsection}{Grace}{38}
+\contentsline {subsubsection}{aGrace}{39}
+\contentsline {subsubsection}{GBLasso}{40}
+\contentsline {subsubsection}{Linf}{41}
+\contentsline {subsubsection}{aLinf}{42}
+\contentsline {subsubsection}{TTLP and LTLP}{43}
+\contentsline {subsubsection}{Composite}{43}
 \contentsline {chapter}{\numberline {8}Method Similarity Evaluation}{45}
 \contentsline {section}{\numberline {8.1}Cosine Similarity}{45}
 \contentsline {section}{\numberline {8.2}Similarity for CV-MSE tuning}{46}
@@ -74,10 +74,10 @@
 \contentsline {section}{\numberline {9.1}Molecular biology background}{51}
 \contentsline {section}{\numberline {9.2}Breast cancer epigenetic dataset}{52}
 \contentsline {section}{\numberline {9.3}Gene network assembly}{53}
-\contentsline {section}{\numberline {9.4}Regression methods and setup}{53}
-\contentsline {section}{\numberline {9.5}Mapping summary}{53}
-\contentsline {subsection}{\numberline {9.5.1}Lasso}{56}
-\contentsline {subsection}{\numberline {9.5.2}Elastic Net}{57}
-\contentsline {subsection}{\numberline {9.5.3}Grace}{58}
-\contentsline {subsection}{\numberline {9.5.4}Linf}{59}
-\contentsline {subsection}{\numberline {9.5.5}Composite}{60}
+\contentsline {section}{\numberline {9.4}Regression methods and setup}{54}
+\contentsline {section}{\numberline {9.5}Mapping summary}{54}
+\contentsline {subsection}{\numberline {9.5.1}Lasso}{57}
+\contentsline {subsection}{\numberline {9.5.2}Elastic Net}{58}
+\contentsline {subsection}{\numberline {9.5.3}Grace}{59}
+\contentsline {subsection}{\numberline {9.5.4}Linf}{60}
+\contentsline {subsection}{\numberline {9.5.5}Composite}{61}
