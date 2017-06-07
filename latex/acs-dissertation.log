@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  7 JUN 2017 16:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  7 JUN 2017 16:58
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1176,7 +1176,7 @@ File: figures/search_grid.png Graphic file (type png)
 
 <use figures/search_grid.png>
 Package pdftex.def Info: figures/search_grid.png used on input line 53.
-(pdftex.def)             Requested size: 312.02669pt x 313.35164pt.
+(pdftex.def)             Requested size: 236.38254pt x 237.38629pt.
  [22 <./figures/search_grid.png>]
 <figures/orchestrated_tuning_methodology.png, id=139, 501.875pt x 443.6575pt>
 File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
@@ -1184,7 +1184,7 @@ File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
 <use figures/orchestrated_tuning_methodology.png>
 Package pdftex.def Info: figures/orchestrated_tuning_methodology.png used on in
 put line 73.
-(pdftex.def)             Requested size: 376.40532pt x 332.7423pt.
+(pdftex.def)             Requested size: 301.12732pt x 266.19655pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1214,13 +1214,8 @@ File: figures/cv_mse_tuning.png Graphic file (type png)
 
 <use figures/cv_mse_tuning.png>
 Package pdftex.def Info: figures/cv_mse_tuning.png used on input line 61.
-(pdftex.def)             Requested size: 397.48622pt x 397.48622pt.
-
-Overfull \hbox (7.48622pt too wide) in paragraph at lines 61--62
- [][] 
- []
-
-[31] [32 <./figures/cv_mse_tuning.png>]
+(pdftex.def)             Requested size: 390.25218pt x 390.25218pt.
+ [31] [32 <./figures/cv_mse_tuning.png>]
 <figures/orchestrated_tuning.png, id=175, 722.7pt x 722.7pt>
 File: figures/orchestrated_tuning.png Graphic file (type png)
 
@@ -1246,52 +1241,47 @@ File: figures/tuning/lasso.png Graphic file (type png)
 
 <use figures/tuning/lasso.png>
 Package pdftex.def Info: figures/tuning/lasso.png used on input line 105.
-(pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
+(pdftex.def)             Requested size: 381.58678pt x 238.49173pt.
 
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 105--106
- [][] 
- []
-
-
-Underfull \vbox (badness 7907) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [36 <./figures/tuning/lasso.png>] <figures/tuning/enet.png, id=193, 433.62pt x
  433.62pt>
 File: figures/tuning/enet.png Graphic file (type png)
 
 <use figures/tuning/enet.png>
-Package pdftex.def Info: figures/tuning/enet.png used on input line 115.
-(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
+Package pdftex.def Info: figures/tuning/enet.png used on input line 116.
+(pdftex.def)             Requested size: 286.19008pt x 286.19008pt.
 
-Underfull \vbox (badness 1924) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37 <./figures/tuning/enet.png>] <figures/tuning/grace.png, id=199, 433.62pt x
  433.62pt>
 File: figures/tuning/grace.png Graphic file (type png)
 
 <use figures/tuning/grace.png>
-Package pdftex.def Info: figures/tuning/grace.png used on input line 125.
-(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
+Package pdftex.def Info: figures/tuning/grace.png used on input line 127.
+(pdftex.def)             Requested size: 286.19008pt x 286.19008pt.
 
-Underfull \vbox (badness 6078) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38 <./figures/tuning/grace.png>]
 <figures/tuning/agrace.png, id=204, 433.62pt x 433.62pt>
 File: figures/tuning/agrace.png Graphic file (type png)
 
 <use figures/tuning/agrace.png>
-Package pdftex.def Info: figures/tuning/agrace.png used on input line 135.
-(pdftex.def)             Requested size: 390.2544pt x 390.2544pt.
+Package pdftex.def Info: figures/tuning/agrace.png used on input line 138.
+(pdftex.def)             Requested size: 286.19008pt x 286.19008pt.
 
-Underfull \vbox (badness 6364) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39 <./figures/tuning/agrace.png>]
 <figures/tuning/gblasso.png, id=209, 433.62pt x 433.62pt>
 File: figures/tuning/gblasso.png Graphic file (type png)
 
 <use figures/tuning/gblasso.png>
-Package pdftex.def Info: figures/tuning/gblasso.png used on input line 145.
-(pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
+Package pdftex.def Info: figures/tuning/gblasso.png used on input line 149.
+(pdftex.def)             Requested size: 286.19008pt x 286.19008pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1300,13 +1290,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/tuning/linf.png Graphic file (type png)
 
 <use figures/tuning/linf.png>
-Package pdftex.def Info: figures/tuning/linf.png used on input line 155.
-(pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
-
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 155--156
- [][] 
- []
-
+Package pdftex.def Info: figures/tuning/linf.png used on input line 160.
+(pdftex.def)             Requested size: 381.58678pt x 238.49173pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1315,13 +1300,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/tuning/alinf.png Graphic file (type png)
 
 <use figures/tuning/alinf.png>
-Package pdftex.def Info: figures/tuning/alinf.png used on input line 165.
-(pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
-
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 165--166
- [][] 
- []
-
+Package pdftex.def Info: figures/tuning/alinf.png used on input line 171.
+(pdftex.def)             Requested size: 381.58678pt x 238.49173pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1330,15 +1310,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/tuning/composite.png Graphic file (type png)
 
 <use figures/tuning/composite.png>
-Package pdftex.def Info: figures/tuning/composite.png used on input line 178.
-(pdftex.def)             Requested size: 404.70924pt x 252.94327pt.
-
-Overfull \hbox (14.70924pt too wide) in paragraph at lines 178--179
- [][] 
- []
-
-) (chapters/similarity_evaluation.tex [43 <./figures/tuning/composite.png>]
-[44
+Package pdftex.def Info: figures/tuning/composite.png used on input line 185.
+(pdftex.def)             Requested size: 381.58678pt x 238.49173pt.
+) (chapters/similarity_evaluation.tex
+[43 <./figures/tuning/composite.png>] [44
 
 ]
 Chapter 8.
@@ -1361,13 +1336,11 @@ File: figures/cv_mse_similarities.png Graphic file (type png)
 <use figures/cv_mse_similarities.png>
 Package pdftex.def Info: figures/cv_mse_similarities.png used on input line 27.
 
-(pdftex.def)             Requested size: 416.27133pt x 312.2035pt.
+(pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
 
-Overfull \hbox (26.27133pt too wide) in paragraph at lines 27--28
- [][] 
- []
+Underfull \vbox (badness 3690) has occurred while \output is active []
 
-[46 <./figures/cv_mse_similarities.png>] [47] (tables/similarity_orctun.tex
+ [46 <./figures/cv_mse_similarities.png>] [47] (tables/similarity_orctun.tex
 PGFPlots: reading {tables/similarity_orctun.csv}
 )
 <figures/orchestrated_similarities.png, id=244, 462.528pt x 346.896pt>
@@ -1376,7 +1349,7 @@ File: figures/orchestrated_similarities.png Graphic file (type png)
 <use figures/orchestrated_similarities.png>
 Package pdftex.def Info: figures/orchestrated_similarities.png used on input li
 ne 44.
-(pdftex.def)             Requested size: 346.89514pt x 260.17136pt.
+(pdftex.def)             Requested size: 323.76738pt x 242.82553pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1560,7 +1533,7 @@ ublic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (75 pages, 1167374 bytes).
+Output written on acs-dissertation.pdf (75 pages, 1004873 bytes).
 PDF statistics:
  370 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

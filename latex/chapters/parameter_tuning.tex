@@ -50,7 +50,7 @@ Initially, each of the methods is trained using some hyperparameter combination 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.66]{search_grid}
+	\includegraphics[scale=0.5]{search_grid}
 	\caption{Local search grid neighborhood, two tuning hyperparameters; $P_{t-1}$ is the parameter combination selected in iteration $t-1$, parameter values in the $P_t$ neighborhood are considered in iteration $t$}
 	\label{fig:orc_tun_search_grid}
 \end{figure}
@@ -70,7 +70,7 @@ The temporal relationships that occur between the various regression methods dur
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.75]{orchestrated_tuning_methodology}
+	\includegraphics[scale=0.6]{orchestrated_tuning_methodology}
 	\caption{Orchestrated tuning abstract structure, three regression methods; $M1_{t-1}$ denotes the parameter estimates of method $1$ for iteration $t-1$; Each tuning iteration $t$ of a method uses the common input data and the parameter estimates of all other methods for the previous iteration}
 	\label{fig:orc_tun_struct}
 \end{figure}
@@ -80,7 +80,7 @@ The choice of hyperparameter starting points in the search grids for the ensembl
 
 \begin{enumerate}
 \item One approach could be to initialize the tuning process with hyperparameter values located in the centers of the search grids of all methods. Such initialization would allow the tuning procedure to decide which orthant of the search space to converge in. 
-\item An alternative approach would be to start the tuning procedure from specific corners of the search grids. Depending on whether we wish to promote simpler or more complete models, the appropriate grid corner should be chosen, maximizing or minimizing the severity of imposed penalties.
+\item An alternative approach would be to start the tuning procedure from specific corners of the search grids. Depending on our desire to promote simpler or more complete models, the appropriate grid corner should be chosen, maximizing or minimizing the severity of imposed penalties.
 \item The proposed orchestrated hyperparameter tuning could be combined with the traditional tuning approach discussed in Section \ref{sec:trad_tuning}. This can be done by obtaining the initial parameter values for the orchestrated tuning from a previously performed CV-MSE tuning. Such a combined tuning procedure could potentially benefit from the strengths of both tuning approaches - selection of models with good generalized prediction capabilities, but also coordinated for better agreement between regression methods.
 \item A randomized orchestrated tuning procedure could be constructed by repeatedly performing the search with randomized starting points and collecting statistics from each convergence. The optimal hyperparameter combinations would be selected after analysis of the convergence statistics for all tuning executions.
 \end{enumerate}
