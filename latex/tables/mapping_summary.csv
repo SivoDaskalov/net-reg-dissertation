@@ -1,5 +1,5 @@
 Dataset,Method,Resolved,Unresolved,Influencing,Non-influencing
-Cell body,Composite,471,8,206,273
+Gene body,Composite,471,8,206,273
 ,Elastic Net,473,6,242,237
 ,Grace,474,5,234,245
 ,Lasso,470,9,205,274

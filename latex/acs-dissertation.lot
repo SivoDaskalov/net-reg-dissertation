@@ -15,5 +15,5 @@
 \contentsline {table}{\numberline {8.2}{\ignorespaces Orchestrated tuning regression method similarities}}{48}
 \contentsline {table}{\numberline {8.3}{\ignorespaces Comparison of regression method similarities by tuning method}}{50}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {9.1}{\ignorespaces Summary of the mean squared test errors for both datasets}}{52}
-\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{53}
+\contentsline {table}{\numberline {9.1}{\ignorespaces Summary of the mean squared test errors for both datasets}}{54}
+\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{55}
