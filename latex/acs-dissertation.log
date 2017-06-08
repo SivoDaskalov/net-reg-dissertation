@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  8 JUN 2017 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  8 JUN 2017 17:50
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1059,7 +1059,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
 
-[3]) (abstract.tex [4] [5]) (acknowledgements.tex [6] [7]) [0]
+[3]) (abstract.tex [4] [5]) (acknowledgments.tex [6] [7]) [0]
 (acs-dissertation.toc [1
 
 ])
@@ -1502,17 +1502,21 @@ File: figures/mappings/distributions/Composite_Prom.png Graphic file (type png)
 Package pdftex.def Info: figures/mappings/distributions/Composite_Prom.png used
  on input line 173.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-) (acs-dissertation.bbl
-[61 <./figures/mappings/distributions/Composite_Body.png> <./figures/mappings/d
-istributions/Composite_Prom.png>] [62
+)
+(chapters/summary_conclusions.tex [61 <./figures/mappings/distributions/Composi
+te_Body.png> <./figures/mappings/distributions/Composite_Prom.png>] [62
 
-] [63]
+]
+Chapter 10.
+) (acs-dissertation.bbl [63] [64
+
+] [65]
 Missing character: There is no Ì in font cmr10!
 Missing character: There is no ¤ in font cmr10!
-) [64] (acs-dissertation.aux) ) 
+) [66] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32797 strings out of 493333
- 826844 string characters out of 3139183
+ 32800 strings out of 493333
+ 826924 string characters out of 3139183
  940624 words of memory out of 3000000
  35749 multiletter control sequences out of 15000+200000
  11880 words of font info for 43 fonts, out of 3000000 for 9000
@@ -1533,9 +1537,9 @@ s/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (78 pages, 1046781 bytes).
+Output written on acs-dissertation.pdf (80 pages, 1048859 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
+ 394 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
