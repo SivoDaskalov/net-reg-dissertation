@@ -27,7 +27,7 @@ grace_lambda1_values = [10.0 ** x for x in range(-2, 5)]
 grace_lambda2_values = [10.0 ** x for x in range(-2, 5)]
 
 grace_lambda1_opt = 100.0 # RD 10
-grace_lambda2_opt = 10000 # RD 10000
+grace_lambda2_opt = 10000.0 # RD 10000
 agrace_lambda1_opt = 100.0
 agrace_lambda2_opt = 0.01
 
