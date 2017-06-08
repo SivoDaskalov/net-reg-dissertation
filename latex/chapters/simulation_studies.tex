@@ -95,7 +95,7 @@ The difference between model metrics is immediately evident - in some cases the 
 	\label{fig:met_comp}
 \end{figure}
 
-\section{Optimal hyperparameter value selection}
+\section{Optimal hyperparameter value selection} \label{sec:opt_param_val}
 Data about the optimal hyperparameter values selected when performing both kinds of parameter tuning on all synthetic datasets has been collected. It is used to select overall best combination of hyperparameter values for each regression method for use on a real dataset similar to the synthetic datasets.
 
 \subsubsection{Lasso}
@@ -110,7 +110,7 @@ The distribution of tuning choices for the alpha hyperparameter is shown in Figu
 \pagebreak
 
 \subsubsection{Elastic Net}
-The distribution of tuning choices for combinations of the alpha and L1 ratio hyperparameters is shown in Figure \ref{fig:tun_enet}. The evident choice of alpha value for use on the real dataset is 0.2, but selected values for the L1 ratio parameter are more diversely spread. Although its most commonly selected value is 0.99, we choose a value of $L1\ ratio = 0.8$ for use on the real dataset in order to differentiate the behavior of Elastic Net from that of the pure Lasso.
+The distribution of tuning choices for combinations of the alpha and L1 ratio hyperparameters is shown in Figure \ref{fig:tun_enet}. The evident choice of alpha value for use on the real dataset is $0.2$, but selected values for the L1 ratio parameter are more diversely spread. Although its most commonly selected value is 0.99, we choose a value of $L1\ ratio = 0.8$ for use on the real dataset in order to differentiate the behavior of Elastic Net from that of the pure Lasso.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.66]{tuning/enet}

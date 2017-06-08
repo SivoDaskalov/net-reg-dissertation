@@ -29,10 +29,43 @@ The choice of epigenetic datasets, their preprocessing and the construction of a
 
 \pagebreak
 \section{Regression methods and setup}
+A subset of the regression methods discussed in Chapter \ref{background} is selected for use on the breast cancer datasets. The chosen regression methods are the Lasso, Elastic Net, Grace, Linf and the proposed Composite method.
+The optimal hyperparameter values discussed in Section \ref{sec:opt_param_val} and shown in Table \ref{tab:opt_param_val} have been used for each method instead of performing hyperparameter tuning.
 
-\section{Mapping summary}
+{\def\arraystretch{1.5}\tabcolsep=10pt
+	\begin{table}[H]
+		\label{tab:opt_param_val}
+		\caption{Parameter values used for regression methods on the real datasets}
+		\centering
+		\begin{tabular}{l l r}
+			\hline\hline 
+			Method name & Parameter name & Parameter value\\
+			\hline\hline
+			Lasso	&	Alpha	&	0.1\\
+			\hline
+			Elastic Net	&	Alpha	&	0.2\\
+						&	L1 ratio&	0.8\\
+			\hline
+			Grace	&	Lambda 1	&	100\\
+					&	Lambda 2	&	10000\\
+			\hline
+			Linf	&	C	&	25\\
+			\hline
+			Composite	&	Vote Threshold	&	0.9\\
+			\hline
+		\end{tabular}
+	\end{table}
+}
+
+The defined "Gene body" and "Promoter" datasets are composed of three components each. They contain one matrix with gene methylation data, another with the corresponding gene expression levels and the relevant gene network for the set of genes in the matrices.
+
+The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed.
+
+Although these regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, which is capable of estimating the vector of gene expression levels given a vector of gene methylation levels. 
 
 \pagebreak
+\section{Mapping summary}
+
 %\ref{tab:map_errors}
 \input{tables/mapping_errors}
 \begin{figure}[H]

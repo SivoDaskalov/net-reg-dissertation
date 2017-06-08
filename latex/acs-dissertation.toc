@@ -75,7 +75,7 @@
 \contentsline {section}{\numberline {9.2}Breast cancer epigenetic dataset}{52}
 \contentsline {section}{\numberline {9.3}Gene network assembly}{53}
 \contentsline {section}{\numberline {9.4}Regression methods and setup}{54}
-\contentsline {section}{\numberline {9.5}Mapping summary}{54}
+\contentsline {section}{\numberline {9.5}Mapping summary}{55}
 \contentsline {subsection}{\numberline {9.5.1}Lasso}{57}
 \contentsline {subsection}{\numberline {9.5.2}Elastic Net}{58}
 \contentsline {subsection}{\numberline {9.5.3}Grace}{59}
