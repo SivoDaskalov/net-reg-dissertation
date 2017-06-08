@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  8 JUN 2017 01:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  8 JUN 2017 17:01
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1195,10 +1195,8 @@ put line 73.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
-[24 <./figures/orchestrated_tuning_methodology.png>])
-(chapters/simulation_studies.tex [25] [26
-
-]
+[24 <./figures/orchestrated_tuning_methodology.png>] [25])
+(chapters/simulation_studies.tex [26]
 Chapter 7.
 (tables/param_search_space.tex
 Overfull \hbox (14.1122pt too wide) in paragraph at lines 6--40
@@ -1208,7 +1206,9 @@ Overfull \hbox (14.1122pt too wide) in paragraph at lines 6--40
 
 LaTeX Warning: Float too large for page by 6.397pt on input line 40.
 
-) [27] [28] [29] [30] (tables/metrics_cvmse.tex
+) [27
+
+] [28] [29] [30] (tables/metrics_cvmse.tex
 PGFPlots: reading {tables/metrics_cvmse.csv}
 
 Overfull \hbox (6.7027pt too wide) in paragraph at lines 28--29
@@ -1513,7 +1513,7 @@ Missing character: There is no ¤ in font cmr10!
 Here is how much of TeX's memory you used:
  32797 strings out of 493333
  826844 string characters out of 3139183
- 940623 words of memory out of 3000000
+ 940624 words of memory out of 3000000
  35749 multiletter control sequences out of 15000+200000
  11880 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1533,7 +1533,7 @@ s/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (78 pages, 1044757 bytes).
+Output written on acs-dissertation.pdf (78 pages, 1046781 bytes).
 PDF statistics:
  387 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

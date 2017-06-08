@@ -41,7 +41,11 @@
 \contentsline {subsection}{\numberline {6.2.3}Methodology}{22}
 \contentsline {subsubsection}{Iterative procedure}{22}
 \contentsline {subsubsection}{Choice of starting points for the search}{24}
-\contentsline {subsubsection}{Discussion}{25}
+\contentsline {subsection}{\numberline {6.2.4}Possible approach modifications}{25}
+\contentsline {subsubsection}{Alternative criterion for comparison}{25}
+\contentsline {subsubsection}{Introduction of activation energy requirement for grid movement}{25}
+\contentsline {subsubsection}{Size of local grid search neighborhood}{26}
+\contentsline {subsection}{\numberline {6.2.5}Discussion}{26}
 \contentsline {chapter}{\numberline {7}Simulation studies}{27}
 \contentsline {section}{\numberline {7.1}Simulation setup}{27}
 \contentsline {section}{\numberline {7.2}Hyperparameter search spaces}{27}

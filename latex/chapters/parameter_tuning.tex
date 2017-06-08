@@ -85,7 +85,23 @@ The choice of hyperparameter starting points in the search grids for the ensembl
 \item A randomized orchestrated tuning procedure could be constructed by repeatedly performing the search with randomized starting points and collecting statistics from each convergence. The optimal hyperparameter combinations would be selected after analysis of the convergence statistics for all tuning executions.
 \end{enumerate}
 
-\subsubsection{Discussion}
+\subsection{Possible approach modifications}
+A number of possible modifications for the basic orchestrated hyperparameter tuning approach are presented in this section. They have not been evaluated through simulations and should serve as suggestions for future work.
+
+\subsubsection{Alternative criterion for comparison}
+Instead of maximizing the overall estimate correlation in each iteration, a different criterion could be used. For example, we could consider the number of selected predictors by each regression method. In this scenario, hyperparameter values which lead to the selection of a number of variables closest to the mean would be chosen for each iteration. In this way the selection of similarly sized subsets of variables would be encouraged.
+If more than one combination of parameter values causes an equal number of variables to be selected, a second criterion must be used in order to decide on a single combination. This additional criterion could be the correlation between estimates or a different metric suitable for the current context.
+
+\subsubsection{Introduction of activation energy requirement for grid movement}
+We can introduce a condition, resembling an activation energy requirement, to decide whether to move along the hyperparameter search grid or stay in the current position. For example, we define a requirement for improvement significance of at least $0.05$ in terms of overall estimate correlation. Movement to a new point in the search grid will occur only if a parameter combination is found that improves the overall estimate correlation by more than $0.05$ compared to the current location in the search grid.
+This modification could significantly speed up the convergence of the parameter tuning process. Furthermore, it could prevent cyclic fluctuation between similarly performing parameter combinations and enable the procedure to finish successfully.
+
+\subsubsection{Size of local grid search neighborhood}
+The orchestrated tuning approach considers for each iteration the parameter combinations directly adjacent to the combination selected by the previous iteration, as shown in Figure \ref{fig:orc_tun_search_grid}. Instead, we can define a larger local neighborhood for the search grids of some or all of the regression methods.
+This modification attempts to avoid convergence in points of local correlation maxima as it increases the breadth of search for each iteration. This allows more significant transitions along the search grids to be made, potentially reducing the number of iterations needed for convergence. 
+Additionally, this modification can be combined with the idea of energy requirement by imposing a greater energy requirement for more distant search grid transitions.
+
+\subsection{Discussion}
 The orchestrated hyperparameter tuning approach presented in this chapter operates in the context of an ensemble of alternative methods sharing a common input and goals. In the case of regression, the approach aims to find combinations of hyperparameter values for the various methods that result in increased similarity of their estimated coefficients.
 
 As previously discussed, the optimization focus is on the estimated predictor coefficients, not on the prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, not optimizing the hyperparameters in terms of prediction error could result in reduction of overfitting.
