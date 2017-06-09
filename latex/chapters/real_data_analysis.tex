@@ -46,25 +46,26 @@ The optimal hyperparameter values discussed in Section \ref{sec:opt_param_val} a
 			Elastic Net	&	Alpha	&	0.2\\
 						&	L1 ratio&	0.8\\
 			\hline
-			Grace	&	Lambda 1	&	100\\
-					&	Lambda 2	&	10000\\
+			Grace	&	Lambda 1	&	10.0*\\
+					&	Lambda 2	&	10000.0\\
 			\hline
 			Linf	&	C	&	25\\
 			\hline
-			Composite	&	Vote Threshold	&	0.9\\
+			Composite	&	Vote Threshold	&	0.75**\\
 			\hline
+			\multicolumn{3}{l}{* Reduced Grace L1 penalty based on preliminary calculation results}\\
+			\multicolumn{3}{l}{** At least three of the four methods must consider a gene important}\\
 		\end{tabular}
 	\end{table}
 }
 
 The defined "Gene body" and "Promoter" datasets are composed of three components each. They contain one matrix with gene methylation data, another with the corresponding gene expression levels and the relevant gene network for the set of genes in the matrices.
 
-The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed.
-
-Although these regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, which is capable of estimating the vector of gene expression levels given a vector of gene methylation levels. 
+The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, capable of estimating the vector of gene expression levels given a vector of gene methylation levels. 
 
 \pagebreak
 \section{Mapping summary}
+1/4 test set
 
 %\ref{tab:map_errors}
 \input{tables/mapping_errors}
