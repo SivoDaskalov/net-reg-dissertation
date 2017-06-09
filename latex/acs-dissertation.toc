@@ -77,14 +77,11 @@
 \contentsline {chapter}{\numberline {9}Breast Cancer Data Analysis}{51}
 \contentsline {section}{\numberline {9.1}Molecular biology background}{51}
 \contentsline {section}{\numberline {9.2}Breast cancer epigenetic dataset}{52}
-\contentsline {section}{\numberline {9.3}Breast cancer gene network}{53}
-\contentsline {subsection}{\numberline {9.3.1}Gene co-expression networks}{53}
-\contentsline {subsection}{\numberline {9.3.2}Gene network construction}{53}
-\contentsline {section}{\numberline {9.4}Regression methods and setup}{53}
-\contentsline {section}{\numberline {9.5}Mapping summary}{55}
-\contentsline {subsection}{\numberline {9.5.1}Lasso}{57}
-\contentsline {subsection}{\numberline {9.5.2}Elastic Net}{58}
-\contentsline {subsection}{\numberline {9.5.3}Grace}{59}
-\contentsline {subsection}{\numberline {9.5.4}Linf}{60}
-\contentsline {subsection}{\numberline {9.5.5}Composite}{61}
-\contentsline {chapter}{\numberline {10}Summary and Conclusions}{63}
+\contentsline {section}{\numberline {9.3}Regression methods and setup}{53}
+\contentsline {section}{\numberline {9.4}Results}{54}
+\contentsline {subsection}{\numberline {9.4.1}Lasso}{56}
+\contentsline {subsection}{\numberline {9.4.2}Elastic Net}{57}
+\contentsline {subsection}{\numberline {9.4.3}Grace}{58}
+\contentsline {subsection}{\numberline {9.4.4}Linf}{59}
+\contentsline {subsection}{\numberline {9.4.5}Composite}{60}
+\contentsline {chapter}{\numberline {10}Summary and Conclusions}{61}

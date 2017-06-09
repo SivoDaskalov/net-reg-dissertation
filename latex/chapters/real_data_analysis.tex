@@ -11,35 +11,23 @@ DNA methylation is a process which attaches methyl groups to parts of the DNA mo
 \section{Breast cancer epigenetic dataset} \label{sec:brca_data}
 The publicly available gene methylation and expression data used in this project is provided by the Breast Invasive Carcinoma (TCGA-BRCA \cite{cancer2012comprehensive}) project of The Cancer Genome Atlas (TCGA). Both the gene methylation and expression data is array based and preprocessed to Level 3 in accordance with the TCGA protocols. The contained data is extracted from tissue samples for a subset of 215 patients diagnosed with breast invasive carcinoma available at the time of download, April 2015. 
 
-Illumina Infinium Human DNA Methylation 450 is the platform used for the extraction of the gene methylation data. It quantifies the levels of methylation at specific locations within the genome, denoted as probes. The set of probes is filtered to only retain those with less than $10\%$ missing values across all 215 samples. Each of the retained probes is associated with a specific gene depending on the location of the probe in the genome.
+Illumina Infinium Human DNA Methylation 450 is the platform used for the extraction of the gene methylation. It quantifies the levels of methylation at specific locations within the genome, denoted as probes. The set of probes is filtered to only retain those with less than $10\%$ missing values across all 215 samples. Each of the retained probes is associated with a specific gene depending on the location of the probe in the genome.
+The probes associated with each gene are then separated into two subsets depending on their location in the gene sequence - located in the promoter or gene body regions (see Section \ref{sec:mol_bio}). To clarify, probes located in the TSS1500, TSS200, 5'UTR and first exon regions are associated with the promoter region of the gene, while those located in the body or the 3'UTR are mapped to the gene body.
 
-The probes associated with a specific gene are then separated into two subsets depending on their location in the gene sequence - located in the promoter or gene body regions (see Section \ref{sec:mol_bio}). To clarify, probes located in the TSS1500, TSS200, 5'UTR and first exon regions are associated with the promoter region of the gene, while those located in the body or the 3'UTR are mapped to the body region of the gene.
+Values for the methylation levels of the entire promoter and body regions are calculated for each gene and patient in the dataset. Methylation level of a gene region is defined as the mean methylation level of all probes mapped to the region. Two matrices are populated by these calculations, containing methylation levels for the promoter and gene body regions respectively.
+Columns in the two matrices are further filtered to only include genes that are known or suspected to be related to breast cancer development. Gene associations with the disease are obtained from the HEFalMp (Human Experimental/FunctionAL MaPper) \cite{huttenhower2009exploring}. The final number of genes in the promoter and gene body methylation matrices is 468 and 479 respectively.
 
-Methylation levels of the promoter and body regions are derived for each gene and patient in the dataset. The methylation level of a gene's promoter region is defined as the mean methylation level of all probes mapped to the gene's promoter region. The methylation level of the gene body is calculated in a similar way, but averaging probes mapped to the body region.
-
-Two datasets are derived through such preprocessing of the initial dataset. One containing the promoter methylation levels for each gene and patient, and another containing the gene body methylation levels for each gene and patient. These two datasets of gene methylation levels, denoted as "Promoter" and "Gene body", provide predictor values for the linear regression modeling performed in the following sections. The former dataset contains data for 468 genes, while the number of predictors in the latter is 479. 
-
-A dataset of gene expression levels is assembled for each of the two methylation datasets from data provided by the TCGA. These datasets contain expression levels for an equivalent set of genes as their corresponding methylation dataset and observations for the same subset of patients.
+A matrix of gene expression levels is created for each of the two methylation matrices from data provided by the TCGA. Each expression matrix contains data for an equivalent set of genes as its corresponding methylation matrix and observations for the same subset of patients. 
+For each of the two datasets, a co-expression based functional linkage gene network for the corresponding subset of genes is obtained from \cite{zhang2013network}. These gene networks, used by the network-constrained regression methods, are undirected graphs, whose nodes correspond to genes and edges represent a significant co-expression relationship between pairs of genes.
 
 %The choice of epigenetic datasets, their preprocessing and the construction of a gene network, discussed in Section \ref{sec:brca_net}, have been carried out prior to the start of my project by Hui Xiao, PhD student in the Computer Laboratory at the University of Cambridge, and Antonella Iuliano, PhD student in the Department of Mathematics at the University of Salerno.
 
 
-\section{Breast cancer gene network} \label{sec:brca_net}
-A gene co-expression network (see Section \ref{sec:gcn}) is assembled for each of the two datasets discussed in Section \ref{sec:brca_data} according to the specifications defined in Section \ref{sec:gcn_imp}. 
-
-\subsection{Gene co-expression networks} \label{sec:gcn}
-A gene co-expression network (GCN) is an undirected graph, where nodes correspond to genes and an edge represents a significant co-expression relationship between its neighboring nodes. The construction of such a network is a two-step approach. Some chosen co-expression measure is first calculated for each pair of genes based on their expression values. The existence of a significant relationship between the pair of genes is then determined based on whether this measure is below or above a chosen threshold. 
-
-\subsection{Gene network construction} \label{sec:gcn_imp}
-The co-expression measure used to quantify the relationship between pairs of genes is the p-value of association strength between the genes in the context of breast cancer. The p-values are obtained from the HEFalMp (Human Experimental/FunctionAL MaPper) \cite{huttenhower2009exploring}. Genes linked with an edge in the network have an association p-value less than or equal to 0.05, a threshold commonly used in literature.
-
-
 \section{Regression methods and setup}
-A subset of the regression methods discussed in Chapter \ref{background} is selected for use on the breast cancer datasets. The chosen regression methods are the Lasso, Elastic Net, Grace, Linf and the proposed Composite method.
-
+A subset of the regression methods discussed in Chapter \ref{background} is selected for use on the breast cancer data. The chosen regression methods are the Lasso, Elastic Net, Grace, Linf and the proposed Composite method.
 The optimal hyperparameter values discussed in Section \ref{sec:opt_param_val} have been used for preliminary calculations and are shown in Table 
 9.1 % NUMBERING HACK
-in the "Suggested value" column. The number of edges in the breast cancer gene networks is significantly higher than that of the generated datasets. Consequently, some of the hyperparameter values were manually tuned in order to obtain better results. The final set of hyperparameter values used for the calculations presented in the following sections is shown in the "Selected value" column of the table.
+in the "Suggested value" column. The number of edges in the breast cancer gene networks is significantly higher than that of the generated datasets. Consequently, some of the hyperparameter values were manually tuned in order to improve the obtained results. The final set of hyperparameter values used to obtain the results presented in the following sections is shown in the "Selected value" column.
 
 {\def\arraystretch{1.5}\tabcolsep=10pt
 	\begin{table}[H]
@@ -66,14 +54,12 @@ in the "Suggested value" column. The number of edges in the breast cancer gene n
 	\end{table}
 }
 
-The previously defined "Gene body" and "Promoter" datasets are composed of three associated components. Each dataset contains one matrix with gene methylation data, another with the corresponding gene expression levels and the relevant gene network for the set of genes in the matrices. A quarter of the observations from each dataset are held out for testing while the remaining three quarters are used for training of the models.
+We denote the "Gene body" and "Promoter" datasets as compound entities containing the methylation and corresponding expression matrix, along with the matching gene network. We hold out $\frac{1}{4}$ of the observations from each dataset for testing while the remaining $\frac{3}{4}$ are used for model fitting.
 
-The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed. 
-
-Although the regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, capable of estimating the vector of gene expression levels given a vector of gene methylation levels.
+We aim to explore how the expression level of each gene is affected by the methylation levels of other genes. To achieve this, separate regression problems are defined, modeling each column in the expression matrix. Predictor values are obtained from the methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem producing a mapping, capable of estimating the vector of gene expression levels given a vector of gene methylation levels.
 
 
-\section{Mapping summary}
+\section{Results}
 
 %\ref{tab:map_errors}
 \input{tables/mapping_errors}

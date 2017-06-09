@@ -116,4 +116,10 @@ Curtis Huttenhower, Erin~M Haley, Matthew~A Hibbs, Vanessa Dumeaux, Daniel~R
 \newblock Exploring the human genome with functional maps.
 \newblock {\em Genome research}, 19(6):1093--1106, 2009.
 
+\bibitem{zhang2013network}
+Wei Zhang, Takayo Ota, Viji Shridhar, Jeremy Chien, Baolin Wu, and Rui Kuang.
+\newblock Network-based survival analysis reveals subnetwork signatures for
+  predicting outcomes of ovarian cancer treatment.
+\newblock {\em PLoS Comput Biol}, 9(3):e1002975, 2013.
+
 \end{thebibliography}
