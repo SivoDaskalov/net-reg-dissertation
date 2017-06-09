@@ -30,42 +30,41 @@ A dataset of gene expression levels is assembled for each of the two methylation
 \pagebreak
 \section{Regression methods and setup}
 A subset of the regression methods discussed in Chapter \ref{background} is selected for use on the breast cancer datasets. The chosen regression methods are the Lasso, Elastic Net, Grace, Linf and the proposed Composite method.
-The optimal hyperparameter values discussed in Section \ref{sec:opt_param_val} and shown in Table \ref{tab:opt_param_val} have been used for each method instead of performing hyperparameter tuning.
+The optimal hyperparameter values discussed in Section \ref{sec:opt_param_val} have been used for preliminary calculations and are shown in Table 
+9.1 % NUMBERING HACK
+in the "Suggested value" column. A final set of hyperparameter values, shown in the "Selected value" column, has been derived after manual tuning and is used for the calculations presented in the following sections.
 
 {\def\arraystretch{1.5}\tabcolsep=10pt
 	\begin{table}[H]
-		\label{tab:opt_param_val}
+		\label{tab:plswork}
 		\caption{Parameter values used for regression methods on the real datasets}
 		\centering
-		\begin{tabular}{l l r}
+		\begin{tabular}{l l r r}
 			\hline\hline 
-			Method name & Parameter name & Parameter value\\
+			Method name & Parameter name & Suggested value & Selected value\\
 			\hline\hline
-			Lasso	&	Alpha	&	0.1\\
+			Lasso	&	Alpha	&	0.1	&	0.04\\
 			\hline
-			Elastic Net	&	Alpha	&	0.2\\
-						&	L1 ratio&	0.8\\
+			Elastic Net	&	Alpha	&	0.2	&	0.04\\
+						&	L1 ratio&	0.8	&	0.9\\
 			\hline
-			Grace	&	Lambda 1	&	10.0*\\
-					&	Lambda 2	&	10000.0\\
+			Grace	&	Lambda 1	&	10.0	&	10.0\\
+					&	Lambda 2	&	10000.0	&	0.01\\
 			\hline
-			Linf	&	C	&	25\\
+			Linf	&	C	&	25.0	&	35.0\\
 			\hline
-			Composite	&	Vote Threshold	&	0.75**\\
+			Composite	&	Vote Threshold	&	0.9	&	0.75\\
 			\hline
-			\multicolumn{3}{l}{* Reduced Grace L1 penalty based on preliminary calculation results}\\
-			\multicolumn{3}{l}{** At least three of the four methods must consider a gene important}\\
 		\end{tabular}
 	\end{table}
 }
 
-The defined "Gene body" and "Promoter" datasets are composed of three components each. They contain one matrix with gene methylation data, another with the corresponding gene expression levels and the relevant gene network for the set of genes in the matrices.
+The defined "Gene body" and "Promoter" datasets are composed of three components each. They contain one matrix with gene methylation data, another with the corresponding gene expression levels and the relevant gene network for the set of genes in the matrices. A quarter of the observations are held out for testing while the remaining three quarters are used for training of the models.
 
-The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, capable of estimating the vector of gene expression levels given a vector of gene methylation levels. 
-
+The goal of the analysis discussed in this chapter is to explore how the expression level of each gene is affected by the methylation levels of other genes. In order to look into these dependencies, each column in the expression level matrix serves as a target variable for a separate regression problem. Predictor values are obtained from the gene methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem. Solving this problem produces a mapping of the methylation-expression dependencies, capable of estimating the vector of gene expression levels given a vector of gene methylation levels.
 \pagebreak
+
 \section{Mapping summary}
-1/4 test set
 
 %\ref{tab:map_errors}
 \input{tables/mapping_errors}
