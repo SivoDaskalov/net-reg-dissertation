@@ -16,6 +16,6 @@
 \contentsline {table}{\numberline {8.3}{\ignorespaces Comparison of regression method similarities by tuning method}}{50}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {9.1}{\ignorespaces Parameter values used for regression methods on the real datasets}}{54}
-\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of the mean squared test errors for both datasets}}{56}
-\contentsline {table}{\numberline {9.3}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{57}
+\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of the mean squared test errors for both datasets}}{55}
+\contentsline {table}{\numberline {9.3}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{56}
 \addvspace {10\p@ }

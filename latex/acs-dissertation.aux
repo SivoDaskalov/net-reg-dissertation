@@ -249,45 +249,51 @@
 \@writefile{toc}{\contentsline {section}{\numberline {9.1}Molecular biology background}{51}}
 \newlabel{sec:mol_bio}{{9.1}{51}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.2}Breast cancer epigenetic dataset}{52}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.3}Gene network assembly}{53}}
-\newlabel{sec_netwk}{{9.3}{53}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.4}Regression methods and setup}{54}}
+\newlabel{sec:brca_data}{{9.2}{52}}
+\citation{huttenhower2009exploring}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Breast cancer gene network}{53}}
+\newlabel{sec:brca_net}{{9.3}{53}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Gene co-expression networks}{53}}
+\newlabel{sec:gcn}{{9.3.1}{53}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Gene network construction}{53}}
+\newlabel{sec:gcn_imp}{{9.3.2}{53}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.4}Regression methods and setup}{53}}
 \newlabel{tab:plswork}{{9.4}{54}}
 \@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Parameter values used for regression methods on the real datasets}}{54}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.5}Mapping summary}{56}}
-\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of the mean squared test errors for both datasets}}{56}}
-\newlabel{tab:map_errors}{{9.2}{56}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces MSE by regression method and dataset}}{56}}
-\newlabel{fig:map_errors}{{9.1}{56}}
-\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{57}}
-\newlabel{tab:map_summary}{{9.3}{57}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Predictor importance fraction of votes distribution for gene body (left) and promoter (right) datasets}}{57}}
-\newlabel{fig:map_vote_dist}{{9.2}{57}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Lasso}{58}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces Lasso mapping dependencies summary for gene body dataset}}{58}}
-\newlabel{fig:map_body_lasso}{{9.3}{58}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.4}{\ignorespaces Lasso mapping dependencies summary for promoter dataset}}{58}}
-\newlabel{fig:map_prom_lasso}{{9.4}{58}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Elastic Net}{59}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.5}{\ignorespaces Elastic Net mapping dependencies summary for gene body dataset}}{59}}
-\newlabel{fig:map_body_enet}{{9.5}{59}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.6}{\ignorespaces Elastic Net mapping dependencies summary for promoter dataset}}{59}}
-\newlabel{fig:map_prom_enet}{{9.6}{59}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Grace}{60}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.7}{\ignorespaces Grace mapping dependencies summary for gene body dataset}}{60}}
-\newlabel{fig:map_body_grace}{{9.7}{60}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.8}{\ignorespaces Grace mapping dependencies summary for promoter dataset}}{60}}
-\newlabel{fig:map_prom_grace}{{9.8}{60}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.4}Linf}{61}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.9}{\ignorespaces Linf mapping dependencies summary for gene body dataset}}{61}}
-\newlabel{fig:map_body_linf}{{9.9}{61}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.10}{\ignorespaces Linf mapping dependencies summary for promoter dataset}}{61}}
-\newlabel{fig:map_prom_linf}{{9.10}{61}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.5}Composite}{62}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.11}{\ignorespaces Composite method mapping dependencies summary for gene body dataset}}{62}}
-\newlabel{fig:map_body_comp}{{9.11}{62}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.12}{\ignorespaces Composite method mapping dependencies summary for promoter dataset}}{62}}
-\newlabel{fig:map_prom_comp}{{9.12}{62}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.5}Mapping summary}{55}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Summary of the mean squared test errors for both datasets}}{55}}
+\newlabel{tab:map_errors}{{9.2}{55}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces MSE by regression method and dataset}}{55}}
+\newlabel{fig:map_errors}{{9.1}{55}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Summary of expression-methylation mappings for both datasets and all considered regression methods; resolved refers to the number of genes with found dependencies to the methylation of others; influencing refers to the number of genes whose methylation affects the expression of others}}{56}}
+\newlabel{tab:map_summary}{{9.3}{56}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Predictor importance fraction of votes distribution for gene body (left) and promoter (right) datasets}}{56}}
+\newlabel{fig:map_vote_dist}{{9.2}{56}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Lasso}{57}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces Lasso mapping dependencies summary for gene body dataset}}{57}}
+\newlabel{fig:map_body_lasso}{{9.3}{57}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.4}{\ignorespaces Lasso mapping dependencies summary for promoter dataset}}{57}}
+\newlabel{fig:map_prom_lasso}{{9.4}{57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Elastic Net}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.5}{\ignorespaces Elastic Net mapping dependencies summary for gene body dataset}}{58}}
+\newlabel{fig:map_body_enet}{{9.5}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.6}{\ignorespaces Elastic Net mapping dependencies summary for promoter dataset}}{58}}
+\newlabel{fig:map_prom_enet}{{9.6}{58}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Grace}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.7}{\ignorespaces Grace mapping dependencies summary for gene body dataset}}{59}}
+\newlabel{fig:map_body_grace}{{9.7}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.8}{\ignorespaces Grace mapping dependencies summary for promoter dataset}}{59}}
+\newlabel{fig:map_prom_grace}{{9.8}{59}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.4}Linf}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.9}{\ignorespaces Linf mapping dependencies summary for gene body dataset}}{60}}
+\newlabel{fig:map_body_linf}{{9.9}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.10}{\ignorespaces Linf mapping dependencies summary for promoter dataset}}{60}}
+\newlabel{fig:map_prom_linf}{{9.10}{60}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.5}Composite}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.11}{\ignorespaces Composite method mapping dependencies summary for gene body dataset}}{61}}
+\newlabel{fig:map_body_comp}{{9.11}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.12}{\ignorespaces Composite method mapping dependencies summary for promoter dataset}}{61}}
+\newlabel{fig:map_prom_comp}{{9.12}{61}}
 \citation{tibshirani1996regression}
 \citation{zou2005regularization}
 \citation{li2008network}
@@ -322,4 +328,3 @@
 \bibcite{manning2008introduction}{19}
 \bibcite{setubal1997introduction}{20}
 \bibcite{huttenhower2009exploring}{21}
-\bibcite{zhang2013network}{22}

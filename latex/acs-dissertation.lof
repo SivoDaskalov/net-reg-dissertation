@@ -23,16 +23,16 @@
 \contentsline {figure}{\numberline {8.2}{\ignorespaces Orchestrated tuning mean regression method similarities}}{49}
 \contentsline {figure}{\numberline {8.3}{\ignorespaces Iterations elapsed before convergence for all synthetic datasets}}{49}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces MSE by regression method and dataset}}{56}
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Predictor importance fraction of votes distribution for gene body (left) and promoter (right) datasets}}{57}
-\contentsline {figure}{\numberline {9.3}{\ignorespaces Lasso mapping dependencies summary for gene body dataset}}{58}
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Lasso mapping dependencies summary for promoter dataset}}{58}
-\contentsline {figure}{\numberline {9.5}{\ignorespaces Elastic Net mapping dependencies summary for gene body dataset}}{59}
-\contentsline {figure}{\numberline {9.6}{\ignorespaces Elastic Net mapping dependencies summary for promoter dataset}}{59}
-\contentsline {figure}{\numberline {9.7}{\ignorespaces Grace mapping dependencies summary for gene body dataset}}{60}
-\contentsline {figure}{\numberline {9.8}{\ignorespaces Grace mapping dependencies summary for promoter dataset}}{60}
-\contentsline {figure}{\numberline {9.9}{\ignorespaces Linf mapping dependencies summary for gene body dataset}}{61}
-\contentsline {figure}{\numberline {9.10}{\ignorespaces Linf mapping dependencies summary for promoter dataset}}{61}
-\contentsline {figure}{\numberline {9.11}{\ignorespaces Composite method mapping dependencies summary for gene body dataset}}{62}
-\contentsline {figure}{\numberline {9.12}{\ignorespaces Composite method mapping dependencies summary for promoter dataset}}{62}
+\contentsline {figure}{\numberline {9.1}{\ignorespaces MSE by regression method and dataset}}{55}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Predictor importance fraction of votes distribution for gene body (left) and promoter (right) datasets}}{56}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces Lasso mapping dependencies summary for gene body dataset}}{57}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Lasso mapping dependencies summary for promoter dataset}}{57}
+\contentsline {figure}{\numberline {9.5}{\ignorespaces Elastic Net mapping dependencies summary for gene body dataset}}{58}
+\contentsline {figure}{\numberline {9.6}{\ignorespaces Elastic Net mapping dependencies summary for promoter dataset}}{58}
+\contentsline {figure}{\numberline {9.7}{\ignorespaces Grace mapping dependencies summary for gene body dataset}}{59}
+\contentsline {figure}{\numberline {9.8}{\ignorespaces Grace mapping dependencies summary for promoter dataset}}{59}
+\contentsline {figure}{\numberline {9.9}{\ignorespaces Linf mapping dependencies summary for gene body dataset}}{60}
+\contentsline {figure}{\numberline {9.10}{\ignorespaces Linf mapping dependencies summary for promoter dataset}}{60}
+\contentsline {figure}{\numberline {9.11}{\ignorespaces Composite method mapping dependencies summary for gene body dataset}}{61}
+\contentsline {figure}{\numberline {9.12}{\ignorespaces Composite method mapping dependencies summary for promoter dataset}}{61}
 \addvspace {10\p@ }
