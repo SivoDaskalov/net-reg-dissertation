@@ -1,0 +1,27 @@
+\begin{table}[H]
+	\begin{center}
+		\caption{Mean \textnumero$\ $of selected variables by regression method and dataset}
+		\label{tab:sel_vars}
+		\setlength{\tabcolsep}{12pt}
+		\pgfplotstabletypeset[
+		multicolumn names,
+		col sep=comma,
+		header=has colnames,
+		display columns/0/.style={string type, column name = Dataset, column type = {l|}},
+		display columns/1/.style={column type={S}, string type, column type = {r}},
+		display columns/2/.style={column type={S}, string type, column type = {r}},
+		display columns/3/.style={column type={S}, string type, column type = {r}},
+		display columns/4/.style={column type={S}, string type, column type = {r}},
+		display columns/5/.style={column type={S}, string type, column type = {r}},
+		every head row/.style={
+			before row={\toprule}, 
+			after row/.add={}{
+				\midrule\midrule
+			}
+		},
+		every last row/.style={
+			after row=\bottomrule
+		},
+		]{tables/selected_variables.csv}
+	\end{center}
+\end{table}

@@ -84,4 +84,6 @@
 \contentsline {subsection}{\numberline {9.4.3}Grace}{58}
 \contentsline {subsection}{\numberline {9.4.4}Linf}{59}
 \contentsline {subsection}{\numberline {9.4.5}Composite}{60}
-\contentsline {chapter}{\numberline {10}Summary and Conclusions}{61}
+\contentsline {section}{\numberline {9.5}Discussion}{61}
+\contentsline {section}{\numberline {9.6}Supplementary digital materials}{62}
+\contentsline {chapter}{\numberline {10}Summary and Conclusions}{63}

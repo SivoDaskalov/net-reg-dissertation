@@ -1,12 +1,12 @@
 \documentclass[a4paper,12pt,twoside,openright]{report}
 
-\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath, moreverb, float,rotating} 
+\usepackage{epsfig,graphicx,parskip,setspace,tabularx,xspace, booktabs, pgfplotstable, siunitx, amsmath, moreverb, float,rotating,textcomp} 
 
 \immediate\write18{texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex > wordcount.txt}
 \newcommand\wc{\input{wordcount.txt}}
 \graphicspath{ {figures/} }
 
-\def\authorname{Sivo V. Daskalov\xspace}
+\def\authorname{Sivo Vladimirov Daskalov\xspace}
 \def\authorcollege{Corpus Christi College\xspace}
 \def\authoremail{sivodaskalov@gmail.com}
 \def\dissertationtitle{Machine learning network-constrained regression of epigenetic data}

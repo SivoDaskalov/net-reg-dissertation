@@ -31,7 +31,7 @@ in the "Suggested value" column. The number of edges in the breast cancer gene n
 
 {\def\arraystretch{1.5}\tabcolsep=10pt
 	\begin{table}[H]
-		\label{tab:plswork}
+		\label{tab:numbering_hack}
 		\caption{Parameter values used for regression methods on the real datasets}
 		\centering
 		\begin{tabular}{l l r r}
@@ -60,19 +60,110 @@ We aim to explore how the expression level of each gene is affected by the methy
 
 
 \section{Results}
+The regression methods considered discovered relationships between methylation and expression for most of the genes, as shown in the "Resolved" and "Unresolved" columns of Table \ref{tab:map_summary}. The methylation of most genes was found to be unrelated to the expression levels of any gene, as shown in the "Influencing" and "Non-influencing" columns. These observations suggest that the expression levels of some genes are influenced more by the methylation level of other genes than their own methylation level.
+\input{tables/mapping_summary}
 
-%\ref{tab:map_errors}
+Table \ref{tab:sel_vars} shows the mean number of variables selected by each regression method for both datasets. These values are slightly lower for the promoter dataset as it contains a lower number of predictors. The Linf models consistently used a larger set of genes compared to the other models.
+\input{tables/selected_variables}
+\pagebreak
+
+The test MSE for all regression methods and both datasets is shown in Table \ref{tab:map_errors} and Figure \ref{fig:map_errors}. The scores are nearly identical both in therms of the mean MSE and its standard deviation. Similar to the results obtained from the synthetic datasets, the low mean MSE causes the standard deviation to appear especially large.
+
 \input{tables/mapping_errors}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{mappings/errors}
+	\includegraphics[scale=0.7]{mappings/errors}
 	\caption{MSE by regression method and dataset}
 	\label{fig:map_errors}
 \end{figure}
-
 \pagebreak
-%\ref{tab:map_summary}
-\input{tables/mapping_summary}
+
+
+\subsection{Lasso}
+Summaries of the methylation-expression mapping dependencies for the gene body and promoter datasets are shown in Figure \ref{fig:map_body_lasso} and Figure \ref{fig:map_prom_lasso} respectively.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Body}
+	\caption{Lasso mapping summary for gene body dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_body_lasso}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Prom}
+	\caption{Lasso mapping summary for promoter dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_prom_lasso}
+\end{figure}
+\pagebreak
+
+
+\subsection{Elastic Net}
+Summaries of the methylation-expression mapping dependencies for the gene body and promoter datasets are shown in Figure \ref{fig:map_body_enet} and Figure \ref{fig:map_prom_enet} respectively.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Enet_Body}
+	\caption{Elastic Net mapping summary for gene body dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_body_enet}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Enet_Prom}
+	\caption{Elastic Net mapping summary for promoter dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_prom_enet}
+\end{figure}
+\pagebreak
+
+
+\subsection{Grace}
+Summaries of the methylation-expression mapping dependencies for the gene body and promoter datasets are shown in Figure \ref{fig:map_body_grace} and Figure \ref{fig:map_prom_grace} respectively.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Grace_Body}
+	\caption{Grace mapping summary for gene body dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_body_grace}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Grace_Prom}
+	\caption{Grace mapping summary for promoter dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_prom_grace}
+\end{figure}
+\pagebreak
+
+
+\subsection{Linf}
+Summaries of the methylation-expression mapping dependencies for the gene body and promoter datasets are shown in Figure \ref{fig:map_body_linf} and Figure \ref{fig:map_prom_linf} respectively.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Linf_Body}
+	\caption{Linf mapping summary for gene body dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_body_linf}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Linf_Prom}
+	\caption{Linf mapping summary for promoter dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_prom_linf}
+\end{figure}
+\pagebreak
+
+
+\subsection{Composite}
+Summaries of the methylation-expression mapping dependencies for the gene body and promoter datasets are shown in Figure \ref{fig:map_body_comp} and Figure \ref{fig:map_prom_comp} respectively.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Composite_Body}
+	\caption{Composite method mapping summary for gene body dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_body_comp}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.54]{mappings/distributions/Composite_Prom}
+	\caption{Composite method mapping summary for promoter dataset; methylation dependencies for each gene's expression (left); genes with expression affected by each gene's methylation (right)}
+	\label{fig:map_prom_comp}
+\end{figure}
+\pagebreak
+
+The overall fraction of votes distribution for each gene's methylation relevance to the expression of each gene is shown in Figure \ref{fig:map_vote_dist}, note the logarithmic scale of the vertical axis. All methods are in complete agreement for the vast majority of relationships, that is in the cases where the fraction of votes is either 0 or 1. The threshold to consider a predictor relevant to the current regression problem is a vote fraction of 0.75 or higher, which describes the cases counted in the rightmost two bins in each subfigure.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.54]{mappings/vote_distribution}
@@ -81,91 +172,12 @@ We aim to explore how the expression level of each gene is affected by the methy
 \end{figure}
 
 
+\section{Discussion}
+The methylation-expression relationship mappings produced by the various regression methods are very similar with the exception of the Linf method which consistently selected a larger subset of the genes. The expression level of most genes is affected by the methylation of a small subset of no more than 30 genes. 
+
+A few of the genes appear to be greatly influential, namely ARHGAP11A, GPSM2 and ODF1 for the gene body dataset and DSG1 and FUT3 for the promoter dataset. The methylation level of each is found to affect the expression levels of over 100 genes.
 \pagebreak
-\subsection{Lasso}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Body}
-	\caption{Lasso mapping dependencies summary for gene body dataset}
-	\label{fig:map_body_lasso}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Lasso_Prom}
-	\caption{Lasso mapping dependencies summary for promoter dataset}
-	\label{fig:map_prom_lasso}
-\end{figure}
 
 
-\pagebreak
-\subsection{Elastic Net}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Enet_Body}
-	\caption{Elastic Net mapping dependencies summary for gene body dataset}
-	\label{fig:map_body_enet}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Enet_Prom}
-	\caption{Elastic Net mapping dependencies summary for promoter dataset}
-	\label{fig:map_prom_enet}
-\end{figure}
-
-
-\pagebreak
-\subsection{Grace}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Grace_Body}
-	\caption{Grace mapping dependencies summary for gene body dataset}
-	\label{fig:map_body_grace}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Grace_Prom}
-	\caption{Grace mapping dependencies summary for promoter dataset}
-	\label{fig:map_prom_grace}
-\end{figure}
-
-
-\pagebreak
-\subsection{Linf}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Linf_Body}
-	\caption{Linf mapping dependencies summary for gene body dataset}
-	\label{fig:map_body_linf}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Linf_Prom}
-	\caption{Linf mapping dependencies summary for promoter dataset}
-	\label{fig:map_prom_linf}
-\end{figure}
-
-
-\pagebreak
-\subsection{Composite}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Composite_Body}
-	\caption{Composite method mapping dependencies summary for gene body dataset}
-	\label{fig:map_body_comp}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.54]{mappings/distributions/Composite_Prom}
-	\caption{Composite method mapping dependencies summary for promoter dataset}
-	\label{fig:map_prom_comp}
-\end{figure}
+\section{Supplementary digital materials}
+A digital copy of this report, CSV files of the datasets used, coefficient estimates of the methylation-expression mapping, detailed results from all conducted experiments, complete source code and full-sized figures can be requested by email sivodaskalov@gmail.com

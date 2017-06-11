@@ -8,7 +8,7 @@ We suggest an approach for cooperative parameter tuning in the context of multip
 
 We also implement a simple approach to aggregate the coefficients produced by the various regression methods. Each predictor is considered relevant if it corresponds to a non-zero coefficient in a certain fraction of the underlying methods. Once a consensus has been reached through this form of voting, ordinary least squares estimation is used to fit only the relevant predictors to the data.
 
-The traditional way of hyperparameter tuning by minimization of the prediction mean squared error is implemented alongside our suggested approach. Comparison of both tuning approaches is performed on synthetic datasets. Analysis of similarities between the various regression methods is carried out. An optimal set of tuning parameters is assembled for each regression method for use on real data. Gene methylation and expression data has been processed with the implemented algorithms. A map is created that shows methylation of which genes affects the expression levels of each gene.
+The traditional way of hyperparameter tuning by minimization of the prediction mean squared error is implemented alongside our suggested approach. Comparison of both tuning approaches is performed on synthetic datasets. Analysis of similarities between the various regression methods is carried out. An optimal set of tuning parameters is assembled for each regression method for use on real data. Gene methylation and expression data has been processed with the implemented algorithms. The aim is to explore how the expression level of each gene is affected by the methylation levels of other genes.
 
 \newpage
 \vspace*{\fill}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  10 JUN 2017 15:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  11 JUN 2017 12:40
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -933,6 +933,88 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \rot@float@box=\box65
 \rot@mess@toks=\toks42
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+Package: textcomp 2016/06/19 v1.99m Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
 runsystem(texcount -inc -brief -total -incbib -sum=1,1,1 acs-dissertation.tex >
  wordcount.txt)...executed.
 
@@ -952,7 +1034,12 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
-
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 21.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 21.
 (C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count196
@@ -1051,16 +1138,8 @@ Package pdftex.def Info: CUni3-eps-converted-to.pdf used on input line 17.
 
 {C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./CUni3
 -eps-converted-to.pdf>]) (declaration.tex
-[2] (wordcount.txt)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
-
-[3]) (abstract.tex [4] [5]) (acknowledgments.tex [6] [7]) [0]
-(acs-dissertation.toc [1
+[2] (wordcount.txt) [3]) (abstract.tex [4] [5]) (acknowledgments.tex [6]
+[7]) [0] (acs-dissertation.toc [1
 
 ])
 \tf@toc=\write4
@@ -1080,13 +1159,7 @@ i-na-tions; darker
 
 [3
 
-]
-Overfull \hbox (1.62378pt too wide) in paragraph at lines 31--31
- [][] []\OT1/cmr/m/n/12 Elastic Net map-ping de-pen-den-cies sum-mary for pro-m
-oter dataset [][]  
- []
-
-)
+])
 \tf@lof=\write5
 \openout5 = `acs-dissertation.lof'.
 
@@ -1103,7 +1176,7 @@ Overfull \hbox (1.171pt too wide) in paragraph at lines 18--18
  []
 
 
-Overfull \hbox (5.77512pt too wide) in paragraph at lines 20--20
+Overfull \hbox (5.77512pt too wide) in paragraph at lines 19--19
  [][] []\OT1/cmr/m/n/12 Summary of expression-methylation map-pings for both da
 tasets 
  []
@@ -1177,14 +1250,14 @@ Chapter 6.
 Underfull \vbox (badness 1721) has occurred while \output is active []
 
  [21]
-<figures/search_grid.png, id=139, 472.76625pt x 474.77374pt>
+<figures/search_grid.png, id=140, 472.76625pt x 474.77374pt>
 File: figures/search_grid.png Graphic file (type png)
 
 <use figures/search_grid.png>
 Package pdftex.def Info: figures/search_grid.png used on input line 53.
 (pdftex.def)             Requested size: 236.38254pt x 237.38629pt.
  [22 <./figures/search_grid.png>]
-<figures/orchestrated_tuning_methodology.png, id=145, 501.875pt x 443.6575pt>
+<figures/orchestrated_tuning_methodology.png, id=146, 501.875pt x 443.6575pt>
 File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
 
 <use figures/orchestrated_tuning_methodology.png>
@@ -1215,14 +1288,14 @@ Overfull \hbox (6.7027pt too wide) in paragraph at lines 28--29
  [] 
  []
 
-) <figures/cv_mse_tuning.png, id=173, 722.7pt x 722.7pt>
+) <figures/cv_mse_tuning.png, id=174, 722.7pt x 722.7pt>
 File: figures/cv_mse_tuning.png Graphic file (type png)
 
 <use figures/cv_mse_tuning.png>
 Package pdftex.def Info: figures/cv_mse_tuning.png used on input line 61.
 (pdftex.def)             Requested size: 390.25218pt x 390.25218pt.
  [31] [32 <./figures/cv_mse_tuning.png>]
-<figures/orchestrated_tuning.png, id=181, 722.7pt x 722.7pt>
+<figures/orchestrated_tuning.png, id=182, 722.7pt x 722.7pt>
 File: figures/orchestrated_tuning.png Graphic file (type png)
 
 <use figures/orchestrated_tuning.png>
@@ -1234,7 +1307,7 @@ PGFPlots: reading {tables/metrics_orctun.csv}
 ) [33 <./figures/orchestrated_tuning.png>] (tables/metrics_comparison.tex
 PGFPlots: reading {tables/metrics_comparison.csv}
 ) [34]
-<figures/tuning_method_comparison.png, id=189, 722.7pt x 722.7pt>
+<figures/tuning_method_comparison.png, id=190, 722.7pt x 722.7pt>
 File: figures/tuning_method_comparison.png Graphic file (type png)
 
 <use figures/tuning_method_comparison.png>
@@ -1242,7 +1315,7 @@ Package pdftex.def Info: figures/tuning_method_comparison.png used on input lin
 e 93.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
  [35 <./figures/tuning_method_comparison.png>] <figures/tuning/lasso.png, id=19
-5, 578.16pt x 361.35pt>
+6, 578.16pt x 361.35pt>
 File: figures/tuning/lasso.png Graphic file (type png)
 
 <use figures/tuning/lasso.png>
@@ -1251,7 +1324,7 @@ Package pdftex.def Info: figures/tuning/lasso.png used on input line 105.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36 <./figures/tuning/lasso.png>] <figures/tuning/enet.png, id=200, 433.62pt x
+ [36 <./figures/tuning/lasso.png>] <figures/tuning/enet.png, id=201, 433.62pt x
  433.62pt>
 File: figures/tuning/enet.png Graphic file (type png)
 
@@ -1261,7 +1334,7 @@ Package pdftex.def Info: figures/tuning/enet.png used on input line 116.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37 <./figures/tuning/enet.png>] <figures/tuning/grace.png, id=205, 433.62pt x
+ [37 <./figures/tuning/enet.png>] <figures/tuning/grace.png, id=206, 433.62pt x
  433.62pt>
 File: figures/tuning/grace.png Graphic file (type png)
 
@@ -1272,7 +1345,7 @@ Package pdftex.def Info: figures/tuning/grace.png used on input line 127.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38 <./figures/tuning/grace.png>]
-<figures/tuning/agrace.png, id=210, 433.62pt x 433.62pt>
+<figures/tuning/agrace.png, id=211, 433.62pt x 433.62pt>
 File: figures/tuning/agrace.png Graphic file (type png)
 
 <use figures/tuning/agrace.png>
@@ -1282,7 +1355,7 @@ Package pdftex.def Info: figures/tuning/agrace.png used on input line 138.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39 <./figures/tuning/agrace.png>]
-<figures/tuning/gblasso.png, id=215, 433.62pt x 433.62pt>
+<figures/tuning/gblasso.png, id=216, 433.62pt x 433.62pt>
 File: figures/tuning/gblasso.png Graphic file (type png)
 
 <use figures/tuning/gblasso.png>
@@ -1292,7 +1365,7 @@ Package pdftex.def Info: figures/tuning/gblasso.png used on input line 149.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40 <./figures/tuning/gblasso.png>]
-<figures/tuning/linf.png, id=220, 578.16pt x 361.35pt>
+<figures/tuning/linf.png, id=221, 578.16pt x 361.35pt>
 File: figures/tuning/linf.png Graphic file (type png)
 
 <use figures/tuning/linf.png>
@@ -1301,7 +1374,7 @@ Package pdftex.def Info: figures/tuning/linf.png used on input line 160.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41 <./figures/tuning/linf.png>] <figures/tuning/alinf.png, id=226, 578.16pt x
+ [41 <./figures/tuning/linf.png>] <figures/tuning/alinf.png, id=227, 578.16pt x
  361.35pt>
 File: figures/tuning/alinf.png Graphic file (type png)
 
@@ -1312,7 +1385,7 @@ Package pdftex.def Info: figures/tuning/alinf.png used on input line 171.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42 <./figures/tuning/alinf.png>]
-<figures/tuning/composite.png, id=231, 578.16pt x 361.35pt>
+<figures/tuning/composite.png, id=232, 578.16pt x 361.35pt>
 File: figures/tuning/composite.png Graphic file (type png)
 
 <use figures/tuning/composite.png>
@@ -1336,7 +1409,7 @@ Overfull \hbox (18.6296pt too wide) in paragraph at lines 34--35
  [] 
  []
 
-) <figures/cv_mse_similarities.png, id=242, 462.528pt x 346.896pt>
+) <figures/cv_mse_similarities.png, id=243, 462.528pt x 346.896pt>
 File: figures/cv_mse_similarities.png Graphic file (type png)
 
 <use figures/cv_mse_similarities.png>
@@ -1349,7 +1422,7 @@ Underfull \vbox (badness 3690) has occurred while \output is active []
  [46 <./figures/cv_mse_similarities.png>] [47] (tables/similarity_orctun.tex
 PGFPlots: reading {tables/similarity_orctun.csv}
 )
-<figures/orchestrated_similarities.png, id=251, 462.528pt x 346.896pt>
+<figures/orchestrated_similarities.png, id=252, 462.528pt x 346.896pt>
 File: figures/orchestrated_similarities.png Graphic file (type png)
 
 <use figures/orchestrated_similarities.png>
@@ -1360,7 +1433,7 @@ ne 44.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
-<figures/tuning/convergence_statistics.png, id=255, 462.528pt x 346.896pt>
+<figures/tuning/convergence_statistics.png, id=256, 462.528pt x 346.896pt>
 File: figures/tuning/convergence_statistics.png Graphic file (type png)
 
 <use figures/tuning/convergence_statistics.png>
@@ -1375,167 +1448,170 @@ PGFPlots: reading {tables/similarity_comparison.csv}
 Chapter 9.
 [51
 
-] [52] (tables/mapping_errors.tex
-PGFPlots: reading {tables/mapping_errors.csv}
-)
-<figures/mappings/errors.png, id=270, 462.528pt x 346.896pt>
-File: figures/mappings/errors.png Graphic file (type png)
-
-<use figures/mappings/errors.png>
-Package pdftex.def Info: figures/mappings/errors.png used on input line 68.
-(pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
- [53] [54 <./figures/mappings/errors.png>]
-(tables/mapping_summary.tex
+] [52] (tables/mapping_summary.tex
 PGFPlots: reading {tables/mapping_summary.csv}
 
-Overfull \hbox (34.49918pt too wide) in paragraph at lines 25--26
+Overfull \hbox (10.49918pt too wide) in paragraph at lines 26--27
  [] 
  []
 
-) <figures/mappings/vote_distribution.png, id=279, 722.7pt x 289.08pt>
-File: figures/mappings/vote_distribution.png Graphic file (type png)
+[53]) (tables/selected_variables.tex
+PGFPlots: reading {tables/selected_variables.csv}
 
-<use figures/mappings/vote_distribution.png>
-Package pdftex.def Info: figures/mappings/vote_distribution.png used on input l
-ine 78.
-(pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package pgfplots Warning: Table 'tables/selected_variables.csv' has an empty co
+lumn name; replacing it by '0'' on input line 25.
 
- [55 <./figures/mappings/vote_distribution.png>]
-<figures/mappings/distributions/Lasso_Body.png, id=284, 722.7pt x 289.08pt>
+ [warning /pgfplots/warning/empty column name]
+
+Overfull \hbox (1.3961pt too wide) in paragraph at lines 25--26
+ [] 
+ []
+
+) [54] (tables/mapping_errors.tex
+PGFPlots: reading {tables/mapping_errors.csv}
+)
+<figures/mappings/errors.png, id=278, 462.528pt x 346.896pt>
+File: figures/mappings/errors.png Graphic file (type png)
+
+<use figures/mappings/errors.png>
+Package pdftex.def Info: figures/mappings/errors.png used on input line 75.
+(pdftex.def)             Requested size: 323.76738pt x 242.82553pt.
+ [55 <./figures/mappings/errors.png>]
+<figures/mappings/distributions/Lasso_Body.png, id=283, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Lasso_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Lasso_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Lasso_Body.png used on 
-input line 89.
+input line 86.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-<figures/mappings/distributions/Lasso_Prom.png, id=285, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Lasso_Prom.png, id=284, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Lasso_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Lasso_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Lasso_Prom.png used on 
-input line 96.
+input line 92.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [56 <./figures/mappings/distributions/Lasso_Body.png> <./figures/mappings/dist
 ributions/Lasso_Prom.png>]
-<figures/mappings/distributions/Enet_Body.png, id=291, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Enet_Body.png, id=290, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Enet_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Enet_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Enet_Body.png used on i
-nput line 107.
+nput line 103.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-<figures/mappings/distributions/Enet_Prom.png, id=292, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Enet_Prom.png, id=291, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Enet_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Enet_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Enet_Prom.png used on i
-nput line 114.
+nput line 109.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [57 <./figures/mappings/distributions/Enet_Body.png> <./figures/mappings/distr
 ibutions/Enet_Prom.png>]
-<figures/mappings/distributions/Grace_Body.png, id=298, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Grace_Body.png, id=297, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Grace_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Grace_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Grace_Body.png used on 
-input line 125.
+input line 120.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-<figures/mappings/distributions/Grace_Prom.png, id=299, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Grace_Prom.png, id=298, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Grace_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Grace_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Grace_Prom.png used on 
-input line 132.
+input line 126.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [58 <./figures/mappings/distributions/Grace_Body.png> <./figures/mappings/dist
 ributions/Grace_Prom.png>]
-<figures/mappings/distributions/Linf_Body.png, id=305, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Linf_Body.png, id=304, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Linf_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Linf_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Linf_Body.png used on i
-nput line 143.
+nput line 137.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-<figures/mappings/distributions/Linf_Prom.png, id=306, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Linf_Prom.png, id=305, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Linf_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Linf_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Linf_Prom.png used on i
-nput line 150.
+nput line 143.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [59 <./figures/mappings/distributions/Linf_Body.png> <./figures/mappings/distr
 ibutions/Linf_Prom.png>]
-<figures/mappings/distributions/Composite_Body.png, id=313, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Composite_Body.png, id=312, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Composite_Body.png Graphic file (type png)
 
 <use figures/mappings/distributions/Composite_Body.png>
 Package pdftex.def Info: figures/mappings/distributions/Composite_Body.png used
- on input line 161.
+ on input line 154.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
 
-<figures/mappings/distributions/Composite_Prom.png, id=314, 722.7pt x 289.08pt>
+<figures/mappings/distributions/Composite_Prom.png, id=313, 722.7pt x 289.08pt>
 File: figures/mappings/distributions/Composite_Prom.png Graphic file (type png)
 
 <use figures/mappings/distributions/Composite_Prom.png>
 Package pdftex.def Info: figures/mappings/distributions/Composite_Prom.png used
- on input line 168.
+ on input line 160.
 (pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
-)
-(chapters/summary_conclusions.tex [60 <./figures/mappings/distributions/Composi
-te_Body.png> <./figures/mappings/distributions/Composite_Prom.png>]
-Chapter 10.
-[61
+ [60 <./figures/mappings/distributions/Composite_Body.png> <./figures/mappings/
+distributions/Composite_Prom.png>]
+<figures/mappings/vote_distribution.png, id=319, 722.7pt x 289.08pt>
+File: figures/mappings/vote_distribution.png Graphic file (type png)
 
-]) (acs-dissertation.bbl [62] [63
+<use figures/mappings/vote_distribution.png>
+Package pdftex.def Info: figures/mappings/vote_distribution.png used on input l
+ine 169.
+(pdftex.def)             Requested size: 390.25218pt x 156.10086pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [61 <./figures/mappings/vote_distribution.png>]) (chapters/summary_conclusions
+.tex
+[62]
+Chapter 10.
+[63
+
+]) (acs-dissertation.bbl [64] [65
 
 ]
 Missing character: There is no Ì in font cmr10!
 Missing character: There is no ¤ in font cmr10!
-) [64] (acs-dissertation.aux) ) 
+) [66] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 32800 strings out of 493333
- 826922 string characters out of 3139183
- 940624 words of memory out of 3000000
- 35749 multiletter control sequences out of 15000+200000
- 11880 words of font info for 43 fonts, out of 3000000 for 9000
+ 33247 strings out of 493333
+ 833968 string characters out of 3139183
+ 942818 words of memory out of 3000000
+ 36185 multiletter control sequences out of 15000+200000
+ 12217 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
-x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (78 pages, 1052113 bytes).
+ <C:\Users\sivak_000\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on acs-dissertation.pdf (80 pages, 1059525 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
+ 401 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
