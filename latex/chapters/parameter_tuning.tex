@@ -55,7 +55,7 @@ Initially, each of the methods is trained using some hyperparameter combination 
 	\label{fig:orc_tun_search_grid}
 \end{figure}
 
-The orchestrated tuning procedure of $k$ regression methods is defined below. The following sequence of steps is performed for each method $M_{i \in 1..k}$ in an arbitrary iteration $t$.
+The orchestrated tuning procedure of $k$ regression methods is defined below. The following sequence of steps is performed for each method $M_{i \in 1..k}$ in an arbitrary iteration $t$:
 \begin{enumerate}
 	\item \label{target_vector} Consider the coefficient vectors $\beta_{j, t-1}$ estimated by all other methods $M_{j \ne i}$ for the previous iteration $t-1$. A target coefficient vector $\beta_{tar, t}$ is created by calculating the mean coefficient value for each predictor estimated by the regression methods $M_{j \ne i}$.
 	\item \label{cand_comb} Consider the candidate hyperparameter value combinations located in proximity (in the search grid) to the combination selected by the previous iteration $P_{t-1}$. An example of a set of candidate combinations is shown on Figure \ref{fig:orc_tun_search_grid} for a regression method with two tuning parameters. We train the current method $M_i$ using each of the candidate hyperparameter combinations.
@@ -71,7 +71,7 @@ The temporal relationships that occur between the various regression methods dur
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{orchestrated_tuning_methodology}
-	\caption{Orchestrated tuning abstract structure, three regression methods; $M1_{t-1}$ denotes the parameter estimates of method $1$ for iteration $t-1$; Each tuning iteration $t$ of a method uses the common input data and the parameter estimates of all other methods for the previous iteration}
+	\caption{Orchestrated tuning abstract structure, three regression methods; $M1_{t-1}$ denotes the parameter estimates of method $1$ for iteration $t-1$; each tuning iteration $t$ of a method uses the common input data and the parameter estimates of all other methods for the previous iteration}
 	\label{fig:orc_tun_struct}
 \end{figure}
 
@@ -104,6 +104,6 @@ Additionally, this modification can be combined with the idea of energy requirem
 \subsection{Discussion}
 The orchestrated hyperparameter tuning approach presented in this chapter operates in the context of an ensemble of alternative methods sharing a common input and goals. In the case of regression, the approach aims to find combinations of hyperparameter values for the various methods that result in increased similarity of their estimated coefficients.
 
-As previously discussed, the optimization focus is on the estimated predictor coefficients, not on the prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, not optimizing the hyperparameters in terms of prediction error could result in reduction of overfitting.
+As discussed in Section \ref{sec:orc_meth}, the optimization focus is on the estimated predictor coefficients, not on prediction error. This discards the need to perform cross validation, which could be valuable when working with computationally intensive regression methods. What is more, not optimizing the hyperparameters in terms of prediction error could result in reduction of overfitting.
 
 The proposed hyperparameter tuning approach introduces cooperation between otherwise completely independent regression methods. This collective simultaneous tuning promotes consensus and agreement between the different methods. The resulting increased similarity of estimates simplifies the results interpretation because fewer conflicts between method outputs occur. 

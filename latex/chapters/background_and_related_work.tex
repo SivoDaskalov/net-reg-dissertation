@@ -1,5 +1,5 @@
 \chapter{Background and Related Work} \label{background}
-This chapter briefly reviews the main concepts of linear regression. We describe in detail the various methods for penalized regression found in literature and used in this project.
+This chapter reviews the main concepts of linear regression. We describe in detail the various methods for penalized regression found in literature and used in this project.
 
 
 \section{Linear regression}
@@ -13,7 +13,7 @@ where $\epsilon_i$ represents noise, capturing all external factors influencing 
 
 
 \section{Ordinary least squares estimation} \label{sec:olse}
-Ordinary least squares (OLS) is a method of estimating the unknown parameters $\beta$ in a linear regression model. It aims to minimize the sum of squared deviations of the observed values from the model prediction (\ref{eq:rss}), also called residual sum of squares (RSS).
+Ordinary least squares (OLS) is a method of estimating the unknown parameters $\beta$ in a linear regression model. It aims to minimize the sum of squared deviations of the observed values from the model prediction (Equation \ref{eq:rss}), also called residual sum of squares (RSS).
 \begin{equation} \label{eq:rss}
 L(\beta) = \sum_{i=1}^{N} (y_i - x_i^T\beta)^2
 \end{equation}
@@ -59,7 +59,7 @@ Let us consider a network that is represented by a weighted graph $G = (V, E, W)
 
 
 \subsection{Grace} \label{sec:grace}
-The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias "Grace" is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in Equation \ref{eq:grace}, contains two terms - an $L1$ penalty for variable selection and a second term that performs the network penalization.  
+The first approach for network-constrained regularization was suggested by Li and Li \cite{li2008network}. The alias Grace is derived from the method's full name "GRAph Constrained Estimation". The penalty function, shown in Equation \ref{eq:grace}, contains two terms: an $L1$ penalty for variable selection and a second term that performs the network penalization.  
 \begin{equation} \label{eq:grace}
 P(\beta) = \lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)
 \end{equation}
@@ -79,15 +79,15 @@ where the multiplier $sign(\tilde{\beta}_u) = \left\{ \begin{aligned} -1 &\quad 
 \subsection{GBLasso} \label{sec:gblasso}
 One concern regarding the adaptive grace (\ref{sec:agrace}) method is the difficulty to estimate the sign adjustment of all $\beta_i$, for which $\tilde{\beta}_i = 0$. To discard the need for this estimation, Pan et al. proposed an alternative approach \cite{pan2010incorporating}. The authors suggested the penalty function shown in Equation \ref{eq:gblasso_full}. 
 \begin{equation} \label{eq:gblasso_full}
-P(\beta) = \lambda 2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|b_u|^\gamma}{w_u}+\frac{|b_v|^\gamma}{w_v}\right)^{1/\gamma},
+P(\beta) = \lambda 2^{1/\gamma'}\sum_{u \sim v}\left(\frac{|\beta_u|^\gamma}{w_u}+\frac{|\beta_v|^\gamma}{w_v}\right)^{1/\gamma},
 \end{equation}
 where $\gamma > 1$ and $\lambda > 0$ are hyperparameters and $\gamma'$ satisfies $\frac{1}{\gamma'}+\frac{1}{\gamma}=1$. The denominator $w_i$ is a weight function attributed to each node. Three types of weight functions, dependent on the node's degree $d_i$ and/or $\gamma$, were initially considered by the authors: $w_i = d_i^{(\gamma+1)/2}$, $w_i = d_i$ and $w_i = d_i^\gamma$. 
 
-A simplification of the penalty function is presented in \cite{luo2012two}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty sum multiplier $\lambda2^{1/\gamma'}$ has been modified to depend exclusively on $\lambda$. The simplified penalty function is shown in Equation \ref{eq:gblasso_simplified} and referred to with the alias GBLasso in this paper.
+A simplification of the penalty function is presented in \cite{luo2012two}. The authors have selected a node weight function of $w_i = d_i^{\gamma/2}$ and the penalty sum multiplier $\lambda2^{1/\gamma'}$ has been modified to depend exclusively on $\lambda$ (see Equation \ref{eq:gblasso_full}). The simplified penalty function is shown in Equation \ref{eq:gblasso_simplified} and is referred to as GBLasso.
 \begin{equation} \label{eq:gblasso_simplified}
 P(\beta) = \lambda\sum_{u \sim v}
-\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma+
-\left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}
+\left[\left(\frac{|\beta_u|}{\sqrt{d_u}}\right)^\gamma+
+\left(\frac{|\beta_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}
 \end{equation}
 
 
@@ -105,8 +105,8 @@ The authors also suggest an equivalent formulation of the GBLasso-based regressi
 \begin{split}
 S(\beta) = &\sum_{i=1}^{n} (y_i - x_i^T\beta)^2 \\ 
 &subject\ to\ \sum_{u \sim v}
-\left[\left(\frac{|b_u|}{\sqrt{d_u}}\right)^\gamma+
-\left(\frac{|b_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}\leq C
+\left[\left(\frac{|\beta_u|}{\sqrt{d_u}}\right)^\gamma+
+\left(\frac{|\beta_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}\leq C
 \end{split}
 \end{align}
 

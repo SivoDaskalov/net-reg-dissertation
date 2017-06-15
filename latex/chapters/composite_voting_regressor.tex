@@ -24,7 +24,7 @@ For each predictor we count the number of non-zero coefficients in its correspon
 FV_j = \frac{\sum_{i=1}^{k}B_{i,j}}{k}\text{, where j is the index of the current predictor} 
 \end{equation}
 
-The FV statistic can be used to perform variable selection by retaining only the predictors with score above a set threshold. Different predictor selection strategies can be implemented through modifying the vote fraction threshold, for example selecting a predictor if $all\ /any\ /\ at\ least\ 50\%$ of the predictors consider it relevant to the target variable. 
+The FV statistic can be used to perform variable selection by retaining only the predictors with score above a set threshold. Different predictor selection strategies can be implemented through modifying the vote fraction threshold, for example selecting a predictor if all / any / at least 50\% of the predictors consider it relevant to the target variable. 
 
 After variable selection is performed, predictor coefficients can be estimated through any regression approach using the selected set of predictors. We use the OLSE (\ref{sec:olse}) for this estimation to avoid using a hyperparameterized approach. 
 

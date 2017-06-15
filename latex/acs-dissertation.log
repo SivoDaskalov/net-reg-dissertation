@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  11 JUN 2017 12:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  15 JUN 2017 02:04
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1314,8 +1314,11 @@ File: figures/tuning_method_comparison.png Graphic file (type png)
 Package pdftex.def Info: figures/tuning_method_comparison.png used on input lin
 e 93.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
- [35 <./figures/tuning_method_comparison.png>] <figures/tuning/lasso.png, id=19
-6, 578.16pt x 361.35pt>
+
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+ [35 <./figures/tuning_method_comparison.png>]
+<figures/tuning/lasso.png, id=196, 578.16pt x 361.35pt>
 File: figures/tuning/lasso.png Graphic file (type png)
 
 <use figures/tuning/lasso.png>
@@ -1586,10 +1589,10 @@ Missing character: There is no Ì in font cmr10!
 Missing character: There is no ¤ in font cmr10!
 ) [66] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 33247 strings out of 493333
- 833968 string characters out of 3139183
- 942818 words of memory out of 3000000
- 36185 multiletter control sequences out of 15000+200000
+ 33248 strings out of 493333
+ 833985 string characters out of 3139183
+ 942830 words of memory out of 3000000
+ 36186 multiletter control sequences out of 15000+200000
  12217 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1609,7 +1612,7 @@ fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (80 pages, 1059525 bytes).
+Output written on acs-dissertation.pdf (80 pages, 1060107 bytes).
 PDF statistics:
  401 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

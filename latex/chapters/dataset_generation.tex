@@ -3,7 +3,7 @@ Synthetic datasets have been generated for use in the hyperparameter tuning proc
 
 The benefit of using synthetic data for parameter tuning is the existence of ground truth about the relationship between predictors and the target variable. This ground truth enables comparing the various regression methods not only in terms of prediction error, but also with regard to the sensitivity, specificity and precision of their variable selection.
 
-The sections of this chapter describe in detail the synthetic dataset generation process. The gene network, simulated expression levels of all genes and the primary simulation setups of the response variable are implemented as suggested by Li and Li \cite{li2008network}. Four secondary simulation setups are derived from each of the four primary setups, resulting in a total of 20 different simulation setups.
+The sections of this chapter describe in detail the synthetic dataset generation process. The gene network (Section \ref{sec:pred_net}), simulated expression levels of all genes (Section \ref{sec:obs_gen}) and the primary simulation setups of the response variable (Section \ref{sec:prim_sim_setups}) are implemented as suggested by Li and Li \cite{li2008network}. Four secondary simulation setups (Section \ref{sec:sec_sim_set}) are derived from each of the four primary setups, resulting in a total of 20 different simulation setups.
 
 
 \section{Predictor network generation} \label{sec:pred_net}
@@ -82,5 +82,5 @@ The fourth setup, shown in Equation \ref{eq:setup4}, is similar to the second se
 \end{equation}
 
 
-\subsection{Secondary simulation setups}
+\subsection{Secondary simulation setups} \label{sec:sec_sim_set}
 Four secondary setups have been derived from each primary simulation setup. As discussed in Section \ref{sec:prim_sim_setups}, the primary setups define a linear model relating four transcript factors and their regulated genes to the response variable. Instead, the derived secondary simulation setups distribute the same effect evenly over 8, 12, 16, and 20 transcript factors and their regulated genes. This enables to tune and compare the various regression methods in scenarios with a varying number of relevant predictors.

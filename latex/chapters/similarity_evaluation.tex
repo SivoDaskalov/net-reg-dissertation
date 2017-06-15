@@ -1,10 +1,10 @@
 \chapter{Method Similarity Evaluation}
 As discussed in previous chapters, in the context of our research multiple different regression methods operate on common input data. The work shown in this chapter aims to determine to what extent the final models produced by the different regression approaches are similar to one another. We also look into whether the orchestrated hyperparameter tuning approach, discussed in Section \ref{sec:orc_par_tun}, successfully increases this similarity as is intended by design.
 
-The similarity between two linear models is measured with the use of cosine similarity \cite{manning2008introduction}, briefly described in the following section. To determine the overall similarity between two regression methods, we calculate the similarity between their final coefficient vectors for each of the synthetic datasets. Final refers to the models produced by fitting the given regression method on the complete training dataset with the optimal hyperparameter combination obtained from the tuning procedure.
+The similarity between two linear models is measured with the use of cosine similarity \cite{manning2008introduction}, described in the following section. To determine the overall similarity between two regression methods, we calculate the similarity between their final coefficient vectors for each of the synthetic datasets. Final refers to the models produced by fitting the given regression method on the complete training dataset with the optimal hyperparameter combination obtained from the tuning procedure.
 
 
-\section{Cosine Similarity}
+\section{Cosine similarity}
 Cosine similarity measures the similarity between two vectors $A$ and $B$ of equal length $n$. It is defined as shown in Equation \ref{eq:cos_sim} and produces values in the range $[-1,1]$. We used the implementation provided by Scikit-Learn through the cosine\_similarity function.
 \begin{equation} \label{eq:cos_sim}
 similarity = cos(\theta) = \frac{A \cdot B}{||A||_2||B||_2} = \frac{\sum_{i=1}^{n}A_iB_i}{\sqrt{\sum_{i=1}^{n}A_i^2}\sqrt{\sum_{i=1}^{n}B_i^2}}
@@ -15,7 +15,7 @@ similarity = cos(\theta) = \frac{A \cdot B}{||A||_2||B||_2} = \frac{\sum_{i=1}^{
 Results from the regression method similarity analysis for all synthetic datasets and use of CV-MSE hyperparameter tuning is shown in Table \ref{tab:sim_cvmse} and Figure \ref{fig:sim_cvmse}. The following observations can be made from the obtained results:
 
 \begin{itemize}
-	\item The Lasso and Elastic Net methods produce very similar models. This is to be expected given that the parameter tuning of the Elastic Net commonly selects high values for the L1 ratio(Figure \ref{fig:tun_enet}). As a result, the L1 penalty is a major component of the total Elastic Net penalty.
+	\item The Lasso and Elastic Net methods produce very similar models. This is to be expected given that the parameter tuning of the Elastic Net commonly selects high values for the L1 ratio (Figure \ref{fig:tun_enet}). As a result, the L1 penalty is a major component of the total Elastic Net penalty.
 	\item The GBLasso and Linf methods also show high similarity, which is unsurprising as the Linf method is derived from the GBLasso (see  \ref{sec:linf}).
 	\item Our initial expectation was for the TTLP and LTLP methods to be very similar. Surprisingly, the LTLP method bears a stronger similarity to the Lasso and Elastic Net due to its use of the L1 penalty.
 \end{itemize}

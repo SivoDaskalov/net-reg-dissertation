@@ -56,7 +56,7 @@ in the "Suggested value" column. The number of edges in the breast cancer gene n
 
 We denote the "Gene body" and "Promoter" datasets as compound entities containing the methylation and corresponding expression matrix, along with the matching gene network. We hold out $\frac{1}{4}$ of the observations from each dataset for testing while the remaining $\frac{3}{4}$ are used for model fitting.
 
-We aim to explore how the expression level of each gene is affected by the methylation levels of other genes. To achieve this, separate regression problems are defined, modeling each column in the expression matrix. Predictor values are obtained from the methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem producing a mapping, capable of estimating the vector of gene expression levels given a vector of gene methylation levels.
+We aim to explore how the expression level of each gene is affected by the methylation levels of related genes. To achieve this, separate regression problems are defined, modeling each column in the expression matrix. Predictor values are obtained from the methylation matrix and the gene network is used by the network-constrained regression methods as needed. Although these regression problems are independent, they can be collectively thought as a multivariate regression problem producing a mapping, capable of estimating the vector of gene expression levels given a vector of gene methylation levels.
 
 
 \section{Results}
