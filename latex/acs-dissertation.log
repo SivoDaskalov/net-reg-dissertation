@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  15 JUN 2017 02:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  15 JUN 2017 02:43
 entering extended mode
 **./acs-dissertation.tex
 (acs-dissertation.tex
@@ -1138,8 +1138,8 @@ Package pdftex.def Info: CUni3-eps-converted-to.pdf used on input line 17.
 
 {C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./CUni3
 -eps-converted-to.pdf>]) (declaration.tex
-[2] (wordcount.txt) [3]) (abstract.tex [4] [5]) (acknowledgments.tex [6]
-[7]) [0] (acs-dissertation.toc [1
+[2] (wordcount.txt) [3]) (acknowledgments.tex [4] [5]) (abstract.tex [6]
+[7] (wordcount.txt)) [0] (acs-dissertation.toc [1
 
 ])
 \tf@toc=\write4
@@ -1589,11 +1589,11 @@ Missing character: There is no Ì in font cmr10!
 Missing character: There is no ¤ in font cmr10!
 ) [66] (acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 33248 strings out of 493333
- 833985 string characters out of 3139183
+ 33251 strings out of 493333
+ 834028 string characters out of 3139183
  942830 words of memory out of 3000000
- 36186 multiletter control sequences out of 15000+200000
- 12217 words of font info for 44 fonts, out of 3000000 for 9000
+ 36187 multiletter control sequences out of 15000+200000
+ 12516 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,17n,98p,10369b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\sivak_000\AppData\Local\MiKTeX\2.9\fo
@@ -1612,7 +1612,7 @@ fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on acs-dissertation.pdf (80 pages, 1060107 bytes).
+Output written on acs-dissertation.pdf (80 pages, 1060395 bytes).
 PDF statistics:
  401 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
