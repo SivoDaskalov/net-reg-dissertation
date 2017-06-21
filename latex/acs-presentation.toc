@@ -1,0 +1,5 @@
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Some \LaTeX {} Examples}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Tables and Figures}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Mathematics}{5}{0}{2}
