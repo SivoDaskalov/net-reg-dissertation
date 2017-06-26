@@ -76,7 +76,7 @@ cv_mse_tune_generated_data(
     methods=["lasso", "enet", "grace", "agrace", "gblasso", "linf", "alinf", "ttlp", "ltlp", "composite"],
     load_dump=True)
 load_custom_start_points("results/p550.csv")
-orchestrated_tune_generated_data(opt_method="coef_correlation")
+orchestrated_tune_generated_data(opt_method="coef_correlation", load_dump=True)
 plot_convergence_statistics()
 
 plot_summary_comparison(summary_urls={"CV of MSE tuning": "results/p550_summary.csv"},
@@ -93,6 +93,6 @@ plot_summary_comparison(summary_urls={
     suptitle="Model metrics comparison by tuning method")
 plot_parameter_tuning(results_file_urls=["results/p550.csv", "results/orctun_results_coef_correlation_p550.csv"])
 
-fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"])
+fit_optimal_parameter_models_on_real_data(methods=["lasso", "enet", "grace", "linf", "composite"], load_dump=True)
 summarize_mapping_results()
 print("Total time elapsed: %.0f seconds" % time.clock())
