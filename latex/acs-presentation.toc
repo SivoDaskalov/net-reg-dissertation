@@ -1,5 +1,8 @@
 \select@language {english}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Some \LaTeX {} Examples}{4}{0}{2}
-\beamer@subsectionintoc {2}{1}{Tables and Figures}{4}{0}{2}
-\beamer@subsectionintoc {2}{2}{Mathematics}{5}{0}{2}
+\beamer@sectionintoc {1}{Epigenetic background}{3}{0}{1}
+\beamer@sectionintoc {2}{Penalized regression methods}{4}{0}{2}
+\beamer@sectionintoc {3}{Composite voting regression}{5}{0}{3}
+\beamer@sectionintoc {4}{Orchestrated hyperparameter tuning}{6}{0}{4}
+\beamer@sectionintoc {5}{Model evaluation}{7}{0}{5}
+\beamer@sectionintoc {6}{Regression method similarities}{8}{0}{6}
+\beamer@sectionintoc {7}{Breast cancer dataset}{9}{0}{7}

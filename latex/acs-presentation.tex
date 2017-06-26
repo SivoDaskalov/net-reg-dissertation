@@ -9,6 +9,8 @@
 	\setbeamertemplate{caption}[numbered]
 } 
 
+\setbeamerfont{block body}{size=\tiny}
+
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 
@@ -17,13 +19,7 @@
 \institute{Corpus Christi College}
 \date{28 June 2017}
 
-%Epigenetic background
-%Regression methods
-%Composite voting regression
-%Orchestrated tuning
-%Simulation studies
-%Regression method similarities
-%Breast cancer data analysis
+%Computational biology often involves working with high-dimensional data. Penalized regression methods are often used on such data, as they can perform feature selection effectively. Several approaches for network-constrained regression have been suggested in literature over the recent years. They use prior knowledge in the form of a network to exploit known relationships between predictors. An approach for cooperative parameter tuning in the context of multiple alternative methods that share common input and goals is suggested. The aim is to simultaneously tune the different regression methods iteratively, in a way that increases agreement between their coefficient estimates. We also suggest a simple approach to aggregate the coefficients produced by the various regression methods through predictor importance voting. Our method performs ordinary least squares estimation to fit the subset of predictors that have non-zero coefficients in a fraction of the underlying regression methods above a given threshold. Both tuning approaches and the various regression methods have been compared and evaluated on synthetic datasets. Gene methylation and expression data has been processed with the implemented algorithms to explore how the expression level of each gene is affected by the methylation levels of related genes.
 
 \begin{document}
 	
@@ -35,62 +31,107 @@
   \tableofcontents
 \end{frame}
 
-\section{Introduction}
-
-\begin{frame}{Introduction}
-
-\begin{itemize}
-	\item Your introduction goes here!
-	\item Use \texttt{itemize} to organize your main points.
-\end{itemize}
-
-\vskip 1cm
-
-\begin{block}{Examples}
-	Some examples of commonly used commands and features are included, to help you get started.
-\end{block}
-
+\section{Epigenetic background}
+\begin{frame}{Epigenetic background}
 \end{frame}
 
-\section{Some \LaTeX{} Examples}
-
-\subsection{Tables and Figures}
-
-\begin{frame}{Tables and Figures}
-
-\begin{itemize}
-\item Use \texttt{tabular} for basic tables --- see Table~\ref{tab:widgets}, for example.
-\item You can upload a figure (JPEG, PNG or PDF) using the files menu. 
-\item To include it in your document, use the \texttt{includegraphics} command (see the comment below in the source code).
-\end{itemize}
-
-% Commands to include a figure:
-%\begin{figur^{e}
-%\includegraphics[width=\textwidth]{your-figure's-file-name}
-%\caption{\label{fig:your-figure}Caption goes here.}
-%\end{figure}}
-
-\begin{table}
-\centering
-\begin{tabular}{l|r}
-	Item & Quantity \\\hline
-	Widgets & 42 \\
-	Gadgets & 13
-\end{tabular}
-\caption{\label{tab:widgets}An example table.}
-\end{table}
-
+\section{Penalized regression methods}
+\begin{frame}{Penalized regression methods}
+\small
+\begin{description}
+	\item[Lasso] $\lambda\sum_{i=1}^{p}\left|\beta_i\right|$
+	\item[Elastic Net] $\lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sqrt{\sum_{i=1}^{p}\beta_i^2}$
+	\item[Grace] $\lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{\beta_u}{\sqrt{d_u}}-\frac{\beta_v}{\sqrt{d_v}}\right)^2w(u,v)$
+	\item[aGrace] $\lambda_1\sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2\sum_{u \sim v}\left(\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right)^2w(u,v)$
+	\item[GBLasso] $\lambda\sum_{u \sim v}
+	\left[\left(\frac{|\beta_u|}{\sqrt{d_u}}\right)^\gamma+
+	\left(\frac{|\beta_v|}{\sqrt{d_v}}\right)^\gamma\right]^{1/\gamma}$
+	\item[Linf] $\lambda\sum_{u \sim v}\max\left(\frac{|\beta_u|}{\sqrt{d_u}},\frac{|\beta_v|}{\sqrt{d_v}}\right)$
+	\item[aLinf] $\lambda\sum_{u \sim v}\left|\frac{sign(\tilde{\beta}_u)\beta_u}{\sqrt{d_u}}-\frac{sign(\tilde{\beta}_v)\beta_v}{\sqrt{d_v}}\right|$
+	\item[TTLP] $\lambda_1 \sum_{i=1}^{p} J_\tau|\beta_i| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|$
+	\item[LTLP] $\lambda_1 \sum_{i=1}^{p}\left|\beta_i\right| + \lambda_2 \sum_{u \sim v} \left|J_\tau\left(\frac{|\beta_u|}{w_u}\right)-J_\tau\left(\frac{|\beta_v|}{w_v}\right)\right|$
+\end{description}
+\normalsize
 \end{frame}
 
-\subsection{Mathematics}
-
-\begin{frame}{Readable Mathematics}
-
-Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-$$S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-= \frac{1}{n}\sum_{i}^{n} X_i$$
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
-
+\section{Composite voting regression}
+\begin{frame}{Composite voting regression}
 \end{frame}
+
+\section{Orchestrated hyperparameter tuning}
+\begin{frame}{Orchestrated hyperparameter tuning}
+\end{frame}
+
+\section{Model evaluation}
+\begin{frame}{Model evaluation}
+\end{frame}
+
+\section{Regression method similarities}
+\begin{frame}{Regression method similarities}
+\end{frame}
+
+\section{Breast cancer dataset}
+\begin{frame}{Breast cancer dataset}
+\end{frame}
+
+
+
+%\section{Introduction}
+%
+%\begin{frame}{Introduction}
+%
+%\begin{itemize}
+%	\item Your introduction goes here!
+%	\item Use \texttt{itemize} to organize your main points.
+%\end{itemize}
+%
+%\vskip 1cm
+%
+%\begin{block}{Examples}
+%	Some examples of commonly used commands and features are included, to help you get started.
+%\end{block}
+%
+%\end{frame}
+%
+%\section{Some \LaTeX{} Examples}
+%
+%\subsection{Tables and Figures}
+%
+%\begin{frame}{Tables and Figures}
+%
+%\begin{itemize}
+%\item Use \texttt{tabular} for basic tables --- see Table~\ref{tab:widgets}, for example.
+%\item You can upload a figure (JPEG, PNG or PDF) using the files menu. 
+%\item To include it in your document, use the \texttt{includegraphics} command (see the comment below in the source code).
+%\end{itemize}
+%
+%% Commands to include a figure:
+%%\begin{figur^{e}
+%%\includegraphics[width=\textwidth]{your-figure's-file-name}
+%%\caption{\label{fig:your-figure}Caption goes here.}
+%%\end{figure}}
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{l|r}
+%	Item & Quantity \\\hline
+%	Widgets & 42 \\
+%	Gadgets & 13
+%\end{tabular}
+%\caption{\label{tab:widgets}An example table.}
+%\end{table}
+%
+%\end{frame}
+%
+%\subsection{Mathematics}
+%
+%\begin{frame}{Readable Mathematics}
+%
+%Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
+%$$S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
+%= \frac{1}{n}\sum_{i}^{n} X_i$$
+%denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
+%
+%\end{frame}
 
 \end{document}
