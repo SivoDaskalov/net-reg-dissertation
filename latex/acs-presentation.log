@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  27 JUN 2017 12:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.5)  27 JUN 2017 19:47
 entering extended mode
 **./acs-presentation.tex
 (acs-presentation.tex
@@ -970,100 +970,120 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 {C:/Users/sivak_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 (acs-presentation.toc) [2
 
-] [3
-
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 66.
+<figures/epigenetic_background_slide.jpg, id=74, 1032.10594pt x 462.22687pt>
+File: figures/epigenetic_background_slide.jpg Graphic file (type jpg)
+
+<use figures/epigenetic_background_slide.jpg>
+Package pdftex.def Info: figures/epigenetic_background_slide.jpg used on input 
+line 46.
+(pdftex.def)             Requested size: 327.20967pt x 142.25911pt.
+
+Overfull \hbox (19.9198pt too wide) in paragraph at lines 46--46
+[][]  
+ []
+
+[3
+
+ <./figures/epigenetic_background_slide.jpg>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 66.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 66.
+line 63.
 
 (C:\Users\sivak_000\AppData\Roaming\MiKTeX\2.9\tex\latex\sansmathaccent\ot1math
 kerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [4
+)
+Overfull \hbox (16.7529pt too wide) in paragraph at lines 63--63
+[]$[] []$  
+ []
+
+[4
+
+] [5
 
 ]
-Overfull \hbox (18.75545pt too wide) detected at line 97
+Overfull \hbox (18.75545pt too wide) detected at line 117
 \OT1/mathkerncmss/m/sl/10.95 X[] \OT1/cmss/m/n/10.95 = []
- []
-
-[5
-
-]
-<figures/orchestrated_tuning_methodology.png, id=87, 501.875pt x 443.6575pt>
-File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
-
-<use figures/orchestrated_tuning_methodology.png>
-Package pdftex.def Info: figures/orchestrated_tuning_methodology.png used on in
-put line 113.
-(pdftex.def)             Requested size: 170.71947pt x 142.25761pt.
-
-Overfull \hbox (17.07454pt too wide) in paragraph at lines 113--113
- [][] 
- []
-
-<figures/search_grid.png, id=88, 472.76625pt x 474.77374pt>
-File: figures/search_grid.png Graphic file (type png)
-
-<use figures/search_grid.png>
-Package pdftex.def Info: figures/search_grid.png used on input line 113.
-(pdftex.def)             Requested size: 170.7151pt x 142.25935pt.
-
-Overfull \hbox (17.07018pt too wide) in paragraph at lines 113--113
- [][] 
  []
 
 [6
 
+]
+<figures/orchestrated_tuning_methodology.png, id=98, 501.875pt x 443.6575pt>
+File: figures/orchestrated_tuning_methodology.png Graphic file (type png)
+
+<use figures/orchestrated_tuning_methodology.png>
+Package pdftex.def Info: figures/orchestrated_tuning_methodology.png used on in
+put line 133.
+(pdftex.def)             Requested size: 170.71947pt x 142.25761pt.
+
+Overfull \hbox (17.07454pt too wide) in paragraph at lines 133--133
+ [][] 
+ []
+
+<figures/search_grid.png, id=99, 472.76625pt x 474.77374pt>
+File: figures/search_grid.png Graphic file (type png)
+
+<use figures/search_grid.png>
+Package pdftex.def Info: figures/search_grid.png used on input line 133.
+(pdftex.def)             Requested size: 170.7151pt x 142.25935pt.
+
+Overfull \hbox (17.07018pt too wide) in paragraph at lines 133--133
+ [][] 
+ []
+
+[7
+
  <./figures/orchestrated_tuning_methodology.png> <./figures/search_grid.png>] <
-figures/tuning_method_comparison.png, id=95, 722.7pt x 722.7pt>
+figures/tuning_method_comparison.png, id=107, 722.7pt x 722.7pt>
 File: figures/tuning_method_comparison.png Graphic file (type png)
 
 <use figures/tuning_method_comparison.png>
 Package pdftex.def Info: figures/tuning_method_comparison.png used on input lin
-e 124.
+e 144.
 (pdftex.def)             Requested size: 227.61862pt x 227.61862pt.
- [7
+ [8
 
  <./figures/tuning_method_comparison.png>] <figures/cv_mse_similarities.png, id
-=102, 462.528pt x 346.896pt>
+=113, 462.528pt x 346.896pt>
 File: figures/cv_mse_similarities.png Graphic file (type png)
 
 <use figures/cv_mse_similarities.png>
-Package pdftex.def Info: figures/cv_mse_similarities.png used on input line 140
+Package pdftex.def Info: figures/cv_mse_similarities.png used on input line 162
 .
 (pdftex.def)             Requested size: 170.71628pt x 142.26532pt.
 
-Overfull \hbox (17.07135pt too wide) in paragraph at lines 140--140
+Overfull \hbox (17.07135pt too wide) in paragraph at lines 162--162
  [][] 
  []
 
-<figures/orchestrated_similarities.png, id=103, 462.528pt x 346.896pt>
+<figures/orchestrated_similarities.png, id=114, 462.528pt x 346.896pt>
 File: figures/orchestrated_similarities.png Graphic file (type png)
 
 <use figures/orchestrated_similarities.png>
 Package pdftex.def Info: figures/orchestrated_similarities.png used on input li
-ne 140.
+ne 162.
 (pdftex.def)             Requested size: 170.71628pt x 142.26532pt.
 
-Overfull \hbox (17.07135pt too wide) in paragraph at lines 140--140
+Overfull \hbox (17.07135pt too wide) in paragraph at lines 162--162
  [][] 
  []
 
-[8
+[9
 
  <./figures/cv_mse_similarities.png> <./figures/orchestrated_similarities.png>]
- [9
+ [10
 
 ]
 \tf@nav=\write6
@@ -1075,13 +1095,13 @@ Overfull \hbox (17.07135pt too wide) in paragraph at lines 140--140
 \tf@snm=\write8
 \openout8 = `acs-presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 150.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 150.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
  (acs-presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 150.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 150.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
 Package rerunfilecheck Info: File `acs-presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 6E0A7700C0F643189D710CFE5C984059;429.
+(rerunfilecheck)             Checksum: 27CF1A40838BEAB621B4C3C232D70208;478.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1089,13 +1109,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 18087 strings out of 493333
- 344133 string characters out of 3139183
- 440885 words of memory out of 3000000
- 21158 multiletter control sequences out of 15000+200000
+ 18106 strings out of 493333
+ 344470 string characters out of 3139183
+ 441885 words of memory out of 3000000
+ 21172 multiletter control sequences out of 15000+200000
  13884 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,12n,55p,1356b,477s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,13n,55p,1356b,477s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTe
@@ -1105,9 +1125,9 @@ nts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmssi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on acs-presentation.pdf (9 pages, 323343 bytes).
+Output written on acs-presentation.pdf (10 pages, 479990 bytes).
 PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 124 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 165 PDF objects out of 1000 (max. 8388607)
+ 29 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

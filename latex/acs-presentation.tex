@@ -40,6 +40,26 @@
 
 \section{Epigenetic background}
 \begin{frame}{Epigenetic background}
+\includegraphics[width=11.5cm,height=5cm]{epigenetic_background_slide}\\
+~\\~\\
+\tiny{*Figure is adapted from Luong, P. Basic Principles of Genetics}
+\end{frame}
+
+
+
+
+
+\section{Project goals}
+\begin{frame}{Project goals}
+Question:\\
+How is the expression of each gene affected by the methylation of related genes?
+\\~\\~\\
+Approach:\\
+$\text{Linear regression}
+\begin{dcases}
+\text{Predictors: methylation levels for all genes}\\
+\text{Target variable: expression level for gene of interest}
+\end{dcases}$
 \end{frame}
 
 
@@ -133,9 +153,11 @@ Final model obtained from OLSE on the set of important predictors
 	\column{.5\textwidth}
 	\centering
 	\includegraphics[width=6cm,height=5cm]{cv_mse_similarities}\\
+	CV-MSE tuning
 	\column{.5\textwidth}
 	\centering
 	\includegraphics[width=6cm,height=5cm]{orchestrated_similarities}\\
+	Orchestrated tuning
 \end{columns}
 \end{frame}
 
@@ -148,63 +170,3 @@ Final model obtained from OLSE on the set of important predictors
 \end{frame}
 
 \end{document}
-
-
-
-%\section{Introduction}
-%
-%\begin{frame}{Introduction}
-%
-%\begin{itemize}
-%	\item Your introduction goes here!
-%	\item Use \texttt{itemize} to organize your main points.
-%\end{itemize}
-%
-%\vskip 1cm
-%
-%\begin{block}{Examples}
-%	Some examples of commonly used commands and features are included, to help you get started.
-%\end{block}
-%
-%\end{frame}
-%
-%\section{Some \LaTeX{} Examples}
-%
-%\subsection{Tables and Figures}
-%
-%\begin{frame}{Tables and Figures}
-%
-%\begin{itemize}
-%\item Use \texttt{tabular} for basic tables --- see Table~\ref{tab:widgets}, for example.
-%\item You can upload a figure (JPEG, PNG or PDF) using the files menu. 
-%\item To include it in your document, use the \texttt{includegraphics} command (see the comment below in the source code).
-%\end{itemize}
-%
-%% Commands to include a figure:
-%%\begin{figur^{e}
-%%\includegraphics[width=\textwidth]{your-figure's-file-name}
-%%\caption{\label{fig:your-figure}Caption goes here.}
-%%\end{figure}}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{l|r}
-%	Item & Quantity \\\hline
-%	Widgets & 42 \\
-%	Gadgets & 13
-%\end{tabular}
-%\caption{\label{tab:widgets}An example table.}
-%\end{table}
-%
-%\end{frame}
-%
-%\subsection{Mathematics}
-%
-%\begin{frame}{Readable Mathematics}
-%
-%Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-%$$S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-%= \frac{1}{n}\sum_{i}^{n} X_i$$
-%denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
-%
-%\end{frame}
