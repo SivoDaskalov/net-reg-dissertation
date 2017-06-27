@@ -13,6 +13,9 @@
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage{mathtools}
+
+\graphicspath{ {figures/} }
 
 \title{Machine Learning Network-Constrained Regression of Epigenetic Data}
 \author{Sivo Vladimirov Daskalov}
@@ -31,9 +34,17 @@
   \tableofcontents
 \end{frame}
 
+
+
+
+
 \section{Epigenetic background}
 \begin{frame}{Epigenetic background}
 \end{frame}
+
+
+
+
 
 \section{Penalized regression methods}
 \begin{frame}{Penalized regression methods}
@@ -54,25 +65,89 @@
 \normalsize
 \end{frame}
 
+
+
+
+
 \section{Composite voting regression}
 \begin{frame}{Composite voting regression}
+
+{\def\arraystretch{1.5}\tabcolsep=10pt
+	\begin{equation*}
+	\begin{array}{l|rrrr} 
+	& X_1 & X_2 & \quad\quad\quad... & X_p \\
+	\hline	
+	Method\ 1 & M_1(\beta_1) & M_1(\beta_2) & ... & M_1(\beta_p) \\
+	Method\ 2 & M_2(\beta_1) & M_2(\beta_2) & ... & M_2(\beta_p) \\
+	... & ... & ... & ... & ... \\
+	Method\ k & M_k(\beta_1) & M_k(\beta_2) & ... & M_k(\beta_p)
+	\end{array}
+	\end{equation*}
+}
+
+\begin{equation*}
+X_j = 
+\begin{dcases}
+important,& \text{if } \frac{\sum_{i=1}^{k}[M_i(\beta_j) \ne 0]}{k} \ge \text{fraction of votes threshold}\\
+unrelated,              & \text{otherwise}
+\end{dcases}
+\end{equation*}
+
+Final model obtained from OLSE on the set of important predictors
 \end{frame}
+
+
+
+
 
 \section{Orchestrated hyperparameter tuning}
 \begin{frame}{Orchestrated hyperparameter tuning}
+\begin{columns}[t]
+	\column{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm,height=5cm]{orchestrated_tuning_methodology}\\
+	\column{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm,height=5cm]{search_grid}\\
+\end{columns}
 \end{frame}
+
+
+
+
 
 \section{Model evaluation}
 \begin{frame}{Model evaluation}
+\begin{figure}
+	\includegraphics[width=8cm,height=8cm]{tuning_method_comparison}
+\end{figure}
 \end{frame}
+
+
+
+
 
 \section{Regression method similarities}
 \begin{frame}{Regression method similarities}
+\begin{columns}[t]
+	\column{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm,height=5cm]{cv_mse_similarities}\\
+	\column{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm,height=5cm]{orchestrated_similarities}\\
+\end{columns}
 \end{frame}
+
+
+
+
 
 \section{Breast cancer dataset}
 \begin{frame}{Breast cancer dataset}
 \end{frame}
+
+\end{document}
 
 
 
@@ -133,5 +208,3 @@
 %denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
 %
 %\end{frame}
-
-\end{document}
