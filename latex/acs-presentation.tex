@@ -21,6 +21,7 @@
 \author{Sivo Vladimirov Daskalov}
 \institute{Corpus Christi College}
 \date{28 June 2017}
+\titlegraphic{\includegraphics[scale=0.1]{logo}}
 
 %Computational biology often involves working with high-dimensional data. Penalized regression methods are often used on such data, as they can perform feature selection effectively. Several approaches for network-constrained regression have been suggested in literature over the recent years. They use prior knowledge in the form of a network to exploit known relationships between predictors. An approach for cooperative parameter tuning in the context of multiple alternative methods that share common input and goals is suggested. The aim is to simultaneously tune the different regression methods iteratively, in a way that increases agreement between their coefficient estimates. We also suggest a simple approach to aggregate the coefficients produced by the various regression methods through predictor importance voting. Our method performs ordinary least squares estimation to fit the subset of predictors that have non-zero coefficients in a fraction of the underlying regression methods above a given threshold. Both tuning approaches and the various regression methods have been compared and evaluated on synthetic datasets. Gene methylation and expression data has been processed with the implemented algorithms to explore how the expression level of each gene is affected by the methylation levels of related genes.
 
@@ -136,8 +137,30 @@ Final model obtained from OLSE on the set of important predictors
 
 
 
-\section{Model evaluation}
-\begin{frame}{Model evaluation}
+\section{Experiments on synthetic datasets}
+\begin{frame}{Synthetic dataset generation and setup}
+Synthetic dataset generation
+\begin{small}
+\begin{itemize}
+	\item Designed to be similar to real epigenetic datasets
+	\item 20 datasets with 550 predictors and differently generated responses
+	\item Training and test sets of size 300 and 100 respectively
+\end{itemize}
+\end{small}
+~\\
+Hyperparameter tuning setup
+\begin{small}
+\begin{description}
+	\item[Search space:] Predefined parameter grids for all regression methods
+	\item[CV-MSE tuning:] Traditional 5-fold cross-validated mean squared error
+	\item[Orchestrated tuning:] Starting points obtained from the CV-MSE tuning
+\end{description}
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}{Comparison of model metrics}
 \begin{figure}
 	\includegraphics[width=8cm,height=8cm]{tuning_method_comparison}
 \end{figure}
@@ -145,10 +168,8 @@ Final model obtained from OLSE on the set of important predictors
 
 
 
-
-
-\section{Regression method similarities}
-\begin{frame}{Regression method similarities}
+\begin{frame}{Regression method similarity evaluation}
+Cosine similarity between estimated coefficient vectors\\~\\
 \begin{columns}[t]
 	\column{.5\textwidth}
 	\centering
@@ -165,8 +186,63 @@ Final model obtained from OLSE on the set of important predictors
 
 
 
-\section{Breast cancer dataset}
-\begin{frame}{Breast cancer dataset}
+\section{Breast cancer dataset analysis}
+\begin{frame}{Breast cancer dataset and setup}
+Dataset properties:
+\begin{itemize}
+	\item Obtained from The Cancer Genome Atlas (TCGA)
+	\item Methylation and expression data for 215 breast cancer patients
+	\item Selected subset of genes associated with breast cancer
+	\item Samples divided in 3/4 training and 1/4 test sets
+\end{itemize}
+~\\
+Methylation data from the promoter and gene body regions considered separately
+\\~\\
+Regression methods used: Lasso, Elastic Net, Grace, Linf and the proposed Composite Voting Regression
+\end{frame}
+
+
+
+\begin{frame}{Vote fraction distribution}
+Threshold of 0.75 chosen (3 out of 4 methods must agree)\\~\\
+\includegraphics[width=11.5cm,height=5cm]{mappings/vote_distribution}\\
+\begin{small}
+	\begin{columns}[t]
+		\column{.5\textwidth}
+		\centering
+		Gene body region
+		\column{.5\textwidth}
+		\centering
+		Gene promoter region
+	\end{columns}
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}{Distribution of dependencies}
+Composite voting regression on the gene promoter region\\
+\includegraphics[width=10cm,height=3.5cm]{mappings/distributions/Composite_Prom}\\
+Composite voting regression on the gene body region\\
+\includegraphics[width=10cm,height=3.5cm]{mappings/distributions/Composite_Body}\\
+\end{frame}
+
+
+
+
+
+\section{Summary}
+\begin{frame}{Summary}
+\begin{itemize}
+	\item Implementation of 9 regression methods found in literature
+	\item Composite voting regression
+	\item Orchestrated hyperparameter tuning
+	\item Comparison and evaluation on synthetic datasets
+	\item Exploration of a real breast cancer dataset
+\end{itemize}
+~\\
+Contact details:\\
+\url{sivodaskalov@gmail.com}
 \end{frame}
 
 \end{document}

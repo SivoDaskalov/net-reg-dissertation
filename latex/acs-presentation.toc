@@ -4,6 +4,6 @@
 \beamer@sectionintoc {3}{Penalized regression methods}{5}{0}{3}
 \beamer@sectionintoc {4}{Composite voting regression}{6}{0}{4}
 \beamer@sectionintoc {5}{Orchestrated hyperparameter tuning}{7}{0}{5}
-\beamer@sectionintoc {6}{Model evaluation}{8}{0}{6}
-\beamer@sectionintoc {7}{Regression method similarities}{9}{0}{7}
-\beamer@sectionintoc {8}{Breast cancer dataset}{10}{0}{8}
+\beamer@sectionintoc {6}{Experiments on synthetic datasets}{8}{0}{6}
+\beamer@sectionintoc {7}{Breast cancer dataset analysis}{11}{0}{7}
+\beamer@sectionintoc {8}{Summary}{14}{0}{8}
